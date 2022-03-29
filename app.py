@@ -3,8 +3,8 @@ Simple "Hello, World" application using Flask
 """
 
 from flask import Flask
-from config import MBTA_API
-
+MAPQUEST = 't4D6lrgBv1A3GziGDewd3iG2CK0qQVNs'
+MBTA_API = '6cbb9987c1e94035a98b7ec078de747b'
 app = Flask(__name__)
 
 
