@@ -1,5 +1,5 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPQUEST_API_KEY, MBTA_API_KEY
+from config import MAPQUEST, MBTA
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
