@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from temp_helper import get_temp
 
 app = Flask(__name__)
 
