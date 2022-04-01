@@ -1,3 +1,7 @@
+import urllib.request
+import json
+from pprint import pprint
+
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPQUEST_API_KEY, MBTA_API_KEY
 
@@ -5,8 +9,6 @@ from config import MAPQUEST_API_KEY, MBTA_API_KEY
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPQUEST_BASE_URL = "http://www.mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
-
-this is a test 
 
 
 # A little bit of scaffolding if you want to use it
@@ -19,7 +21,11 @@ def get_json(url):
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    url = f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location=Babson%20College'
+    f = urllib.request.urlopen(url)
+    response_text = f.read().decode('utf-8')
+    response_data = json.loads(response_text)
+    return response_data
 
 
 def get_lat_long(place_name):
@@ -29,7 +35,7 @@ def get_lat_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
-    pass
+    
 
 
 def get_nearest_station(latitude, longitude):
@@ -39,7 +45,17 @@ def get_nearest_station(latitude, longitude):
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL
     formatting requirements for the 'GET /stops' API.
     """
-    pass
+    url = f'"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"'
+    data= get_json(url)
+    station_name= data['data'][0]['attributes']['name']
+    wheelchair_accesibility= data['data'][0]['attributes']['wheelchair']
+    if wheelchair_accesibility==0:
+        wheelchair_accesibility="No information avalaible"
+    elif wheelchair_accesibility>0:
+        wheelchair_accesibility="Wheelchair Accessible" 
+    else:
+        wheelchair_accesibility="Wheelchair Inaccessible"
+    return (station_name,wheelchair_accesibility)
 
 
 def find_stop_near(place_name):
@@ -48,14 +64,17 @@ def find_stop_near(place_name):
 
     This function might use all the functions above.
     """
-    pass
+    latitude= get_lat_long(place_name)[0]
+    longitude= get_lat_long(place_name)[1]
+    return get_nearest_station(latitude,longitude)
 
 
 def main():
     """
     You can test all the functions here
     """
-    pass
+    place= input("Please enter an address in Boston:")
+    print(find_stop_near(place))
 
 
 if __name__ == '__main__':
