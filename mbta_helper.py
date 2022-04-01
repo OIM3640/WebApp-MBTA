@@ -57,6 +57,7 @@ def get_nearest_station(latitude, longitude):
         wheel_chair='Wheelchair boarding is not possible at this stop'
     return response_data['data'][0]['attributes']['name'], wheel_chair
 
+#test
 lat, lng=get_lat_long('Boston College MA')
 print(lat,lng)
 pprint(get_nearest_station(lat,lng))
