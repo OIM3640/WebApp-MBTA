@@ -1,5 +1,8 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPQUEST_API_KEY, MBTA_API_KEY
+import urllib.request
+from pprint import pprint
+import json
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -8,6 +11,8 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
 # A little bit of scaffolding if you want to use it
+location='washington,DC'
+# upload api and hide 
 
 
 def get_json(url):
@@ -17,9 +22,11 @@ def get_json(url):
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
-
-
+    f = urllib.request.urlopen(url)
+    response_text = f.read().decode('utf-8')
+    response_data = json.loads(response_text)
+    return response_data
+    
 def get_lat_long(place_name):
     """
     Given a place name or address, return a (latitude, longitude) tuple
@@ -27,8 +34,12 @@ def get_lat_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
-    pass
-
+    place_name=place_name.replace(' ',',')+',Boston'
+    mapquest_pull=f'{MAPQUEST_BASE_URL}?key={MAPQUEST_API_KEY}&location={place_name}'
+    data=dict(get_json(mapquest_pull))
+    lat=data['results'][0]['locations'][0]['latLng']['lat']
+    lng=data['results'][0]['locations'][0]['latLng']['lng']
+    return lat,lng
 
 def get_nearest_station(latitude, longitude):
     """
@@ -37,6 +48,8 @@ def get_nearest_station(latitude, longitude):
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL
     formatting requirements for the 'GET /stops' API.
     """
+     mbta_pull=f'{MBTA_BASE_URL}'
+
     pass
 
 
@@ -53,7 +66,8 @@ def main():
     """
     You can test all the functions here
     """
-    pass
+    # pprint(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location={location}'))
+    pprint(get_lat_long('cedar street'))
 
 
 if __name__ == '__main__':
