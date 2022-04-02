@@ -1,4 +1,5 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
+from inspect import Attribute
 from config import MAPQUEST, MBTA_API
 import urllib.request
 import json
@@ -57,7 +58,13 @@ def get_lat_long():
     """
     
     response = get_json()
-    return  response['results'][0]['locations'][0]['postalCode'], response['results'][0]['locations'][0]['latLng']['lat'], response['results'][0]['locations'][0]['latLng']['lng']
+    results = response['results'][0]
+    locations = results['locations']
+    for location in locations:
+        if location['adminArea3'] == 'MA':
+            latLng = location['latLng']
+            return(latLng['lat'], latLng['lng'])
+    # return response['results'][0]['locations'][0]['postalCode'], response['results'][0]['locations'][0]['latLng']['lat'], response['results'][0]['locations'][0]['latLng']['lng']
 
 def get_nearest_station_url():
     """
@@ -67,8 +74,8 @@ def get_nearest_station_url():
     formatting requirements for the 'GET /stops' API.
     """
     info_location = get_lat_long()
-    lat = info_location[1] 
-    long = info_location[2]
+    lat = info_location[0] 
+    long = info_location[1]
     station_url = f'https://api-v3.mbta.com/stops?api_key={MBTA_API}&sort=distance&sort=wheelchair_boarding&filter%5Blatitude%5D={lat}&filter%5Blongitude%5D={long}'
     # Hard coded url
     # https://api-v3.mbta.com/stops?api_key=6cbb9987c1e94035a98b7ec078de747b&sort=distance&sort=wheelchair_boarding&filter%5Blatitude%5D=38.49441&filter%5Blongitude%5D=-81.92902
@@ -83,15 +90,24 @@ def find_stop_near():
     f = urllib.request.urlopen(station_url)
     response_text = f.read().decode('utf-8')
     response = json.loads(response_text)
-    # pprint(response)
-    return  response['data'][1]['attributes'][2] # this is not working as well
+    # print(response)
+    stations =response['data']
+    nearst_station = stations[0]
+    attributes = nearst_station['attributes']
+    return (attributes['name'], attributes['wheelchair_boarding'])
+    
+
+
 
 
 def main():
     """
     Testing cases.
     """
-    print(find_stop_near()) 
+    # print(get_json())
+    # print(get_lat_long())
+    # print(get_nearest_station_url())
+    print(find_stop_near())
 
 
 if __name__ == '__main__':
