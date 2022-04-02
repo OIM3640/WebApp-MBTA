@@ -1,10 +1,9 @@
-# Your API KEYS (you need to use your own keys - very long random characters)
+# Your API KEYS 
 from inspect import Attribute
 from config import MAPQUEST, MBTA_API
 import urllib.request
 import json
 from pprint import pprint
-
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPQUEST_BASE_URL = "http://www.mapquestapi.com/geocoding/v1/address"
@@ -86,18 +85,31 @@ def find_stop_near():
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
 
     """
-    station_url = get_nearest_station_url() #this portion could be optimized but it is hard to use get_jason() again because it uses the MAPQUEST key above so we can't put the MBTA url
-    f = urllib.request.urlopen(station_url)
-    response_text = f.read().decode('utf-8')
-    response = json.loads(response_text)
-    # print(response)
-    stations =response['data']
-    nearst_station = stations[0]
-    attributes = nearst_station['attributes']
-    return (attributes['name'], attributes['wheelchair_boarding'])
+    try:
+        station_url = get_nearest_station_url() #this portion could be optimized but it is hard to use get_jason() again because it uses the MAPQUEST key above so we can't put the MBTA url
+        f = urllib.request.urlopen(station_url)
+        response_text = f.read().decode('utf-8')
+        response = json.loads(response_text)
+        # print(response)
+        stations = response['data']
+        nearst_station = stations[0]
+        attributes = nearst_station['attributes']
+        
+        part1 = attributes['name']
+        part2 = attributes['wheelchair_boarding']
+        
+        if part2 == 0:
+            print(f'The nearest station is {part1} and there is no information about wheelchair accessibility.')
+        elif part2 == 1:
+            print(f'The nearest station is {part1} and it is wheelchair accessible.')
+        elif part2 == 2:
+            print(f'The nearest station is {part1} and it is not wheelchair accessible.')
+            
+    except:
+        print("Please enter a valid location!")
+
     
-
-
+    # return (attributes['name'], attributes['wheelchair_boarding'])
 
 
 def main():
@@ -107,9 +119,10 @@ def main():
     # print(get_json())
     # print(get_lat_long())
     # print(get_nearest_station_url())
-    print(find_stop_near())
+    
+    # You could try the folloring locations: Suffolk University, Boston Common, Newbury Street
+    find_stop_near()
 
 
 if __name__ == '__main__':
     main()
-
