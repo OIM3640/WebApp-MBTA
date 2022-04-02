@@ -98,6 +98,7 @@ def find_stop_near():
         part1 = attributes['name']
         part2 = attributes['wheelchair_boarding']
         
+        # Prints information about the closest station and whether it is wheelchair accessible
         if part2 == 0:
             print(f'The nearest station is {part1} and there is no information about wheelchair accessibility.')
         elif part2 == 1:
