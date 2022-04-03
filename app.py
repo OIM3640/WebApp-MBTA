@@ -13,7 +13,6 @@ def MBTA():
         t = find_stop_near(place_name)
         station_name = t[0]
         wheel = t[1]
-
         if wheel == 'Yes':
             S = 'It is'
         if wheel == 'Maybe':
