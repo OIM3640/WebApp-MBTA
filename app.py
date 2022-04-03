@@ -4,7 +4,7 @@ from mbta_helper import find_stop_near, map_maker
 
 app = Flask(__name__)
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["POST","GET"])
 def mbta_close():
     if request.method== "POST":
         location=request.form["location"]
