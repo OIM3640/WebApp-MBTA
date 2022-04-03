@@ -40,9 +40,8 @@ def get_lat_long(place_name):
             # only return the nearst station's coordinates to the place that is within the state of Massechusettes
             latLng = location["latLng"]
             return (latLng["lat"], latLng["lng"])
-        else:
-            latLng = location["latLng"]
-            return (latLng["lat"], latLng["lng"])
+    latLng = location["latLng"]
+    return (latLng["lat"], latLng["lng"])
 
 
 def get_nearest_station(latitude, longitude):
@@ -96,7 +95,8 @@ def main():
     """
     ## test code for location entered outside of MA
     # find_stop_near("empire state building")
-    # print(find_stop_near("boston commons"))
+    print(get_lat_long('boston common'))
+    # print(find_stop_near('boston common'))
 
 
 if __name__ == "__main__":
