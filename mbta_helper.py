@@ -21,7 +21,6 @@ def get_json(url):
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    url = f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location=Babson%20College'
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
@@ -35,7 +34,10 @@ def get_lat_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
-    
+    place_name = place_name.replace(' ', '%20')
+    mapquest_url = get_json(f'https://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location={place_name},Boston,MA')
+    coordinates = mapquest_url['results'][0]['locations'][0]['latLng']
+    return tuple(coordinates.values())
 
 
 def get_nearest_station(latitude, longitude):
@@ -46,16 +48,16 @@ def get_nearest_station(latitude, longitude):
     formatting requirements for the 'GET /stops' API.
     """
     url = f'"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"'
-    data= get_json(url)
-    station_name= data['data'][0]['attributes']['name']
-    wheelchair_accesibility= data['data'][0]['attributes']['wheelchair']
-    if wheelchair_accesibility==0:
-        wheelchair_accesibility="No information avalaible"
-    elif wheelchair_accesibility>0:
-        wheelchair_accesibility="Wheelchair Accessible" 
+    data = get_json(url)
+    station_name = data['data'][0]['attributes']['name']
+    wheelchair_accesibile = data['data'][0]['attributes']['wheelchair_boarding']
+    if wheelchair_accesibile > 0 and wheelchair_accesibile < 2:
+        wheelchair_accesibile = "Wheelchair Inaccessible"
+    elif wheelchair_accesibile >= 2:
+        wheelchair_accesibile = "Wheelchair Accessible"
     else:
-        wheelchair_accesibility="Wheelchair Inaccessible"
-    return (station_name,wheelchair_accesibility)
+        wheelchair_accesibile = "No information available"
+    return (station_name, wheelchair_accesibile)
 
 
 def find_stop_near(place_name):
@@ -64,16 +66,16 @@ def find_stop_near(place_name):
 
     This function might use all the functions above.
     """
-    latitude= get_lat_long(place_name)[0]
-    longitude= get_lat_long(place_name)[1]
-    return get_nearest_station(latitude,longitude)
+    latitude = get_lat_long(place_name)[0]
+    longitude = get_lat_long(place_name)[1]
+    return get_nearest_station(latitude, longitude)
 
 
 def main():
     """
     You can test all the functions here
     """
-    place= input("Please enter an address in Boston:")
+    place = input("Please enter an address in Boston:")
     print(find_stop_near(place))
 
 
