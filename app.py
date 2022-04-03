@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/',methods = ['GET','POST'])
 def MBTA():
     if request.method == 'POST':
-        try: 
+        try:
             place_name = request.form['place']
             t = find_stop_near(place_name)
             station_name = t[0]
@@ -21,8 +21,8 @@ def MBTA():
             else:
                 S = 'It is not'
             return render_template('result.html', station = station_name,status = S)
-        except:
-            return 
+        except IndexError:
+            return render_template('error.html')  
     else:
         return render_template('index.html')
 
