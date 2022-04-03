@@ -1,9 +1,9 @@
-Gabriel Rahardja and Julia Zlatin
+**Gabriel Rahardja and Julia Zlatin**
 
-Project Overview:
+# Project Overview:
 Our project consisted of scraping the MAPQUEST and MBTA APIs to develop a web application in which users can input their location and they would receive information on the closest MBTA station and whether or not it is wheelchair accessible. To extend upon the basic requirements, we decided to make the webpage more visually appealing using CSS.
 
-Project Reflection:
+# Project Reflection:
 From a process point of view, we believe that our project could have been more thoroughly scoped before we started working on it. We could have left some extra time for learning how to use JavaScript to make our website more dynamic and aesthetically pleasing. We could have also planned to do some other extra tasks, for instance, getting real-time MBTA transit times. Building out part one of the assignment went especially well, as we were comfortable with the material. Part two was a little more difficult, as we kept facing an error when trying to use our web application. We debugged the Flask code together by chatting about it out loud. This process made debugging much more efficient than if we were working on the code independently.
 
 From a team point of view, the option to work in pairs on the project worked very well for the most part. We were much quicker at getting the assignment done because we could use each other as a resource for asking questions. We worked through the assignment together, meaning that we each had the opportunity to make decisions at each step of the assignment. We set hard deadlines for each portion of the project to ensure we could complete it in a timely manner. We met frequently in person, which was helpful in developing the desired outcome that matched our goals. Some of our main challenges were trying to make the Html website look visually appealing and pair programming. We both do not have much experience in design but know that using JavaScript would have been very helpful in tailoring the design to our vision. As for pair programming, we each have our own coding styles, which was challenging when it came to splitting up the work. We ended up switching between who was coding and who was navigating every so often, which made it easier for us to develop the code together and understand each other’s working styles.
