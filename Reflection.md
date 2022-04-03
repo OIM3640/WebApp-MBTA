@@ -1,6 +1,6 @@
 ***Project Overview***
 
-This project is a Web App that will take a form input of a location name, and then redirect to another web page to show the name of the nearest MTBA station and whether this station is wheelchair accessible. In order to fulfill such function, I write a mbta_helper function to automatically turn a place name into longtitude and latitude and then use these information to obtain the station and whealchair information. Two html template are used to take the input and return the output.
+This project is a Web App that will take an input of a location name, and the name of the nearest MTBA station and whether this station is wheelchair accessible. In order to fulfill such function, I write the mbta_helper function to automatically turn a place name into longtitude and latitude and then use these information to obtain the station and whealchair information. Two html template are used to take the input and return the output. The first html page requireds the user to enter a location name through form and request. After clicking the button 'Check Nearest MBTA', it direct user to the second html page to print the name of the station and whether it's wheel chair accessible.
 
 ***Project Refelction***
 
