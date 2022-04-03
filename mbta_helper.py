@@ -64,7 +64,7 @@ def get_nearest_station(latitude, longitude):
     return t
 # get_nearest_station(42.358894, -71.056742)
 
-def find_stop_near_time(place_name):
+def find_stop_near(place_name):
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
     This function might use all the functions above.
