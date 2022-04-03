@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <style type="text/css">
         .red{
-            color: black;
+            color: rgb(118, 19, 35);
+            
         }
+        body {
+        font-family: Helvetica;
+        font-size: big;
+        }
+        .boxed {
+        border: 2px solid rgb(192, 32, 59);
+        background-color: rgba(192, 32, 59, 0.212);
+        }
+        .center {
+        text-align: center
+        }
+    
     </style>
+
+
 </head>
-<body>
-    <p class="red">The closest station to {{ location }} is {{ mbta_stop }} </p>
+<body style="background-color: rgb(255, 237, 222);">
+    <p class="red body boxed center">The closest station to <b>{{ location }}</b> is <br> {{ mbta_stop }}</p>
 </body>
 </html>
