@@ -14,6 +14,7 @@ def get_mbta():
     if request.method == "POST":
         location_name = request.form["location"]
         find_stop = find_stop_near(location_name)
+
         return render_template("mbta_result.html", location=location_name, mbta_stop=find_stop) #replace temp with something
 
     return render_template("mbta_form.html")
