@@ -66,7 +66,14 @@ def find_stop_near(place_name):
     lat = lat_long[0]
     long = lat_long[1]
     nearst_station = get_nearest_station(lat,long)
-    return {nearst_station[0]}
+    if nearst_station[1] == 0:
+        wheelchair_accesibility = "there is no information regarding wheelchair accessibility"
+    elif nearst_station[1] == 1:
+        wheelchair_accesibility = "it is wheelchair accessible"
+    else:
+        wheelchair_accesibility = "it is not wheelchair accessible"
+
+    return f'{nearst_station[0]}, and {wheelchair_accesibility}.'
 
 
 def main():
