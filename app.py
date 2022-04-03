@@ -1,4 +1,3 @@
-
 # from crypt import methods
 from operator import methodcaller
 from flask import Flask, render_template, request
