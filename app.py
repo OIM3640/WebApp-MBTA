@@ -23,6 +23,8 @@ def MBTA():
 @app.errorhandler(Exception) #code from: https://flask.palletsprojects.com/en/2.0.x/errorhandling/
 def basic_error(e):
     return render_template('Error.html')
+
+    
 if __name__ == '__main__':
 
     app.run(debug=True)
