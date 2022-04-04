@@ -26,7 +26,8 @@ def get_json(url):
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
-    pprint(response_data)
+    # print(response_data['results'][0]['locations'][0]['latLng'])
+    return response_data
 
 
 def get_lat_long(place_name):
@@ -62,7 +63,7 @@ def main():
     """
     You can test all the functions here
     """
-    pass
+    pprint(get_json(MAPQUEST_BASE_URL))
 
 
 if __name__ == '__main__':
