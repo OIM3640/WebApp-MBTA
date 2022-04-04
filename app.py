@@ -57,7 +57,7 @@ def form():
     title = "Thanks for using us!"
     located= requests.form.get("located")
     
-    return render_template("form.html",title=title)   
+    return render_template("form.html",title=title,located=located)   
     
 
 
