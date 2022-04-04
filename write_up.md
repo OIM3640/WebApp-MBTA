@@ -1,0 +1,5 @@
+This project was aimed to take an location in the Boston area and return the nearest MBTA station of this location, also if wheelchair is availble at the station. The logitude and latitude is obtained through MapQuest API and the closest MBTA is through the MBTA API. 
+
+Overall speaking, this project was very challenging. I think the part where I used dictionary and list convention to obtain the data from the JSON response_data. I think one of the hard part is finding the right url, especially for the MBTA data. It took me a long time to figure it out. I finally did with the execute tester. I think next time I should read the site more carefully and look for clues. I also think the web application was very hard, because I don't really know how to write HTML. Still, I think the result is very cool. If I would redo this project, I think I would leave more time for myself to try other cool API data. 
+
+I worked alone, so I did not divide work. I think maybe in the future I would like to try a team project because it will be interesting to see how works are divided and how to stay consistant with the naming and structures. 
