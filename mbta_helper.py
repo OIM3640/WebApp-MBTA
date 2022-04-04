@@ -36,7 +36,7 @@ def get_lat_long(place_name):
     for Mapquest Geocoding API URL formatting requirements.
     """
     place_name = place_name.replace(' ', '%20')
-    mapquest_url = get_json(f'https://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location={place_name},Boston,MA')
+    mapquest_url = get_json(f'https://www.mapquestapi.com/geocoding/v1/address?key=%20{MAPQUEST_API_KEY}%20&location=%20{place_name}%20,Boston,MA')
     coordinates = mapquest_url['results'][0]['locations'][0]['latLng']
     return tuple(coordinates.values())
 
