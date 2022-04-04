@@ -36,7 +36,7 @@ def get_lat_long(place_name):
     for Mapquest Geocoding API URL formatting requirements.
     """
     place_name = place_name.replace(' ', '%20')
-    mapquest_url = get_json(f'https://www.mapquestapi.com/geocoding/v1/address?key=%20{MAPQUEST_API_KEY}%20&location=%20{place_name}%20,Boston,MA')
+    mapquest_url = get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location={place_name},MA')
     coordinates = mapquest_url['results'][0]['locations'][0]['latLng']
     return tuple(coordinates.values())
 
@@ -48,7 +48,7 @@ def get_nearest_station(latitude, longitude):
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL
     formatting requirements for the 'GET /stops' API.
     """
-    url = f'"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"'
+    url = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
     data = get_json(url)
     station_name = data['data'][0]['attributes']['name']
     wheelchair_accesibile = data['data'][0]['attributes']['wheelchair_boarding']
@@ -78,7 +78,9 @@ def main():
     """
     place = input("Please enter an address in Boston:")
     print(find_stop_near(place))
-
+    # print(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location=Boston%20Univeristy,MA'))
+    # print(get_lat_long("Boston Univeristy"))
+    # print(get_nearest_station(42.347991943359375,-71.08220672607422))
 
 if __name__ == '__main__':
     main()
