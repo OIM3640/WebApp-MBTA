@@ -32,6 +32,7 @@ def get_lat_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
+    place_name = place_name.replace(" ", "%20")
     url = MAPQUEST_BASE_URL + f'?key={MAPQUEST_API_KEY}&location={place_name}'
     response_data = get_json(url)
     lat = response_data['results'][0]['locations'][0]['displayLatLng']['lat']
@@ -79,7 +80,7 @@ def main():
     # longitude = -71.06005
     # print(get_nearest_station(latitude, longitude))
 
-    place_name = 'Boston%20Common,MA'
+    place_name = 'Boston Common,MA'
     print(find_stop_near(place_name))
 
 if __name__ == '__main__':
