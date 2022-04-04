@@ -9,13 +9,14 @@ from mbta_helper import find_stop_near
 app = Flask(__name__)
 
 
-@app.route('/mbta/', methods = ["GET", "POST"])
-def mbta_station_name():
+@app.route('/', methods = ["GET", "POST"])
+def MBTA():
     if request.method == "POST":
-        place_name = request.form["Location"]
+        place_name = str(request.form["Location"])
         closest_station = find_stop_near(place_name)
-        return render_template("MBTA-Result.html", location = place_name, MBTA_Station = closest_station)
-    return render_template("MBTA_Result.html")
+        return render_template("MBTA_Result.html", location = place_name, MBTA_Station = closest_station)
+    return render_template("MBTA_Helper_Form.html")
 
 if __name__ == '__main__':
+
     app.run(debug=True)
