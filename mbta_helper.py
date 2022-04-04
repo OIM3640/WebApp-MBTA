@@ -35,11 +35,12 @@ def get_lat_long(place_name):
     for Mapquest Geocoding API URL formatting requirements.
     """
     API_KEY = MAPQUEST_API_KEY
-    for letter in place_name:
-        if ' ':
-            letter.replace('%20')
+    # for letter in place_name:
+    #     if ' ':
+    #         letter.replace('%20')
+    new_place = place_name.replace(' ', '%20')
 
-    url = f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location={place_name}'
+    url = f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location={new_place}'
 
     raw = get_json(url)
 
@@ -71,8 +72,8 @@ def main():
     You can test all the functions here
     """
     API_KEY = MAPQUEST_API_KEY
-    pprint(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location=Babson%20College'))    # Checking
-    # print(get_lat_long('Babson College'))
+    # pprint(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location=Babson%20College'))    # Checking
+    print(get_lat_long(f'Babson College'))
 
 
 if __name__ == '__main__':
