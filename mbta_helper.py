@@ -55,9 +55,15 @@ def get_nearest_station(latitude, longitude):
     formatting requirements for the 'GET /stops' API.
     """
     url = MBTA_BASE_URL
+    raw_mbta = get_json(url) # Station information
+    print(raw_mbta['data'][6]['attributes']['latitude'])
+    print(raw_mbta['data'][6]['attributes']['longitude'])
+    print(raw_mbta['data'][6]['attributes']['wheelchair_boarding'])
+    print(raw_mbta['data'][8]['attributes']['name'])
 
-    
-    pass
+    station_name = ''
+    wheelchair_accessible = ''
+
 
 
 def find_stop_near(place_name):
