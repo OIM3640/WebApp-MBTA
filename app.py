@@ -17,6 +17,12 @@ def MBTA():
         return render_template("MBTA_Result.html", location = place_name, MBTA_Station = closest_station)
     return render_template("MBTA_Helper_Form.html")
 
+
+
+# In case of errors 
+@app.errorhandler(Exception) #code from: https://flask.palletsprojects.com/en/2.0.x/errorhandling/
+def basic_error(e):
+    return render_template('Error.html')
 if __name__ == '__main__':
 
     app.run(debug=True)
