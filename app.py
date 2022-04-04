@@ -11,11 +11,14 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET", "POST"])
 def hello():
-    if request.method == "POST":
-        place = request.form["location"]
-        nearest = find_stop_near(str(place))
+    try:
+        if request.method == "POST":
+            place = request.form["location"]
+            nearest = find_stop_near(str(place))
 
-        return render_template("stop_result.html", stop = nearest[0], access = nearest[1])
+            return render_template("stop_result.html", stop = nearest[0], access = nearest[1])
+    except IndexError:
+        return render_template("error.html", index_error_msg = 'Couldn\'t find what you\'re looking for.')
     return render_template("stop_form.html")
 
 
