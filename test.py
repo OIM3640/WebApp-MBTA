@@ -22,4 +22,4 @@ def get_json(url):
 print(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location=Boston%20Univeristy,MA'))
 # http://www.mapquestapi.com/geocoding/v1/address?key=vbvSagGcRQOERezgVV3BPEI4jcGvRAxG&location=Boston%20Univeristy,MA
 
-https://api-v3.mbta.com/stops?api_key=3e8a26a9583045e1aac5a93e4538d3d4&sort=distance&filter%5Blatitude%5D=440.733497066&filter%5Blongitude%5D=-74.169332656
+# https://api-v3.mbta.com/stops?api_key=3e8a26a9583045e1aac5a93e4538d3d4&sort=distance&filter%5Blatitude%5D=42.347991943359375&filter%5Blongitude%5D=-71.08220672607422
