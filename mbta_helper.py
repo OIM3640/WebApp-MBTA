@@ -39,13 +39,12 @@ def get_lat_long(place_name):
     #     if ' ':
     #         letter.replace('%20')
     new_place = place_name.replace(' ', '%20')
-
     url = f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location={new_place}'
 
     raw = get_json(url)
+    dict = raw['results'][0]['locations'][0]['latLng']
 
-    return raw['results'][0]['locations'][0]['latLng']
-    # pass
+    return dict['lat'], dict['lng']
 
 
 def get_nearest_station(latitude, longitude):
@@ -73,7 +72,7 @@ def main():
     """
     API_KEY = MAPQUEST_API_KEY
     # pprint(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location=Babson%20College'))    # Checking
-    print(get_lat_long(f'Babson College'))
+    # print(get_lat_long(f'Babson College'))  # Checking
 
 
 if __name__ == '__main__':
