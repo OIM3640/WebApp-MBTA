@@ -214,6 +214,6 @@ After you finish the project, Please write a short document for reflection [~2 p
 1. Push your completed code to the forked GitHub repository (depending on which team member's repository is being used to work on the project).
 2. Include your Project Writeup/Reflection in your GitHub repository. Make sure there is a link to this Markdown document in your README.md file in your GitHub repo. 
 3. Create a pull request to the upstream repository.
-4. In the comment area on Canvas, specify names of all team members and url of GitHub repository. **Everyone in the team needs to submit on Canvas and add comment.**
+4. In the comment area on Canvas, specify names of all team members and url of GitHub repository. **Everyone in the team needs to submit the zip file to Canvas and add comment.**
 
 
