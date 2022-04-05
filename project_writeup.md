@@ -1,4 +1,4 @@
-# Project Wrap-up
+# Project Write-up
 **Angelina Cho and Kotaro Yabe**
 
 ## Project Overview
