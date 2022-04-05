@@ -73,16 +73,18 @@ def find_stop_near(place_name):
 
     This function might use all the functions above.
     """
+
+    coordinate = get_lat_long(place_name)
+    nearest = get_nearest_station(coordinate[0], coordinate[1])
+    print(nearest)
+    wheelchair_accessible = 0
+
     if wheelchair_accessible == 0:
         wheelchair_info = 'There is no information on accessibility.'
     elif wheelchair_accessible == 1:
         wheelchair_info = "Wheelchair boarding is accessible."
     else:
         wheelchair_info = "Wheelchair boarding is inaccessible."
-    pass
-
-    coordinate = get_lat_long(place_name)
-    nearest = get_nearest_station(coordinate[0], coordinate[1])
     
 
 def main():
@@ -94,6 +96,8 @@ def main():
     # print(get_lat_long(f'Babson College'))  # Checking
     # print(get_nearest_station('42.344593', '-71.144416'))
     # print(get_nearest_station('42.29822', '-71.26543'))
+    
+    find_stop_near()
 
 
 if __name__ == '__main__':
