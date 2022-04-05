@@ -3,6 +3,7 @@
 import urllib.request
 import json
 from pprint import pprint
+from webbrowser import get
 from config import MAPQUEST_API_KEY, MBTA_API_KEY
 
 
@@ -63,8 +64,8 @@ def get_nearest_station(latitude, longitude):
     url = f'https://api-v3.mbta.com/stops?api_key={API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
     get_json(url)
 
-    station_name = 
-    wheelchair_accessible = ''  # 0 is no information, 1 is accessible, 2 is inaccessible
+    # station_name = 
+    # wheelchair_accessible = ''  # 0 is no information, 1 is accessible, 2 is inaccessible
 
 
 def find_stop_near(place_name):
@@ -73,8 +74,9 @@ def find_stop_near(place_name):
 
     This function might use all the functions above.
     """
-    pass
-
+    coordinate = get_lat_long(place_name)
+    nearest = get_nearest_station(coordinate[0], coordinate[1])
+    
 
 def main():
     """
