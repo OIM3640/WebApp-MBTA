@@ -5,16 +5,23 @@ from mbta_helper import find_stop_near
 app = Flask(__name__)
 
 
-@app.route('/index/', methods = ['GET', 'POST'])
+@app.route('/', methods = ['GET', 'POST'])
 def show_station():
-    if request.method == 'POST':
-        place_name = request.form['place']
 
-        station = find_stop_near(place_name)
+    try:
+        if request.method == 'POST':
+            place_name = request.form['place']
 
-        return render_template('station-result.html', place = place_name, station = station)
-    else:
-        return render_template('index.html')
+            result = find_stop_near(place_name)
+            station = result[0]
+            WheelchairTF = result[1]
+
+
+            return render_template('station-result.html', place = place_name, station = station, Wheelchair = WheelchairTF)
+        else:
+            return render_template('index.html')
+    except Exception:
+        return render_template('error.html')
 
 
 if __name__ == '__main__':
