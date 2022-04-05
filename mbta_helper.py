@@ -3,6 +3,7 @@
 import urllib.request
 import json
 from pprint import pprint
+from webbrowser import get
 from config import MAPQUEST_API_KEY, MBTA_API_KEY
 
 
@@ -80,6 +81,9 @@ def find_stop_near(place_name):
         wheelchair_info = "Wheelchair boarding is inaccessible."
     pass
 
+    coordinate = get_lat_long(place_name)
+    nearest = get_nearest_station(coordinate[0], coordinate[1])
+    
 
 def main():
     """
