@@ -4,10 +4,11 @@ Simple "Hello, World" application using Flask
 #Importing all the required modules for the project
 import urllib.request
 import os
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for,Request
+from flask import Flask, render_template, request
 
 import requests
-import urllib.request
+
 import json
 from pprint import pprint
 
@@ -52,13 +53,15 @@ def homepage():
     
 
 
-@app.route('/form', methods=["POST"]) 
+@app.route('/results/', methods=["GET","POST"])
 def form():
-    title = "Thanks for using us!"
-    located= requests.form.get("located")
+    if Request.method == "POST":
+        located= str(Request.form["located"])
+        return render_template("form.html",located = located)
+
     
-    return render_template("form.html",title=title,located=located)   
     
+   
 
 
 
