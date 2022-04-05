@@ -92,8 +92,8 @@ def main():
     API_KEY = MAPQUEST_API_KEY
     # pprint(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location=Babson%20College'))    # Checking
     # print(get_lat_long(f'Babson College'))  # Checking
-    # print(get_nearest_station('42.344593', '-71.144416'))
-    # print(get_nearest_station('42.29822', '-71.26543'))
+    print(get_nearest_station('42.344593', '-71.144416'))   # Station
+    print(get_nearest_station('42.29822', '-71.26543')) # Babson College
 
 
 if __name__ == '__main__':
