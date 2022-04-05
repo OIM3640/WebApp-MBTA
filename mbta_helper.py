@@ -61,10 +61,15 @@ def get_nearest_station(latitude, longitude):
     # print(raw_mbta['data'][6]['attributes']['wheelchair_boarding'])
     # print(raw_mbta['data'][8]['attributes']['name'])
     url = f'https://api-v3.mbta.com/stops?api_key={API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
-    get_json(url)
+    raw_mbta = get_json(url)
 
-    station_name = 
-    wheelchair_accessible = ''  # 0 is no information, 1 is accessible, 2 is inaccessible
+    if len(raw_mbta['data']) > 0:
+        station_name = raw_mbta['data'][0]['attributes']['name']
+        wheelchair_accessible = raw_mbta['data'][6]['attributes']['wheelchair_boarding']  # 0 is no information, 1 is accessible, 2 is inaccessible
+        wheelchair_info = str()
+        return station_name, wheelchair_accessible
+    else:
+        return f'There is no nearest station. Please get into the city!'
 
 
 def find_stop_near(place_name):
@@ -73,6 +78,12 @@ def find_stop_near(place_name):
 
     This function might use all the functions above.
     """
+    if wheelchair_accessible == 0:
+        wheelchair_info = 'There is no information on accessibility.'
+    elif wheelchair_accessible == 1:
+        wheelchair_info = "Wheelchair boarding is accessible."
+    else:
+        wheelchair_info = "Wheelchair boarding is inaccessible."
     pass
 
 
@@ -83,8 +94,8 @@ def main():
     API_KEY = MAPQUEST_API_KEY
     # pprint(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location=Babson%20College'))    # Checking
     # print(get_lat_long(f'Babson College'))  # Checking
-    print(get_nearest_station('42.344593', '-71.144416'))
-    print(get_nearest_station('42.29822', '-71.26543'))
+    # print(get_nearest_station('42.344593', '-71.144416'))
+    # print(get_nearest_station('42.29822', '-71.26543'))
 
 
 if __name__ == '__main__':
