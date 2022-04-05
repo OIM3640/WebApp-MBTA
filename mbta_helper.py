@@ -54,18 +54,17 @@ def get_nearest_station(latitude, longitude):
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL
     formatting requirements for the 'GET /stops' API.
     """
-    url = MBTA_BASE_URL
-    raw_mbta = get_json(url) # Station information
-    print(raw_mbta['data'][6]['attributes']['latitude'])
-    print(raw_mbta['data'][6]['attributes']['longitude'])
-    print(raw_mbta['data'][6]['attributes']['wheelchair_boarding'])
-    print(raw_mbta['data'][8]['attributes']['name'])
-    
+    API_KEY = MBTA_API_KEY
+    # raw_mbta = get_json(url) # Station information
+    # print(raw_mbta['data'][6]['attributes']['latitude'])
+    # print(raw_mbta['data'][6]['attributes']['longitude'])
+    # print(raw_mbta['data'][6]['attributes']['wheelchair_boarding'])
+    # print(raw_mbta['data'][8]['attributes']['name'])
+    url = f'https://api-v3.mbta.com/stops?api_key={API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
+    get_json(url)
 
-
-    station_name = ''
+    station_name = 
     wheelchair_accessible = ''  # 0 is no information, 1 is accessible, 2 is inaccessible
-
 
 
 def find_stop_near(place_name):
@@ -84,7 +83,8 @@ def main():
     API_KEY = MAPQUEST_API_KEY
     # pprint(get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={API_KEY}&location=Babson%20College'))    # Checking
     # print(get_lat_long(f'Babson College'))  # Checking
-    print(get_nearest_station('2.29822', '-71.26543'))
+    print(get_nearest_station('42.344593', '-71.144416'))
+    print(get_nearest_station('42.29822', '-71.26543'))
 
 
 if __name__ == '__main__':
