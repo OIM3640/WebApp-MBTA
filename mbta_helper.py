@@ -57,9 +57,11 @@ def get_nearest_station(latitude, longitude):
     """
     API_KEY = MBTA_API_KEY
     url = f'https://api-v3.mbta.com/stops?api_key={API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
+    # print(url)
     raw_mbta = get_json(url)
-
-    if len(raw_mbta['data']) > 0:
+    # print(raw_mbta)
+    # print(len(raw_mbta['data']))
+    if len(raw_mbta['data']) >= 0:
         station_name = raw_mbta['data'][0]['attributes']['name']
         wheelchair_accessible = raw_mbta['data'][6]['attributes']['wheelchair_boarding']  # 0 is no information, 1 is accessible, 2 is inaccessible
         wheelchair_info = str()
@@ -82,16 +84,19 @@ def find_stop_near(place_name):
     """
 
     coordinate = get_lat_long(place_name)
+    # print(coordinate)
     nearest = get_nearest_station(coordinate[0], coordinate[1])
-    print(nearest)
-    wheelchair_accessible = 0
+    
+    # wheelchair_accessible = 0
 
-    if wheelchair_accessible == 0:
-        wheelchair_info = 'There is no information on accessibility.'
-    elif wheelchair_accessible == 1:
-        wheelchair_info = "Wheelchair boarding is accessible."
-    else:
-        wheelchair_info = "Wheelchair boarding is inaccessible."
+    # if wheelchair_accessible == 0:
+    #     wheelchair_info = 'There is no information on accessibility.'
+    # elif wheelchair_accessible == 1:
+    #     wheelchair_info = "Wheelchair boarding is accessible."
+    # else:
+    #     wheelchair_info = "Wheelchair boarding is inaccessible."
+    
+    return nearest
     
 
 def main():
@@ -103,8 +108,8 @@ def main():
     # print(get_lat_long(f'Babson College'))  # Checking
     # print(get_nearest_station('42.344593', '-71.144416'))
     # print(get_nearest_station('42.29822', '-71.26543'))
-
-    find_stop_near()
+    # print(get_nearest_station(43.959036, -81.503609))
+    print(find_stop_near('Boston University'))
 
 
 if __name__ == '__main__':
