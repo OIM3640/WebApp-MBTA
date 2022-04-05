@@ -60,9 +60,11 @@ def get_nearest_station(latitude, longitude):
     print(raw_mbta['data'][6]['attributes']['longitude'])
     print(raw_mbta['data'][6]['attributes']['wheelchair_boarding'])
     print(raw_mbta['data'][8]['attributes']['name'])
+    
+
 
     station_name = ''
-    wheelchair_accessible = ''
+    wheelchair_accessible = ''  # 0 is no information, 1 is accessible, 2 is inaccessible
 
 
 
