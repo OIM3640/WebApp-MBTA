@@ -110,6 +110,10 @@ def main():
     # print(get_nearest_station('42.29822', '-71.26543'))
     # print(get_nearest_station(43.959036, -81.503609))
     print(find_stop_near('Boston University'))
+    print(get_nearest_station('42.344593', '-71.144416'))   # Station
+    print(get_nearest_station('42.29822', '-71.26543')) # Babson College
+
+    find_stop_near()
 
 
 if __name__ == '__main__':
