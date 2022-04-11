@@ -57,8 +57,10 @@
     <br>
     <br>
     <p>
-        You are {{ distance }} from the nearest MBTA station.
+        Closest MBTA station, {{ distance }} 
+        Wheelchair accesible, {{wheelchairs}}  .
     </p>
-    <a href = "ourwebsite.html" target="_blank"><img src = "home.jpg" alt = "Return Home" width="100" height="100"></a>
+    <a href = "{{ url_for('form') }}" target="_blank"><img src = "{{ url_for('static', filename='home.jpg') }}" alt = "Return Home" width="100" height="100"></a>
 </body>
 </html>
+
