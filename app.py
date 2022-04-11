@@ -34,7 +34,6 @@ response_data['results'][0]['locations'][0]['latLng']
 
 #SECOND API, CREATING THE CALL FORMAT FOR THE MBTA API
 
-api_key= '2d9525064b3444819a66dc7c40160dd2'
 lat = 42.358894
 lng = -71.056742
 url1 = f"https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D={lat}&filter%5Blongitude%5D={lng}" 
