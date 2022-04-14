@@ -57,7 +57,10 @@ response_data2 = json.loads(response_text2)
 def form():
     if request.method == "POST":
         located= (request.form["located"])
-        location = located
+
+        location = located.replace(" ",'%20')
+        location =location + ',Ma' 
+        
         MAPQUEST_API_KEY = 'VOkvo2bQdXve8kGHbBxzvQhJDzc6lpfG'
         url = f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location={location}'
         f = urllib.request.urlopen(url)
@@ -66,14 +69,14 @@ def form():
         lat = response_data['results'][0]['locations'][0]['latLng']['lat']
         lng = response_data['results'][0]['locations'][0]['latLng']['lng']
         coordinates = [lat,lng]
-        #second API call
+        #Second API call
         url1 = f"https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D={lat}&filter%5Blongitude%5D={lng}" 
         g = urllib.request.urlopen(url1)
         response_text2 = g.read().decode('utf-8')
         response_data2 = json.loads(response_text2)
         response_data2['data']
         neareststation = str(response_data2['data'][0]['attributes']['at_street'])
-        #conditional to determine if the location is wheelchair accesible
+        #Conditional to determine if the location is wheelchair accesible
         if response_data2['data'][0]['attributes']['wheelchair_boarding'] == 1:
             wheelchair = 'Yes'
         else: wheelchair = 'No'
