@@ -1,7 +1,12 @@
+import urllib.request
+import json
+from pprint import pprint
+
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPQUEST_API_KEY, MBTA_API_KEY
+# from config import MAPQUEST_API_KEY, MBTA_API_KEY
 
-
+MAPQUEST_API_KEY = 'GhfoZNG9Jc4VcYqUrLwUI8sRiOHai3iC'
+MBTa_API_KEY = ''
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPQUEST_BASE_URL = "http://mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
@@ -17,7 +22,11 @@ def get_json(url):
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    url = f'{url}?key={MAPQUEST_API_KEY}&location=MA%20USA'
+    f = urllib.request.urlopen(url)
+    response_text = f.read().decode('utf-8')
+    response_data = json.loads(response_text)
+    return response_data
 
 
 def get_lat_long(place_name):
@@ -53,7 +62,7 @@ def main():
     """
     You can test all the functions here
     """
-    pass
+    get_json(MAPQUEST_BASE_URL)
 
 
 if __name__ == '__main__':
