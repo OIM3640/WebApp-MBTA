@@ -8,7 +8,9 @@
     <title>Amazing app to help you find nearest MBTA station</title>
   </head>
   <body>
-    <form action="" method="post">
+    <p>Hello! To check the neareast MBTA Station and wheelchair accessibility information, please enter your place.</p>
+    
+    <form action="{{ url_for('get_result') }}" method="post">
       <label for="">Place: <input type="text" name="place"></label>
       <button>Submit</button>
   </body>

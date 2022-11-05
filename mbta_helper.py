@@ -68,10 +68,13 @@ def get_nearest_station(latitude, longitude):
     """
     MBTA_url = MBTA_BASE_URL + urlencode({'api_key': MBTA_API_KEY, 'sort': 'distance', 'filter[latitude]': latitude, 'filter[longitude]': longitude})
     data = get_json(MBTA_url)
-    station_name = data['data'][0]['attributes']['name']
-    wheelchair_boarding = data["data"][0]['attributes']["wheelchair_boarding"]
-    t = (station_name, wheelchair_boarding)
-    return t
+    if data['data'] != []: 
+        station_name = data['data'][0]['attributes']['name']
+        wheelchair_boarding = data["data"][0]['attributes']["wheelchair_boarding"]
+        t = (station_name, wheelchair_boarding)
+        return t
+    else: 
+        return None 
 
 
 def find_stop_near(place_name):
@@ -81,14 +84,18 @@ def find_stop_near(place_name):
     This function might use all the functions above.
     """
     latitude, longitude = get_lat_long(place_name)
-    near_stop, wheelchair_boarding = get_nearest_station(latitude, longitude)
-    if wheelchair_boarding == 1: 
-        wheelchair_accessible = 'accessible'
-    elif wheelchair_boarding == 2: 
-        wheelchair_accessible = 'inaccessible'
+    if get_nearest_station(latitude, longitude) == None: 
+        return None 
     else: 
-        wheelchair_accessible = 'unkown'
-    return near_stop, wheelchair_accessible
+        latitude, longitude = get_lat_long(place_name)
+        near_stop, wheelchair_boarding = get_nearest_station(latitude, longitude)
+        if wheelchair_boarding == 1: 
+            wheelchair_accessible = 'accessible'
+        elif wheelchair_boarding == 2: 
+            wheelchair_accessible = 'inaccessible'
+        else: 
+            wheelchair_accessible = 'unkown'
+        return near_stop, wheelchair_accessible
 
 
 def main():
@@ -96,6 +103,7 @@ def main():
     You can test all the functions here
     """
     LOCATION = 'Boston Public Garden'
+    # LOCATION = 'Boston Commons'
     MAPQUEST_url = get_url(LOCATION)
 
     # print(get_url(LOCATION))
