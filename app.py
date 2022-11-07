@@ -18,8 +18,9 @@ def get_result():
         if mbta_helper.find_stop_near(place_name) == None: 
             return render_template('error.html', place = place_name)
         else: 
-            near_stop, wheelchair_accessible = mbta_helper.find_stop_near(place_name)
-            return render_template("result.html", place=place_name, nearest=near_stop, accessibility = wheelchair_accessible)
+            near_stop, wheelchair_accessible, weather, temp, air_quality = mbta_helper.find_stop_near(place_name)
+        
+            return render_template("result.html", place=place_name, nearest=near_stop, accessibility = wheelchair_accessible, weather = weather, temp = temp, air = air_quality) 
     
     return render_template('index.html')
 

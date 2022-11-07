@@ -10,7 +10,9 @@ MAPQUEST_BASE_URL = "https://www.mapquestapi.com/geocoding/v1/address?"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops?"
 MAPQUEST_API_KEY = 's3TPavFyK0zg2h1kyscEOE8YMptpk2yU'
 MBTA_API_KEY = '797d5d3a4cf54c3993dc93d5f54a49ce'
-
+weather_API_KEY = 'd79b7191a0578bfcb747de50bb6825c0'
+events_API_KEY = 'KmXKmlzZgHhfaWrjq5J73ytov3DGtL1Y'
+air_API_KEY = '8d3ae0cd-8759-42a7-a907-5bd9872c75ce'
 
 # MAPQUEST_API_KEY = 's3TPavFyK0zg2h1kyscEOE8YMptpk2yU'
 # LOCATION = 'Babson%20College'
@@ -51,7 +53,7 @@ def get_lat_long(place_name):
     lat = j['latLng']['lat']
     lng = j['latLng']['lng']
     t =  (lat, lng)
-    return t 
+    return t
 
 
 def get_nearest_station(latitude, longitude):
@@ -76,6 +78,28 @@ def get_nearest_station(latitude, longitude):
     else: 
         return None 
 
+def get_weather(latitude, longitude): 
+    """returm curretn weather and temperature """
+    weather_url = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={weather_API_KEY}'
+    data = get_json(weather_url)
+    weather = data['weather'][0]['description']
+    temp = data['main']['temp']
+    return weather, temp 
+
+# def get_events(post_code): 
+#     events_url = f'https://app.ticketmaster.com/discovery/v2/events.json?postalCode={post_code}&apikey={events_API_KEY}'
+#     data = get_json(events_url)
+#     events = ["_embedded"]['events'][0]['name']
+#     return events 
+
+
+def get_airquality(latitude, longitude): 
+    """return curretn air quality """
+    air_url = f'http://api.airvisual.com/v2/nearest_city?lat={latitude}&lon={longitude}&key={air_API_KEY}'
+    data = get_json(air_url)
+    air_quality = data['data']['current']['pollution']['aqius']
+    return air_quality
+
 
 def find_stop_near(place_name):
     """
@@ -84,6 +108,8 @@ def find_stop_near(place_name):
     This function might use all the functions above.
     """
     latitude, longitude = get_lat_long(place_name)
+    weather, temp = get_weather(latitude, longitude) 
+    air_quality = get_airquality(latitude, longitude)
     if get_nearest_station(latitude, longitude) == None: 
         return None 
     else: 
@@ -95,7 +121,7 @@ def find_stop_near(place_name):
             wheelchair_accessible = 'inaccessible'
         else: 
             wheelchair_accessible = 'unkown'
-        return near_stop, wheelchair_accessible
+        return near_stop, wheelchair_accessible, weather, temp, air_quality  
 
 
 def main():
@@ -111,6 +137,8 @@ def main():
     # print(get_nearest_station(latitude, longitude))
     
     print(find_stop_near(LOCATION))
+    latitude, longitude = get_lat_long(LOCATION)
+    print(get_airquality(latitude, longitude))
 
 if __name__ == '__main__':
     main()
