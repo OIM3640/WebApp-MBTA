@@ -1,18 +1,26 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 # from config import MAPQUEST_API_KEY, MBTA_API_KEY
+from configparser import ConfigParser
 import urllib.request 
 import json 
 from pprint import pprint 
 from urllib.parse import urlencode 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
+config = ConfigParser()
+config.read('config/config.ini')
+MAPQUEST_API_KEY = config.get('MAPQUEST', 'MAPQUEST_API_KEY')
+MBTA_API_KEY = config.get('MBTA', 'MBTA_API_KEY')
+weather_API_KEY = config.get('openweathermap', 'weather_API_KEY')
+air_API_KEY = config.get('AIRVISUAL', 'air_API_KEY')
+
 MAPQUEST_BASE_URL = "https://www.mapquestapi.com/geocoding/v1/address?"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops?"
-MAPQUEST_API_KEY = 's3TPavFyK0zg2h1kyscEOE8YMptpk2yU'
-MBTA_API_KEY = '797d5d3a4cf54c3993dc93d5f54a49ce'
-weather_API_KEY = 'd79b7191a0578bfcb747de50bb6825c0'
+# MAPQUEST_API_KEY = 's3TPavFyK0zg2h1kyscEOE8YMptpk2yU'
+# MBTA_API_KEY = '797d5d3a4cf54c3993dc93d5f54a49ce'
+# weather_API_KEY = 'd79b7191a0578bfcb747de50bb6825c0'
 events_API_KEY = 'KmXKmlzZgHhfaWrjq5J73ytov3DGtL1Y'
-air_API_KEY = '8d3ae0cd-8759-42a7-a907-5bd9872c75ce'
+# air_API_KEY = '8d3ae0cd-8759-42a7-a907-5bd9872c75ce'
 
 # MAPQUEST_API_KEY = 's3TPavFyK0zg2h1kyscEOE8YMptpk2yU'
 # LOCATION = 'Babson%20College'
