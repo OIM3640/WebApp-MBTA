@@ -1,11 +1,11 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPQUEST_API_KEY, MBTA_API_KEY
+# from config import MAPQUEST_API_KEY, MBTA_API_KEY
 from urllib import response
 import urllib.request
 import json
 
-# MAPQUEST_API_KEY = 'mkzRo6ydiaROmfkynLzaWHPDWB3tnRZW'
-# MBTA_API_KEY = 'e3848735835b4472979ba8f2dfeabc46'
+MAPQUEST_API_KEY = 'mkzRo6ydiaROmfkynLzaWHPDWB3tnRZW'
+MBTA_API_KEY = 'e3848735835b4472979ba8f2dfeabc46'
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -46,9 +46,6 @@ def get_lat_long(place_name):
     lat_long = lat, long
     return lat_long
 
-print(get_lat_long('New England Aquarium, Boston'))
-
-
 def get_nearest_station(latitude, longitude):
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible)
@@ -60,25 +57,33 @@ def get_nearest_station(latitude, longitude):
     long = str(longitude)
     url = f'{MBTA_BASE_URL}?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={lat}&filter%5Blongitude%5D={long}'
     data = get_json(url)
-    return data
+    station_name = data["data"][0]["attributes"]["name"]
+    wheelchair_accessible = data["data"][0]["attributes"]["wheelchair_boarding"]
+    if wheelchair_accessible == 1:
+        return (station_name, "Accessible by Wheelchair")
+    if wheelchair_accessible == 0:
+        return (station_name, "Not Accessible by Wheelchair")
 
-print(get_nearest_station(42.35919, -71.05055))
 
-
+    
 def find_stop_near(place_name):
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
 
     This function might use all the functions above.
     """
-    pass
+
+    lat, lng = get_lat_long(place_name)
+    return get_nearest_station(lat, lng)
+    
 
 
 def main():
     """
     You can test all the functions here
     """
-    pass
+print(find_stop_near(("Boston Commons, Boston")))
+    
 
 
 if __name__ == '__main__':
