@@ -4,14 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      p {
+        font-size: 26px;
+        color: olivedrab;
+        text-align: center;
+        background-color: beige;
+        margin: 0px
+      }
+
+
+    </style>
 
     <title>Amazing app to help you find nearest MBTA station</title>
   </head>
   <body>
-    <p>Hello! To check the neareast MBTA Station and wheelchair accessibility information, please enter your place.</p>
+    <p>Hello!</p>
+    <p>To check the neareast MBTA Station, wheelchair accessibility, and weather information, please enter your place.</p>
     
-    <form action="{{ url_for('get_result') }}" method="post">
-      <label for="">Place: <input type="text" name="place"></label>
-      <button>Submit</button>
+    <form action="{{ url_for('get_result') }}" method="post"; style="text-align: center; margin: 30px">
+      <label for=""; style="color:olivedrab; font-size: 26px;">Place: <input type="text" name="place"></label>
+      <button style="color: olivedrab; font: bold; background-color: beige; font-size: 20px;">Submit</button>
   </body>
 </html>
