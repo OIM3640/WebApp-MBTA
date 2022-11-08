@@ -16,7 +16,7 @@ def home():
 # 2. 
 # @app post/nearest post request
 
-@app.route('/MBTA', methods=["GET", "POST"])
+@app.route('/POST/nearest_mbta', methods=["GET", "POST"])
 def get_MBTA():
     if request.method == "POST":
         Place = request.form["place"]
