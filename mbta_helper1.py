@@ -80,7 +80,7 @@ def main():
     """
     You can test all the functions here
     """
-    print(find_stop_near("Babson College"))
+    print(find_stop_near("Mariel"))
 
 
 if __name__ == '__main__':
