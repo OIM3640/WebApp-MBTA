@@ -1,5 +1,3 @@
-# Your API KEYS (you need to use your own keys - very long random characters)
-# from config import MAPQUEST_API_KEY, MBTA_API_KEY
 from urllib import response
 import urllib.request
 import json
@@ -71,10 +69,16 @@ def find_stop_near(place_name):
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
 
     This function might use all the functions above.
+
+    Returns ((Location, Accessible), Error)
     """
 
+    if ',' not in place_name:
+        return ((None, None), True)
+
     lat, lng = get_lat_long(place_name)
-    return get_nearest_station(lat, lng)
+
+    return (get_nearest_station(lat, lng), False)
     
 
 
@@ -82,9 +86,4 @@ def main():
     """
     You can test all the functions here
     """
-print(find_stop_near(("Boston Commons, Boston")))
-    
-
-
-if __name__ == '__main__':
-    main()
+    print(find_stop_near(("Boston Commons, Boston")))
