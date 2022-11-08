@@ -2,16 +2,20 @@
 Simple "Hello, World" application using Flask
 """
 
-from flask import Flask
-
+from flask import *
+from mbta_helper import find_stop_near 
 
 app = Flask(__name__)
 
-
-@app.route('/')
-def hello():
-    return 'Hello World!'
-
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = (request.form['name'])
+        ((_location , _accessible), _error) = find_stop_near(name)
+        return render_template('index.html', location=_location, accessible=_accessible, error=_error)
+    else:
+        return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
+    app.config['DEBUG'] = True
