@@ -5,7 +5,7 @@ import json
 from pprint import pprint
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
-MAPQUEST_BASE_URL = "http://www.mapquestapi.com/geocoding/v1/address"
+MAPQUEST_BASE_URL = "http://mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
