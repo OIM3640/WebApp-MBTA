@@ -4,10 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Amazing app to help you find nearest MBTA station</title>
+    <style>
+      body {
+        text-align: center;
+        background-color: rgb(21, 85, 246);
+        color: white;
+      }
+      h2 {
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+      #Placename {
+        height: 25px;
+      }
+      #label {
+        font-weight: bolder;
+        font-size: larger;
+      }
+    </style>
   </head>
   <body>
-      <p>Hi</p>
+    <h1>MBTA App</h1>
+    <h2>
+      Hello! This app will help you find the nearest MBTA station. All you need
+      to do is input a location/place name below.
+    </h2>
+    <form id="form" method="post">
+      <label id="label" for="place">Place Name:</label>
+      <input
+        type="text"
+        id="Placename"
+        name="place"
+        placeholder="Enter place name"
+      />
+      <input type="submit" value="Submit" />
+    </form>
   </body>
 </html>
