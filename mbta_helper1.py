@@ -57,11 +57,11 @@ def get_nearest_station(latitude, longitude):
 
     url = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&page%5Blimit%5D=1&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
     f = urllib.request.urlopen(url)
-    response_text2 = f.read().decode('utf-8')
-    response_data2 = json.loads(response_text2)
+    response_text = f.read().decode('utf-8')
+    response_data = json.loads(response_text)
     # pprint(response_data)
-    station = response_data2['data'][0]['attributes']['name']
-    Wheelchair = response_data2['data'][0]['attributes']['wheelchair_boarding']
+    station = response_data['data'][0]['attributes']['name']
+    Wheelchair = response_data['data'][0]['attributes']['wheelchair_boarding']
     t = (station, Wheelchair)
     print(t)
 
