@@ -87,3 +87,6 @@ def main():
     You can test all the functions here
     """
     print(find_stop_near(("Boston Commons, Boston")))
+
+if __name__ == '__main__':
+    main()
