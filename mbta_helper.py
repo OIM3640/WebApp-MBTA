@@ -36,13 +36,13 @@ def get_lat_long(place_name):
     Example shown below:
     url = f'http://mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location=Babson%20College'
     """
-    place_name = place_name.replace(" ", "%20")
-    url = f'{MAPQUEST_BASE_URL}?key={MAPQUEST_API_KEY}&location={place_name}'
+    name = place_name.replace(" ", "%20")
+    new_name = name.lower()
+    url = f'{MAPQUEST_BASE_URL}?key={MAPQUEST_API_KEY}&location={new_name}'
     data = get_json(url)
     latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
     longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
     return latitude, longitude
-
 # print(get_lat_long('Babson College'))
 
 
@@ -62,7 +62,7 @@ def get_nearest_station(latitude, longitude):
     station_name = data['data'][0]['attributes']['name']
     wheelchair_accessible = data['data'][0]['attributes']['wheelchair_boarding']
     return station_name, wheelchair_accessible
-
+# get_nearest_station('42.29822', '-71.26543')
 
 def find_stop_near(place_name):
     """
@@ -74,9 +74,10 @@ def find_stop_near(place_name):
         1 --> Accessible (if trip is wheelchair accessible)
         2 --> Inaccessible
     """
-    latitude, longitude = get_lat_long(place_name)
-    station_name, wheelchair_accessible = get_nearest_station(
-        latitude, longitude)
+    lat, long = get_lat_long(place_name)
+    # print(latitude, longitude)
+    station_name, wheelchair_accessible = get_nearest_station(lat, long)
+    print(station_name, wheelchair_accessible)
     if wheelchair_accessible == 1:
         wheelchair = 'Accessible'
     elif wheelchair_accessible == 2:
@@ -84,15 +85,16 @@ def find_stop_near(place_name):
     else:
         wheelchair = 'No Information'
     return station_name, wheelchair
+# find_stop_near('Babson College')
 
 
 def main():
     """
     You can test all the functions here
     """
-    # print(get_lat_long('Boston'))
-    #print(get_nearest_station(42.35866, -71.05674))
-    print(find_stop_near('Boston'))
+    # print(get_lat_long('Babson College'))
+    # print(get_nearest_station(42.35866, -71.05674))
+    print(find_stop_near('prudential'))
 
 
 if __name__ == '__main__':
