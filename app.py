@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Hello page + input form
 @app.route('/hello')
 def home():
-    return render_template('hello.html')
+    return render_template("hello.html")
 
 # 2. 
 # @app post/nearest post request
@@ -56,5 +56,5 @@ def get_MBTA():
 #     if db is not None:
 #         db.close()
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

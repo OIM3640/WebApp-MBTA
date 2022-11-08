@@ -3,7 +3,7 @@ MAPQUEST_BASE_URL = "http://www.mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # Your API KEYS (you need to use your own keys - very long random characters)
-MAPQUEST_API_KEY = 'oyo5kKGI69WA0NjqYvijQTSAAq4QsBMo'
+MAPQUEST_API_KEY = 'dgXTIwFNpYGpxn9dA5X4ji4HXOJYiwQb'
 MBTA_API_KEY = '5951a02b287a4bcaa87ac1e2c37f9a75'
 
 import urllib.request

@@ -5,8 +5,8 @@ MAPQUEST_BASE_URL = "http://www.mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # Your API KEYS (you need to use your own keys - very long random characters)
-MAPQUEST_API_KEY = 'oyo5kKGI69WA0NjqYvijQTSAAq4QsBMo'
-MBTA_API_KEY = '5951a02b287a4bcaa87ac1e2c37f9a75'
+MAPQUEST_API_KEY = 'dgXTIwFNpYGpxn9dA5X4ji4HXOJYiwQb'
+MBTA_API_KEY = '3adc696b8f34436fbe7765b2e9e3742a'
 
 import urllib.request
 import urllib.parse
@@ -28,7 +28,7 @@ def get_json(location):
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
-    pprint (response_data)
+    return response_data
 
 
 def get_lat_long(place_name):
@@ -38,11 +38,13 @@ def get_lat_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
+    # place_name = place_name.replace(" ", "%20")
     my_data = urllib.parse.urlencode({
-        'location': place_name,
+        'location': place_name +',Boston',
         'key': MAPQUEST_API_KEY
     })
     url = f'{MAPQUEST_BASE_URL}?{my_data}'
+    # print(url)
     response_data = get_json(url)
     return response_data['results'][0]['locations'][0]['displayLatLng']['lat'], response_data['results'][0]['locations'][0]['displayLatLng']['lng']
     # t = tuple(d['lat'] , d['lng'])
@@ -56,7 +58,8 @@ def get_nearest_station(latitude, longitude):
     formatting requirements for the 'GET /stops' API.
     """
 
-    url = f'https://api-v3.mbta.com/stops?page%5Blimit%5D=1&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
+    url = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&page%5Blimit%5D=1&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
+    print(url)
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
@@ -73,7 +76,8 @@ def find_stop_near(place_name):
 
     This function might use all the functions above.
     """
-    latitude, longtitude = get_lat_long(place_name)
+    latitude = get_lat_long(place_name)[0] 
+    longtitude = get_lat_long(place_name)[1]
     return get_nearest_station(latitude, longtitude)
 
 
@@ -82,7 +86,9 @@ def main():
     You can test all the functions here
     """
     # get_json()
-    get_nearest_station('42.3470566', '-71.086222')
+    # print(get_lat_long('Northeastern University'))
+    # get_nearest_station('42.3470566', '-71.086222')
+    find_stop_near('Northeastern University')
 
 
 if __name__ == '__main__':
