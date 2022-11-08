@@ -17,6 +17,7 @@ def get_json(url):
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
+    print(1)
     pass
 
 
