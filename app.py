@@ -9,25 +9,22 @@ from mbta_helper import find_stop_near
 app = Flask(__name__)
 
 
-@app.route('/')
-def index_page():
-    return render_template('index.html')
-
-# result page: need more from part 1
-@app.route('/nearest_mbta/', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def mbta_station():
     if request.method=='POST':
-        place_name=request.form['place']
-        nearest_station=find_stop_near(place_name)[0]
-        wheelchair=find_stop_near(place_name)[1]
-        if wheelchair==1:
-            flag=''
-        else: 
-            flag='not'
-        return render_template('result.html', place=place_name, station=nearest_station, accessibility=flag)
-    elif find_stop_near(place_name)==IndexError:
-        # if the input location is not in the database
-        return render_template('error.html')
+        while True:
+            try:
+                place_name=request.form['place']
+                nearest_station=find_stop_near(place_name)[0]
+                wheelchair=find_stop_near(place_name)[1]
+                if wheelchair==1:
+                    flag=''
+                else: 
+                    flag='not'
+                return render_template('result.html', place=place_name, station=nearest_station, accessibility=flag)
+            except IndexError:
+            # if the input location is not in the database
+                return render_template('error.html')
 
     return render_template('index.html')
 
