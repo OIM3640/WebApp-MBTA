@@ -23,7 +23,7 @@ def mbta_station():
                     flag='not'
                 return render_template('result.html', place=place_name, station=nearest_station, accessibility=flag)
             except IndexError:
-            # if the input location is not in the database
+            # if the input is wrong or not in the database
                 return render_template('error.html')
 
     return render_template('index.html')
