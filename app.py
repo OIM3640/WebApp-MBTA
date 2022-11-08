@@ -3,7 +3,7 @@ Simple "Hello, World" application using Flask
 """
 
 from flask import Flask, render_template,request
-from mbta_helper1 import find_stop_near
+from mbta_helper import find_stop_near
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def get_MBTA():
         Place = request.form["place"]
         MBTA = find_stop_near(Place)
         try:
-            MBTA != None
+            ....
         except:
             return render_template("error.html")
         else:
