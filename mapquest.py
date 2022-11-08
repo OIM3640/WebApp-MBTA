@@ -44,7 +44,7 @@ def get_location_info(url):
 
 # get latitude and longitude of location
 def get_coordinates(response):
-    result = response_data['results'][0]['locations'][0]['latLng']
+    result = response['results'][0]['locations'][0]['latLng']
     lat, lng = result['lat'], result['lng']
     return lat, lng
 

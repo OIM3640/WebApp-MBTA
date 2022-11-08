@@ -60,5 +60,5 @@ def get_clostest_stop(lat, lng):
 
 
 if __name__ == '__main__':
-    result = get_clostest_stop(0, 0)
+    result = get_clostest_stop(15, 15)
     print(result)
