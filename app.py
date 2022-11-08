@@ -8,17 +8,14 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello():
-    return 'Hello World!'
+from flask import request
 
-@app.route('/square/<number>')  # square(number)
-# @app.route('/square/<float:number>') # no need to convert
-def square(number=None):
-    if number:
-        return str(float(number) ** 2)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        return do_the_login()
     else:
-        return "You need to provide a number"
+        return show_the_login_form()
 
 
 if __name__ == '__main__':
