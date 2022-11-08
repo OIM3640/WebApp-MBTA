@@ -52,10 +52,8 @@ def get_lat_long(place_name):
     lat = lat_lng['lat']
     lng = lat_lng['lng']
 
-    t = lat, lng 
 
-    print(t)
-    return t 
+    return lat, lng 
 
     
 
