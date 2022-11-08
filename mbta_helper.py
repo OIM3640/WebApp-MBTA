@@ -14,7 +14,6 @@ def get_json(url):
     """
     Given a properly formatted URL for a JSON web API request, return
     a Python JSON object containing the response to that request.
-
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
     pass
@@ -43,7 +42,6 @@ def get_nearest_station(latitude, longitude):
 def find_stop_near(place_name):
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
-
     This function might use all the functions above.
     """
     pass
