@@ -1,5 +1,3 @@
-
-# from config import MAPQUEST_API_KEY, MBTA_API_KEY
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPQUEST_BASE_URL = "http://www.mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
@@ -13,6 +11,7 @@ import urllib.parse
 import json
 from pprint import pprint
 
+
 # A little bit of scaffolding if you want to use it
 
 
@@ -20,15 +19,11 @@ def get_json(location):
     """
     Given a properly formatted URL for a JSON web API request, return
     a Python JSON object containing the response to that request.
-
-    Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-
-    url = f'http://www.mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location={location}'
-    f = urllib.request.urlopen(url)
+    f = urllib.request.urlopen(location)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
-    pprint (response_data)
+    return response_data
 
 
 def get_lat_long(place_name):
@@ -36,22 +31,20 @@ def get_lat_long(place_name):
     Given a place name or address, return a (latitude, longitude) tuple
     with the coordinates of the given place.
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
-    for Mapquest Geocoding API URL formatting requirements.
+    for Mapquest Geocoding  API URL formatting requirements.
     """
-<<<<<<< HEAD
-    my_data = urllib.parse.urlencode({
+    data = urllib.parse.urlencode({
+        'key': MAPQUEST_API_KEY,
         'location': place_name,
-        'key': MAPQUEST_API_KEY
     })
-    url = f'{MAPQUEST_BASE_URL}?{my_data}'
+    url = f"{MAPQUEST_BASE_URL}?{data}"
     response_data = get_json(url)
-    return response_data['results'][0]['locations'][0]['displayLatLng']['lat'], response_data['results'][0]['locations'][0]['displayLatLng']['lng']
-=======
-    response_data = get_json(place_name)
-    print(response_data['results'][0]['locations'][0]['latLng'])
->>>>>>> 4f3fa6871d87b72cc7c9ad7e359665911b66f4b5
-    # t = tuple(d['lat'] , d['lng'])
-    # return t
+    latitude = response_data['results'][0]['locations'][0]['displayLatLng']['lat']
+    longitude = response_data['results'][0]['locations'][0]['displayLatLng']['lng']
+    t = (latitude, longitude)
+    return t
+
+    
 
 def get_nearest_station(latitude, longitude):
     """
@@ -60,46 +53,34 @@ def get_nearest_station(latitude, longitude):
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL
     formatting requirements for the 'GET /stops' API.
     """
-<<<<<<< HEAD
-=======
-    MBTA_API_KEY = '5951a02b287a4bcaa87ac1e2c37f9a75'
->>>>>>> 4f3fa6871d87b72cc7c9ad7e359665911b66f4b5
-
-    url = f'https://api-v3.mbta.com/stops?page%5Blimit%5D=1&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
-    f = urllib.request.urlopen(url)
-    response_text = f.read().decode('utf-8')
-    response_data = json.loads(response_text)
-    # pprint(response_data)
+    data = urllib.parse.urlencode({
+        'key': MBTA_API_KEY,
+        'sort': 'distance',
+        'latitude': latitude,
+        'longitude': longitude,
+        'radius': 1,
+    })
+    url = f"{MBTA_BASE_URL}?{data}"
+    response_data = get_json(url)
     station = response_data['data'][0]['attributes']['name']
     Wheelchair = response_data['data'][0]['attributes']['wheelchair_boarding']
     t = (station, Wheelchair)
-    print(t)
+    return t
 
 
 def find_stop_near(place_name):
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
-
-    This function might use all the functions above.
     """
-<<<<<<< HEAD
-    latitude, longtitude = get_lat_long(place_name)
-    return get_nearest_station(latitude, longtitude)
-=======
-    get_nearest_station(get_lat_long(place_name))
->>>>>>> 4f3fa6871d87b72cc7c9ad7e359665911b66f4b5
+    latitude, longitude = get_lat_long(place_name)
+    return get_nearest_station(latitude, longitude)
 
 
 def main():
     """
     You can test all the functions here
     """
-    # get_json()
-<<<<<<< HEAD
-=======
-    # get_lat_long('Wellesley')
->>>>>>> 4f3fa6871d87b72cc7c9ad7e359665911b66f4b5
-    get_nearest_station('42.3470566', '-71.086222')
+    print(find_stop_near("Babson College"))
 
 
 if __name__ == '__main__':
