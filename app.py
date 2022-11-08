@@ -1,9 +1,6 @@
-"""
-Simple "Hello, World" application using Flask
-"""
-
 from flask import *
 from mbta_helper import find_stop_near 
+from ticketmaster import get_events
 
 app = Flask(__name__)
 
