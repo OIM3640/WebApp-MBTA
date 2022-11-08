@@ -10,12 +10,15 @@ app = Flask(__name__)
 
 from flask import request
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        return do_the_login()
-    else:
-        return show_the_login_form()
+# 1. 
+# Hello page + input form
+# 2. 
+# @app post/nearest post request
+# 3.  
+# Render a page present result from part 1
+# 4. 
+# Or error page say the search did not work + button(link) redirect to the first page
+
 
 
 if __name__ == '__main__':
