@@ -18,15 +18,14 @@ def home():
 
 @app.route('/POST/nearest_mbta', methods=["GET", "POST"])
 def get_MBTA():
-    if request.method == "POST":
-        Place = request.form["place"]
-        MBTA = find_stop_near(Place)
-        try:
-            ....
-        except:
-            return render_template("error.html")
-        else:
-            return render_template("mbta_station.html", place_name = Place , stations = MBTA[0], wheelchair = MBTA[1])
+    # if request.method == "POST":
+    request.method == "POST"
+    Place = request.form["place"]
+    MBTA = find_stop_near(Place)
+    if MBTA != None:
+        return render_template("error.html")
+    else:
+        return render_template("mbta_station.html", place_name = Place, stations = MBTA[0], wheelchair = MBTA[1])
             
 # 3.  
 # Render a page present result from part 1
