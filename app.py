@@ -6,15 +6,6 @@ from mbta_helper import find_stop_near
 app = Flask(__name__)
 
 
-
-# def get_weather():
-#     if request.method == "POST":
-#         city_name = request.form["city"]
-#         temperature = get_temp(city_name)
-#         return render_template("weather-result.html", city=city_name, temp=temperature)
-
-    # return render_template("weather-form.html")
-
 @app.route('/stopfinder/', methods=["GET", "POST"]) 
 def get_station():
     if request.method == "POST":
