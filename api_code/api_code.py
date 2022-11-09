@@ -75,7 +75,7 @@ def get_nearest_station(lat, lng):
         
         data = get_json(url)
 
-        station_name = data['stop.name']
+        station_name = data['stop_name']
         wheelchair_accessibile = data['wheelchair_boarding']
 
     return station_name, wheelchair_accessibile
