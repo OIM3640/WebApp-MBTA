@@ -36,13 +36,13 @@ def get_lat_long(place_name):
     for Mapquest Geocoding API URL formatting requirements.
     """
     locations = get_json(place_name)['results'][0]['locations']
+    place_name=str(place_name)
     
     for location in locations:
         if location['adminArea3']=="MA": # select the returned longtitude and latitude in MA only
             lattitude = location['displayLatLng']['lat']
             longtitude = location['displayLatLng']['lng']
             return lattitude, longtitude
-    return 42.3601,71.0589 # if none of the locations returned from API stays in MA, we will automatically set the values of latitude and longtitude in Boston
 
 
 def get_nearest_station(latitude, longitude):
