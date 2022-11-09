@@ -38,12 +38,12 @@ def get_lat_long(place_name):
     """
     name = place_name.replace(" ", "%20")
     new_name = name.lower()
-    url = f'{MAPQUEST_BASE_URL}?key={MAPQUEST_API_KEY}&location={new_name}'
+    url = f'{MAPQUEST_BASE_URL}?key={MAPQUEST_API_KEY}&location={new_name}%20boston'
     data = get_json(url)
     latitude = data['results'][0]['locations'][0]['displayLatLng']['lat']
     longitude = data['results'][0]['locations'][0]['displayLatLng']['lng']
     return latitude, longitude
-# print(get_lat_long('Babson College'))
+# print(get_lat_long('boston common'))
 
 
 def get_nearest_station(latitude, longitude):
@@ -94,7 +94,7 @@ def main():
     """
     # print(get_lat_long('Babson College'))
     # print(get_nearest_station(42.35866, -71.05674))
-    print(find_stop_near('prudential'))
+    print(find_stop_near('Allston'))
 
 
 if __name__ == '__main__':

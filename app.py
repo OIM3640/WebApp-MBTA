@@ -15,11 +15,17 @@ def get_location_and_weather():
     """Ask user for a place name, return the nearest MBTA stop and wheelchair accessible information"""
     if request.method == 'POST':
         location = request.form['location']
-        station_name, wheelchair_accessible = find_stop_near(location)
         temperature = get_temp('Boston')
-        return render_template('result.html', station = station_name, wheelchair = wheelchair_accessible, temp = temperature)
-    
-    return render_template('hello.html')
+        try:
+            station_name, wheelchair_accessible = find_stop_near(location)
+            return render_template('result.html', station = station_name, wheelchair = wheelchair_accessible, temp = temperature)
+        except UnboundLocalError:
+            render_template('hello.html', error = True)
+        except IndexError:
+            render_template('hello.html', error = True)
+
+        
+    return render_template('hello.html', error = False)
 
 
 if __name__ == '__main__':

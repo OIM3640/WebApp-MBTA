@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Amazing app to help you find nearest MBTA station</title>
+    <style>
+      .red{
+        color:red;
+      }
+    </style>
   </head>
   <body>
     <form action="" method="post">
       <h1>Hello!</h1>
+        {% if error %}
+        <p class = 'red'> Please enter a location in Boston! </p>
+        {% endif %}
       <p>Enter your location below:</p>
       <label for=""> Location: <input type="text" name="location"></label>
         <button>Check Nearest Station</button>
