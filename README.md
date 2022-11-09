@@ -3,7 +3,9 @@
 
 ## Team members 
 Lucy Wang
+
 Peter Li 
+
 ## Project Overview 
 
 ### Functionality 
