@@ -6,6 +6,9 @@ from config import MAPQUEST_API_KEY, MBTA_API_KEY
 MAPQUEST_BASE_URL = "http://mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
+import json
+import urllib.request
+import pprint
 
 # A little bit of scaffolding if you want to use it
 
@@ -17,7 +20,11 @@ def get_json(url):
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    print(1)
+    f = urllib.request.urlopen(url)
+
+    response_text = f.read().decode('utf-8')
+    response_data = json.loads(response_text)
+    return response_data
     pass
 
 
@@ -28,6 +35,7 @@ def get_lat_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
+    
     pass
 
 
