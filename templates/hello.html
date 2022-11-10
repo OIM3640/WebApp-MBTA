@@ -13,12 +13,12 @@
     </style>
   </head>
   <body>
-    <form action="" method="post">
+    <form action="" method="POST">
       <h1>Hello!</h1>
         {% if error %}
         <p class = 'red'> Please enter a location in Boston! </p>
         {% endif %}
-      <p>Enter your location below:</p>
+      <p>Enter your location in Boston below so we can help you find the nearest station:</p>
       <label for=""> Location: <input type="text" name="location"></label>
         <button>Check Nearest Station</button>
     </form>
