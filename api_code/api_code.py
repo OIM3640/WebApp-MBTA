@@ -1,4 +1,8 @@
 from config import MAPQUEST_API_KEY, MBTA_API_KEY
+import urllib.request
+import json
+from pprint import pprint
+
 
 mpq_key = MAPQUEST_API_KEY 
 
@@ -19,10 +23,6 @@ def get_json(url):
     a Python JSON object containing the response to that request.
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    import urllib.request
-    import json
-    from pprint import pprint
-
 
     f = urllib.request.urlopen(url)
     response_text = f.read().decode("utf-8")
