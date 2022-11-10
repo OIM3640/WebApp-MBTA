@@ -1,5 +1,6 @@
 # WebApp-MBTA
 by Hanlu Ma, Sabrina Chen, Reese Hu
+This is the base repo for MBTA project. Please read instruction(https://github.com/OIM3640/WebApp-MBTA/blob/main/instructions.md).
 ## Project Overview
  Overall, the logistic of this project is to build a website where we can find the nearest MBTA station by inputing the current location. It is done by locating the current location with the applicaion of API connection which returns information about the input location, and then filter its coordinates by Json processing. API is also utilized to call the closest MBTA station and the corresponding wheelchair availability around that coornidates as well. Also, we designed three webpages, which are the homepage for input location, redirecting the page for result, and the page when there is indexerror.
 
