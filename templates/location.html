@@ -1,0 +1,16 @@
+
+<!--  Use a header to tell the user where the nearest MBTA stop to their location is
+display where this stop is using the stop variable which is brought in from the @approute (/location/)
+Use ra header to tell the user the status of wheelchair accessibility
+display this stauts by using the wheelchair variable which is brougt in from the @approute (/location/)
+Create a button that sends the user back to the index page if they so wish to press it
+-->
+
+<h2> {{'The Nearest MBTA stop is : '}} </h2>
+<p> {{stop}} </p>
+<h2> {{'Status of Wheelchair Accessibility: '}}</h2>
+<p> {{wheelchair}}</p>
+
+<form action="/">
+    <button> Return to the Home Page </button>
+</form>

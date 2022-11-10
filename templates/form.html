@@ -1,0 +1,15 @@
+<!-- Greet the user with a larger hader
+Tell the user directions with a smaller head on what the function of the program is and what to enter into the text box
+Create a form
+set the action to /location 
+display a text box indicating "Location:", that allows a user to type their location of choice
+createa button that says submit which sends the information to /location as indicated by the action-->
+
+<h1> {{ 'Hello!' }} </h1>
+<h2> {{ 'Please enter a location below to find the nearest MBTA stop. The more specific the location, the more accurate the result.' }} </h2>
+
+<form action="/location" method = "POST">
+    <label for="location"> Location:</label><br>
+    <input type="text" id="location" name="location"><br>
+    <input type="submit" value="Submit">
+</form>
