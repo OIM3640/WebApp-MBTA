@@ -1,8 +1,8 @@
-Project Overview:
+## Project Overview:
 
 This is a project that takes the location from a user and pin points their location in latitude and longitude. Using this information, we run it through a MBTA API where we cross reference the coordinates to find the closest MBTA stop. Once we have the figured out, we get access to a bunch of other data from the station. With this, we can verify whether or not the station is wheelchair accessible.
 
-Project Reflection:
+## Project Reflection:
 
 What went well: We indentified the main aspects of the program well (the scaffolding helped here too). Logic-wise, we feel as though the code is sound however the only issue is reading the data that is being accessed via our API. First, with Map Quest the key was not working and then with MBTA we were able to open the JSON file but upon further investigation, it was a nested loop of dictionaries and lists. Although the code shows that we tried to navigate that, we were not able to.
 
