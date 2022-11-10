@@ -44,6 +44,7 @@ def get_lat_long(place_name):
     lat_long = lat, long
     return lat_long
 
+
 def get_nearest_station(latitude, longitude):
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible)
@@ -63,7 +64,6 @@ def get_nearest_station(latitude, longitude):
         return (station_name, "Not Accessible by Wheelchair")
 
 
-    
 def find_stop_near(place_name):
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
@@ -79,7 +79,6 @@ def find_stop_near(place_name):
     lat, lng = get_lat_long(place_name)
 
     return (get_nearest_station(lat, lng), False)
-    
 
 
 def main():
@@ -87,6 +86,7 @@ def main():
     You can test all the functions here
     """
     print(find_stop_near(("Boston Commons, Boston")))
+
 
 if __name__ == '__main__':
     main()
