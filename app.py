@@ -20,11 +20,10 @@ def get_location_and_weather():
             station_name, wheelchair_accessible = find_stop_near(location)
             return render_template('result.html', station = station_name, wheelchair = wheelchair_accessible, temp = temperature)
         except UnboundLocalError:
-            render_template('hello.html', error = True)
+            return render_template('hello.html', error = True)
         except IndexError:
-            render_template('hello.html', error = True)
+            return render_template('hello.html', error = True)
 
-        
     return render_template('hello.html', error = False)
 
 
