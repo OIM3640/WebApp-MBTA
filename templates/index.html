@@ -17,7 +17,8 @@
     {% if error %}
     <h2>Invalid address, please add ", Boston" to the address</h2>
     {% else %}
-    <h2>Nearest Station is: {{ location }}</h2>
+    <h2>Nearest Station is:</h2> {{ location }}
+    <h2> Find an event near you:</h2> {{ event_name }} {{ event_venue }} {{ event_link }}
     <h2>{{ accessible }}</h2>
     {% endif %}
 

@@ -18,7 +18,6 @@ def get_json(url):
     """
     Given a properly formatted URL for a JSON web API request, return
     a Python JSON object containing the response to that request.
-
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
     f = urllib.request.urlopen(url)
@@ -67,9 +66,7 @@ def get_nearest_station(latitude, longitude):
 def find_stop_near(place_name):
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
-
     This function might use all the functions above.
-
     Returns ((Location, Accessible), Error)
     """
 
@@ -86,7 +83,7 @@ def main():
     """
     You can test all the functions here
     """
-    print(find_stop_near(("Boston Commons, Boston")))
+    print(find_stop_near(("Prudential Center, Boston")))
 
 if __name__ == '__main__':
     main()
