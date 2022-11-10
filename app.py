@@ -1,6 +1,6 @@
 from flask import *
 from mbta_helper import find_stop_near 
-from ticketmaster import get_events
+from ticketmaster import get_event_near
 
 app = Flask(__name__)
 
