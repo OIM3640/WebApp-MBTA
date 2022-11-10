@@ -1,6 +1,6 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 
-from config import MAPQUEST_API_KEY, MBTA_API_KEY
+from config import MAPQUEST_API_KEY,MBTA_API_KEY
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -25,6 +25,8 @@ def get_json(url):
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
     return response_data
+
+
     
 
 
@@ -37,10 +39,11 @@ def get_lat_long(place_name):
     """
     place_name = place_name.replace("", "%20")
     url = MAPQUEST_BASE_URL + f'?key={MAPQUEST_API_KEY}&location={place_name}'
-    response_data = get_json(url)
-    lat = response_data['results'][0]['locations'][0]['showlatlon']['lat']
-    lng = response_data['results'][0]['locations'][0]['showlatlon']['lon']
-    return(lat,lng)
+    return url
+    #response_data = get_json(url)
+    #lat = response_data['results'][0]['locations'][0]['showLatLng']['lat']
+    #long = response_data['results'][0]['locations'][0]['showLatLng']['lng']
+    #return(lat,long)
 
 print(get_lat_long('Boston'))
 
