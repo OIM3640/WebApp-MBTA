@@ -12,19 +12,12 @@ def nearest():
     """
     if request.method == "POST":
         place = request.form["place"]
-        if IndexError:
-            return render_template("error.html")
-        else:
-            stop, wheelchair_boarding = find_stop_near(place)
-
-            return render_template("results.html", stop=stop, wheelchair_boarding=wheelchair_boarding
+        stop, wheelchair_boarding = find_stop_near(place)
+        return render_template("results.html", stop=stop, wheelchair_boarding=wheelchair_boarding
         )
     else:
         return render_template ("index.html", error=True)
 
-# @app.errorhandler(HTTPException)
-# def error_page():
-#     return render_template ("error.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
