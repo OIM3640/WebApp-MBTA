@@ -3,9 +3,9 @@ import json
 from pprint import pprint
 
 # Your API KEYS (you need to use your own keys - very long random characters)
-# from config import MAPQUEST_API_KEY, MBTA_API_KEY
+from config import MAPQUEST_API_KEY
 
-MAPQUEST_API_KEY = 'GhfoZNG9Jc4VcYqUrLwUI8sRiOHai3iC'
+
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPQUEST_BASE_URL = "http://mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
