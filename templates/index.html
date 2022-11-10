@@ -5,9 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Amazing app to help you find nearest MBTA station</title>
+    <title>Closest MBTA station</title>
   </head>
   <body>
-      <p>Hi</p>
+      <p>Hello, please enter your address to get the nearest MBTA station.</p>
+      {% block content %}
+      <form action = "#" method = "POST">
+        <p>Street:</p>
+        <p><input type = "text" name = "street"/></p>
+        <p>City:</p>
+        <p><input type = "text" name = "city"/></p>
+        <p>State(MA):</p>
+        <p><input type = "text" name = "ma"/></p>
+        <p><input type = "submit" value = "submit"/></p>
+      </form>
+      {% endblock %}
   </body>
 </html>

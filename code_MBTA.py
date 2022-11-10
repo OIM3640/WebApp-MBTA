@@ -1,7 +1,10 @@
 import urllib.request
 import json
+from config import MAPQUEST_API_KEY, MBTA_API_KEY
 
-from config import MAPQUEST_API_KEY
+api1 = MAPQUEST_API_KEY()
+api2 = MBTA_API_KEY()
+
 
 def get_json(url):
     """
@@ -23,7 +26,7 @@ def get_lat(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
-    APIKEY = 'KLCHVIzbwJYnum2wdTaGFsIJX5IGM2y5'
+    APIKEY = api1
     place_name = place_name.replace(" ","")
     response_data = get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={APIKEY}&location={place_name}')
     Location_lat = (response_data['results'][0]['locations'][0]['displayLatLng']['lat']) 
@@ -37,7 +40,7 @@ def get_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
-    APIKEY = 'KLCHVIzbwJYnum2wdTaGFsIJX5IGM2y5'
+    APIKEY = api1
     place_name = place_name.replace(" ","")
     response_data = get_json(f'http://www.mapquestapi.com/geocoding/v1/address?key={APIKEY}&location={place_name}') 
     Location_long= (response_data['results'][0]['locations'][0]['displayLatLng']['lng'])
@@ -52,7 +55,7 @@ def get_nearest_station(latitude, longitude):
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL
     formatting requirements for the 'GET /stops' API.
     """
-    APIKEY = '594f04f3e2cd43b6a8911492d241417a'
+    APIKEY = api2
     response_data = get_json(f'https://api-v3.mbta.com/stops?api_key={APIKEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}')
     
     a = 0 
