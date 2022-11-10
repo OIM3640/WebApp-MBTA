@@ -5,6 +5,7 @@ from ticketmaster import get_event_near
 
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -15,6 +16,7 @@ def index():
         return render_template('index.html', location=_location, accessible=_accessible, error=_res_error, event_name = _event_name, event_venue = _event_venue, event_link = _event_link)
     else:
         return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run()
