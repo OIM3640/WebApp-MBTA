@@ -1,15 +1,15 @@
 from urllib import response
 import urllib.request
 import json
-# from config import MAPQUEST_API_KEY, MBTA_API_KEY
+from config import MAPQUEST_API_KEY, MBTA_API_KEY
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPQUEST_BASE_URL = "http://mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
-MAPQUEST_API_KEY = 'mkzRo6ydiaROmfkynLzaWHPDWB3tnRZW'
-MBTA_API_KEY = 'e3848735835b4472979ba8f2dfeabc46'
+# MAPQUEST_API_KEY = 'mkzRo6ydiaROmfkynLzaWHPDWB3tnRZW'
+# MBTA_API_KEY = 'e3848735835b4472979ba8f2dfeabc46'
 
 # A little bit of scaffolding if you want to use it
 
