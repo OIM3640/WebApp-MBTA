@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-from code_MBTA import find_stop_near, get_lat, get_long
+from code_MBTA import find_stop_near
 
 app = Flask(__name__)
 
@@ -20,7 +20,7 @@ def home():
 
 @app.route("/<name>")
 def closest(name):
-    return f"nearest station:{find_stop_near(name)}! "
+    return f"The closest MBTA station to you location is: {find_stop_near(name)}! "
 
 if __name__ == "__main__":
     app.run(debug=True)
