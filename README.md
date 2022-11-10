@@ -1,2 +1,9 @@
-# WebApp-MBTA
- This is the base repo for MBTA project. Please read [instructions](instructions.md). 
+# Project Overview 
+For the MBTA Station Finder project, we allow the user to enter a location in the Boston area on a website and we have the code respond with the nearest MBTA station. We did this using an API from MapQuest to get the latitude and longitude. We then used the MBTA API to get the nearest station stop based on the longitude and latitude collected from MapQuest. Through Flask, we were able to have the user enter the location on a website and have our response on the website. 
+
+# Project Reflection 
+
+A large part of our process was discussing how we would go about starting and talking through the bugs we were facing. Doing this allowed us to flesh out our ideas while feeling less stressed. Further, using code from our classwork was helpful because it gave us a place to start. In the future, we would like to put more time into creating a more advanced website. An idea we had was using APIs from other metro areas and allowing the user to find the closest station no matter the area they are in.  Through this project, we learned, through trial, how to test our code. We printed at different intervals, ran debug, and printed the type of data.  Before getting started we wish we had a better idea of HTML. If we knew how useful it was going to be for this project, we would have spent time learning the basics before starting.
+
+Originally we met and decided to split the workload.  With, Asa doing MapQuest API, Matthew doing the MBTA API, and Danny doing the Flask.  We started with this, however, we quickly realized that this was going to be difficult. This is because the workload was not split up well, and we all struggled with the work.  Hence, the next day we met and decided to work through the whole project together.  In the future, we should start by working on the project together and earlier.  This would allow us to better understand the undertaking and allow us to develop more extensions to the basic requirements. 
+
