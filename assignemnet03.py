@@ -1,9 +1,14 @@
-#from config import MAPQUEST_API_KEY, MBTA_API_KEY
-consumer_key = "zlAlplEMQsPnPWrxCHzpAWJlzU1M8JAQ"
-# Useful URLs (you need to add the appropriate parameters for your requests)
+from config import MAPQUEST_API_KEY, MBTA_API_KEY
+# consumer_key = "zlAlplEMQsPnPWrxCHzpAWJlzU1M8JAQ"
+# # Useful URLs (you need to add the appropriate parameters for your requests)
+# # A little bit of scaffolding if you want to use it
+
+mpq_key = MAPQUEST_API_KEY 
+
+mbta_key = MBTA_API_KEY
+
 MAPQUEST_BASE_URL = "http://mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
-# A little bit of scaffolding if you want to use it
 
 def get_json(url):
     """
@@ -14,7 +19,7 @@ def get_json(url):
     import urllib.request
     import json
     from pprint import pprint
-    url = f"http://mapquestapi.com/geocoding/v1/address?key={consumer_key}&location=Babson%20College"
+    #url = f"http://mapquestapi.com/geocoding/v1/address?key={consumer_key}&location=Babson%20College"
     f = urllib.request.urlopen(url)
     response_text = f.read().decode("utf-8")
     response_data = json.loads(response_text)
@@ -30,9 +35,15 @@ def get_lat_long(place_name):
     See https://developer.mapquest.com/documentation/geocoding-api/address/get/
     for Mapquest Geocoding API URL formatting requirements.
     """
-    consumer_key = "zlAlplEMQsPnPWrxCHzpAWJlzU1M8JAQ"
-    url = f"http://mapquestapi.com/geocoding/v1/address?key={consumer_key}&location={place_name}"
+
+    import urllib.parse
+    encoded_place = urllib.parse.quote(place_name)
+
+    #consumer_key = "zlAlplEMQsPnPWrxCHzpAWJlzU1M8JAQ"
+    url = f"http://mapquestapi.com/geocoding/v1/address?key={mpq_key}&location={encoded_place}"
+
     data = get_json(url)
+
     lat_lng = data['results'][0]['locations'][0]['latLng']
 
     lat = lat_lng['lat']
@@ -40,11 +51,11 @@ def get_lat_long(place_name):
 
     return lat, lng
 
+lat, lng = get_lat_long('Brookline, MA') # might need to assist the user to input the MA
 
 
 
-
-def get_nearest_station():
+def get_nearest_station(lat,lng):
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible)
     tuple for the nearest MBTA station to the given coordinates.
@@ -52,9 +63,9 @@ def get_nearest_station():
     formatting requirements for the 'GET /stops' API.
     """
 
-    lat, lng = get_lat_long('Babson%20College')
+    # lat, lng = get_lat_long('Babson%20College')
 
-    # for lat, lng in MAPQUEST_BASE_URL:
+    
     MBTA_API_KEY = '76b1bc5471f9443d864ad4ff9ba714e7' 
     url = f"https://api-v3.mbta.com/stops?{MBTA_API_KEY}sort=distance&filter%5Blatitude%5D={lat}&filter%5Blongitude%5D={lng}"
 
@@ -67,7 +78,7 @@ def get_nearest_station():
 
 
 get_lat_long('Babson%20College')
-get_nearest_station()
+get_nearest_station(lat,lng)
 
 
 def find_stop_near(place_name):
@@ -75,15 +86,23 @@ def find_stop_near(place_name):
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
     This function might use all the functions above.
     """
+    lat,long= get_lat_long(place_name)
+    mbta, wheelchair = get_nearest_station(lat,long)
+
+def flask():
+    
     pass
-
-
 
 def main():
     """
     You can test all the functions here
      """
+    
+
     place_name = input('Please provide a location for which you\'d like to request the nearest MBTA station for: ')
+
+    
+
 
 # if __name__ == "__main__":
 #     main()
