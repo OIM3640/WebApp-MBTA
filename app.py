@@ -10,11 +10,13 @@ app = Flask(__name__)
 def get_station():
     if request.method == "POST":
         city_name = request.form["city"]
+        if city_name == '':
+            pass
         try:
             nearest_stop = find_stop_near(city_name)
             return render_template("station_result.html", city=city_name, stops=nearest_stop)
         except:
-            return render_template("station_error.html") , 'Location Not Found'
+            return render_template("station_error.html")
     return render_template("station.html")
     
 

@@ -13,7 +13,7 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # A little bit of scaffolding if you want to use it
 def remove_space(string):
-    return(string.replace(' ', ''))
+    return(string.replace(' ', '%20'))
 
 def create_url(place_name):
     place_name = remove_space(place_name)
@@ -58,7 +58,6 @@ def get_nearest_station(latitude, longitude):
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL
     formatting requirements for the 'GET /stops' API.
     """
-    address = 'Washington Street'
     url = f'{MBTA_BASE_URL}?sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
     data = get_json(url)
     nearest_station = data['data'][0]['attributes']['name']
@@ -78,18 +77,18 @@ def find_stop_near(place_name):
 
     This function might use all the functions above.
     """
+    place_name = str(place_name) + ', MA'
+    # print(place_name)
     coordinates = get_lat_long(place_name)
     latitude = coordinates[0]
     longitude = coordinates[1]
     res = get_nearest_station(latitude, longitude)
     return res
 
-
 def main():
     """
     You can test all the functions here
     """
-    find_stop_near('Wellesley Hills')
 
 
 if __name__ == '__main__':
