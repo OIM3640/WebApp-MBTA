@@ -1,31 +1,35 @@
 """
 Simple "Hello, World" application using Flask
 """
-
 import sqlite3
-from flask import Flask, render_template, request, abort, g
-from mbta_helper1 import find_stop_near
+from flask import Flask, render_template,request, g, abort
+from mbta_helper import find_stop_near
 
 app = Flask(__name__)
 
-DATABASE = 'app.db'
-
+# 1. 
+# Hello page + input form
 @app.route('/')
-def hello():
-    return render_template('index.html')
+def home():
+    return render_template("hello.html")
 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
+# 2. 
+# @app post/nearest post request
 
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+@app.route('/hello', methods=["GET", "POST"])
+def get_MBTA():
+    if request.method == "POST":
+        place = request.form.get("fname")
+        MBTA = find_stop_near(place)
+        if MBTA != None:
+            return render_template("error.html")
+        else:
+            return render_template("mbta_station.html", place_name = place , stations = MBTA[0], wheelchair = MBTA[1])
+        
+# 3.  
+# Render a page present result from part 1
+# 4. 
+# Or error page say the search did not work
 
 if __name__ == '__main__':
     app.run(debug=True)
