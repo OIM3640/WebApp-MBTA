@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # 1. 
 # Hello page + input form
-@app.route('/hello')
+@app.route('/')
 def home():
     return render_template("hello.html")
 
@@ -18,14 +18,14 @@ def home():
 
 @app.route('/POST/nearest_mbta', methods=["GET", "POST"])
 def get_MBTA():
-    # if request.method == "POST":
-    request.method == "POST"
-    Place = request.form["place"]
-    MBTA = find_stop_near(Place)
-    if MBTA != None:
-        return render_template("error.html")
+    if request.method == "POST":
+        Place = request.form.get("Enter a place")
+        MBTA = find_stop_near(Place)
+        return render_template("mbta_station.html",place_name = Place, stations = MBTA[0], wheelchair = MBTA[1])
+
     else:
-        return render_template("mbta_station.html", place_name = Place, stations = MBTA[0], wheelchair = MBTA[1])
+        return render_template("error.html")
+    
             
 # 3.  
 # Render a page present result from part 1
