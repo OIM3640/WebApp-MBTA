@@ -77,9 +77,9 @@ def main():
     """
     You can test all the functions here
     """
-    print(get_lat_long("Wellesley"))
-    get_nearest_station('42.3470566', '-71.086222')
-    print(find_stop_near("Boston College"))
+    # print(get_lat_long("Wellesley"))
+    # get_nearest_station('42.3470566', '-71.086222')
+    find_stop_near("Boston College")
 
 
 if __name__ == '__main__':
