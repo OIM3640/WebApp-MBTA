@@ -69,7 +69,8 @@ def get_nearest_station(lat, long):
         wheelchair_accessible = 'Wheelchair Inaccessible'
     else:
         wheelchair_accessible = 'No data found'
-    print(name_of_station, wheelchair_accessible)
+
+    return(name_of_station, wheelchair_accessible)
 
 
 def find_stop_near(place_name):
@@ -80,20 +81,15 @@ def find_stop_near(place_name):
     """
     res = get_lat_long(place_name)
     print(res)
-    
-    
+    return get_nearest_station(res[0], res[1])
 
 
 def main():
     """
     You can test all the functions here
     """
-    get_json(url)
-    get_lat_long('Boston Commons, Boston')
-    get_nearest_station("59.6043", "-10.9513")
-    find_stop_near('Boston Common, Boston')
-
-  
+    #get_json(url)
+    find_stop_near(',Boston')
 
 if __name__ == '__main__':
     main()

@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Amazing app to help you find nearest MBTA station</title>
   </head>
+  <style>
+    *{margin: 0; padding: 0;}
+    body{background: #c5c5c5; font-family: Georgia;}
+    p{text-align: center; font-weight: normal;}
+    form{text-align: center; font-weight: normal;}
+    input[type = "submit"]{ background: #fef0bd; border: 0; cursor: pointer;}
+  </style>
   <body>
-      <p>Hi</p>
+      <p>Want to find a station close by?</p>
+      <form method = "post"> 
+        <label>Current Location:</label> <br>
+        <input type = "text" name = "name"> <br>
+        <input type = "submit" value = "Submit">
+      </form>
+      
+      <h3>Nearest Station is: {{ stop }}</h3> 
+      <h3> Wheelchair Accessibility: {{ wheelchair }}</h3>
+  
   </body>
 </html>

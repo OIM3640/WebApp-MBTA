@@ -12,13 +12,9 @@ import requests
 url = f'http://mapquestapi.com/geocoding/v1/address?key={MAPQUEST_API_KEY}&location=Babson%20College,MA'
 
 
-
-
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPQUEST_BASE_URL = "http://mapquestapi.com/geocoding/v1/address"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
-
-
 
 #API Keys
 MAPQUEST_API_KEY = 'S5SVapgODzwYR0PwEBr38vbVGVXUt3iP'
@@ -108,10 +104,9 @@ def main():
     """
     #get_json(url)
     #get_lat_long('Boston Commons, Boston')
-    get_nearest_station(42.6043, -70.9513)
-    find_stop_near('Boston Common, Boston')
+    #get_nearest_station(42.3601, 71.0589)
+    find_stop_near('Fenway, Boston')
 
-  
 
 if __name__ == '__main__':
     main()
