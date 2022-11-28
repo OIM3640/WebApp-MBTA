@@ -2,34 +2,46 @@
 Simple "Hello, World" application using Flask
 """
 
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request
 from mbta_helper import find_stop_near
 
 app = Flask(__name__)
 
-# 1. 
+# 1.
 # Hello page + input form
-@app.route('/')
-def home():
-    return render_template("hello.html")
+# @app.route("/")
+# def home():
+#     return render_template("hello.html")
 
-# 2. 
+
+# 2.
 # @app post/nearest post request
 
-@app.route('/POST/nearest_mbta', methods=["GET","POST"])
+
+@app.route("/", methods=["GET", "POST"])
 def get_MBTA():
     if request.method == "POST":
-        Place = request.form["Enter a place:"]
-        MBTA = find_stop_near(Place)
-        return render_template("mbta_station.html",place_name = Place, stations = MBTA[0], wheelchair = MBTA[1])
-
+        Place = request.form["Place"]
+        # Place += ", boston"
+        try: 
+            MBTA = find_stop_near(Place)
+            print(MBTA)
+            if MBTA:
+                return render_template(
+                    "mbta_station.html",
+                    place_name=Place,
+                    stations=MBTA[0],
+                    wheelchair=MBTA[1],
+                )
+        except:
+            return render_template("error.html")
     else:
-        return render_template("error.html")
-    
-            
-# 3.  
+        return render_template("hello.html")
+
+
+# 3.
 # Render a page present result from part 1
-# 4. 
+# 4.
 # Or error page say the search did not work + button(link) redirect to the first page
 
 
@@ -58,5 +70,5 @@ def get_MBTA():
 #     if db is not None:
 #         db.close()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

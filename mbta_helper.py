@@ -38,6 +38,7 @@ def get_lat_long(place_name):
         'location': place_name,
     })
     url = f"{MAPQUEST_BASE_URL}?{data}"
+    print(url)
     response_data = get_json(url)
     latitude = response_data['results'][0]['locations'][0]['displayLatLng']['lat']
     longitude = response_data['results'][0]['locations'][0]['displayLatLng']['lng']
@@ -62,7 +63,8 @@ def get_nearest_station(latitude, longitude):
     station = response_data['data'][0]['attributes']['name']
     Wheelchair = response_data['data'][0]['attributes']['wheelchair_boarding']
     t = (station, Wheelchair)
-    print(t)
+    # print(t)
+    return t
 
 
 def find_stop_near(place_name):
@@ -79,7 +81,8 @@ def main():
     """
     # print(get_lat_long("Wellesley"))
     # get_nearest_station('42.3470566', '-71.086222')
-    find_stop_near("Boston College")
+    # find_stop_near("Boston College")
+    print(find_stop_near("prudential center, boston"))
 
 
 if __name__ == '__main__':
