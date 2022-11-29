@@ -84,7 +84,7 @@ def find_stop_near(place_name):
     print(res)
     lat = res[0]
     long = res[1]
-    print(get_nearest_station(lat, long))
+    return(get_nearest_station(lat, long))
 
 
 def main():
@@ -92,7 +92,7 @@ def main():
     You can test all the functions here
     """
     #get_json(url)
-    find_stop_near(', Boston')
+    find_stop_near('Seaport, Boston')
 
 if __name__ == '__main__':
     main()
