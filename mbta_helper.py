@@ -1,13 +1,18 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
-
+import requests
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
-
+MAPBOX_TOKEN = "pk.eyJ1IjoiYW5nZWxhd29uZzEyMyIsImEiOiJjbGZ2b2FyM28wOTh6M25wZGJhcW04ODZpIn0.lT5TeXhQjnwH3fzWq8mjAA"
 
 # A little bit of scaffolding if you want to use it
+
+
+def get_url(address) -> str:
+    url = f"{MAPBOX_BASE_URL}/{address}.json?access_token={MAPBOX_TOKEN}&types=poi"
+    return url
 
 
 def get_json(url: str) -> dict:
@@ -20,21 +25,26 @@ def get_json(url: str) -> dict:
     response_json = response.json()
     return response_json
 
-# Test the code
-MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-MAPBOX_TOKEN = 'pk.eyJ1IjoiYW5nZWxhd29uZzEyMyIsImEiOiJjbGZ2b2FyM28wOTh6M25wZGJhcW04ODZpIn0.lT5TeXhQjnwH3fzWq8mjAA'
-address = 'Babson College, MA'
-url = f'{MAPBOX_BASE_URL}/{address}.json?access_token={MAPBOX_TOKEN}&types=poi'
-response_json = get_json(url)
-response_json
 
-def get_lat_long(place_name: str) -> tuple[str, str]:
+def get_lat_long(address: str, data) -> tuple[str, str]:
     """
     Given a place name or address, return a (latitude, longitude) tuple with the coordinates of the given place.
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    if len(data["features"]) > 0:
+        latitude, longitude = data["features"][0]["center"]
+        return latitude, longitude
+    else:
+        print(f"No results found for place: {place_name}")
+
+
+# Test the code
+# address = 'Babson College, MA'
+# url = get_url(address)
+# response_json = get_json(url)
+# response_json
+# get_lat_long(address,response_json)
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -62,5 +72,5 @@ def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
