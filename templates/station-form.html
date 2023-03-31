@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MBTA Nearest Station</title>
+        <style>
+            form {
+                border: 1px solid rgb(116, 204, 222);
+                padding: 10px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <form action="" method="post">
+            <h1>Hello!</h1>
+            {% if error %}
+            <p class="red">There are no MBTA stops close enough to this location.</p>
+            {% endif %}
+            <p>
+                <label for="">Place Name: <input type="text" name="place_name"></label>
+            </p>
+            <p>
+                <button>Check Nearest Station</button>
+            </p>
+        </form>
+    </body>
+</html>
