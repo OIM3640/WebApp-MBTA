@@ -17,6 +17,7 @@ def station_post():
         wheelchair = 'Accessible'
     else:
         wheelchair = 'Inaccessible'
+        
     if station:
         return render_template('station-result.html', place=place_name, station=station, wheelchair=wheelchair)
     else:

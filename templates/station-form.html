@@ -10,6 +10,9 @@
                 border: 1px solid rgb(116, 204, 222);
                 padding: 10px;
             }
+            .red {
+                color: red;
+            }
 
         </style>
     </head>
@@ -18,7 +21,7 @@
         <form action="" method="post">
             <h1>Hello!</h1>
             {% if error %}
-            <p class="red">There are no MBTA stops close enough to this location.</p>
+            <p class= 'red'>There are no MBTA stops close enough to this location. </p>
             {% endif %}
             <p>
                 <label for="">Place Name: <input type="text" name="place_name"></label>
