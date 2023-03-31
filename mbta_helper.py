@@ -1,22 +1,13 @@
-# Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN, MBTA_API_KEY
+import requests
+import json
 
+# Your API KEYS (you need to use your own keys - very long random characters)
+
+MBTA_KEY = "f2e4dbfbd54940b7b181479f7aa389b4"
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
-
-
-# A little bit of scaffolding if you want to use it
-
-
-def get_json(url: str) -> dict:
-    """
-    Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
-
-    Both get_lat_long() and get_nearest_station() might need to use this function.
-    """
-    pass
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -25,7 +16,21 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{place_name}.json"
+    key = {
+        "access_token": "pk.eyJ1Ijoic2xpOSIsImEiOiJjbGZ2cWlueDYwMDg5M2RvZGp4bGt1dDZ4In0.OhZHNyEJGKdMYpuhOkeMNQ"
+    }
+    response = requests.get(url, params=key)
+    response_json = response.json()
+    features = response_json.get("features")
+    if features and len(features) > 0:
+        first_feature = features[0]
+        geometry = first_feature.get("geometry")
+        if geometry:
+            latitude = geometry.get("coordinates")[1]
+            longitude = geometry.get("coordinates")[0]
+            return latitude, longitude
+    return None, None
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -34,7 +39,20 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    url = f"https://api-v3.mbta.com/stops"
+    coords = {
+        "filter[latitude]": latitude,
+        "filter[longitude]": longitude,
+        "sort": "distance",
+        "page[limit]": 1,
+    }
+    response=requests.get(url,params=coords)
+    response_json=response.json()
+    data=response_json.get("data")
+    if data and len(data)>0:
+        stop=data[0]
+        attributes=stop.get("attributes")
+        name=attributes.get("name")
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -50,8 +68,8 @@ def main():
     """
     You can test all the functions here
     """
-    pass
+    print(get_lat_long("Boston Commons"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
