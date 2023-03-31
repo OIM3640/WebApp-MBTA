@@ -36,7 +36,7 @@ def get_lat_long(address: str, data) -> tuple[str, str]:
         latitude, longitude = data["features"][0]["center"]
         return latitude, longitude
     else:
-        print(f"No results found for place: {place_name}")
+        print(f"No results found for place: {address}")
 
 
 # Test the code
