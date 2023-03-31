@@ -15,6 +15,7 @@ MBTA_API_KEY = "b0f1e154e91042b5a636d8c6663e88ac"
 
 
 def get_url(address) -> str:
+    address = address.replace(' ', '%20')
     url = f"{MAPBOX_BASE_URL}/{address}.json?access_token={MAPBOX_TOKEN}&types=poi"
     return url
 
@@ -41,13 +42,13 @@ def get_lat_long(address: str) -> tuple[str, str]:
     url = get_url(address)
     json_data = get_json(url)
     if len(json_data["features"]) > 0:
-        latitude, longitude = json_data["features"][0]["center"]
-        return latitude, longitude
+        longitude,latitude = json_data["features"][0]["center"]
+        return longitude,latitude
     else:
         print(f"No results found for place: {address}")
 
 
-def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
+def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
@@ -74,8 +75,8 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
     place_name = place_name.replace(' ','%20')
-    lat,lon = get_lat_long(place_name)
-    nearest_station, wheelchair_accessible = get_nearest_station(lat,lon)
+    lat,long = get_lat_long(place_name)
+    nearest_station, wheelchair_accessible = get_nearest_station(lat,long)
     return nearest_station,wheelchair_accessible
 
 
@@ -84,13 +85,11 @@ def main():
     You can test all the functions here
     """
     # Test the code
-    address = 'boston,ma'
-    # url = get_url(address)
-    # response_json = get_json(url)
-    longitude,latitude = get_lat_long(address)
-    #print(get_nearest_station(latitude, longitude))
-    place_name = 'boston'
-    find_stop_near(place_name)
+    address = 'harvard university'
+    long, lat = get_lat_long(address)
+    # print(get_nearest_station(long, lat))
+    place_name = 'boston commons'
+    print(find_stop_near(place_name))
 
 
 if __name__ == "__main__":
