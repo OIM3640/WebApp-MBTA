@@ -16,8 +16,17 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    response = requests.get(url)
+    response_json = response.json()
+    return response_json
 
+# Test the code
+MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+MAPBOX_TOKEN = 'pk.eyJ1IjoiYW5nZWxhd29uZzEyMyIsImEiOiJjbGZ2b2FyM28wOTh6M25wZGJhcW04ODZpIn0.lT5TeXhQjnwH3fzWq8mjAA'
+address = 'Babson College, MA'
+url = f'{MAPBOX_BASE_URL}/{address}.json?access_token={MAPBOX_TOKEN}&types=poi'
+response_json = get_json(url)
+response_json
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
     """
