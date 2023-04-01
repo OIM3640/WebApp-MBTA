@@ -12,10 +12,12 @@
                 background-size: cover;
                 margin-top:0;
                 color:white;
-                margin-top:0;
             }
             .red {
                 color: red;
+                font-size: 50px;
+                text-align:center;
+                text-transform: uppercase;
             }
             .text-border {
                 border: 2px solid black;
@@ -35,15 +37,49 @@
                 text-align:center;
                 text-transform:uppercase;
             }
+            .wider-margin {
+                margin:30px;
+                text-align:center;
+            }
+            button{
+                height:30px;
+            }
+            .background{
+                background-color:black;
+                margin-top: 0; 
+                padding: 150px;
+            }
+            a{
+                font-size:30px;
+            }
+            .white{
+                color:white;
+                text-align:center;
+                font-size: 25px;
+            }
+            .error-border{
+                border: 2px solid black;
+                height: 300px;
+                padding: 25px;
+                background-color:black;
+                opacity:0.8;
+                text-align:center;
+            }
+
 
         </style>
     </head>
 
     <body>
         {% if error %}
-        <h1>Error Message</h1>
-        <p class= 'red'>There are no MBTA stops close enough to this location with the selected transportation method. </p>
-        <p><a href="/station/">Go Back</a></p>
+        <h1 class="header">Error Message</h1>
+        <div class="background">
+            <div class="error-border">
+                <h1 class= 'red'>Sorry... </h1>
+                <p class="white">There are no MBTA stops close enough to this location with the selected transportation method.</p>
+                <p class="wider-margin"><a href="/station/">Go Back</a></p>
+            </div>
+        </div>
         {% else %}
         <h1 class="header">Welcome!</h1>
             <form action="" method="post">
@@ -52,7 +88,7 @@
                     <p>
                         <label for="">Place Name: <input type="text" name="place_name"></label>
                     </p>
-                    <p>
+                    <p class="wider-margin">
                         <label for="my-dropdown">Select a transportation method:</label>
                         <select id="'my-dropdown" name="route_type">
                             <option value="all">All</option>
@@ -62,7 +98,7 @@
                             <option value="ferry">Ferry</option>
                         </select>
                     </p>
-                    <p>
+                    <p class="wider-margin">
                         <button>Check Nearest Station</button>
                     </p>
                 </div>
