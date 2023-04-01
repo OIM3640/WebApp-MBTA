@@ -53,6 +53,14 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
         stop=data[0]
         attributes=stop.get("attributes")
         name=attributes.get("name")
+        wheelchair=attributes.get("wheelchair_boarding")
+        if wheelchair is not None:
+            wheelchair_accessible= True if wheelchair == 1 else False
+        else:
+            wheelchair_accessible = None
+        return name, wheelchair_accessible
+    return None, None
+
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -61,14 +69,23 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    latitude=get_lat_long(place_name)[0]
+    longitude=get_lat_long(place_name)[1]
+    return get_nearest_station(latitude,longitude)
 
 
 def main():
     """
     You can test all the functions here
     """
-    print(get_lat_long("Boston Commons"))
+    commons="Boston Commons"
+    # commons_coords=get_lat_long(commons)
+    # print(commons_coords)
+    # lat = commons_coords[0]
+    # lng = commons_coords[1]
+    # print(get_nearest_station(lat, lng))
+
+    print(find_stop_near(commons))
 
 
 if __name__ == "__main__":
