@@ -4,14 +4,36 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Amazing app to help you find the nearest MBTA station</title>
+        <title>Find Nearest MBTA Station</title>
         <style>
             form {
-                border: 1px solid rgb(116, 204, 222);
-                padding: 10px;
+                padding: 120px;
+                background-image: url('https://images.squarespace-cdn.com/content/v1/5ba1b175620b8545d7f519c8/1586053731298-S8HUL6471SAAHRGQXHKE/mbta_cover.jpg?format=2500w');
+                background-size: cover;
+                margin-top:0;
+                color:white;
+                margin-top:0;
             }
             .red {
                 color: red;
+            }
+            .text-border {
+                border: 2px solid black;
+                width: 400px;
+                height: 300px;
+                padding: 25px;
+                background-color:black;
+                opacity:0.8;
+                text-align:center;
+            }
+            .header {
+                background-color:black;
+                color: white;
+                padding: 20px;
+                margin-bottom: 0;
+                margin-top:0;
+                text-align:center;
+                text-transform:uppercase;
             }
 
         </style>
@@ -23,24 +45,27 @@
         <p class= 'red'>There are no MBTA stops close enough to this location with the selected transportation method. </p>
         <p><a href="/station/">Go Back</a></p>
         {% else %}
+        <h1 class="header">Welcome!</h1>
             <form action="" method="post">
-                <h1>Hello!</h1>
-                <p>
-                    <label for="">Place Name: <input type="text" name="place_name"></label>
-                </p>
-                <p>
-                    <label for="my-dropdown">Select a transportation method:</label>
-                    <select id="'my-dropdown" name="route_type">
-                        <option value="all">All</option>
-                        <option value="subway">Subway</option>
-                        <option value="rail">Comuter Rail</option>
-                        <option value="bus">Bus</option>
-                        <option value="ferry">Ferry</option>
-                    </select>
-                </p>
-                <p>
-                    <button>Check Nearest Station</button>
-                </p>
+                <div class="text-border">
+                    <h1>Search for the Nearest MBTA Stop:</h1>
+                    <p>
+                        <label for="">Place Name: <input type="text" name="place_name"></label>
+                    </p>
+                    <p>
+                        <label for="my-dropdown">Select a transportation method:</label>
+                        <select id="'my-dropdown" name="route_type">
+                            <option value="all">All</option>
+                            <option value="subway">Subway</option>
+                            <option value="rail">Comuter Rail</option>
+                            <option value="bus">Bus</option>
+                            <option value="ferry">Ferry</option>
+                        </select>
+                    </p>
+                    <p>
+                        <button>Check Nearest Station</button>
+                    </p>
+                </div>
             </form>
         {% endif %}
     </body>
