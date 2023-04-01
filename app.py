@@ -10,7 +10,8 @@ def station_get():
 @app.post('/station/')
 def station_post():
     place_name = str(request.form["place_name"])
-    station, wheelchair_accessible = find_stop_near(place_name)
+    route_type = str(request.form['route_type'])
+    station, wheelchair_accessible = find_stop_near(place_name, route_type)
     if wheelchair_accessible == 0:
         wheelchair = 'No Information'
     elif wheelchair_accessible == 1:
@@ -19,7 +20,7 @@ def station_post():
         wheelchair = 'Inaccessible'
         
     if station:
-        return render_template('station-result.html', place=place_name, station=station, wheelchair=wheelchair)
+        return render_template('station-result.html', place=place_name, station=station, wheelchair=wheelchair, route=route_type)
     else:
         return render_template('station-form.html', error=True)
 

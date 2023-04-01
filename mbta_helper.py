@@ -48,18 +48,26 @@ def get_lat_long(address: str) -> tuple[str, str]:
         print(f"No results found for place: {address}")
 
 
-def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
+def get_nearest_station(longitude: str, latitude: str, route_type: str) -> tuple[str, bool]:
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
     MBTA_STOPS_API_URL = "https://api-v3.mbta.com/stops"
+    route_types = {
+        'all': '0',
+        'subway': '1',
+        'rail': '2',
+        'bus': '3',
+        'ferry': '4'
+    }
     params = {
         "filter[latitude]": latitude,
         "filter[longitude]": longitude,
         "sort": "distance",
         "api_key": MBTA_API_KEY,
+         "filter[route_type]":route_types[route_type.lower()]
     }
     response = requests.get(MBTA_STOPS_API_URL, params=params)
     station_data = response.json()
@@ -72,7 +80,7 @@ def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
         return None, None
 
 
-def find_stop_near(place_name: str) -> tuple[str, bool]:
+def find_stop_near(place_name: str, route_type: str) -> tuple[str, bool]:
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
 
@@ -80,7 +88,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
     place_name = place_name.replace(" ", "%20")
     lat, long = get_lat_long(place_name)
-    nearest_station, wheelchair_accessible = get_nearest_station(lat, long)
+    nearest_station, wheelchair_accessible = get_nearest_station(lat, long, route_type)
     return nearest_station, wheelchair_accessible
 
 
@@ -89,11 +97,12 @@ def main():
     You can test all the functions here
     """
     # Test the code
-    address = "harvard university"
-    long, lat = get_lat_long(address)
+    # address = "harvard university"
+    # long, lat = get_lat_long(address)
     # print(get_nearest_station(long, lat))
-    place_name = "babson college"
-    print(find_stop_near(place_name))
+    place_name = "boston common"
+    route_type = 'ferry'
+    print(find_stop_near(place_name, route_type))
 
 
 if __name__ == "__main__":
