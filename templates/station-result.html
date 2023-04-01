@@ -9,8 +9,8 @@
 
     <body>
         <h1>Results</h1>
-        <p>The nearest MBTA stop near {{ place }} is {{ station }}. </p>
-        <p>Transportation method: {{ route }}</p>
+        <p>The nearest MBTA stop near {{ place|title }} is {{ station }}. </p>
+        <p>Transportation method: {{ route|title }}</p>
         <p>Wheelchair accessibility: {{ wheelchair }}.</p>
     </body>
 </html>
