@@ -56,7 +56,7 @@ def get_nearest_station(longitude: str, latitude: str, route_type: str) -> tuple
     """
     MBTA_STOPS_API_URL = "https://api-v3.mbta.com/stops"
     route_types = {
-        'all': '0',
+        'all': ' ',
         'subway': '1',
         'rail': '2',
         'bus': '3',
@@ -67,7 +67,7 @@ def get_nearest_station(longitude: str, latitude: str, route_type: str) -> tuple
         "filter[longitude]": longitude,
         "sort": "distance",
         "api_key": MBTA_API_KEY,
-         "filter[route_type]":route_types[route_type.lower()]
+         "filter[route_type]":route_types[route_type]
     }
     response = requests.get(MBTA_STOPS_API_URL, params=params)
     station_data = response.json()
@@ -100,8 +100,8 @@ def main():
     # address = "harvard university"
     # long, lat = get_lat_long(address)
     # print(get_nearest_station(long, lat))
-    place_name = "boston common"
-    route_type = 'ferry'
+    place_name = "harvard university"
+    route_type = 'all'
     print(find_stop_near(place_name, route_type))
 
 
