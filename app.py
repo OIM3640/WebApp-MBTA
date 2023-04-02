@@ -6,19 +6,15 @@ import urllib.request
 
 app = Flask(__name__)
 
-@app.route('/')
-def mbta_helper():
-    return render_template('index.html')
 
-@app.get('/input/')
-def get_location():
-    return render_template('index.html')
+@app.route('/nearest', methods=['POST'])
+def nearest_station():
+    # use place_name to calcuate the nearest MBTA station
+    place_name = request.form['place_name']
 
-@app.post('/input/')
-def post_location():
-    place_name = request.form['place']
-    return render_template('index.html', place=place_name)
+    # Retrun result to result.html template
+    return render_template('result.html', station=nearest_station)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-
