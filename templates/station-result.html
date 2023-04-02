@@ -5,12 +5,85 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Station Result</title>
+        <style>
+            body {
+                background-image: url('https://images.squarespace-cdn.com/content/v1/5ba1b175620b8545d7f519c8/1586053731298-S8HUL6471SAAHRGQXHKE/mbta_cover.jpg?format=2500w');
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: #333;
+                font: 16px/1.5 Arial, Helvetica, sans-serif;
+            }
+            h1 {
+                font: 2.5em/1.2 "Open Sans", sans-serif;
+                color: #0071bc;
+                text-align: center;
+                margin: 0.5em 0;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+            .text-box {
+                border: 2px solid #0071bc;
+                width: 600px;
+                height: 350px;
+                padding: 2em;
+                background-color: rgba(255, 255, 255, 0.9);
+                text-align: center;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            p {
+                margin: 0.5em 0;
+                font-size: 1.2em;
+                color: #777;
+            }
+            .highlight {
+                color: #0071bc;
+                font-weight: bold;
+                font-size: 1.5em;
+                letter-spacing: 0.05em;
+            }
+            .error {
+                color: red;
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.2em;
+                margin-top: 2em;
+            }
+            .button {
+                display: inline-block;
+                background-color: #0071bc;
+                color: #fff;
+                font: bold 1em/2 "Open Sans", sans-serif;
+                padding: 0.7em 1.5em;
+                margin-top: 1em;
+                text-decoration: none;
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
+            }
+            .button:hover {
+                background-color: #005fa3;
+            }
+        </style>
     </head>
-
     <body>
-        <h1>Results</h1>
-        <p>The nearest MBTA stop near {{ place|title }} is {{ station }}. </p>
-        <p>Transportation method: {{ route|title }}</p>
-        <p>Wheelchair accessibility: {{ wheelchair }}.</p>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% else %}
+            <h1>Results</h1>
+            <form action="" method="get">
+                <div class="text-box">
+                    <p>The nearest MBTA stop near <span class="highlight">{{ place|title }}</span> is <span class="highlight">{{ station }}</span>.</p>
+                    <p>Transportation method: <span class="highlight">{{ route|title }}</span></p>
+                    <p>Wheelchair accessibility: <span class="highlight">{{ wheelchair }}</span>.</p>
+                </div>
+            </form>
+        {% endif %}
     </body>
 </html>
+            
