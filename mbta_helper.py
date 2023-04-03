@@ -61,8 +61,6 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     else:
         message = "not wheelchair accessible"
 
-
-
     return((json_output['data'][0]['attributes']['name'],message))
 
 
