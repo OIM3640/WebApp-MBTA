@@ -40,6 +40,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     json_output = get_json(url)
 
     #this function will return a tuple of the geometric coordinates of the user's location
+    #IMPORTANT!!! the output returns [Longitude, Latitude] <- we need to switch this over to get the nearest station!!!
     return json_output['features'][0]['geometry']['coordinates']
 
 
@@ -51,7 +52,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     URL = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
     json_output = get_json(URL)
-    pprint(json_output)
+    pprint((json_output['data'][0]['attributes']['name'],json_output['data'][0]['attributes']['wheelchair_boarding']))
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
