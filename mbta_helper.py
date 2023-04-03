@@ -26,6 +26,7 @@ def get_json(url: str) -> dict:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
         pprint(response_data)
+        print(response_data['features'][0]['properties']['address'])
 
 
 get_json(MAPBOX_BASE_URL)
