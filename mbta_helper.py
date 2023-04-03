@@ -54,9 +54,13 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
     response_data = get_json(url)
-    pprint.pprint(response_data)
-
-    # return station_name, wheelchair_accessible
+    if response_data['data']:
+        first_stop = response_data['data'][0]
+        station_name, wheelchair_accessible = first_stop['attributes'][
+            'description'], first_stop['attributes']['wheelchair_boarding']
+        return station_name, wheelchair_accessible
+    else:
+        return f"There is no stop nearby ({latitude},{longitude}), please choose another location"
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -65,7 +69,8 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    longitude, latitude = get_lat_long(place_name)
+    get_nearest_station(latitude, longitude)
 
 
 def main():
@@ -74,8 +79,9 @@ def main():
     """
     # url = get_url("Babson College")
     # pprint.pprint(get_json(url))
-    print(get_lat_long("Boston Commons"))
-    longitude, latitude = get_lat_long("Boston Commons")
+    location = "Babson College"
+    print(get_lat_long(location))
+    longitude, latitude = get_lat_long(location)
     print(get_nearest_station(latitude, longitude))
 
 
