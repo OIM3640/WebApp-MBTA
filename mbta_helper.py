@@ -52,26 +52,11 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    param = {
-        'filter[latitude]': latitude,
-        'filter[longitude]': longitude,
-        "filter[radius]": 1000,
-        'include': 'wheelchair_boarding',
-        'sort': 'distance'
-    }
-    response = requests.get(MBTA_BASE_URL, params=param)
-    response.raise_for_status()
+    url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    response_data = get_json(url)
+    pprint.pprint(response_data)
 
-    response_data = response.json()
-    if not response_data['data']:
-        return None
-
-    stop = response_data['data'][0]
-    attributes = stop['attributes']
-    station_name = attributes['name']
-    wheelchair_accessible = attributes.get('wheelchair_boarding') == 1
-
-    return station_name, wheelchair_accessible
+    # return station_name, wheelchair_accessible
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -89,8 +74,8 @@ def main():
     """
     # url = get_url("Babson College")
     # pprint.pprint(get_json(url))
-    # print(get_lat_long("Babson College"))
-    latitude, longitude = get_lat_long("Babson College")
+    print(get_lat_long("Boston Commons"))
+    longitude, latitude = get_lat_long("Boston Commons")
     print(get_nearest_station(latitude, longitude))
 
 
