@@ -10,9 +10,13 @@ MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # A little bit of scaffolding if you want to use it
-query = 'Babson%20College'
-url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-print(url)  # Try this URL in your browser first
+
+
+def get_url(place: str):
+    query = place.replace(" ", "%20")
+    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    return url
+
 
 def get_json(url: str) -> dict:
     """
@@ -23,12 +27,8 @@ def get_json(url: str) -> dict:
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
-        pprint(response_data)
-    return response_data
-        print(response_data['features'][0]['properties']['address'])
+        return response_data
 
-
-get_json(MAPBOX_BASE_URL)
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
     """
@@ -61,7 +61,8 @@ def main():
     """
     You can test all the functions here
     """
-    pass
+    url = get_url("New York City")
+    pprint.pprint(get_json(url))
 
 
 if __name__ == '__main__':
