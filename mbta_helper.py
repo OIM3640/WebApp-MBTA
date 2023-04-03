@@ -13,7 +13,7 @@ import json
 from pprint import pprint
 
 
-def get_json(url):
+def get_json(url):  # finished
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
@@ -25,16 +25,19 @@ def get_json(url):
     return res_data
 
 
-def get_lat_long(place_name: str) -> tuple[str, str]:
+def get_lat_long(place_name):  # need to work on the url
     """
     Given a place name or address, return a (latitude, longitude) tuple with the coordinates of the given place.
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    url = f""
+    information = get_json(url)
+    latitude, longtitude = information["features"][0]["center"]
+    return (latitude, longtitude)
 
 
-def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
+def get_nearest_station(latitude, longitude):
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
@@ -43,20 +46,21 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     pass
 
 
-def find_stop_near(place_name: str) -> tuple[str, bool]:
+def find_stop_near(place_name) -> tuple[str, bool]:
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
 
     This function might use all the functions above.
     """
-    pass
+    latitude, longtitude = get_lat_long(place_name)
+    return get_nearest_station(latitude, latitude, longtitude)
 
 
 def main():
     """
     You can test all the functions here
     """
-    pass
+    return find_stop_near("Boston Common")
 
 
 if __name__ == "__main__":
