@@ -8,15 +8,20 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
 # A little bit of scaffolding if you want to use it
+import urllib.request
+import json
+from pprint import pprint
 
-
-def get_json(url: str) -> dict:
+def get_json(url):
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    f=urllib.request.urlopen(url)
+    res_text = f.read().decode('utf-8')
+    res_data = json.loads(res_text)
+    return res_data
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
