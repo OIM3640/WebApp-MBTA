@@ -3,12 +3,15 @@ from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
 import json
 import pprint
+import requests
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
-
+query = 'Babson%20College'
+url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
+print(url)
 
 # A little bit of scaffolding if you want to use it
 
@@ -19,13 +22,12 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    
-    f = urllib.request.urlopen(url)
-    response_text = f.read().decode('utf-8')
-    response_data = json.loads(response_text)
-    pprint.pprint(response_data)
 
-    pass
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+        pprint.pprint(response_data)
+    
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -43,7 +45,11 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    res = requests.get(url)
+    data = res.json()
+    wind = data['wind']['speed']
+    return wind
+
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -59,8 +65,8 @@ def main():
     """
     You can test all the functions here
     """
-    get_json(MAPBOX_BASE_URL)
-    pass
+    get_json(url)
+    
 
 
 if __name__ == '__main__':
