@@ -1,5 +1,8 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
+import urllib.request
+import json
+import pprint
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -16,7 +19,12 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    query = 'Babson%20College'
+    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    print(url)  # Try this URL in your browser first
+
+
+get_json(MAPBOX_BASE_URL)
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
