@@ -14,6 +14,9 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
 def get_url(place: str):
+    """
+    Given the name of a place, return a Map Box url
+    """
     query = place.replace(" ", "%20")
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     return url
