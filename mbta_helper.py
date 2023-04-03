@@ -11,6 +11,9 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
 # A little bit of scaffolding if you want to use it
+query = 'Babson%20College'
+url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+print(url)  # Try this URL in your browser first
 
 
 def get_json(url: str) -> dict:
@@ -19,9 +22,6 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    query = 'Babson%20College'
-    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-    print(url)  # Try this URL in your browser first
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
