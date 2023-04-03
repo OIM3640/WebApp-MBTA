@@ -57,8 +57,9 @@ def get_nearest_station(longitude: str, latitude: str, route_type: str) -> tuple
     MBTA_STOPS_API_URL = "https://api-v3.mbta.com/stops"
     route_types = {
         'all': ' ',
-        'subway': '1',
-        'rail': '2',
+        'light rail': '0',
+        'heavy rail': '1',
+        'commuter rail': '2',
         'bus': '3',
         'ferry': '4'
     }
