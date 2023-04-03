@@ -4,8 +4,8 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello():
+@app.route('/', methods=['',''])
+def show_station():
     return 'hello worldhhh!'
 
 

@@ -12,14 +12,15 @@ import urllib.request
 import json
 from pprint import pprint
 
+
 def get_json(url):
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    f=urllib.request.urlopen(url)
-    res_text = f.read().decode('utf-8')
+    f = urllib.request.urlopen(url)
+    res_text = f.read().decode("utf-8")
     res_data = json.loads(res_text)
     return res_data
 
@@ -58,5 +59,5 @@ def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
