@@ -13,10 +13,11 @@ query = 'Babson%20College'
 url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
 print(url)
 
+# print(url) # Try this URL in your browser first
 # A little bit of scaffolding if you want to use it
 
 
-def get_json(url: str) -> dict:
+def get_json(query) -> dict:
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
@@ -36,8 +37,15 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    query= "Babson%20College"
+    response_data = get_json(query)
+    length= len(response_data["features"])
+    for i in range(length):
+        if place_name in response_data["features"][i]['place_name']:
+            location = response_data["features"][i]["geometry"]["coordinates"]
+            return tuple(location)
 
+ 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
