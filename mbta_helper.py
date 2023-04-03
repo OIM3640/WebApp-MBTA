@@ -87,8 +87,8 @@ def main():
     # url = get_url("Babson College")
     # pprint.pprint(get_json(url))
     # print(get_lat_long("Babson College"))
-    latitute, longitude = get_lat_long("Babson College")
-    get_nearest_station(latitute, longitude)
+    latitude, longitude = get_lat_long("Babson College")
+    print(get_nearest_station(latitude, longitude))
 
 
 if __name__ == '__main__':
