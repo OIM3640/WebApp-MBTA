@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 from mbta_helper import find_stop_near, get_weather
 
-
 app = Flask(__name__)
 
 # this page will be the main landing page with a form 
@@ -15,7 +14,7 @@ def get_nearest_mbta():
     user_location = request.form['location']
     nearest_mbta = find_stop_near(user_location)
     weather = get_weather(user_location)
-    output = f"{nearest_mbta} Weather: {str(weather)} °F"
+    output = f"{nearest_mbta} Weather: {str(round(weather-273.15,2))} °C"
     return output
 
 if __name__ == '__main__':
