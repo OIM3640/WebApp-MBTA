@@ -54,7 +54,6 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
 place_name = input("Give a place name or address: ")
 print (get_lat_long(place_name))
-latitude, longitude = get_lat_long(place_name)
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -63,7 +62,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    mbta_url = 'https://api-v3.mbta.com/stops?sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&filter[location_type]=1&include=wheelchair_boarding'
+    mbta_url = 'https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=filter%5Blatitude%5D&filter%5Blongitude%5D=filter%5Blongitude%5D'
     with urllib.request.urlopen(mbta_url) as f:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
