@@ -58,6 +58,10 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
         first_stop = response_data['data'][0]
         station_name, wheelchair_accessible = first_stop['attributes'][
             'description'], first_stop['attributes']['wheelchair_boarding']
+        if wheelchair_accessible == 1:
+            wheelchair_accessible = True
+        else:
+            wheelchair_accessible = False
         return station_name, wheelchair_accessible
     else:
         return f"There is no stop nearby ({latitude},{longitude}), please choose another location"
@@ -70,7 +74,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
     longitude, latitude = get_lat_long(place_name)
-    get_nearest_station(latitude, longitude)
+    return get_nearest_station(latitude, longitude)
 
 
 def main():
@@ -79,10 +83,14 @@ def main():
     """
     # url = get_url("Babson College")
     # pprint.pprint(get_json(url))
-    location = "Babson College"
+    location = "Boston Commons"
     print(get_lat_long(location))
     longitude, latitude = get_lat_long(location)
     print(get_nearest_station(latitude, longitude))
+
+    print(find_stop_near(location))
+
+    #  0 = No data, 1 = Accessible, 2 = Not Accessible
 
 
 if __name__ == '__main__':
