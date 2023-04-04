@@ -13,10 +13,10 @@ def home_page():
 def nearest_station():
     # use place_name to calcuate the nearest MBTA station
     place_name = request.form.get('place_name')
-    stop = find_stop_near(place_name)
+    stop, wheelchair = find_stop_near(place_name)
 
     # Retrun result to result.html template
-    return render_template('result.html', place_name=place_name, nearest_stop=stop)
+    return render_template('result.html', place_name=place_name, nearest_stop=stop, wheelchair_accessible=wheelchair)
 
 
 if __name__ == '__main__':
