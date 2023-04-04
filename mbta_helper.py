@@ -1,5 +1,5 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN , MBTA_API_KEY
+from config import MAPBOX_TOKEN, MBTA_API_KEY
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -32,10 +32,13 @@ def get_lat_long(place_name):  # need to work on the url
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
     adjusted_place = place_name.replace(" ", "%20")
-    url = f'{MAPBOX_BASE_URL}/{adjusted_place}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    url = (
+        f"{MAPBOX_BASE_URL}/{adjusted_place}.json?access_token={MAPBOX_TOKEN}&types=poi"
+    )
     information = get_json(url)
     longtitude, latitude = information["features"][0]["center"]
     return (longtitude, latitude)
+
 
 def wheelchair_accessibility(num):
     if num == 0:
@@ -44,7 +47,8 @@ def wheelchair_accessibility(num):
         return "Accessible"
     elif num == 2:
         return "Inaccessible"
-    
+
+
 def get_nearest_station(latitude, longitude):
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
