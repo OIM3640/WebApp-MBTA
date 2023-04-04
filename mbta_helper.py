@@ -93,7 +93,17 @@ def find_stop_near(place_name: str, route_type: str) -> tuple[str, bool]:
     nearest_station, wheelchair_accessible = get_nearest_station(lat, long, route_type)
     return nearest_station, wheelchair_accessible
 
- 
+def get_weather(place_name):
+    """
+    """
+    place_name = place_name.replace(" ", "%20")
+    lon, lat = get_lat_long(place_name)
+    url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&APPID={WEATHER_API_KEY}&units=metric"
+    weather_data = get_json(url)
+    temperature = weather_data["main"]["temp"]
+    weather = weather_data['weather'][0]['main']
+    return weather, temperature
+
 
 def main():
     """
@@ -101,10 +111,12 @@ def main():
     """
     # Test the code
     # address = "harvard university"
-    # long, lat = get_lat_long(address)
+    # lon, lat = get_lat_long(address)
     # print(get_nearest_station(long, lat))
-    place_name = "boston common"
-    route_type = 'all'
+    # place_name = "boston common"
+    # route_type = 'all'
+    # lon, lat = get_lat_long(place_name)
+    # print(get_weather(place_name))
     # print(find_stop_near(place_name, route_type))
 
 if __name__ == "__main__":

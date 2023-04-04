@@ -24,6 +24,7 @@
                 padding: 10px;
             }
             .text-box {
+                position: relative;
                 border: 2px solid white;
                 width: 600px;
                 height: 350px;
@@ -69,9 +70,16 @@
                 transition: all 0.2s ease-in-out;
                 cursor: pointer;
             }
+            .upper-right {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-right: 5px;
+            }
             .button:hover {
             background-color: #005fa3;
         }
+
         </style>
     </head>
     <body>
@@ -81,6 +89,10 @@
             <h1>Results</h1>
             <form action="" method="get">
                 <div class="text-box">
+                    <div class="upper-right">
+                        <p><span class="highlight">{{temperature}} ℃ </span></p>
+                        <p>{{weather}} </p>
+                    </div>
                     <p>The nearest MBTA stop near <span class="highlight">{{ place|title }}</span> is <span class="highlight">{{ station }}</span>.</p>
                     <p>Transportation method: <span class="highlight">{{ route|title }}</span></p>
                     <p>Wheelchair accessibility: <span class="highlight">{{ wheelchair }}</span>.</p>
