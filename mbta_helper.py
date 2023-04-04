@@ -17,6 +17,7 @@ def get_url(place: str):
     Given the name of a place, return a Map Box url
     """
     query = place.replace(" ", "%20")
+
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     return url
 
@@ -44,10 +45,10 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     longitude, latitude = response_data['features'][0]['center']
     latitude = round(latitude, 4)
     longitude = round(longitude, 4)
-    return longitude, latitude
+    return latitude, longitude
 
 
-def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
+def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
@@ -92,8 +93,8 @@ def main():
     location = "Boston Commons"
     print(location)
     print(get_lat_long(location))
-    longitude, latitude = get_lat_long(location)
-    print(get_nearest_station(longitude, latitude))
+    latitude, longitude = get_lat_long(location)
+    print(get_nearest_station(latitude, longitude))
     # print(get_nearest_station(get_lat_long(location)))
     # print(find_stop_near(location))
 
