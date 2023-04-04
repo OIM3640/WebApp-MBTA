@@ -12,8 +12,13 @@ def hello():
 #this page will show the results of the user's search input 
 @app.route('/nearest_mbta', methods = ['POST'])
 def get_nearest_mbta():
+
     user_location = request.form['location']
-    return find_stop_near(user_location)
+
+    if user_location:
+        return find_stop_near(user_location)
+    else:
+        raise Exception("Please enter a location")
 
 if __name__ == '__main__':
     app.run(debug=True)

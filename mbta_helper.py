@@ -41,7 +41,10 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     #this function will return a tuple of the geometric coordinates of the user's location
     #IMPORTANT!!! the output returns [Longitude, Latitude] <- we need to switch this over to get the nearest station!!!
-    return json_output['features'][0]['geometry']['coordinates']
+    if(json_output['features']):
+        return json_output['features'][0]['geometry']['coordinates']
+    else:
+        raise Exception("Address entered does not exist")
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -60,13 +63,11 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
         return "Unfortunately there are no MBTA stops close enough to Babson College - you have to get out into the city!"
 
     if (json_output['data'][0]['attributes']['wheelchair_boarding']) > 0:
-        # message = "wheelchair accessible"
-        message = True
+        wheelchair_accessible = True
     else:
-        # message = "not wheelchair accessible"
-        message = False
+        wheelchair_accessible = False
 
-    return((json_output['data'][0]['attributes']['name'], message))
+    return((json_output['data'][0]['attributes']['name'], wheelchair_accessible))
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -79,16 +80,26 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     lat_long = get_lat_long(place_name)
     nearest_stop = get_nearest_station(lat_long[1], lat_long[0])
 
-    return nearest_stop
+    if not nearest_stop[1]:
+        return nearest_stop
+    else:
+        if nearest_stop[1] == True:
+            message = "Yes"
+        else:
+            message = "No"
+
+        output = f"Nearest MBTA station: {nearest_stop[0]}, Wheelchair Accessible : {message}"
+
+        return output
 
 
 def main(): 
     """
     You can test all the functions here
     """
-    # print(get_lat_long('Harvard University'))
+    # print(get_lat_long('B'))
     #print(get_nearest_station(42.3737614375,-71.1181085))
-    print(find_stop_near("Boston Commons"))
+    print(find_stop_near("boston commons"))
 
 
 if __name__ == '__main__':
