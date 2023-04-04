@@ -1,5 +1,6 @@
 # WebApp-MBTA
-Group members: Matteo Sta Maria, Xue Zhen Ng
+**Group members: Matteo Sta Maria, Xue Zhen Ng**
+
 **1. Project Overview** (~1 paragraph)
 
 Write a short abstract describing your project. Include all the extensions to the basic requirements. 
