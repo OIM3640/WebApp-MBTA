@@ -42,25 +42,25 @@ print (get_lat_long(place_name))
 latitude, longitude = get_lat_long(place_name)
 
 
-# def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
-#     """
-#     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
+def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
+    """
+    Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
-#     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
-#     """
-#     mbta_url = 'https://api-v3.mbta.com/stops?sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&filter[location_type]=1&include=wheelchair_boarding'
-#     with urllib.request.urlopen(mbta_url) as f:
-#         response_text = f.read().decode('utf-8')
-#         response_data = json.loads(response_text)
+    See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
+    """
+    mbta_url = 'https://api-v3.mbta.com/stops?sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&filter[location_type]=1&include=wheelchair_boarding'
+    with urllib.request.urlopen(mbta_url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
 
-#     if response_data["data"]:
-#         station_name = response_data['data'][0]['attributes']['name']
-#         wheelchair_accessible = response_data['data'][0]['attributes']['wheelchair_boarding'] != '0'
-#         return station_name, wheelchair_accessible
-#     else:
-#         return '', False
-
-# get_nearest_station(latitude, longitude)
+    if response_data["data"]:
+        station_name = response_data['data'][0]['attributes']['name']
+        wheelchair_accessible = response_data['data'][0]['attributes']['wheelchair_boarding'] != '0'
+        return station_name, wheelchair_accessible
+    else:
+        return '', False
+latitude, longitude = get_lat_long(place_name)
+print(get_nearest_station(latitude, longitude))
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
