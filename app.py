@@ -16,9 +16,10 @@ def station_post():
         return render_template("station-result.html", place = place_name, station = station, wheelchair = wheelchair)
     except:
         return render_template("error.html")
-# @app.errorhandler(500)
-# def search_error(error):
 
+@app.route("/weather/")  #Amanda
+def weather():
+    return render_template("weather.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
