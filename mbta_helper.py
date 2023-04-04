@@ -64,13 +64,16 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    latitude = '42.341690'
-    longitude = '-71.097560'
     res = requests.get(url_mbta)
     data = res.json()
-    nearest_station = data['']
+    station_name = data["data"][0]["attributes"]["name"]
+    wheelchair_accessible = data["data"][0]["attributes"]["wheelchair_boarding"]
+    if wheelchair_accessible == 1:
+        return station_name, wheelchair_accessible 
+    else:
+        return station_name
 
-
+print(get_nearest_station('42.341690', '-71.097560'))
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
