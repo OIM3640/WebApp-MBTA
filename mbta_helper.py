@@ -57,10 +57,10 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     json_output = get_json(URL)
     print(URL)
 
-    #TO DO: check if there are even MBTA stops close to the location, if there are none, return "Unfortunately there are no MBTA stops close enough to Babson College - you have to get out into the city!" 
-
+    have_stops = True
     if (len(json_output['data'])) == 0:
-        return "Unfortunately there are no MBTA stops close enough to Babson College - you have to get out into the city!"
+        have_stops == False
+        return have_stops
     else:
         if (json_output['data'][0]['attributes']['wheelchair_boarding']) > 0:
             wheelchair_accessible = True
@@ -80,8 +80,9 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     lat_long = get_lat_long(place_name)
     nearest_stop = get_nearest_station(lat_long[1], lat_long[0])
 
-    if type(nearest_stop) is str:
-        return nearest_stop
+    if type(nearest_stop) is bool:
+        return f"Unfortunately there are no MBTA stops close enough to {place_name} - you have to get out into the city!"
+
     else:
         if nearest_stop[1] == True:
             message = "Yes"
