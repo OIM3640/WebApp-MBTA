@@ -55,6 +55,7 @@ def get_nearest_station(latitude, longitude):
     information = get_json(url)["data"][0]["attributes"]
     station = information["name"]
     wheelchair = wheelchair_accessibility(information["wheelchair_boarding"])
+
     return (station, wheelchair)
 
 
