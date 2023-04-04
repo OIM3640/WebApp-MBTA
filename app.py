@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return 'Welcome to my MBTA Helper Web App Development Project!'
+    return render_template("home.html")
 
 @app.route('/mbta/')
 @app.get('/mbta/')
@@ -19,12 +19,16 @@ def mbta_post():
     place_name=request.form["place"]
     print("place is here")
     stop_near=find_stop_near(place_name)[0]
-    if find_stop_near(place_name)[1]==True:
-        handicap="True"
-        print(handicap)
+    if stop_near!=None:
+        if find_stop_near(place_name)[1]==True:
+            handicap="This station is handicap-accessible."
+            print(handicap)
+        else:
+            handicap="This station is not handicap-accessible."
+            print(handicap)
     else:
-        handicap="False"
-        print(handicap)
+        stop_near="not available. Try another location."
+        handicap=""
     return render_template("result.html", place=place_name, station=stop_near, access= handicap)
 
 
