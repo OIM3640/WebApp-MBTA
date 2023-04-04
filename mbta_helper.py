@@ -56,6 +56,9 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     #TO DO: check if there are even MBTA stops close to the location, if there are none, return "Unfortunately there are no MBTA stops close enough to Babson College - you have to get out into the city!" 
 
+    if (len(json_output['data'])) == 0:
+        return "Unfortunately there are no MBTA stops close enough to Babson College - you have to get out into the city!"
+
     if (json_output['data'][0]['attributes']['wheelchair_boarding']) > 0:
         message = "wheelchair accessible"
     else:
