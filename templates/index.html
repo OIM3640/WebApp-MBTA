@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +11,11 @@
 
 <body>
     <p>Hi</p>
+    <form method="post" action="/nearest">
+        <label for="place_name">Enter your location:</label>
+        <input type="text" id="place_name" name="place_name" required>
+        <input type="submit" value="Find nearest MBTA station">
+    </form>
 </body>
 
 </html>
