@@ -13,6 +13,11 @@
     </style>
 </head>
 <body>
-    <p class="red">The nearest MBTA station is {{ station }}. It {{ is_or_is_not_accessible }} wheelchair accessible. </p>
+    <h2>The nearest MBTA stop is {{ station }}.</h2>
+    {% if station.wheelchair_accessible %}
+        <p>It is wheelchair_accessible.</p>
+    {% else %}
+        <p>It is not wheelchair accessible</p>
+    {% endif %}
 </body>
 </html>

@@ -82,7 +82,7 @@ def main():
     """
     # url = get_url("Babson College")
     # pprint.pprint(get_json(url))
-    location = "Boston Commons"
+    location = "Babson College"
     print(get_lat_long(location))
     longitude, latitude = get_lat_long(location)
     print(get_nearest_station(latitude, longitude))
