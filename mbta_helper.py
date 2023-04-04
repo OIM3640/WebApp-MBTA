@@ -89,7 +89,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
         else:
             message = "No"
 
-        output = f"Nearest MBTA station: {nearest_stop[0]}, Wheelchair Accessible : {message}"
+        output = f"Nearest MBTA station: {nearest_stop[0]} | Wheelchair Accessible : {message} |"
 
         return output
     
