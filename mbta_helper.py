@@ -1,6 +1,8 @@
-# Your API KEYS (you need to use your own keys - very long random characters)
+    # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
-
+import urllib.request
+import json
+from pprint import pprint
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
@@ -31,7 +33,7 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -40,7 +42,18 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    
+    url=f'{MAPBOX_BASE_URL}/{place_name}.json?access_token={MAPBOX_TOKEN}&types=poi'
+
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+        
+    print(response_data['features'][0]['center'])
+    
+
+place_name = input("Give a place name or address: ")
+lat_long = get_lat_long(place_name)
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -49,8 +62,9 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
-
+    latitude = lat_long[0:]
+    longitude = lat_long[:1]
+    
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
