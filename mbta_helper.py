@@ -91,6 +91,19 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
         output = f"Nearest MBTA station: {nearest_stop[0]}, Wheelchair Accessible : {message}"
 
         return output
+    
+def get_weather(place_name):
+    lat_long = get_lat_long(place_name)
+    APIKEY = '2d7b5c8cba9bfa9036774e2462b3ddb4'
+    url = f'https://api.openweathermap.org/data/2.5/weather?lat={lat_long[1]}&lon={lat_long[0]}&appid={APIKEY}'
+
+    f = urllib.request.urlopen(url)
+    response_text = f.read().decode('utf-8')
+    response_data = json.loads(response_text)
+    # print(response_data)
+
+    current_temp = response_data['main']['temp']
+    return current_temp
 
 
 def main(): 
@@ -99,7 +112,8 @@ def main():
     """
     # print(get_lat_long('B'))
     #print(get_nearest_station(42.3737614375,-71.1181085))
-    print(find_stop_near("boston commons"))
+    # print(find_stop_near("boston commons"))
+    # print(get_weather('Harvard University'))
 
 
 if __name__ == '__main__':
