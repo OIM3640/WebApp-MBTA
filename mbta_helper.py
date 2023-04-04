@@ -34,19 +34,28 @@ def get_lat_long(place_name):  # need to work on the url
     adjusted_place = place_name.replace(" ", "%20")
     url = f'{MAPBOX_BASE_URL}/{adjusted_place}.json?access_token={MAPBOX_TOKEN}&types=poi'
     information = get_json(url)
-    latitude, longtitude = information["features"][0]["center"]
-    return (latitude, longtitude)
+    longtitude, latitude = information["features"][0]["center"]
+    return (longtitude, latitude)
 
-
+def wheelchair_accessibility(num):
+    if num == 0:
+        return "No Information"
+    elif num == 1:
+        return "Accessible"
+    elif num == 2:
+        return "Inaccessible"
+    
 def get_nearest_station(latitude, longitude):
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    url = f"https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}&api_key={MBTA_API_KEY}"
-    information = get_json(url)
-    return information
+    url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    information = get_json(url)["data"][0]["attributes"]
+    station = information["name"]
+    wheelchair = wheelchair_accessibility(information["wheelchair_boarding"])
+    return (station, wheelchair)
 
 
 def find_stop_near(place_name) -> tuple[str, bool]:
@@ -55,7 +64,7 @@ def find_stop_near(place_name) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    latitude, longtitude = get_lat_long(place_name)
+    longtitude, latitude = get_lat_long(place_name)
     return get_nearest_station(latitude, longtitude)
 
 
@@ -63,9 +72,7 @@ def main():
     """
     You can test all the functions here
     """
-    print(get_lat_long("Babson College"))
-    pprint(get_nearest_station)
-    # return find_stop_near("Boston Common")
+    print(find_stop_near("Boston Common"))
 
 
 if __name__ == "__main__":
