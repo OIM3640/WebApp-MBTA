@@ -39,6 +39,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
 place_name = input("Give a place name or address: ")
 print (get_lat_long(place_name))
+latitude, longitude = get_lat_long(place_name)
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
