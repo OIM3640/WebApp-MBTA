@@ -57,6 +57,7 @@ def get_predictions(station_id: str) -> str:
 
     '''
     url = f"https://api-v3.mbta.com/predictions?filter%5Bstop%5D={station_id}&sort=arrival_time&direction_id=0&api_key={MBTA_API_KEY}"
+    print(url)
     response_data = get_json(url)
 
     if response_data['data']:
@@ -118,7 +119,7 @@ def main():
     """
     # url = get_url("Babson College")
     # pprint.pprint(get_json(url))
-    location = "Old North Church"
+    location = "Boston Commons"
     print(location)
     print(get_lat_long(location))
     longitude, latitude = get_lat_long(location)
