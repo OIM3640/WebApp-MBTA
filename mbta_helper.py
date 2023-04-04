@@ -2,7 +2,6 @@
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
 import json
-import requests
 import pprint
 
 
