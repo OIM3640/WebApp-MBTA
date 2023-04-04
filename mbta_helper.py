@@ -10,21 +10,6 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
 # A little bit of scaffolding if you want to use it
- url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{country}&APPID={APIKEY}&units=metric"
-    with urllib.request.urlopen(url) as f:
-        response_text = f.read().decode('utf-8')
-        response_data = json.loads(response_text)
-        wind_speed = response_data["wind"]["speed"]
-        return wind_speed
-
-
-def get_temp(city: str, country: str) -> float:
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{country}&APPID={APIKEY}&units=metric"
-    with urllib.request.urlopen(url) as f:
-        response_text = f.read().decode('utf-8')
-        response_data = json.loads(response_text)
-        temp = response_data["main"]["temp"]
-        return temp
 
 
 def get_json(url: str) -> dict:
