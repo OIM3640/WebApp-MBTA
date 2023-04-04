@@ -11,6 +11,7 @@ MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 MAPBOX_TOKEN = "pk.eyJ1IjoiYW5nZWxhd29uZzEyMyIsImEiOiJjbGZ2b2FyM28wOTh6M25wZGJhcW04ODZpIn0.lT5TeXhQjnwH3fzWq8mjAA"
 MBTA_API_KEY = "b0f1e154e91042b5a636d8c6663e88ac"
+WEATHER_API_KEY = '5f4ccf8ce381abfe7e6db22d4f1079a9'
 # A little bit of scaffolding if you want to use it
 
 
@@ -92,6 +93,7 @@ def find_stop_near(place_name: str, route_type: str) -> tuple[str, bool]:
     nearest_station, wheelchair_accessible = get_nearest_station(lat, long, route_type)
     return nearest_station, wheelchair_accessible
 
+ 
 
 def main():
     """
@@ -101,10 +103,9 @@ def main():
     # address = "harvard university"
     # long, lat = get_lat_long(address)
     # print(get_nearest_station(long, lat))
-    place_name = "harvard university"
+    place_name = "boston common"
     route_type = 'all'
-    print(find_stop_near(place_name, route_type))
-
+    # print(find_stop_near(place_name, route_type))
 
 if __name__ == "__main__":
     main()
