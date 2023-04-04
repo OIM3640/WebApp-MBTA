@@ -3,13 +3,16 @@ from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
 import json
 import pprint
+import requests
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
-
-
+query = 'Babson%20College'
+url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
+print(url)
+url_mbta = "https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
 # print(url) # Try this URL in your browser first
 # A little bit of scaffolding if you want to use it
 
@@ -20,6 +23,7 @@ def get_json(query) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
+<<<<<<< HEAD
     
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     f = urllib.request.urlopen(url)
@@ -27,7 +31,13 @@ def get_json(query) -> dict:
     response_data = json.loads(response_text)
     return response_data
 
+=======
+>>>>>>> 8f0a089e3310b15a9ab9ef9247c512c04129b26a
 
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+        pprint.pprint(response_data)
     
 
 
@@ -54,7 +64,13 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    latitude = '42.341690'
+    longitude = '-71.097560'
+    res = requests.get(url_mbta)
+    data = res.json()
+    nearest_station = data['']
+
+
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -70,11 +86,7 @@ def main():
     """
     You can test all the functions here
     """
-
-    place_name = "231 Forest St"
-    # pprint.pprint(get_json(place_name))
-    print(get_lat_long(place_name))
-
+    get_json(url)
     
 
 
