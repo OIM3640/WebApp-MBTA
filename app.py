@@ -14,9 +14,9 @@ def station_post():
     (station, wheelchair) = find_stop_near(place_name)
     return render_template("station-result.html", place = place_name, station = station, wheelchair = wheelchair)
 
-# @app.errorhandler(404)
-# def search_error(error):
-#     return render_template("error.html"), 404
+@app.errorhandler(500)
+def search_error(error):
+    return render_template("error.html"), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
