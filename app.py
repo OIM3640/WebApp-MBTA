@@ -13,7 +13,7 @@ def hello():
 @app.route('/nearest_mbta', methods = ['POST'])
 def get_nearest_mbta():
     user_location = request.form['location']
-    return redirect(find_stop_near('babson college'))
+    return user_location
 
 if __name__ == '__main__':
     app.run(debug=True)
