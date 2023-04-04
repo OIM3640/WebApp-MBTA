@@ -22,7 +22,6 @@ def get_json(query) -> dict:
     """
     
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-    print(url)
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
@@ -45,6 +44,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
         if place_name in response_data["features"][i]['place_name']:
             location = response_data["features"][i]["geometry"]["coordinates"]
             return tuple(location)
+
 
  
 
