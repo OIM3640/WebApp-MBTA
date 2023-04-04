@@ -39,9 +39,14 @@ def get_lat_long(address: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
+    # Replace entered spaces in address with %20 
     address = address.replace(" ", "%20")
+
+    # Generate API url with get_url function and get the json data 
     url = get_url(address)
     json_data = get_json(url)
+
+    # Check if the json_data contains any data, and returns the longitude and latitude of the given address. If not, returns no result. 
     if len(json_data["features"]) > 0:
         longitude, latitude = json_data["features"][0]["center"]
         return longitude, latitude
@@ -56,6 +61,7 @@ def get_nearest_station(longitude: str, latitude: str, route_type: str) -> tuple
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
     MBTA_STOPS_API_URL = "https://api-v3.mbta.com/stops"
+    # Possible route types 
     route_types = {
         'all': ' ',
         'light rail': '0',
@@ -64,6 +70,7 @@ def get_nearest_station(longitude: str, latitude: str, route_type: str) -> tuple
         'bus': '3',
         'ferry': '4'
     }
+    # Parameters for API 
     params = {
         "filter[latitude]": latitude,
         "filter[longitude]": longitude,
@@ -71,8 +78,11 @@ def get_nearest_station(longitude: str, latitude: str, route_type: str) -> tuple
         "api_key": MBTA_API_KEY,
          "filter[route_type]":route_types[route_type]
     }
+    # Get JSON data from API and store in station_data
     response = requests.get(MBTA_STOPS_API_URL, params=params)
     station_data = response.json()
+
+    # If station_data contains data, extract the station name and whether it is wheelcahir accesible. If not, it will return None, which means that there are no MBTA stops close enough to the given place.
     if station_data['data']:
         station_name = station_data["data"][0]["attributes"]["name"]
         wheelchair_accessible = station_data["data"][0]["attributes"]["wheelchair_boarding"]
@@ -89,17 +99,23 @@ def find_stop_near(place_name: str, route_type: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
     place_name = place_name.replace(" ", "%20")
-    lat, long = get_lat_long(place_name)
-    nearest_station, wheelchair_accessible = get_nearest_station(lat, long, route_type)
+
+    # Get longitude and latitude for the given place name 
+    lat, lon = get_lat_long(place_name)
+    # Get the nearest station and whether it is wheelchair accessible using the longitude and latitude from above. 
+    nearest_station, wheelchair_accessible = get_nearest_station(lat, lon, route_type)
     return nearest_station, wheelchair_accessible
 
 def get_weather(place_name):
     """
+    Given a place name or address, returns the current weather and temperature. 
     """
     place_name = place_name.replace(" ", "%20")
     lon, lat = get_lat_long(place_name)
     url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&APPID={WEATHER_API_KEY}&units=metric"
+
     weather_data = get_json(url)
+    # Get the current temperature and weather
     temperature = weather_data["main"]["temp"]
     weather = weather_data['weather'][0]['main']
     return weather, temperature
