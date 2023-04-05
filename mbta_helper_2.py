@@ -6,7 +6,7 @@ import pprint
 
 # Date time for arrival information
 import requests
-from datetime import datetime
+import datetime
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -56,23 +56,27 @@ def get_predictions(station_id: str) -> str:
     Given station ID, return the predicted arrival time of next vehicle
 
     '''
-    url = f"https://api-v3.mbta.com/predictions?filter%5Bstop%5D={station_id}&sort=arrival_time&direction_id=0&api_key={MBTA_API_KEY}"
-    print(url)
+    url = f"https://api-v3.mbta.com/predictions?filter[stop]={station_id}"
     response_data = get_json(url)
 
     if response_data['data']:
         # Get predicted arrival time
-        next_arrival_time = response_data['data'][0]['attributes']['arrival_time']
-        # convert arrival time to python datetime object
-        arrival_time = datetime.fromisoformat(next_arrival_time)
-        # Get current time
-        now = datetime.now()
-        # calc time till arrival
-        time_until_arrival = arrival_time - now
-        # return the time in minutes
-        return time_until_arrival.total_seconds()//60
+        try:
+            next_arrival_time = response_data['data'][0]['attributes']['arrival_time']
+            # convert arrival time to python datetime object
+            arrival_time = datetime.datetime.fromisoformat(next_arrival_time)
+            # # Get current time
+            now = datetime.datetime.now(datetime.timezone.utc)
+            # # calc time till arrival
+            time_until_arrival = int((now - arrival_time).total_seconds() / 60)
+            # return the time in minutes
+            return time_until_arrival
+        except ValueError:
+            return "No ETA Prediction Available"
+        except TypeError:
+            return "No ETA Prediction Available"
     else:
-        return "No ETA Prediction available"
+        return "No ETA Prediction Available"
 
 
 def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
@@ -81,22 +85,29 @@ def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
 
-    wheelchair_code = {}
-    vehicle_code = {}
+    wheelchair_code = {No Data: 0, Accessible: 1, Not Accessible: 2}
+    vehicle_code = {'Unknown': 0, 'Light Rail': 1,
+                    'Heavy Rail': 2, 'Commuter Rail': 3, 'Bus': 4, 'Ferry': 5}
 
     """
+    vehicle_code = {'Unknown': 0, 'Light Rail': 1,
+                    'Heavy Rail': 2, 'Commuter Rail': 3, 'Bus': 4, 'Ferry': 5}
+
     url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
     response_data = get_json(url)
     if response_data['data']:
         first_stop = response_data['data'][0]
         pprint.pprint(first_stop)
-        station_name, wheelchair_accessible, vehicle_type = first_stop['attributes'][
-            'name'], first_stop['attributes']['wheelchair_boarding'], first_stop['attributes']['vehicle_type']
-        if wheelchair_accessible == 1:
-            wheelchair_accessible = True
-        else:
-            wheelchair_accessible = False
-        station_id = first_stop['id']
+        # Gets station name
+        station_name = first_stop['attributes']['name']
+        # Gets BOOL if station if wheelchair accessible (True =Accessible)
+        # THERE is dictionary with more in depth key - HOWEVER instructions ask for BOOL
+        wheelchair_accessible = first_stop['attributes']['wheelchair_boarding'] == 1
+        # Compares vehicle code to key and returns STR
+        vehicle_type = vehicle_code.get(
+            first_stop['attributes']['vehicle_type'], "Unknown")
+        # stores station ID to use in get_predictions()
+        station_id = first_stop['relationships']['parent_station']['data']['id']
         time_until_arrival = get_predictions(station_id)
         return station_name, wheelchair_accessible, vehicle_type, time_until_arrival
     else:
@@ -109,7 +120,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    longitude, latitude = get_lat_long(place_name)
+    latitude, longitude = get_lat_long(place_name)
     return get_nearest_station(latitude, longitude)
 
 
@@ -117,15 +128,13 @@ def main():
     """
     You can test all the functions here
     """
-    # url = get_url("Babson College")
-    # pprint.pprint(get_json(url))
-    location = "Boston Commons"
+    location = "TD Gardens"
+    print("-"*25)
     print(location)
     print(get_lat_long(location))
-    longitude, latitude = get_lat_long(location)
-    print(get_nearest_station(longitude, latitude))
-    # print(get_nearest_station(get_lat_long(location)))
-    # print(find_stop_near(location))
+    # latitude, longitude = get_lat_long(location)
+    # print(get_nearest_station(latitude, longitude))
+    print(find_stop_near(location))
 
 
 if __name__ == '__main__':

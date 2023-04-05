@@ -3,6 +3,7 @@ from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
 import json
 import pprint
+import datetime
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -48,6 +49,31 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     return latitude, longitude
 
 
+def get_predictions(station_id: str) -> str:
+    '''
+    Given station ID, return the predicted arrival time of next vehicle
+
+    '''
+    url = f"https://api-v3.mbta.com/predictions?filter[stop]={station_id}"
+    print(url)
+    response_data = get_json(url)
+
+    if response_data['data']:
+        # Get predicted arrival time
+        next_arrival_time = response_data['data'][0]['attributes']['arrival_time']
+        # convert arrival time to python datetime object
+        arrival_time = datetime.datetime.fromisoformat(next_arrival_time)
+        # # Get current time
+        now = datetime.datetime.now(datetime.timezone.utc)
+        # # calc time till arrival
+        time_until_arrival = int((now - arrival_time).total_seconds() / 60)
+        # return the time in minutes
+        return time_until_arrival
+    else:
+        return "No ETA Prediction available"
+
+
+#  vehicle_code = {Bus: 3, Train: 2, ??:1}
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
@@ -55,9 +81,11 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
 
     wheelchair_code = {No Data: 0, Accessible: 1, Not Accessible: 2}
-    vehicle_code = {Bus: 3, Train: 2, ??:1}
 
     """
+    vehicle_code = {'Unknown': 0, 'Light Rail': 1,
+                    'Heavy Rail': 2, 'Commuter Rail': 3, 'Bus': 4, 'Ferry': 5}
+
     url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
     response_data = get_json(url)
     if response_data['data']:
@@ -69,7 +97,10 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
             wheelchair_accessible = True
         else:
             wheelchair_accessible = False
-        return station_name, wheelchair_accessible, vehicle_type
+        station_id = first_stop['relationships']['parent_station']['data']['id']
+        time_until_arrival = get_predictions(station_id)
+        vehicle_type = vehicle_code.get('Unknown', vehicle_code)
+        return station_name, wheelchair_accessible, vehicle_type, time_until_arrival
     else:
         return f"There is no stop nearby ({longitude}, {latitude}), please choose another location"
 
@@ -80,7 +111,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    longitude, latitude = get_lat_long(place_name)
+    latitude, longitude = get_lat_long(place_name)
     return get_nearest_station(latitude, longitude)
 
 
