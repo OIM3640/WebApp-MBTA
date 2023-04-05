@@ -27,6 +27,10 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
 
+
+
+
+
 def get_json(url: str) -> dict:
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
@@ -139,14 +143,38 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 # print(find_stop_near("north quincy"))
 
 
+def get_temp(place_name: str) -> float:
+    """
+    Returns the current wind speed in meters per second for the given city from OpenWeatherMap.
+
+    Parameters:
+    city -- the name of the city (str)
+    country -- the two-letter country code for the city (str)
+    """
+
+        
+
+    APIKEY = '8f62260aa7890d58d9a026e2810341ea'
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={place_name}&APPID={APIKEY}&units=metric'
+
+    # print(url)
+
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        # print(response_text)
+        response_data = json.loads(response_text)
+    
+    return(response_data['main']['temp'])
+
 def main():
     """
     You can test all the functions here
     """
     
-    place_name = "ashmont"
-    print(get_lat_long(place_name))
+    place_name = "boston"
+    # print(get_lat_long(place_name))
     print(find_stop_near(place_name))
+    print(get_temp(place_name))
 
 
 if __name__ == '__main__':
