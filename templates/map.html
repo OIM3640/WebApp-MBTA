@@ -7,37 +7,49 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
 <style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+body { margin: 0 ; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 80%; margin-top:100px }
 </style>
 </head>
 <body>
+	{{result_output}}
+	<p hidden id="lat">{{latitude}}</p>
+	<p hidden id="long">{{longitude}}</p>
+
 <div id="map"></div>
 <script>
-	// TO MAKE THE MAP APPEAR YOU MUST
-	// ADD YOUR ACCESS TOKEN FROM
-	// https://account.mapbox.com
+
+	lat = document.getElementById('lat').innerHTML
+	long = document.getElementById('long').innerHTML
+	lat = parseFloat(lat);
+	long = parseFloat(long);
+	const coordinates = [long,lat]
+
 	mapboxgl.accessToken = 'pk.eyJ1Ijoibmd4dWV6aGVuIiwiYSI6ImNsZnliaWowazBzd3QzZm9hbjNmb210anYifQ.klH8u5TF7ng5CR_IdEcoww';
-const map = new mapboxgl.Map({
-container: 'map', // container ID
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-style: 'mapbox://styles/mapbox/streets-v12', // style URL
-center: [-71.0589,42.3601], // starting center in [lng, lat]
-zoom: 14 // starting zoom
-});
- 
-// Add geolocate control to the map.
-map.addControl(
-new mapboxgl.GeolocateControl({
-positionOptions: {
-enableHighAccuracy: true
-},
-// When active the map will receive updates to the device's location as it changes.
-trackUserLocation: true,
-// Draw an arrow next to the location dot to indicate which direction the device is heading.
-showUserHeading: true
-})
-);
+	const map = new mapboxgl.Map({
+	container: 'map', // container ID
+	// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+	style: 'mapbox://styles/mapbox/streets-v12', // style URL
+	center: coordinates, // starting center in [lng, lat]
+	zoom: 14 // starting zoom
+	});
+
+	const marker = new mapboxgl.Marker() // initialize a new marker
+	.setLngLat(coordinates) // Marker [lng, lat] coordinates
+	.addTo(map); // Add the marker to the map
+	
+	// Add geolocate control to the map.
+	map.addControl(
+	new mapboxgl.GeolocateControl({
+	positionOptions: {
+	enableHighAccuracy: true
+	},
+	// When active the map will receive updates to the device's location as it changes.
+	trackUserLocation: true,
+	// Draw an arrow next to the location dot to indicate which direction the device is heading.
+	showUserHeading: true
+	})
+	);
 </script>
  
 </body>
