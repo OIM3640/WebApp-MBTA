@@ -19,7 +19,7 @@ def nearest_station():
     return render_template('result.html', place_name=place_name, nearest_stop=stop, wheelchair_accessible=wheelchair)
 
 
-@app.route('/map/')
+@app.post('/map/')
 def show_map():
     place_name = request.form.get('place_name')
     lat, lng = get_lat_long(place_name)
