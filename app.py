@@ -58,6 +58,7 @@ def results():
     try:
         clat, clng = get_lat_long(place_name)
         station, wh = get_nearest_station(clat, clng)
+        station = station + "massachusetts"
         lat, lng = get_lat_long(station)
     except ValueError:
         print("Value Error")
