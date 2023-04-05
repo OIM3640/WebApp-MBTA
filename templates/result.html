@@ -15,7 +15,7 @@
     <div>{{ map|safe }}</div>
     {% endif %}
     {% if weather %}
-    <p>Temperature: {{ weather }}</p>
+    <p>Temperature: {{ temperature }}</p>
     {% endif %}
     <a href="/">Calculate Again</a>
 </body>
@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <p> Current temperature in {{ place_name }} is {{ weather }}℃. </p>
+    <p> Current temperature in {{ place_name }} is {{ temperature }}℃. </p>
 </body>
 
 </html>
