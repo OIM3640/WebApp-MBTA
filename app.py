@@ -1,4 +1,4 @@
-from mbta_helper import find_stop_near, get_nearest_station
+from mbta_helper import find_stop_near, get_lat_long
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -21,9 +21,10 @@ def nearest_station():
 
 @app.route('/map/')
 def show_map():
-    lat, lng = get_nearest_station()
+    place_name = request.form.get('place_name')
+    lat, lng = get_lat_long(place_name)
     html_map = f'<iframe src="https://maps.google.com/maps?q={lat},{lng}&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>'
-    return render_template('result.html', html_map=html_map)
+    return render_template('result.html', map=html_map)
 
 
 if __name__ == '__main__':
