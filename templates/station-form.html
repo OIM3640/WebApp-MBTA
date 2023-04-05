@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Find Nearest MBTA Station</title>
+        <style>
+            form {
+                padding: 120px;
+                background-image: url('https://images.squarespace-cdn.com/content/v1/5ba1b175620b8545d7f519c8/1586053731298-S8HUL6471SAAHRGQXHKE/mbta_cover.jpg?format=2500w');
+                background-size: cover;
+                margin-top:0;
+                color:white;
+            }
+            .red {
+                color: red;
+                font-size: 50px;
+                text-align:center;
+                text-transform: uppercase;
+            }
+            .text-border {
+                border: 2px solid black;
+                width: 400px;
+                height: 300px;
+                padding: 25px;
+                background-color:black;
+                opacity:0.8;
+                text-align:center;
+            }
+            .header {
+                background-color:black;
+                color: white;
+                padding: 20px;
+                margin-bottom: 0;
+                margin-top:0;
+                text-align:center;
+                text-transform:uppercase;
+            }
+            .wider-margin {
+                margin:30px;
+                text-align:center;
+            }
+            button{
+                height:30px;
+            }
+            .background{
+                background-color:black;
+                margin-top: 0; 
+                padding: 150px;
+            }
+            a{
+                font-size:30px;
+            }
+            .white{
+                color:white;
+                text-align:center;
+                font-size: 25px;
+            }
+            .error-border{
+                border: 2px solid black;
+                height: 300px;
+                padding: 25px;
+                background-color:black;
+                opacity:0.8;
+                text-align:center;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+        {% if error %}
+        <h1 class="header">Error Message</h1>
+        <div class="background">
+            <div class="error-border">
+                <h1 class= 'red'>Sorry... </h1>
+                <p class="white">There are no MBTA stops close enough to this location with the selected transportation method.</p>
+                <p class="wider-margin"><a href="/station/">Go Back</a></p>
+            </div>
+        </div>
+        {% else %}
+        <h1 class="header">Welcome!</h1>
+            <form action="" method="post">
+                <div class="text-border">
+                    <h1>Search for the Nearest MBTA Stop:</h1>
+                    <p>(In Great Boston Area)</p>
+                    <p>
+                        <label for="">Place Name: <input type="text" name="place_name"></label>
+                    </p>
+                    <p class="wider-margin">
+                        <label for="my-dropdown">Select a transportation method:</label>
+                        <select id="'my-dropdown" name="route_type">
+                            <option value="all">All</option>
+                            <option value="light rail">Light Rail</option>
+                            <option value="heavy rail">Heavy Rail</option>
+                            <option value="commuter rail">Comuter Rail</option>
+                            <option value="bus">Bus</option>
+                            <option value="ferry">Ferry</option>
+                        </select>
+                    </p>
+                    <p class="wider-margin">
+                        <button>Check Nearest Station</button>
+                    </p>
+                </div>
+            </form>
+        {% endif %}
+    </body>
+</html>
