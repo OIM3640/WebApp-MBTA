@@ -3,6 +3,8 @@ from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
 import json
 import pprint
+
+# Date time for arrival information
 import datetime
 
 
@@ -18,7 +20,6 @@ def get_url(place: str):
     Given the name of a place, return a Map Box url
     """
     query = place.replace(" ", "%20")
-
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     return url
 
@@ -46,7 +47,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     longitude, latitude = response_data['features'][0]['center']
     latitude = round(latitude, 4)
     longitude = round(longitude, 4)
-    return latitude, longitude
+    return longitude, latitude
 
 
 def get_predictions(station_id: str) -> str:
@@ -55,32 +56,37 @@ def get_predictions(station_id: str) -> str:
 
     '''
     url = f"https://api-v3.mbta.com/predictions?filter[stop]={station_id}"
-    print(url)
     response_data = get_json(url)
 
     if response_data['data']:
         # Get predicted arrival time
-        next_arrival_time = response_data['data'][0]['attributes']['arrival_time']
-        # convert arrival time to python datetime object
-        arrival_time = datetime.datetime.fromisoformat(next_arrival_time)
-        # # Get current time
-        now = datetime.datetime.now(datetime.timezone.utc)
-        # # calc time till arrival
-        time_until_arrival = int((now - arrival_time).total_seconds() / 60)
-        # return the time in minutes
-        return time_until_arrival
+        try:
+            next_arrival_time = response_data['data'][0]['attributes']['arrival_time']
+            # convert arrival time to python datetime object
+            arrival_time = datetime.datetime.fromisoformat(next_arrival_time)
+            # # Get current time
+            now = datetime.datetime.now(datetime.timezone.utc)
+            # # calc time till arrival
+            time_until_arrival = int((now - arrival_time).total_seconds() / 60)
+            # return the time in minutes
+            return time_until_arrival
+        except ValueError:
+            return "No ETA Prediction Available"
+        except TypeError:
+            return "No ETA Prediction Available"
     else:
-        return "No ETA Prediction available"
+        return "No ETA Prediction Available"
 
 
-#  vehicle_code = {Bus: 3, Train: 2, ??:1}
-def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
+def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
 
     wheelchair_code = {No Data: 0, Accessible: 1, Not Accessible: 2}
+    vehicle_code = {'Unknown': 0, 'Light Rail': 1,
+                    'Heavy Rail': 2, 'Commuter Rail': 3, 'Bus': 4, 'Ferry': 5}
 
     """
     vehicle_code = {'Unknown': 0, 'Light Rail': 1,
@@ -91,15 +97,21 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     if response_data['data']:
         first_stop = response_data['data'][0]
         pprint.pprint(first_stop)
-        station_name, wheelchair_accessible, vehicle_type = first_stop['attributes'][
-            'name'], first_stop['attributes']['wheelchair_boarding'], first_stop['attributes']['vehicle_type']
-        if wheelchair_accessible == 1:
-            wheelchair_accessible = True
-        else:
-            wheelchair_accessible = False
-        station_id = first_stop['relationships']['parent_station']['data']['id']
+        # Gets station name
+        station_name = first_stop['attributes']['name']
+        # Gets BOOL if station if wheelchair accessible (True =Accessible)
+        # THERE is dictionary with more in depth key - HOWEVER instructions ask for BOOL
+        wheelchair_accessible = first_stop['attributes']['wheelchair_boarding'] == 1
+        # Compares vehicle code to key and returns STR
+        vehicle_type = vehicle_code.get(
+            first_stop['attributes']['vehicle_type'], "Unknown")
+        # stores station ID to use in get_predictions()
+        try:
+            station_id = first_stop['relationships']['zone']['data']['id']
+        except:
+            station_id = first_stop['relationships']['parent_station']['data']['id']
+        
         time_until_arrival = get_predictions(station_id)
-        vehicle_type = vehicle_code.get('Unknown', vehicle_code)
         return station_name, wheelchair_accessible, vehicle_type, time_until_arrival
     else:
         return f"There is no stop nearby ({longitude}, {latitude}), please choose another location"
@@ -119,15 +131,13 @@ def main():
     """
     You can test all the functions here
     """
-    # url = get_url("Babson College")
-    # pprint.pprint(get_json(url))
-    location = "Boston Commons"
+    location = "TD Gardens"
+    print("-"*25)
     print(location)
     print(get_lat_long(location))
-    latitude, longitude = get_lat_long(location)
-    print(get_nearest_station(latitude, longitude))
-    # print(get_nearest_station(get_lat_long(location)))
-    # print(find_stop_near(location))
+    # latitude, longitude = get_lat_long(location)
+    # print(get_nearest_station(latitude, longitude))
+    print(find_stop_near(location))
 
 
 if __name__ == '__main__':
