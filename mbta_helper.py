@@ -9,8 +9,8 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 MBTA_API_KEY = '921c13397cb140b2aaf7b840c81c8bc2'
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MAPBOX_TOKEN = 'pk.eyJ1IjoibGlseWljaGlzZSIsImEiOiJjbGZ5Y2s3a20wcHV6M2RwNmhiZ24zY2xpIn0.tdctb2NgGOa8Sb1out2BRg'
-#query = 'Babson%20College'
-#url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+# query = 'Babson%20College'
+# url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 # print(url)  # Try this URL in your browser first
 
 # with urllib.request.urlopen(url) as f:
@@ -35,26 +35,26 @@ def get_json(url: str) -> dict:
     return json_data
 
 
-# def get_lat_long(place_name: str) -> tuple[str, str]:
-#     """
-# Given a place name or address, return a(latitude, longitude) tuple with the coordinates of the given place.
+def get_lat_long(place_name: str) -> tuple[str, str]:
+    """
+Given a place name or address, return a(latitude, longitude) tuple with the coordinates of the given place.
 
-# See https: // docs.mapbox.com/api/search/geocoding / for Mapbox Geocoding API URL formatting requirements.
-# """
-#     # Build the URL for the Mapbox Geocoding API endpoint
-#     url = f"{MAPBOX_BASE_URL}/{place_name}.json?access_token={MAPBOX_TOKEN}"
+See https: // docs.mapbox.com/api/search/geocoding / for Mapbox Geocoding API URL formatting requirements.
+"""
+    # Build the URL for the Mapbox Geocoding API endpoint
+    url = f"{MAPBOX_BASE_URL}/{place_name}.json?access_token={MAPBOX_TOKEN}"
 
-#     # Send an HTTP GET request to the API endpoint
-#     response_data = get_json(url)
+    # Send an HTTP GET request to the API endpoint
+    response_data = get_json(url)
 
-#     # Extract the latitude and longitude coordinates from the response data
-#     try:
-#         latitude = str(response_data["features"][0]["center"][1])
-#         longitude = str(response_data["features"][0]["center"][0])
-#         return latitude, longitude
-#     except (IndexError, KeyError):
-#         # Return None if the response data doesn't contain the required information
-#         return None, None
+    # Extract the latitude and longitude coordinates from the response data
+    try:
+        latitude = str(response_data["features"][0]["center"][1])
+        longitude = str(response_data["features"][0]["center"][0])
+        return latitude, longitude
+    except (IndexError, KeyError):
+        # Return None if the response data doesn't contain the required information
+        return None, None
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
