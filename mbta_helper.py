@@ -98,6 +98,24 @@ This function might use all the functions above.
         return None, None
 
 
+OPENWEATHERMAP_APIKEY = 'bd934d1c567130b31d6bebfff8abab04'
+
+
+def weather(place_name: str) -> float:
+    """ 
+    This function gets the weather of the inputed city
+    """
+    place_name = place_name.replace(' ', '%20')
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={place_name},us&APPID={OPENWEATHERMAP_APIKEY}&units=metric'
+    # print(url)
+
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+    # pprint.pprint(response_data)
+    return response_data['main']['temp']
+
+
 def main():
     """
 You can test all the functions here
@@ -109,6 +127,9 @@ You can test all the functions here
             f"The nearest MBTA stop to {place_name} is {stop_name}. Wheelchair accessibility: {wheelchair_accessible}")
     else:
         print("Nearest MBTA stop not found.")
+
+    print(
+        f"The weather in {place_name} is {weather(place_name)} degrees Celcius.")
 
 
 if __name__ == '__main__':
