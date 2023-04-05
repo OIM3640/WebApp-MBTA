@@ -49,12 +49,11 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     # MBTA_url = f"{MBTA_BASE_URL}?filter[route_type]=0&include=wheelchair_boarding&fields[stop]=name,latitude,longitude,wheelchair_boarding&sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&api_key={MBTA_API_KEY}"
     MBTA_url = f"{MBTA_BASE_URL}?sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&api_key={MBTA_API_KEY}"
     response_data = get_json(MBTA_url)
-    print(response_data)
-    # nearest_station = response_data["data"][0]
-    # station_name = nearest_station ["attributes"]["name"]
-    # wheelchair_accessible = nearest_station["attributes"]["wheelchair_boarding"] == "1"
+    nearest_station = response_data["data"][0]
+    station_name = nearest_station ["attributes"]["name"]
+    wheelchair_accessible = nearest_station["attributes"]["wheelchair_boarding"] == "1"
 
-    # return station_name, wheelchair_accessible
+    return station_name, wheelchair_accessible
 
 
 
@@ -63,16 +62,18 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
     This function might use all the functions above.
     """
-    pass
+    coordinates = get_lat_long(place_name)
+    lat, long = coordinates
+    station_name, access = get_nearest_station(long,lat)
+    print(f'The nearest station is {station_name} and the wheel chair access is {access}')
+
 
 
 def main():
     """
     You can test all the functions here
     """
-    coordinates = get_lat_long('downtown boston')
-    lat, long = coordinates
-    station_name = get_nearest_station(lat,long)
+    find_stop_near('downtown boston')
 
     pass
 
