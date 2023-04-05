@@ -44,7 +44,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     
     mbta_url = f"{MBTA_BASE_URL}?filter[latitude]={latitude}&filter[longitude]={longitude}&sort=distance&api_key={MBTA_API_KEY}"
-    print(mbta_url)
+    #print(mbta_url)
 
     with urllib.request.urlopen(mbta_url) as f:
         response_text = f.read().decode('utf-8')
@@ -59,14 +59,13 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     
     
 
+# def find_stop_near(place_name: str) -> tuple[str, bool]:
+#     """
+#     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
 
-def find_stop_near(place_name: str) -> tuple[str, bool]:
-    """
-    Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
-
-    This function might use all the functions above.
-    """
-    pass
+#     This function might use all the functions above.
+#     """
+#     pass
 
 
 def main():
