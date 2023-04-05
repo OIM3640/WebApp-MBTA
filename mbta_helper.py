@@ -23,16 +23,6 @@ def get_json(query) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-<<<<<<< HEAD
-    
-    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-    f = urllib.request.urlopen(url)
-    response_text = f.read().decode('utf-8')
-    response_data = json.loads(response_text)
-    return response_data
-
-=======
->>>>>>> 8f0a089e3310b15a9ab9ef9247c512c04129b26a
 
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')

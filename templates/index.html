@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
+    <title>Amazing app to help you find the nearest MBTA station!</title>
     <style>
-        form{
-            border: 1px solid gray;
-            padding: 10px;
+        h1{
+            text-align: center;
+            font-size:16pt;
         }
+      form {
+        border: 1px solid gray;
+        padding: 10px;
+        text-align: center;
+      }
+      img {
+        width: 100%;
+      }
     </style>
-</head>
-<body>
-    <form action="" method="post">
-        <label for="">Your Location: <input type ="text" name=
-        "query"></label>
-        <button>Find the neartest MBTA station</button>
-
-       
+  </head>
+  <body>
+    <h1>Hello, are you trying to find your way home? Enter your location below to find the closest MBTA station!</h1>
+    <form id="form" action="" method="post">
+      <label for="">Your Location: <input type="text" name="query" /></label>
+      <button type="submit">Search</button>
     </form>
-</body>
-
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/d/db/2013_unofficial_MBTA_subway_map_by_Michael_Kvrivishvili.png"
+    />
+  </body>
 </html>
