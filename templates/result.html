@@ -11,11 +11,12 @@
 <body>
     <p>Nearest MBTA station to {{ place_name }} is: {{ nearest_stop }}</p>
     <p>Wheelchair accessible: {{ wheelchair_accessible }}</p>
-    <div id="map"></div>
-    <script>
-        var map = document.getElementById('map');
-        map.innerHTML = '{{ html_map }}'; 
-    </script>
+    {% if map %}
+    <div>{{ map|safe }}</div>
+    {% endif %}
+    {% if weather %}
+    <p>Temperature: {{ weather }}</p>
+    {% endif %}
     <a href="/">Calculate Again</a>
 </body>
 
@@ -28,12 +29,11 @@
         .red {
             color: blue;
         }
-
     </style>
 </head>
 
 <body>
-    <p> Current temperature in {{ place_name }} is {{ temperature }}℃. </p>
+    <p> Current temperature in {{ place_name }} is {{ weather }}℃. </p>
 </body>
 
 </html>
