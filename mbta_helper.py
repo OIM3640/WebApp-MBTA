@@ -137,7 +137,10 @@ def main():
     print(get_lat_long(location))
     # latitude, longitude = get_lat_long(location)
     # print(get_nearest_station(latitude, longitude))
-    print(find_stop_near(location))
+    station_name, wheelchair_accessible, vehicle_type, time_until_arrival = find_stop_near(location)
+    print(station_name)
+    print(get_lat_long(station_name))
+    
 
 
 if __name__ == '__main__':

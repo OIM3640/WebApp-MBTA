@@ -1,2 +1,0 @@
-MAPBOX_TOKEN = "pk.eyJ1IjoibndpbHNvbjMiLCJhIjoiY2xnMTA0dDNlMWczaTNrczZsbHl1YzJsZCJ9.JawGyf7OGGnWGx2x4GPihg"
-MBTA_API_KEY = "adbcbf0792a943bb96d5e34fcde08cdb"
