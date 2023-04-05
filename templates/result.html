@@ -11,9 +11,11 @@
 <body>
     <p>Nearest MBTA station to {{ place_name }} is: {{ nearest_stop }}</p>
     <p>Wheelchair accessible: {{ wheelchair_accessible }}</p>
+    <p>The station is here:</p>
     {% if map %}
     <div>{{ map|safe }}</div>
     {% endif %}
+    <p>Press on map to get directions!</p>
     {% if weather %}
     <p>Temperature: {{ temperature }}</p>
     {% endif %}

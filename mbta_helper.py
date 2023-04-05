@@ -1,6 +1,9 @@
+#disabling SSL certificate verification - resolve error
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
+#Handling Error
+from urllib.error import HTTPError
 
 # Your API KEYS (you need to use your own keys - very long random characters)
 from pprint import pprint
@@ -101,10 +104,25 @@ This function might use all the functions above.
         # Return None if the latitude and longitude couldn't be determined.
         return None, None
 
-
+#My weather API key
 OPENWEATHERMAP_APIKEY = 'bd934d1c567130b31d6bebfff8abab04'
 
 
+# def weather(place_name: str) -> float:
+#     """ 
+#     This function gets the weather of the inputed city
+#     """
+#     place_name = place_name.replace(' ', '%20')
+#     url = f'https://api.openweathermap.org/data/2.5/weather?q={place_name},us&APPID={OPENWEATHERMAP_APIKEY}&units=metric'
+#     # print(url)
+
+#     with urllib.request.urlopen(url) as f:
+#         response_text = f.read().decode('utf-8')
+#         response_data = json.loads(response_text)
+#     # pprint.pprint(response_data)
+#     return response_data['main']['temp']
+
+#New weather function accounting for error:
 def weather(place_name: str) -> float:
     """ 
     This function gets the weather of the inputed city
@@ -113,11 +131,15 @@ def weather(place_name: str) -> float:
     url = f'https://api.openweathermap.org/data/2.5/weather?q={place_name},us&APPID={OPENWEATHERMAP_APIKEY}&units=metric'
     # print(url)
 
-    with urllib.request.urlopen(url) as f:
-        response_text = f.read().decode('utf-8')
-        response_data = json.loads(response_text)
-    # pprint.pprint(response_data)
-    return response_data['main']['temp']
+    try:
+        with urllib.request.urlopen(url) as f:
+            response_text = f.read().decode('utf-8')
+            response_data = json.loads(response_text)
+        # pprint.pprint(response_data)
+        return response_data['main']['temp']
+    except HTTPError as e:
+        print(f"HTTPError: {e}")
+        return "not available for this location"
 
 
 def main():
