@@ -1,4 +1,5 @@
-# WebApp-MBTA by Matthew Syrigos & Lily Ichise
+# WebApp-MBTA  
+# by Matthew Syrigos & Lily Ichise
 
 Write a summary of your project and your reflections on it in [`README.md`](README.md), using [Markdown format](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) (1 per team, not 1 per person).The [`README.md`](README.md) file should include the following sections:
 
