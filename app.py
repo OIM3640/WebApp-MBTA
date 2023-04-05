@@ -58,10 +58,14 @@ def results():
     try:
         clat, clng = get_lat_long(place_name)
         station, wh = get_nearest_station(clat, clng)
-        station = station + "massachusetts"
+        try:
+            station = station + ", massachusetts"
+        except:
+            print("moving on without mass extension")
         lat, lng = get_lat_long(station)
-    except ValueError:
-        print("Value Error")
+    except (TypeError, ValueError):
+        return render_template('error.html', message="Sorry, we couldn't find the location you entered.")
+
 
     if lat is not None and lng is not None:
         html_map = f'<iframe src="https://maps.google.com/maps?q={lat},{lng}&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>'

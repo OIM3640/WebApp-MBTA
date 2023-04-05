@@ -48,6 +48,7 @@ Given a place name or address, return a(latitude, longitude) tuple with the coor
 
 See https: // docs.mapbox.com/api/search/geocoding / for Mapbox Geocoding API URL formatting requirements.
 """
+    #place_name + place_name + " massachusetts"
     # Build the URL for the Mapbox Geocoding API endpoint
     url = f"{MAPBOX_BASE_URL}/{place_name}.json?access_token={MAPBOX_TOKEN}"
 
