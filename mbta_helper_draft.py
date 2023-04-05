@@ -62,7 +62,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
 
 def get_station(query:str):
-    query +=',boston,ma'
+    # query +=',boston,ma'
     query = query.replace(' ', '%20')
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     print(url)
