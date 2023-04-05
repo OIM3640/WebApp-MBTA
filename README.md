@@ -1,6 +1,9 @@
 # WebApp-MBTA
  This is the base repo for Web App Developement project. Please read [instructions](instructions.md). 
 
+# Team Members
+Katarina Wang and Angela Wong
+
 # Project Overview
 In this project, we used different web APIs to process data in order to develop a web app using Flask. The two primary APIs we used are Mapbox and MBTA, which allow us to gather geographical as well as MBTA stops information in the Great Boston Area. We also incorporated the OpenWeatherMap API to access current weather information. The goal of the web app is to allow users to search for the nearest MBTA stop with the given place name or address. Users are also able to choose their preferred transportation mode or search for all types of transportation methods available. Additionally, the output would also provide information regarding wheelchair accessibility as well as current weather information. Throughout the project, we will be exploring different MBTA API endpoints as well as experimenting with CSS to format and style our HTML website.
 
