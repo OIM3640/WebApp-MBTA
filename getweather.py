@@ -4,8 +4,6 @@ import pprint
 from config import OPENWEATHERMAP_APIKEY
 
 
-
-
 def get_temp(place: str) -> float:
     """
     return the current temperature of a given city
