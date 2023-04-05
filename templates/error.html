@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An Error Has Occurred</title>
+
+    <!-- Referenced my repository for Professor Shankar's class -->
+    <style type="text/css">
+        body{background-color:dimgray; color:whitesmoke; text-align:center; font-family:Verdana}
+        button{background-color:red}
+    </style>
+</head>
+
+
+<!-- Referenced my repository for Professor Shankar's class -->
+<body>
+    <h1>An Error Has Occurred</h1>
+    <h3>This may be because the location you searched for is not close to the MBTA network</h3>
+    <h4>Please return to the main page to try again</h4>
+    <!-- Referenced to learn about POST https://flask.palletsprojects.com/en/2.2.x/quickstart/#http-methods -->
+    <form method="POST" action="/">
+        <p>Click the button below to return back</p>
+        <button onclick="submit">Return</button>
+    </form>
+    <div style="padding-top:10px">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Wrong_Way_Go_Back.svg/512px-Wrong_Way_Go_Back.svg.png" alt="Public Domain Image Error Image">
+    </div>
+</body>
+
+
+</html>

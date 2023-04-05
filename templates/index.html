@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
+    <title>Locate the Nearest MBTA Station</title>
+
+    <!-- Referenced my repository for Professor Shankar's class -->
+    <style type="text/css">
+        body{background-color:midnightblue; color:whitesmoke; text-align:center; font-family:Verdana}
+        button{background-color:gold}
+    </style>
 </head>
 
+
+<!-- Referenced my repository for Professor Shankar's class -->
 <body>
-    <p>Hi</p>
+    <h1>Hello!</h1>
+    <h2>Need to find the nearest MBTA?</h2>
+    <h3>Use the field below to find it:</h3>
+    <!-- Referenced to learn about POST https://flask.palletsprojects.com/en/2.2.x/quickstart/#http-methods -->
+    <form method="POST" action="/nearest_mbta">
+        <input type="text" id="location" name="location" placeholder = "Enter City or Town"/>
+        <button onclick="submit">Submit</button>
+    </form>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/MBTA_Commuter_Rail_and_funding_district_map.svg/800px-MBTA_Commuter_Rail_and_funding_district_map.svg.png" alt="Public Domain Image of MBTA Commuter Rail Funding">
 </body>
+
 
 </html>
