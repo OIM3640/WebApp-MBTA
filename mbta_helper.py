@@ -20,6 +20,7 @@ def get_json(url: str) -> dict:
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
+    url = url.replace(' ', '%20')
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
@@ -45,13 +46,15 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
 
-    MBTA_url = f"{MBTA_BASE_URL}?filter[route_type]=0&include=wheelchair_boarding&fields[stop]=name,latitude,longitude,wheelchair_boarding&sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&api_key={MBTA_API_KEY}"
+    # MBTA_url = f"{MBTA_BASE_URL}?filter[route_type]=0&include=wheelchair_boarding&fields[stop]=name,latitude,longitude,wheelchair_boarding&sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&api_key={MBTA_API_KEY}"
+    MBTA_url = f"{MBTA_BASE_URL}?sort=distance&filter[latitude]={latitude}&filter[longitude]={longitude}&api_key={MBTA_API_KEY}"
     response_data = get_json(MBTA_url)
-    nearest_station = response_data["data"][0]
-    station_name = nearest_station ["attributes"]["name"]
-    wheelchair_accessible = nearest_station["attributes"]["wheelchair_boarding"] == "1"
+    print(response_data)
+    # nearest_station = response_data["data"][0]
+    # station_name = nearest_station ["attributes"]["name"]
+    # wheelchair_accessible = nearest_station["attributes"]["wheelchair_boarding"] == "1"
 
-    return station_name, wheelchair_accessible
+    # return station_name, wheelchair_accessible
 
 
 
@@ -67,8 +70,10 @@ def main():
     """
     You can test all the functions here
     """
-    print(get_lat_long('Wellesley'))
-    print(get_nearest_station("-71.30712925","42.293797"))
+    coordinates = get_lat_long('downtown boston')
+    lat, long = coordinates
+    station_name = get_nearest_station(lat,long)
+
     pass
 
 
