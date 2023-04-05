@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Result</title>
     <style>
-        .red {
-            color: red;
-        }
-
+      .red {
+        color: red;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <p class="red">The current temperature in {{ Place }} is {{ temp }}℃. </p>
-</body>
+  <body>
+    <p class="red">The current temperature in {{ Place }} is {{ temp }}℃.</p>
 
+    <div id="openweathermap-widget-11"></div>
+  </body>
+  <script type="text/javascript">
+    let cityid = {{ data.cityid }}
+    let api = {{ data.api }}
+  </script>
+  <script type="text/javascript" src="app.js"></script>
+  <script src="//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js"></script>
+  <script>
+    // The following code was copied from the OPENWEATHERMAP website
+    window.myWidgetParam ? window.myWidgetParam : (window.myWidgetParam = []);
+    window.myWidgetParam.push({
+      id: 11,
+      cityid: cityid,
+      appid: api,
+      units: "metric",
+      containerid: "openweathermap-widget-11",
+    });
+    (function () {
+      let script = document.createElement("script");
+      script.async = true;
+      script.charset = "utf-8";
+      script.src =
+        "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+      let s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 </html>

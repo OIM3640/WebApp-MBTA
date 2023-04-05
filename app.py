@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
 from mbta_helper import find_stop_near
+from getweather import get_temp, get_cityid
+from config import OPENWEATHERMAP_APIKEY
 import sqlite3
-from getweather import get_temp
+
 
 app = Flask(__name__)
 
@@ -30,11 +32,13 @@ def station_post():
 # @app.route("/weather/")
 # def weather():
 #     # try:
-#         place_name = request.form.get("place")
-        
-#         return render_template("station-result.html", temperature=temperature)
-    # except:
-    #     return render_template("error.html")
+#         # city = request.form.get("city")
+#         city = "Wellesley"
+#         city_id = get_cityid(city)
+#         data = {'cityid': city_id, 'api': OPENWEATHERMAP_APIKEY}
+#         return render_template("weather.html", data = data)
+#     # except:
+#     #     return render_template("error.html")
 
 
 if __name__ == "__main__":
