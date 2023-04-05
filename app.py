@@ -23,7 +23,7 @@ def nearest_station():
 def show_map():
     lat, lng = get_nearest_station()
     html_map = f'<iframe src="https://maps.google.com/maps?q={lat},{lng}&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>'
-    return render_template('result.html', map=html_map)
+    return render_template('result.html', html_map=html_map)
 
 
 if __name__ == '__main__':
