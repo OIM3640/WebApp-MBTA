@@ -1,4 +1,4 @@
-from mbta_helper import find_stop_near, get_lat_long
+from mbta_helper import find_stop_near, get_lat_long, weather
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -26,6 +26,12 @@ def show_map():
     html_map = f'<iframe src="https://maps.google.com/maps?q={lat},{lng}&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>'
     return render_template('result.html', map=html_map)
 
+@app.post('/weather/')
+def show_weather():
+    place_name = request.form.get('place_name')
+    temperature = weather(place_name)
+    return render_template('result.html', weather = temperature)
+ 
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
