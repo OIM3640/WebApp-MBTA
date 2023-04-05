@@ -80,9 +80,9 @@ def get_predictions(station_id: str) -> str:
 
 def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
     """
-    Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
-
-    See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
+    Given latitude and longitude strings, 
+    return a (station_name, wheelchair_accessible, vehicle_type, time_untill_arrival, station_lat, station_long) tuple 
+    for the nearest MBTA station to the given coordinates.
 
     wheelchair_code = {No Data: 0, Accessible: 1, Not Accessible: 2}
     vehicle_code = {'Unknown': 0, 'Light Rail': 1,
@@ -110,9 +110,12 @@ def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
             station_id = first_stop['relationships']['zone']['data']['id']
         except:
             station_id = first_stop['relationships']['parent_station']['data']['id']
-        
         time_until_arrival = get_predictions(station_id)
-        return station_name, wheelchair_accessible, vehicle_type, time_until_arrival
+        # Gets station latitude and longitude (to be used for creating map on app)
+        station_lat = first_stop['attributes']['latitude']
+        station_lng = first_stop['attributes']['longitude']
+
+        return station_name, wheelchair_accessible, vehicle_type, time_until_arrival, station_lat, station_lng
     else:
         return f"There is no stop nearby ({longitude}, {latitude}), please choose another location"
 
@@ -127,19 +130,28 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     return get_nearest_station(latitude, longitude)
 
 
+def station_coordinates(json):
+    """
+    Given a Python JSON object containing the station information, 
+    return a (latitude, longitude) tuple with the coordinates of the station.
+    """
+
+
+
 def main():
     """
     You can test all the functions here
     """
-    location = "TD Gardens"
+    location = "TD Garden"
     print("-"*25)
     print(location)
     print(get_lat_long(location))
     # latitude, longitude = get_lat_long(location)
     # print(get_nearest_station(latitude, longitude))
-    station_name, wheelchair_accessible, vehicle_type, time_until_arrival = find_stop_near(location)
-    print(station_name)
-    print(get_lat_long(station_name))
+    # station_name, wheelchair_accessible, vehicle_type, time_until_arrival = find_stop_near(location)
+    # print(station_name)
+    # print(get_lat_long(station_name))
+    print(find_stop_near(location))
     
 
 
