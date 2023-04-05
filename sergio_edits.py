@@ -3,9 +3,7 @@ from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
 import json
 import pprint
-
 # Date time for arrival information
-import requests
 import datetime
 
 
@@ -72,11 +70,11 @@ def get_predictions(station_id: str) -> str:
             # return the time in minutes
             return time_until_arrival
         except ValueError:
-            return "No ETA Prediction Available"
+            return "No Prediction Available"
         except TypeError:
-            return "No ETA Prediction Available"
+            return "No Prediction Available"
     else:
-        return "No ETA Prediction Available"
+        return "No Prediction Available"
 
 
 def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
@@ -107,7 +105,11 @@ def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
         vehicle_type = vehicle_code.get(
             first_stop['attributes']['vehicle_type'], "Unknown")
         # stores station ID to use in get_predictions()
-        station_id = first_stop['relationships']['parent_station']['data']['id']
+        try:
+            station_id = first_stop['relationships']['zone']['data']['id']
+        except TypeError:
+            station_id = first_stop['relationships']['parent_station']['data']['id']
+
         time_until_arrival = get_predictions(station_id)
         return station_name, wheelchair_accessible, vehicle_type, time_until_arrival
     else:
@@ -128,7 +130,7 @@ def main():
     """
     You can test all the functions here
     """
-    location = "TD Gardens"
+    location = "Old North Church"
     print("-"*25)
     print(location)
     print(get_lat_long(location))
