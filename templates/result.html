@@ -6,16 +6,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBTA Station Result</title>
+    <header>
+        <div class="logo">
+            <p>
+                <larger> <b><a href="/">EVA'S WEB APP</a> </b></larger>
+            </p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="https://www.mbta.com/">MBTA Official Site</a></li>
+            </ul>
+        </nav>
+    </header>
     <style>
+        header {
+            background-color: #fff;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #0d3566;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fcd900;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            margin-top: 20px;
+            margin-right: 100px;
+            margin-bottom: 20px;
+            margin-left: 100px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Garamond, serif;
+        }
+
         .red {
             color: blue;
         }
 
+        .color-block {
+            width: 20px;
+            height: 10px;
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
-    <p class="blue">The closest station to <b>{{ place }}</b> is </b>{{ station }}</b>. <br> {{ access }} </p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p class="blue">The closest public transportation to <b>{{ place }}</b> is <b>{{ station }}</b>. <br> {{ access }} <br> {{v}}
+
+    </p>
 </body>
 
 </html>

@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check the closest MBTA stop to your current location!</title>
+    <title>MBTA Station Result</title>
     <header>
-        <div class="mbta-logo">
+        <div class="logo">
             <p>
-                <larger> <b><a href="/">EVA'S WEB APP</a> </b></larger>
+                <larger> <b>EVA's WEB APP</b></larger>
             </p>
         </div>
         <nav>
             <ul>
                 <li><a href="https://www.mbta.com/">MBTA Official Site</a></li>
+                <li><a href="/">MBTA Web App</a></li>
             </ul>
         </nav>
     </header>
@@ -75,9 +76,14 @@
             font-family: Garamond, serif;
         }
 
-        form {
-            border: 1px solid gray;
-            padding: 10px;
+        .red {
+            color: blue;
+        }
+
+        .color-block {
+            width: 20px;
+            height: 10px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -87,10 +93,9 @@
     <br>
     <br>
     <br>
-    <form action="" method="post">
-        <label for="">Current location: <input type="text" name="place"></label>
-        <button>Submit</button>
-    </form>
+    <p class="blue">The location you entered is not available, please try again.
+
+    </p>
 </body>
 
 </html>
