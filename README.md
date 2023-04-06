@@ -21,4 +21,8 @@ including how the work was planned to be divided and how it actually happened. A
 **3. Learnings**  
 Throughout this project, we were able to learn a lot about the basics of web development and the Flask framework. This project helped us gain a better understanding and comfortability with taking user inputs and integrating multiple APIs, as well as displaying information in a user-friendly format. ChatGPT was a huge help in contributing to our learnings, as it was particularly useful in helping us understand how to use certain Python libraries and improve our code with suggestions when we got stuck with stubborn errors. Going forward, we will use our knowledge of APIs and the Flask framework on our final project of matching students with shared interests to study groups via a web application. If we wished we knew anything beforehand that could've helped us succeed, it would've been that if you want to include a map on the same result page as the nearest station, you have to include it in the same function under app.py.
 
-![](images/apppy_progress.png)
+This is a picture of the error that took us hours to fix. We wanted to display the temperature of the user-inputted location and the map of the station.
+![commented app.py progress](images/apppy_progress.png)
+
+This is the picture of the final web application after the user inputs a location, in this case Wellesley.
+![completed website image](images/Screen%20Shot%202023-04-05%20at%207.56.24%20PM.png)
