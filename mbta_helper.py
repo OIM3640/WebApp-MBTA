@@ -35,7 +35,6 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
 
 
-
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
@@ -49,7 +48,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     with urllib.request.urlopen(mbta_url) as f:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
-        pprint(response_data)
+        #pprint(response_data)
     
         station_name = response_data['data'][0]['attributes']['name']
         # pprint(station_name)
