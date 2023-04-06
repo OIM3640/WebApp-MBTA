@@ -20,6 +20,11 @@ On the frontend, the project uses Flask to build an app. This app initially disp
 
 
 
+
+
+
+
+
 2. Image depicts final version which of main function 
    <img src="images/final_version.png" width="60%" height="60%">
 
