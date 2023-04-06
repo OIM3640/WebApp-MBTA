@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazing app to help you find the nearest MBTA station</title>
-</head>
+    <style>
+        h1{
+            text-align: center;
+        }
+        form{
+            background-color: lightblue;
+            margin: 25px 30%;
+            padding: 20px;
+        }
+        .field{
+            padding: 10px;
+        }
+        .submit{
+            background-color: lightpink;
+            height: 30px;
+            width: 100px;
+        }
+        input{
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+  </head>
 
-<body>
-    <p>Hi</p>
-</body>
-
+  <body>
+    <h1>
+      Hello! Use this form to find the nearest MBTA station & the weather around
+      the place.
+    </h1>
+    <form action="/nearest_mbta" method="post">
+      <div class="field">
+        <label>Place Name in Boston: <input name="place" type="text" id="place" /></label>
+      </div>
+      <div >
+        <input class="submit" type="submit" value="Submit" />
+      </div>
+    </form>
+    <h1>Use the following form to see the weather of any city.</h1>
+    <form action="/weather" method="post">
+      <div class="field">
+        <label>City:  <input type="text" name="city" id="city" /></label>
+      </div>
+      <div>
+        <input class="submit" type="submit" value="Submit">
+      </div>
+    </form>
+  </body>
 </html>
