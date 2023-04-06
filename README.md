@@ -6,7 +6,7 @@
 <!-- Write a short abstract describing your project. Include all the extensions to the basic requirements.  -->
 Our project is an MBTA helper. The point of this project is to be able to find the closest MBTA station for any given location. This required the use of web APIs such as Mapbox, an API which we used to receive a location's latitude and longtitude, along with the MBTA-realtime API in order to find the closest MBTA station to the given latitude and longtitude. We also built a Web App that allows users to interact through an interface. In order to do this, we utilized Flask, a web framework.
 
-In addition to the basic requirements, we went above and beyond in several ways. Firstly, the MBTA Helper page on the web app has a clean user interface that goes along with the MBTA Theme and even has a logo. The color scheme, font and border all make it appear as if it was from the actual website. Another extention we included was adding the weather in Celsius of the given location. Lastly, we used Mapbox in order to embed an actual map with the location pinned. This was done so that users get a better clarity of the surroundings, especially visually showing the nearest T stations.
+In addition to the basic requirements, we went above and beyond in several ways. Firstly, we utilized bootstrap to add dynamic elements to our web app, including beautifying the landing page and form validation. This led to a clean user interface that goes along with the MBTA Theme and even has a logo. Another extention we included was adding the weather in Celsius of the given location. Lastly, we used Mapbox in order to embed an actual map with the location pinned. This was done so that users get a better clarity of the surroundings, especially visually showing the nearest T stations.
 
 
 ## 2. Reflection (~3 paragraphs + screenshots)
@@ -14,18 +14,19 @@ In addition to the basic requirements, we went above and beyond in several ways.
 ### Process
 <!-- Discuss the **process** point of view, including what went well and what could be improved. Provide reflections on topics such as project scoping, testing, and anything else that could have helped the team succeed. -->
 
+What went well was that our webpage was able to give the outputs of the nearest MBTA, and the map was able display search results for the user's input. We were also able to work well as a team and delegate tasks effectively. Throughout the project, we communicated frequently to ensure we got microtasks done on-time. Our communication allowed us to ask each other for help or feedback when we were confused about something.
 
-For this project, we utilized bootstrap to add dynamic elements to our web app, including beautifying the landing page and form validation. We also decided to add more features to our webpage - current weather and mapbox map. 
+There were some parts that we initially struggled with but were able to figure out. For example, we were unable to pass data dynamically from the flask app itself directly into javascript, to pass the coordinates of the user's input from the flask function using handlebars. Thus, to work around this, we were able to access the data from the HTML section, and then use DOM manipulation to access the hidden element to obtain the innerHTML value - which is the coordinates that we want.
 
-What went well was that our webpage was able to give the outputs of the nearest MBTA, and the map was able display search results for the user's input. However, we were unable to pass data dynamically from the flask app itself directly into javascript, to pass the coordinates of the user's input from the flask function using handlebars. Thus, to work around this, we were able to access the data from the HTML section, and then use DOM manipulation to access the hidden element to obtain the innerHTML value - which is the coordinates that we want. 
+One thing we could improve on is efficiency. We found it kind of difficult to code at the same time, since pulling and pushing code may cause overlaps and some additional developments of the code to be removed. Thus, we had to let the other person know when we are working on code, when we are pushing the code, and when to pull code.
 
 ||Screenshots from the webapp|
 | ----------- | ----------- |
-| landing page form | <img src="images/landing_page.png"> |
-| form validation for no input | <img src="images/form_validation.png"> |
-| successful output | <img src="images/results.png"> |
-| no search results output | <img src="images/no_results.png"> |
-| location does not exist output (raise Exception "Address entered does not exist")| <img src="images/non-existent.png"> |
+| Landing page form | <img src="images/landing_page.png"> |
+| Form validation for no input | <img src="images/form_validation.png"> |
+| Successful output | <img src="images/results.png"> |
+| No search results output | <img src="images/no_results.png"> |
+| Location does not exist output (raise Exception "Address entered does not exist")| <img src="images/non-existent.png"> |
 
 
 ### Team's Work Division
