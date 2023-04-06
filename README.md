@@ -1,6 +1,8 @@
 # WebApp-MBTA 
  This is the base repo for Web App Developement project. Please read [instructions](instructions.md). 
 
+ By: Anika Kumar & Lilly Craven 
+
 ## 1. Project Overview 
 
 Our project consists of utilizing the MapBox API, MBTA API, and Open Weather Map API to capture information based on the user's input of location. We used flask to create a webpage that allows a user to input a city or address and click submit. It will then direct them to a page showing the nearest MBTA stop as well as if it is wheelchair accessible and the current weather! We have also added visual effects to our web page and even made the headers move around the screen. 
