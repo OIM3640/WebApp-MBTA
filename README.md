@@ -1,2 +1,21 @@
-# WebApp-MBTA
- This is the base repo for Web App Developement project. Please read [instructions](instructions.md). 
+## **Abir Sethi**
+## **John Robertson**
+
+## **Project Overview**
+
+>This project is actually very applicable to the real world. Essentially, we were tasked with writing code that used two APIs (Mapbox and MBTA) to provide the closest MBTA station to the station that is inputted by the user. The code utilizes longitude and latitude information to accurately choose which MBTA station is closest to the town that the user inputs. We used the dictionary of cities in Massachussets, along with their coordinates, to store information and check against the dictionary. After completing the code that implemented this process, we decided to create a webapp that allows for a user input, UI, and UX. The webapp is very simple, it includes a form (textbox) where the user inputs their current city, and the next page gives the user an output that tells them where the nearest MBTA station is and whether that station is wheelchair accessible. We utilized two html templates that we could refer to when writing the flask segment of our python code.
+
+## **Reflection** (~3 paragraphs + screenshots)
+
+> Part 1
+
+>> The process was not incredibly smooth. There were times where the coding was smooth and we were getting the intended outputs, and there were times where we were constantly receiving errors on python or even through the webapp. I think something that went well was that we understood the assignment before trying to code. We understood where we needed to get to, our end result, and I think that helped us through the project. As expected, the python coding of the different functions was the smoothest part of the assignment. The flask/html section of the assignment was where we struggled most, as we were not as familiar with syntax/abilites of these tools. I think one thing that could have helped the team better succeed was strengthening our knowledge of flask/html to save some time and effort. It is frustrating when you know where you need to go, but not how to get there. When it came to flask/html, we were definitely more learning on the spot, but in the end, we enjoyed that learning experience.
+
+> Part 2
+
+>> We thought that the division of work was really fair. There were several times where one of us was more busy than the other, and one person had to take on a bit more of the load, but that happened to both team members and we dealt with it maturely. Abir spent more time working on the mbta_helper.py code and John spent more time with the app.py and the html files. However, once both of us were finished with our respective work, the other team member checked over it for any errors and provided any neccesary suggestions. Having each team member look over each other's work also provided us with more of a rounded understanding of the project. We planned out the division of work on the day it was assigned, and met over Webex and texted daily updates on our progress. We were both very understanding of each other's times and other comittments. Maybe one thing that we could do differently next time would be to share our screen more, rather than sending pictures. If we shared our screen in real time, we could both talk through the code together, rather than passively discussing what we both saw in a picture.
+
+> Part 3
+
+>> I think Abir and John both learned that if there is some aspect of the project that we don't have a strong enough understanding of, that we should do some work before hand to solidify our understand. In this case, it was flask/html syntax and abilities. This learning process will help us moving forward, as we should have a strong understanding and foundation of the languages and syntaxes going into any future coding assignment. It also teaches us that it is important to understand every aspect of a project before committing to it. As you may have assumed, ChatGPT was a great tool during this project. We used ChatGPT mainly as a checker. We would sometimes ask ChatGPT whether there were any errors in the code and ask it for any suggestions it may have. These suggestions were always super helpful, because the AI broke the problems down into simple english that was easy to understand. One thing that is interesting, is that we used the ChatGPT free version, rather than the paid version. I think the paid version would have provided more clear and concise feedback, and maybe even been able to give us the exact code we were looking for. However, the free ChatGPT provided us with a proper medium of suggestions and challenges.
+
