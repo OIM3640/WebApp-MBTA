@@ -1,7 +1,5 @@
 # WebApp-MBTA by Matthew Syrigos & Lily Ichise
 
-[Markdown format](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-
 ## 1. Project Overview (~1 paragraph)
 
 This project is a web application that finds the nearest MBTA station based on a user's location input, and provides additional information such as wheelchair accessibility, a map with the location of the nearest MBTA station, and the current temperature of the location the user inputted. 
