@@ -17,6 +17,6 @@ def get_nearest_mbta():
     weather = get_weather(user_location)
     output = f"{nearest_mbta} Weather: {str(round(weather-273.15,2))} °C"
     return render_template('map.html', result_output = output, longitude = latlong[0], latitude = latlong[1] )
-
+ 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port = 5000)
