@@ -63,5 +63,5 @@ On the frontend, the project uses Flask to build an app. This app initially disp
 
 
 3. This is the sample output when "Babson College" is entered which returns error statement as there is no nearby station and redirects user to main page. 
- <img src="images/babson_college.png" width="60%" height="60%">
+    <img src="images/babson_college.png" width="60%" height="60%">
    
