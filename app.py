@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from mbta_helper import find_stop_near
+from config import GOOGLE_MAPS_API
 
 
 app = Flask(__name__)
@@ -16,11 +17,13 @@ def nearest_mbta_post():
         return render_template("error.html", location=place_name)
     else:
         station_name, wheelchair_accessible, vehicle_type, time_until_arrival, station_lat, station_lng = find_stop_near(place_name)
-        return render_template("mbta_station.html", 
+        return render_template("mbta_station_old.html", 
                                station=station_name, accessible=wheelchair_accessible, 
-                               vehicle=vehicle_type, mins=time_until_arrival,
-                               latitude=station_lat, longitude=station_lng)
+                               vehicle=vehicle_type, mins=time_until_arrival)
 
+@app.route("/nearest_mbta_map")
+def map():
+    return render_template("map.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

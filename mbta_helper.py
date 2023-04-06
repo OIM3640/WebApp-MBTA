@@ -47,7 +47,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     longitude, latitude = response_data['features'][0]['center']
     latitude = round(latitude, 4)
     longitude = round(longitude, 4)
-    return longitude, latitude
+    return latitude, longitude
 
 
 def get_predictions(station_id: str) -> str:
@@ -78,10 +78,10 @@ def get_predictions(station_id: str) -> str:
         return "No ETA Prediction Available"
 
 
-def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
+def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     Given latitude and longitude strings, 
-    return a (station_name, wheelchair_accessible, vehicle_type, time_untill_arrival, station_lat, station_long) tuple 
+    return a (station_name, wheelchair_accessible, vehicle_type, time_untill_arrival) tuple 
     for the nearest MBTA station to the given coordinates.
 
     wheelchair_code = {No Data: 0, Accessible: 1, Not Accessible: 2}
@@ -111,13 +111,26 @@ def get_nearest_station(longitude: str, latitude: str) -> tuple[str, bool]:
         except:
             station_id = first_stop['relationships']['parent_station']['data']['id']
         time_until_arrival = get_predictions(station_id)
-        # Gets station latitude and longitude (to be used for creating map on app)
-        station_lat = first_stop['attributes']['latitude']
-        station_lng = first_stop['attributes']['longitude']
 
-        return station_name, wheelchair_accessible, vehicle_type, time_until_arrival, station_lat, station_lng
+        return station_name, wheelchair_accessible, vehicle_type, time_until_arrival
     else:
-        return f"There is no stop nearby ({longitude}, {latitude}), please choose another location"
+        return f"There is no stop nearby ({latitude}, {longitude}), please choose another location"
+
+
+def get_station_coords(latitude: str, longitude: str) -> tuple[str, bool]:
+    """
+    Given the latitute and longitude strings, return a (station_lat, station_lng) tuple 
+    for the nearest MBTA station to the given coordinates.
+    """
+    url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    response_data = get_json(url)
+    if response_data['data']:
+        first_stop = response_data['data'][0]
+        # Gets station name
+        station_lat, station_lng = first_stop['attributes']['latitude'],first_stop['attributes']['longitude']
+        return station_lat, station_lng
+    else:
+        return f"There is no stop nearby ({latitude}, {longitude}), please choose another location"
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -127,14 +140,13 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
     latitude, longitude = get_lat_long(place_name)
-    return get_nearest_station(latitude, longitude)
+    if get_nearest_station(latitude, longitude) == get_station_coords(latitude, longitude):
+        return f"There is no stop nearby ({latitude}, {longitude}), please choose another location"
+    else:
+        station_name, wheelchair_accessible, vehicle_type, time_until_arrival = get_nearest_station(latitude, longitude)
+        station_lat, station_lng = get_station_coords(latitude, longitude)
+    return station_name, wheelchair_accessible, vehicle_type, time_until_arrival, station_lat, station_lng
 
-
-def station_coordinates(json):
-    """
-    Given a Python JSON object containing the station information, 
-    return a (latitude, longitude) tuple with the coordinates of the station.
-    """
 
 
 
@@ -142,15 +154,17 @@ def main():
     """
     You can test all the functions here
     """
-    location = "TD Garden"
+    location = "Boston Commons"
     print("-"*25)
     print(location)
     print(get_lat_long(location))
-    # latitude, longitude = get_lat_long(location)
+    latitude, longitude = get_lat_long(location)
+    print(get_station_coords(latitude, longitude))
     # print(get_nearest_station(latitude, longitude))
     # station_name, wheelchair_accessible, vehicle_type, time_until_arrival = find_stop_near(location)
     # print(station_name)
     # print(get_lat_long(station_name))
+    print("-" * 75)
     print(find_stop_near(location))
     
 
