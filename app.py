@@ -15,7 +15,6 @@ def mbta_post():
     station = get_station(location_name.replace(' ', '%20'))
     lat, lng = mbta_coord(location_name.replace(' ','%20'))
     html_map = f'<iframe src="https://maps.google.com/maps?q={lat},{lng}&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"<</iframe>'
-    print(html_map)
     return render_template('result.html', location_name = location_name, station_0 = station[0], station_1 = station[1], station_2 = station[2], html_map = html_map)    
 
 
