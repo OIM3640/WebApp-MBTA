@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Station and Wheelchair Accessibility </title>
+</head>
+<body>
+    <h2>The nearest MBTA stop is {{ station }}.</h2>
+    <p>The mode of transportation is {{ vehicle }}.</p>
+    {% if mins == "No ETA Prediction Available" %}
+        <p>The estimated time until arrival is unknown.</p>
+    {% else %}
+        {% if vehicle == "Unknown" %}
+            <p>The vehicle will arrive in {{ mins }} minutes.</p>
+        {% else %}
+            <p>The {{ vehicle }} will arrive in {{ mins }} minutes.</p>
+        {% endif %}
+    {% endif %}
+    {% if accessible %}
+        <p>It is wheelchair accessible.</p>
+    {% else %}
+        <p>It is not wheelchair accessible.</p>
+    {% endif %}
+    <p>Click the link below to try another location.</p>
+    <a href="/">Re-try Search</a>
+</body>
+</html>
