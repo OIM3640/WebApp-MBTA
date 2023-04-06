@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from mbta_helper import find_stop_near
+from mbta_helper import find_stop_near, get_nearby_restaurants
 import datetime
 
 
@@ -19,7 +19,7 @@ def mbta_get():
 
 @app.post("/mbta/")
 def mbta_post():
-    try: 
+    try:
         place_name = request.form["place"]
         print("place is here")
         stop_near = find_stop_near(place_name)[0]
@@ -28,17 +28,20 @@ def mbta_post():
             if find_stop_near(place_name)[1] == True:
                 handicap = "This station is handicap-accessible."
                 print(handicap)
-            else:
+            elif find_stop_near(place_name)[1] == False:
                 handicap = "This station is not handicap-accessible."
+                print(handicap)
+            elif find_stop_near(place_name)[1] == None:
+                handicap = ""
                 print(handicap)
         else:
             stop_near = "not available. Try another location."
             handicap = ""
-        vehicle = find_stop_near(place_name)[2]
-        print(vehicle)
+        food=get_nearby_restaurants(place_name)
+        print(food)
 
         return render_template(
-            "result.html", place=place_name, station=stop_near, access=handicap, v=vehicle
+            "result.html", place=place_name, station=stop_near, access=handicap, restaurants=food
         )
     except:
         return render_template("error.html")

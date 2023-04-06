@@ -88,13 +88,30 @@
 </head>
 
 <body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <p class="blue">The closest public transportation to <b>{{ place }}</b> is <b>{{ station }}</b>. <br> {{ access }} <br> {{v}}
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <p class="blue">The closest public transportation to <b>{{ place }}</b> is <b>{{ station }}</b>. <br> {{ access }}
+        <br>
+
+        <br>
     </p>
+
+    <h3>Restaurants Nearby</h3>
+    <ul>
+        {% for item in restaurants %}
+        <li>
+            <strong>{{ item.name }}</strong><br>
+            {{ item.address }}<br>
+            Rating: {{ item.rating }}
+        </li>
+        {% endfor %}
+    </ul>
+
+</html>
+
 </body>
 
 </html>
