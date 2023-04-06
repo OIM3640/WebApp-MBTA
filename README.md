@@ -32,6 +32,10 @@ One thing we could improve on is efficiency. We found it kind of difficult to co
 ### Team's Work Division
 <!-- Discuss your **team's work division**, including how the work was planned to be divided and how it actually happened. Address any issues that arose while working together and how they were addressed. Finally, discuss what you would do differently next time. -->
 
+The teamwork division was not very structured. We essentially followed the chronological order of the assignment: Part 1: Geocoding and Web APIs --> Part 2: Web App --> Part 3: Wow! Factors (15%). Individual tasks were not specifically delegated. Instead, whenever someone was working on the project, they would message the other person saying they are doing a certain task. That way, 2 people aren't doing the same task. It was very important to text when we finished coding, so the other person can pull origin and get the most up-to-date code. The process was simple and text message communication was key. We also met several times in person in order to organize our thoughts, ensure we are on the same page, and delegate future tasks.
+
+Next time, we want to meet up at the start of the project to clarify what work needs to be completed and what steps to take. For this assignment, we did not meet at the start to clarify tasks. Doing so would provide extra clarity and efficiency to the project.
+
 ### Things learnt
 <!-- Discuss from a learning perspective, what you learned through this project and how you'll use what you learned going forward. Reflect on how ChatGPT helped you and what you wish you knew beforehand that could have helped you succeed. Consider including screenshots to demonstrate your project's progress and development. -->
 
