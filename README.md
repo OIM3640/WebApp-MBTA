@@ -39,6 +39,8 @@ On the frontend, the project uses Flask to build an app. This app initially disp
 ### Below is the Outline of the Front End
 
 1. This is the main user interface page
+    
+    
     <img src="images/first_webpage.png" width="60%" height="60%">
   
   
