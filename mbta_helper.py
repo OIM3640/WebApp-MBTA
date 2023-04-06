@@ -1,6 +1,7 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 # from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
+from config import OPENWEATHERMAP_APIKEY
 import json
 from pprint import pprint
 MAPBOX_TOKEN = 'pk.eyJ1IjoiYWJpcnNldGhpIiwiYSI6ImNsZnpzbjZyMTBhc3EzbXFwdnV2enNoZ3YifQ.50Xh5oJ7YoMHk8Aq5aMNiQ'
@@ -67,6 +68,21 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     station_name, access = get_nearest_station(long,lat)
     return station_name, access
     # print(f'The nearest station is {station_name} and the wheel chair access is {access}')
+
+def get_temp(city: str) -> float:
+    """
+    return the current temperature of a given city
+    """
+    city = city.replace(' ', '%20')
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city},us&APPID={OPENWEATHERMAP_APIKEY}&units=metric'
+    print(url)
+
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        # print(response_text)
+        response_data = json.loads(response_text)
+    # pprint.pprint(response_data)
+    return response_data['main']['temp']
 
 
 
