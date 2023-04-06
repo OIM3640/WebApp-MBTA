@@ -90,16 +90,6 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
 # print(get_lat_long("babson college"))
 
-def lat_map(place_name):
-    coordinates = get_lat_long(place_name)
-    lat = float(coordinates[0])
-    return lat
-
-def lng_map(place_name):
-    coordinates = get_lat_long(place_name)
-    lng = float(coordinates[1])
-    return lng
-
     
 def get_url_mbta(latitude: str, longitude: str):
     """gets url response collection using mbta api"""
@@ -176,16 +166,19 @@ def get_temp(place_name: str) -> float:
     
     return(response_data['main']['temp'])
 
-def main():
-    """
-    You can test all the functions here
-    """
-    
-    place_name = "boston"
-    # print(get_lat_long(place_name))
-    print(find_stop_near(place_name))
-    print(get_temp(place_name))
+def lat_map(coordinates):
+    lat = float(coordinates[0])
+    return lat
+
+def lng_map(coordinates):
+    lng = float(coordinates[1])
+    return lng
+
+place_name = "boston"
+coo = get_lat_long(place_name)
+print(coo)
+print(lng_map(coo))
+# print(find_stop_near(place_name))
+# print(get_temp(place_name))
 
 
-if __name__ == '__main__':
-    main()
