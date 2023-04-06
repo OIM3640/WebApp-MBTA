@@ -65,7 +65,8 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     coordinates = get_lat_long(place_name)
     lat, long = coordinates
     station_name, access = get_nearest_station(long,lat)
-    print(f'The nearest station is {station_name} and the wheel chair access is {access}')
+    return station_name, access
+    # print(f'The nearest station is {station_name} and the wheel chair access is {access}')
 
 
 
