@@ -6,7 +6,8 @@
 
 This project is a web application that finds the nearest MBTA station based on a user's location input, and provides additional information such as wheelchair accessibility, a map with the location of the nearest MBTA station, and the current temperature of the location the user inputted. 
 
-The project uses the MBTA API to retrieve MBTA stop information and the OpenWeatherMap API to retreive weather information. Extensions to the basic requirements incude 
+The project uses the MBTA API to retrieve MBTA stop information and the OpenWeatherMap API to retreive weather information. Extensions to the basic requirements incude the flask web application used to create a user friendly interface, the map display showing the location of the station, the weather information that is provided with the help of open weather api, the error handling securing the program from wrong entries and the wheelchair accessibility and location information, generated with the help of mbta helper and geolocation APIs. All the extensions used improve the user experiance and provide additional information, making the application more useful and engaging for users.
+
 
 The Flask web framework is also used to handle HTTP requests and render HTML templates.
 
