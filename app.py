@@ -4,6 +4,9 @@ from mbta_helper import mbta_coord
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return 'please enter "/mbta" for the website'
 
 # @app.route('/mbta', methods=['GET', 'POST'])
 @app.get('/mbta')
