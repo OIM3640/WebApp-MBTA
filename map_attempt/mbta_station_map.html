@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBTA Station and Wheelchair Accessibility </title>
     <style>
-        .red {
-            color: red
-        }
-
+        #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
     </style>
+   <script async defer src="Google_API_URL.py"></script>
 </head>
 <body>
     <h2>The nearest MBTA stop is {{ station }}.</h2>
@@ -30,7 +35,25 @@
         <p>It is not wheelchair accessible.</p>
     {% endif %}
     <h2>Here is a map of the station location:</h2>
-    <p>Click the button below to try another location.</p>
+    <div id="map" style="height: 400px;"></div>
+    <p>Click the link below to try another location.</p>
     <a href="/">Re-try Search</a>
+    <script>
+        var latitude = {{ station_lat }};
+        var longitude = {{ station_lng }};
+    
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: { lat: latitude, lng: longitude }
+            });
+            var marker = new google.maps.Marker({
+                position: { lat: latitude, lng: longitude },
+                map: map,
+                title: 'MBTA Station'
+            });
+        }
+        initMap();
+    </script>
 </body>
 </html>

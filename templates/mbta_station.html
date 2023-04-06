@@ -5,17 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBTA Station and Wheelchair Accessibility </title>
-    <style>
-        #map {
-        height: 100%;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEFpNR9lChGt4P7swnw3yccA3gI6eaC80&callback=initMap"></script>
 </head>
 <body>
     <h2>The nearest MBTA stop is {{ station }}.</h2>
@@ -34,27 +23,7 @@
     {% else %}
         <p>It is not wheelchair accessible.</p>
     {% endif %}
-    <h2>Here is a map of the station location:</h2>
-    <div id="map"></div>
-    <p>Click the button below to try another location.</p>
+    <p>Click the link below to try another location.</p>
     <a href="/">Re-try Search</a>
-
-    <script>
-        function initMap() {
-            // Latitude and longitude of the station location
-            var stationLocation = { lat: 42.366417, lng: -71.062326 };
-            // Create a map object and specify the DOM element for display.
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: stationLocation,
-                zoom: 16
-            });
-            // Create a marker and set its position.
-            var marker = new google.maps.Marker({
-                map: map,
-                position: stationLocation,
-                title: 'Station Location'
-            });
-        }
-    </script>
 </body>
 </html>
