@@ -15,4 +15,4 @@ So we decided to ask chatGBT for help and this is what it said: ![screenshot of 
 we got it to work!: ![screenshot of results](images/result.JPG)
 
 We learned a lot of valuable information about how using flask to create an app can be beneficial for a project. It was a new and interesting approach for us to learn about after taking Web Tech. We also used ChatGPT to get extra recommendations about styling after adding our map, to refresh ourselves on what works best. ChatGPT provided us  with some tips to guide our styling, and helped us keep it clean.
-[screenshot of CHATGPT help](images/stylingcss.JPG) 
+![screenshot of CHATGPT help](images/stylingcss.JPG) 
