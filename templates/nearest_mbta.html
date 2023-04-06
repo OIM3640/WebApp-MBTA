@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest Station</title>
+    <style>
+    body{background-color:pink}
+    h1{position:relative;text-align:center; color: hotpink; font-style:bold; background-color:lightcyan; padding:4px}
+    </style>
+<script>
+        var pos = 0
+        function moveIt()
+        {
+            var myheading = document.getElementById("a");
+            myheading.style.left = pos + "px";
+            pos = pos + 2;
+            if (pos > 1000)
+            {
+                pos = 0;
+            }
+            setTimeout("moveIt()", 10);
+        }
+</script>
+</head>
+<body>
+    <h1 id="a">Nearest Station</h1>
+    
+        <p>Location: {{ place_name }}</p>
+        <p>Nearest Station: {{ station_name }}</p>
+        <p>Wheelchair Accessible: {% if wheelchair_accessible %}Yes{% else %}No{% endif %}</p>
+        <p>The weather is around: {{ response_data }}</p>
+    <a href="{{url_for('index')}}">Back</a>
+
+    <p><button onclick="moveIt()"> click to make the heading move!</button></p>
+</body>
+</html>

@@ -1,5 +1,5 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN, MBTA_API_KEY
+from config import MAPBOX_TOKEN, MBTA_API_KEY, APIKEY
 import urllib.request
 import json
 from pprint import pprint
@@ -49,7 +49,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     with urllib.request.urlopen(mbta_url) as f:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
-        # pprint(response_data)
+        pprint(response_data)
     
         station_name = response_data['data'][0]['attributes']['name']
         # pprint(station_name)
@@ -66,7 +66,17 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 #     This function might use all the functions above.
 #     """
 #     pass
+def get_temp(place_name):
+    """
+    return the current temperature of a given city
+    """
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={place_name},us&APPID={APIKEY}&units=metric'
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        # print(response_text)
+        response_data = json.loads(response_text)
 
+    return response_data['main']['temp']
 
 def main():
     """
@@ -74,9 +84,9 @@ def main():
     """
     place_name = input("Give a place name or address: ")
     print (get_lat_long(place_name))
-    latitude, longitude = get_lat_long(place_name)
-    print(get_nearest_station(latitude, longitude))
-
+    longitude, latitude = get_lat_long(place_name)
+    print(get_nearest_station(longitude, latitude))
+    print(get_temp(place_name))
 
 if __name__ == '__main__':
     main()
