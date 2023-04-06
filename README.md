@@ -36,9 +36,9 @@ The teamwork division was not very structured. We essentially followed the chron
 
 Next time, we want to meet up at the start of the project to clarify what work needs to be completed and what steps to take. For this assignment, we did not meet at the start to clarify tasks. Doing so would provide extra clarity and efficiency to the project.
 
-### Things learnt
+### Things we learned
 <!-- Discuss from a learning perspective, what you learned through this project and how you'll use what you learned going forward. Reflect on how ChatGPT helped you and what you wish you knew beforehand that could have helped you succeed. Consider including screenshots to demonstrate your project's progress and development. -->
 
-We learnt how to utilize a flask app, and to redirect user to a html file. We also learnt about dynamically accessing and passing data through props using flask, and then accessing the data from the html file. 
+We learned how to utilize a flask app, and to redirect user to a html file. We also learnt about dynamically accessing and passing data through props using flask, and then accessing the data from the html file. We also learned how to use python libraries such as urllib.parse to convert the user's string input into url form, which can then be passed into the URL to access the mapbox API. Lastly, we learned how to effectively work with one another and get tasks completed in a timely manner to ensure the project is constantly being worked on.
 
-We also learnt how to use python libraries such as urllib.parse to convert the user's string input into url form, which can then be passed into the URL to access the mapbox API. 
+Moving forward, we will continue working effectively with one another for the final project. And we will use many important skills such as flask for a webapp and APIs in order to create a great final project.
