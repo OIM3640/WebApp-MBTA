@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazing app to help you find the nearest MBTA station</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: beige;
+        text-align: center;
+      }
+      h1 {
+        color: darksalmon;
+        background-color: bisque;
+        font-family: "Pacifico", "consolas", sans-serif;
+        font-size: 50px;
+      }
+      p {
+        color: lightsalmon;
+        font-family: "Indie Flower", "consolas", sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      input {
+        font-size: 20px;
+      }
+
+      input[type="text"] {
+        background-color: blanchedalmond;
+        border: none;
+        height: 30px;
+      }
+      ::placeholder {
+        color: tomato;
+        font-family: "Indie Flower", "consolas", sans-serif;
+      }
+
+      input[type="submit"] {
+        background-color: brown;
+        color: white;
+        border: none;
+        height: 45px;
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>MBTA Searching Engine</h1>
+    <form method="POST" name="MBTA">
+      <p>
+        Hello! Welcome to the MBTA searching engine! Please enter a place name
+        and we will show you the nearest MBTA stop and whether it is wheelchair
+        accessible.
+      </p>
+      {% if error %}
+      <p style="color: red">
+        There is no MBTA stop can be found near the place.
+      </p>
+      {% endif %}
+      <p>Please enter the place name</p>
+      <p>
+        Place:
+        <input type="text" name="place" placeholder="place name here" />
+      </p>
+      <p>
+        <input type="submit" name="" value="Search" />
+      </p>
+    </form>
+  </body>
+</html>

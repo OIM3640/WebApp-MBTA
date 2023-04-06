@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazing app to help you find the nearest MBTA station</title>
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: beige;
+        text-align: center;
+      }
+      h1 {
+        color: palevioletred;
+        background-color: rgb(248, 233, 245);
+        font-family: "Pacifico", "consolas", sans-serif;
+        font-size: 40px;
+      }
+      a {
+        color: pink;
+        font-family: "Pacifico", "consolas", sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
 
-<body>
-    <p>Hi</p>
-</body>
-
+  <body>
+    <h1>Hi! Welcome to the Amazing app to help you find the nearest MBTA station!</h1>
+    <a href="{{url_for('MBTA')}}">Find the nearest MBTA station</a>
+  </body>
 </html>
