@@ -57,7 +57,6 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     return station_name, wheelchair_accessible
 
 
-
 def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
@@ -90,7 +89,7 @@ def main():
     """
     You can test all the functions here
     """
-    find_stop_near('Needham')
+    find_stop_near('Fenway boston')
 
     pass
 
