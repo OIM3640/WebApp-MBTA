@@ -8,5 +8,9 @@ Prior to this project, we both have not worked together in a team before. This a
 
 Our first technical obstacle came from creating the API url. We had a lot a roadblocks when it came to this critical detail because we would try and try and the web would print out "not found." This made us realize the importance of close reading and reaching out for help. We were stuck on this for a while because without the data, we couldn't move on to the next step.
 
-The second technical obstacle that we had was returning our results. Specifically, we struggled with returning the iframe of our google maps. We tried removing the iframe and only included the link but the image did not print.Here are the images: ![screenshot of the blank image](images/blankimage.JPG) &nbsp; So we decided to ask chatGBT for help and this is what it said: ![screenshot of CHATGBT help](images/renderimage.JPG) &nbsp; we got it to work!: ![screenshot of results](images/result.JPG)
+The second technical obstacle that we had was returning our results. Specifically, we struggled with returning the iframe of our google maps. We tried removing the iframe and only included the link but the image did not print.Here are the images: ![screenshot of the blank image](images/blankimage.JPG) &nbsp; 
+
+So we decided to ask chatGBT for help and this is what it said: ![screenshot of CHATGBT help](images/renderimage.JPG) &nbsp; 
+
+we got it to work!: ![screenshot of results](images/result.JPG)
 
