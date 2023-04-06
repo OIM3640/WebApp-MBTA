@@ -112,11 +112,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     the vehicle type, and the time until arrival.
     """
     latitude, longitude = get_lat_long(place_name)
-    if get_nearest_station(latitude, longitude) == get_station_coords(latitude, longitude):
-        return f"There is no stop nearby ({latitude}, {longitude}), please choose another location"
-    else:
-
-
+    return get_nearest_station(latitude, longitude) # includes station_name, wheelchair_accessible, vehicle_type, time_until_arrival
 
 
 def main():
