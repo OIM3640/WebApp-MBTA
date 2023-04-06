@@ -29,16 +29,15 @@ def station_post():
             return render_template("error.html")
 
 
-# @app.route("/weather/")
-# def weather():
-#     # try:
-#         # city = request.form.get("city")
-#         city = "Wellesley"
-#         city_id = get_cityid(city)
-#         data = {'cityid': city_id, 'api': OPENWEATHERMAP_APIKEY}
-#         return render_template("weather.html", data = data)
-#     # except:
-#     #     return render_template("error.html")
+@app.post("/weather")
+def weather():
+    try:
+        city = request.form.get("city")
+        city_id = get_cityid(city)
+        api = OPENWEATHERMAP_APIKEY
+        return render_template("weather.html", cityid = city_id, api = api, city = city)
+    except:
+        return render_template("error.html")
 
 
 if __name__ == "__main__":

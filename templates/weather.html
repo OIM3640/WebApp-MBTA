@@ -5,23 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Result</title>
-    <style>
-      .red {
-        color: red;
-      }
-    </style>
   </head>
 
   <body>
-    <p class="red">The current temperature in {{ Place }} is {{ temp }}℃.</p>
-
+    <h1>The current temperature in {{ city }} is shown below.</h1>
     <div id="openweathermap-widget-11"></div>
   </body>
   <script type="text/javascript">
-    let cityid = {{ data.cityid }}
-    let api = {{ data.api }}
+    let cityid = "{{ cityid }}"
+    let api = "{{ api }}"
   </script>
-  <script type="text/javascript" src="app.js"></script>
   <script src="//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js"></script>
   <script>
     // The following code was copied from the OPENWEATHERMAP website

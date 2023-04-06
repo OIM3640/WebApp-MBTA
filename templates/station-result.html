@@ -5,22 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result of nearest MBTA station</title>
-</head>
-<body>
-    <h1>The nearest MBTA station to {{place}} is {{station}}. At this station, the status of wheelchair accessibility is {{wheelchair}}</h1>
-</body>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Result</title>
     <style>
-        .red {
-            color: red;
+        .text{
+            color: brown;
         }
 
     </style>
-
+</head>
 <body>
-    <p class="red">The current temperature in {{ place }} is {{ temperature }}℃. </p>
+    <h1 class="text" id="station">The nearest MBTA station to {{place}} is {{station}}. At this station, the status of wheelchair accessibility is {{wheelchair}}</h1>
+    <p class="text" id="temp">The current temperature in {{ place }} is {{ temperature }}℃. </p>
 </body>
 </html>
