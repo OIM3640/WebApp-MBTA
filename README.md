@@ -6,6 +6,8 @@
 <!-- Write a short abstract describing your project. Include all the extensions to the basic requirements.  -->
 Our project is an MBTA helper. The point of this project is to be able to find the closest MBTA station for any given location. This required the use of web APIs such as Mapbox, an API which we used to receive a location's latitude and longtitude, along with the MBTA-realtime API in order to find the closest MBTA station to the given latitude and longtitude. We also built a Web App that allows users to interact through an interface. In order to do this, we utilized Flask, a web framework.
 
+In addition to the basic requirements, we went above and beyond in several ways. Firstly, the MBTA Helper page on the web app has a clean user interface that goes along with the MBTA Theme and even has a logo. The color scheme, font and border all make it appear as if it was from the actual website. Another extention we included was adding the weather in Celsius of the given location. Lastly, we used Mapbox in order to embed an actual map with the location pinned. This was done so that users get a better clarity of the surroundings, especially visually showing the nearest T stations.
+
 
 ## 2. Reflection (~3 paragraphs + screenshots)
 
