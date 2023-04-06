@@ -1,2 +1,18 @@
 # WebApp-MBTA
  This is the base repo for Web App Developement project. Please read [instructions](instructions.md). 
+# Project Overview
+In this Web App Development Project, we created a MBTA helper. This helper helps users find the nearest MBTA stop and whether or not it is wheelchair accessible based off of their location. Additionally, we included the street name of the MBTA stop to give more clarity of where to find the stop. When the user enters the page, they will see the header in bold, which will catch their eye and will ask them to input their location. Under the text box is an image of the MBTA map with all the train and bus lines. We believe that by including this aspect, users are able to pinpoint the general idea of this app. After inputting their location, the app returns the stop's name, street and whether it is wheelchair accessible. There was the addition of one extension to the basic requirements, which was our Google Maps extension. The results show the location of the station on Google Maps, and allows you to open the exact location in another tab by clicking on it.
+
+# Reflection
+Prior to this project, we both have not worked together in a team before. This and time became our greatest challenge. We were introduced to this project a week before it was due and it turned out that we were both quite busy and could not work together in person. Our initial plan was to work on it together through meetings, but because our meetings were online, we quickly noticed that it was not efficient. We would both edit the code and it would overwrite each other. As we continued, we notified the other party when we coded and blocked off time for each of us to work on the code and included detailed comments, so the other party understood what they added. It was a bit easier for both of us to explore the code and test solutions on our own time, and then come together to share our discoveries. This became more effective rather than both of us staring at it together.  By the end of it, we were able to get the hang of it as a team. Next time, we would likely assign various parts to work on, and then come together to share our work and what we learned. Especially when navigating a new concept within python, it's beneficial for us to experiment with the concepts individually before coming together to apply it to the project.
+
+Our first technical obstacle came from creating the API url. We had a lot a roadblocks when it came to this critical detail because we would try and try and the web would print out "not found."  This made us realize the importance of close reading and reaching out for help. We were stuck on this for a while because without the data, we couldn't move on to the next step. 
+
+The second technical obstacle that we had was returning our results. Specifically, we struggled with returning the iframe of our google maps. We tried removing the iframe and only included the link but the image did not print. Here are the images: ![screenshot of the blank image](images/blankimage.JPG) &nbsp; 
+
+So we decided to ask chatGBT for help and this is what it said: ![screenshot of CHATGBT help](images/renderimage.JPG) &nbsp; 
+
+we got it to work!: ![screenshot of results](images/result.JPG)
+
+We learned a lot of valuable information about how using flask to create an app can be beneficial for a project. It was a new and interesting approach for us to learn about after taking Web Tech. We also used ChatGPT to get extra recommendations about styling after adding our map, to refresh ourselves on what works best. ChatGPT provided us  with some tips to guide our styling, and helped us keep it clean.
+![screenshot of CHATGPT help](images/stylingcss.JPG) 

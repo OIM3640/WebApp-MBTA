@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Results</title>
+    <style>
+      body {
+        border: 1px black solid;
+        padding: 10pt;
+        text-align: center;
+        background-color: lightblue;
+      }
+      h1 {
+        font-size: 16pt;
+      }
+      div {
+        width: 100%;
+      }
+      #map{
+        color:red ;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Your Results:</h1>
+    <p>
+      The closest station to {{location_name}} is stop
+      <strong>{{station_0}}</strong> located at {{station_2}} and it is
+      <strong>{{station_1}}</strong>.
+    </p>
+    <p id="map">Click below to open this location in Google Maps:</p>
+    <div>{{html_map | safe}}</div>
+    
+  </body>
+</html>
