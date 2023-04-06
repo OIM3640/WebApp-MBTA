@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazing app to help you find the nearest MBTA station</title>
+</head>
+
+<header>
+    <div class="mbta-logo">
+        <p>
+            <larger> <b><a href="/">EVA'S WEB APP</a> </b></larger>
+        </p>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="https://www.mbta.com/">MBTA Official Site</a></li>
+        </ul>
+    </nav>
+
+    <style>
+        header {
+            background-color: #fff;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #0d3566;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fcd900;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            margin-top: 20px;
+            margin-right: 100px;
+            margin-bottom: 20px;
+            margin-left: 100px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Garamond, serif;
+        }
+    </style>
+</header>
+
+
+<body>
+    <p> <b> Welcome to a web app by Eva! </b> <br>
+        This web app helps you find the nearest MBTA station to your current location, and whether it is
+        wheelchair-accessible. <br>
+    </p>
+
+    <a href="http://127.0.0.1:5000/mbta/" target="_blank">Click here to use the web app!</a> <br> <br><br>
+
+    <small> Latest version: 04/05/2023 </small> <br>
+
+    <fn>
+        <small> This application © 2023 by Eva Lee.<br>
+            Note: Train information is from the MBTA and is not guaranteed to be 100% accurate.<br>
+            Questions? Comments? Contact Eva via email at <a href="mailto:sli9@babson.edu">sli9@babson.edu</a>. <br>
+            The data behind this app is provided by the MBTA. Contact <a
+                href="mailto:developer@mbta.com">developer@mbta.com</a>. <br>
+            The MBTA is not responsible for this application - only the data that feeds it.<br>
+            Eva is not responsible for inaccurate data from the MBTA.</small>
+    </fn>
+</body>
+
+</html>
