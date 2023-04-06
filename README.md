@@ -11,12 +11,29 @@ On the frontend, the project uses Flask to build an app. This app initially disp
 1. What our team wanted was more time / examples of APIs and html templates and code that we could utilize to have more dynamic visualizations. We attempted to use Google Map API to display the coordinates visually - however were unable to troubleshoot the errors with the allotted time. Additionally, our limited knowledge of HTML acted as a limiting factor to what the end product would look like. That being said, the project scope was good. We made sure the basic features were working correctly before adding additional functionality, tested each function before moving to the next function This allowed us to modularize the functionality and build up from there. 
 2. We split the backend and frontend equally – Sergio focused on the python functions to pull and process the data and Naomi focused on taking those outputs and passing them through a user-friendly web app interface. We met consistently and were able to work the project effectively once we were able to decipher the instructions. We worked on the same device at first as the work became clear and then we split up the front back end to work during our own time. Next time we would work differently by making different file versions with our names to avoid confusion and losing edits when we are both simultaneously working from different devices. 
 3. We learned how to effectively combine backend and frontend development, which will aid us in future classes and careers - especially for the final project where we hope to have a user friendly interface. ChatGPT helped with debugging and deciphering the code documentation for MBTA .This allowed us to find the prediction data for estimated time of arrival as shown in the get_prediction() function. Below are some screenshots depicting an example of the progress functions took on as we advanced.
-<img src="images/chatgpt_2.PNG" width="60%" height="60%">
 
 
+### Below is the progress of the Backend
+<img src="images/first_version.png" width="60%" height="60%">
+ - Image depicts function with bare minimum capabilities.
 
-<img src="images/chatgpt_2.PNG" width="60%" height="60%">
-<img src="images/chatgpt_2.PNG" width="60%" height="60%">
-<img src="images/chatgpt_2.PNG" width="60%" height="60%">
-<img src="images/chatgpt_2.PNG" width="60%" height="60%">
-<img src="images/chatgpt_2.PNG" width="60%" height="60%">
+<img src="images/final_version.png" width="60%" height="60%">
+ - Image depicts final version which of main function 
+
+<img src="images/get_url_image.png" width="60%" height="60%">
+<img src="images/get_json.png" width="60%" height="60%">
+<img src="images/predictions.png" width="60%" height="60%">
+    - These are auxillary functions to split and modularize work 
+
+<img src="images/modularization.png" width="60%" height="60%">
+ - The end function uses main function in conjunction to pass relevant data to backend. 
+
+### Below is the Outline of the Front End
+<img src="images/first_webpage.png" width="60%" height="60%">
+ - This is the main user interface page
+  
+<img src="images/boston_commons_output.png" width="60%" height="60%">
+ - This is a sample output if "Boston Commons" is entered
+
+<img src="images/babson_college.png" width="60%" height="60%">
+  - This is the sample output when "Babson College" is entered which returns error statement as there is no nearby station and redirects user to main page. 
