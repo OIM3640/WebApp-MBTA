@@ -17,7 +17,8 @@ While creating the code for this project, we experianced both successful and cha
 Collaboration and genuine willingness to help among our team was crucial in succeeding in this assignment. Our project management strategy was simple yet effective. We takled all tasks in a linear form by working together and separately. Progress was reported, tested, and kept if it accompliced our goals. 
 
 **2. Team's work division**  
-including how the work was planned to be divided and how it actually happened. Address any issues that arose while working together and how they were addressed. Finally, discuss what you would do differently next time.
+For this project, we were able to divide the work very well. We mostly worked on the major parts together, and if one person started a specific aspect of the project towards the end of our group meeting, that person would just continue to work on that aspect outside the group meeting while the other person started some other part. We would always reconvene consistently to make sure we were both on the same page, and if one person got stuck on one thing, we would both work on it together. If we still couldn't come up with a solution that day, we would both think about it individually and come back to discuss. All problems solved and work completed. There weren't any issues that arose while working together, so there was nothing that we had to address. (I'd say we make a good team. - Lily)  
+There honestly isn't really anything to do differently as of now. Our partnership dynamic is very good.
 
 **3. Learnings**  
 Throughout this project, we were able to learn a lot about the basics of web development and the Flask framework. This project helped us gain a better understanding and comfortability with taking user inputs and integrating multiple APIs, as well as displaying information in a user-friendly format. ChatGPT was a huge help in contributing to our learnings, as it was particularly useful in helping us understand how to use certain Python libraries and improve our code with suggestions when we got stuck with stubborn errors. Going forward, we will use our knowledge of APIs and the Flask framework on our final project of matching students with shared interests to study groups via a web application. If we wished we knew anything beforehand that could've helped us succeed, it would've been that if you want to include a map on the same result page as the nearest station, you have to include it in the same function under app.py.
@@ -27,3 +28,9 @@ This is a picture of the error that took us hours to fix. We wanted to display t
 
 This is the picture of the final web application after the user inputs a location, in this case Wellesley.
 ![completed website image](images/Screen%20Shot%202023-04-05%20at%207.56.24%20PM.png)
+
+This is the picture of a question asked to ChatGPT resolve an SSL verification error.
+![ChatGPT - SSL Verification Error](images/chatgpt%20disabling%20ssl.png)
+
+This is the picture of a question asked to ChatGPT to suggest solutions to fixing an error with displaying the map.
+1[ChatGPT - Map Display Error](images/chatgpt%20issue%20with%20map.png)
