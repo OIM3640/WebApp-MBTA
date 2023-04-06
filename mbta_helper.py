@@ -50,9 +50,10 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
-
+    pprint.pprint(response_data['data'][0])
     stop_name = response_data['data'][0]['attributes']['name']  
     wheelchair = response_data['data'][0]['attributes']['wheelchair_boarding']
+  
     if wheelchair == 0:
         return stop_name, "No Informaiton found."
     elif wheelchair == 1:
@@ -79,24 +80,43 @@ def get_station(query:str):
 
     stop_name = mbta_data['data'][0]['attributes']['name']  
     wheelchair = mbta_data['data'][0]['attributes']['wheelchair_boarding']
+    on_street_name = mbta_data['data'][0]['attributes']['on_street']
     if wheelchair == 0:
-        return stop_name, "No Informaiton found."
+        return stop_name, "No Informaiton found.", on_street_name
     elif wheelchair == 1:
-        return stop_name, "wheelchair accessible"
+        return stop_name, "wheelchair accessible", on_street_name
     elif wheelchair == 2:
-        return stop_name, "wheelchair inaccessible"
+        return stop_name, "wheelchair inaccessible", on_street_name
 
+def mbta_coord(query:str):
+    query = query.replace(' ', '%20')
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    print(url)
+    f = urllib.request.urlopen(url)
+    response_text = f.read().decode('utf-8')
+    response_data = json.loads(response_text)
+    lng, lat =  response_data['features'][0]["center"]
+
+    url = f'{MBTA_BASE_URL}?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={lat}&filter%5Blongitude%5D={lng}'
+    print(url)
+    f = urllib.request.urlopen(url)
+    response_text = f.read().decode('utf-8')
+    mbta_data = json.loads(response_text)
+    lat = mbta_data['data'][0]['attributes']['latitude']
+    long = mbta_data['data'][0]['attributes']['longitude']
+    return lat, long
 
 def main():
     """
     You can test all the functions here
     """
-    query = "copley place"
+    query = "back bay"
     # place_name = "231 Forest St"
     # pprint.pprint(get_json(place_name))
     # latitude, longitude = get_lat_long(query)
     # pprint.pprint(get_nearest_station(latitude,longitude))
     print(get_station(query))
+    # print(mbta_coord(query))
 
 
 
