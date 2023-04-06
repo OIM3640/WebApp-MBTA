@@ -9,16 +9,12 @@
       body {
         border: 1px black solid;
         padding: 10pt;
+        text-align: center;
       }
       h1 {
-        text-align: center;
         font-size: 16pt;
       }
-      p {
-        text-align: center;
-      }
       div {
-        text-align: center;
         width: 100%;
       }
       #map{
@@ -33,7 +29,7 @@
       <strong>{{station_0}}</strong> on {{station_2}} and it is
       <strong>{{station_1}}</strong>.
     </p>
-    <p id="map">click below for google maps:</p>
+    <p id="map">Click below to open this location in Google Maps:</p>
     <div>{{html_map | safe}}</div>
     
   </body>
