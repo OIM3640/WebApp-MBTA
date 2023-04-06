@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Results</title>
-</head>
-<body>
-    <p class="red">The closest station to {{location_name}} is stop {{station_0}} on {{station_2}} and it is {{station_1}}.
+    <style>
+      body {
+        border: 1px black solid;
+        padding: 10pt;
+      }
+      h1 {
+        text-align: center;
+        font-size: 16pt;
+      }
+      p {
+        text-align: center;
+      }
+      div {
+        text-align: center;
+        width: 100%;
+      }
+      #map{
+        color:red ;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Your Results:</h1>
+    <p>
+      The closest station to {{location_name}} is stop
+      <strong>{{station_0}}</strong> on {{station_2}} and it is
+      <strong>{{station_1}}</strong>.
     </p>
+    <p id="map">click below for google maps:</p>
     <div>{{html_map | safe}}</div>
-    
-</body>
+  </body>
 </html>
