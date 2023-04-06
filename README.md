@@ -32,4 +32,4 @@ This is the picture of a question asked to ChatGPT resolve an SSL verification e
 ![ChatGPT - SSL Verification Error](images/chatgpt%20disabling%20ssl.png)
 
 This is the picture of a question asked to ChatGPT to suggest solutions to fixing an error with displaying the map.
-1[ChatGPT - Map Display Error](images/chatgpt%20issue%20with%20map.png)
+![ChatGPT - Map Display Error](images/chatgpt%20issue%20with%20map.png)
