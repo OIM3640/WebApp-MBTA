@@ -53,15 +53,16 @@ On the frontend, the project uses Flask to build an app. This app initially disp
 
 1. This is the main user interface page
     
-    
     <img src="images/first_webpage.png" width="60%" height="60%">
   
   
 2. This is a sample output if "Boston Commons" is entered
+
    <img src="images/boston_commons_output.png" width="60%" height="60%">
   
 
 
 3. This is the sample output when "Babson College" is entered which returns error statement as there is no nearby station and redirects user to main page. 
+
     <img src="images/babson_college.png" width="60%" height="60%">
    
