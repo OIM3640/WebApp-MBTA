@@ -56,9 +56,10 @@ def results():
 
     # Get the coordinates for the place and the nearest station
     try:
-        clat, clng = get_lat_long(place_name)
-        station, wh = get_nearest_station(clat, clng)
+        current_lat, current_lng = get_lat_long(place_name)
+        station = get_nearest_station(current_lat, current_lng)
         try:
+            # searches for a location, taking into account that it is in the bounds of MA
             station = station + ", massachusetts"
         except:
             print("moving on without mass extension")
