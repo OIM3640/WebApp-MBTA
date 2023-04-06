@@ -28,10 +28,15 @@ body { margin: 0 ; padding: 0; }
 		</tbody>
 	  </table>
 
+	<!-- below here is just to access the values of this to pass data to javascript portion -->
+	  
 	<p hidden id="lat">{{latitude}}</p>
 	<p hidden id="long">{{longitude}}</p>
 
 <script>
+
+    /** obtain the latitude and longitude of the user's input location, 
+	 then convert it to float. This will ensure the map location is dynamic. **/
 
 	lat = document.getElementById('lat').innerHTML
 	long = document.getElementById('long').innerHTML

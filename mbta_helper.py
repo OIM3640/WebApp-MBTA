@@ -55,8 +55,8 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     URL = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
     json_output = get_json(URL)
-    print(URL)
 
+    #check if the user's input has a MBTA nearby, then check if it is wheelchair accessible - checks whether wheelchair_boarding > 0
     have_stops = True
     if (len(json_output['data'])) == 0:
         have_stops == False
@@ -77,9 +77,12 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
 
+    #call get_lat_long function to get the latitude and longitude first 
+    #get the nearest station based on the lat and long values obtained, passing it into the nearest_stop function
     lat_long = get_lat_long(place_name)
     nearest_stop = get_nearest_station(lat_long[1], lat_long[0])
 
+    #if the nearest stop is boolean shows that there is no stop nearby, ensure the returned message is dynamic. 
     if type(nearest_stop) is bool:
         return f"Unfortunately there are no MBTA stops close enough to {place_name} - you have to get out into the city!"
 
@@ -93,6 +96,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
         return output
     
+# use openWeather API to obtain the weather at the user's input location ss
 def get_weather(place_name):
     lat_long = get_lat_long(place_name)
     APIKEY = '2d7b5c8cba9bfa9036774e2462b3ddb4'
