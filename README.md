@@ -4,6 +4,8 @@
 ## 1. Project Overview (~1 paragraph)
 
 <!-- Write a short abstract describing your project. Include all the extensions to the basic requirements.  -->
+Our project is an MBTA helper. The point of this project is to be able to find the closest MBTA station for any given location. This required the use of web APIs such as Mapbox, an API which we used to receive a location's latitude and longtitude, along with the MBTA-realtime API in order to find the closest MBTA station to the given latitude and longtitude. We also built a Web App that allows users to interact through an interface. In order to do this, we utilized Flask, a web framework.
+
 
 ## 2. Reflection (~3 paragraphs + screenshots)
 
