@@ -26,14 +26,21 @@ On the frontend, the project uses Flask to build an app. This app initially disp
 
 
 
+
+
+
 3. These are auxillary functions to split and modularize work 
     <img src="images/get_url_image.png" width="60%" height="60%">
+
     <img src="images/get_json.png" width="60%" height="60%">
+
     <img src="images/predictions.png" width="60%" height="60%">
   
 
 4. The end function uses main function in conjunction to pass relevant data to backend.  
     <img src="images/modularization.png" width="60%" height="60%">
+
+
 
 
 ### Below is the Outline of the Front End
@@ -47,6 +54,7 @@ On the frontend, the project uses Flask to build an app. This app initially disp
 2. This is a sample output if "Boston Commons" is entered
    <img src="images/boston_commons_output.png" width="60%" height="60%">
   
+
 
 3. This is the sample output when "Babson College" is entered which returns error statement as there is no nearby station and redirects user to main page. 
  <img src="images/babson_college.png" width="60%" height="60%">
