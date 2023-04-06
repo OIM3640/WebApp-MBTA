@@ -139,7 +139,7 @@ def weather(place_name: str) -> float:
         # pprint.pprint(response_data)
         return response_data['main']['temp']
     except HTTPError as e:
-        print(f"HTTPError: {e}")
+        print(f"HTTPEttrror: {e}")
         return "not available for this location"
 
 
