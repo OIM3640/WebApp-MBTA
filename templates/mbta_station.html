@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MBTA Stop Near {{ place_name }}</title>
+</head>
+<body>
+    <h1>The nearest MBTA stop to {{ place_name }} is:</h1>
+    {% if nearest_station is none %}
+        <p>Sorry, we could not find an MBTA stop near {{ place_name }}.</p>
+    {% else %}
+        <h2>{{ nearest_station }}</h2>
+        {% if is_accessible %}
+            <p>This station is wheelchair accessible!</p>
+        {% else %}
+            <p>This station is not wheelchair accessible.</p>
+        {% endif %}
+    {% endif %}
+    <br>
+    {% if temperature is not none and weather_conditions is not none %}
+        <p>The current temperature is {{ temperature }}F and the weather is {{ weather_conditions }}.</p>
+        <p>Based on the current weather, we recommend the following:</p>
+        <ul>
+            {% for recommendation in recommendations %}
+                <li>{{ recommendation }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="/" method="get">
+        <button type="submit">Back to Home Page</button>
+    </form>
+</body>
+</html>
