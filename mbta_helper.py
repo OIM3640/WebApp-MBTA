@@ -14,7 +14,21 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    import json
+    import pprint
+    import urlib.request
+
+    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+    MAPBOX_TOKEN = "pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"
+    query = 'Babson College'
+    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={"pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"}&types=poi'
+    print(url) # Try this URL in your browser first
+
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+        pprint.pprint(response_data)
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
