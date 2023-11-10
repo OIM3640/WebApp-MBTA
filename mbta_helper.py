@@ -21,9 +21,6 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    import json
-    import pprint
-    import urlib.request
 
     MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
     MAPBOX_TOKEN = "pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"
@@ -60,13 +57,13 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     # Extracting coordinates from the response
     response_data = get_json(place_name)
     features = response_data.get("features", [])
-    if features:
-        coordinates = features[0].get("center", [])
-        if len(coordinates) == 2:
-            latitude, longitude = coordinates
-            return str(latitude), str(longitude)
+    coordinates = features[0].get("center", [])
+    len(coordinates) == 2
+    latitude, longitude = coordinates
+    return str(latitude), str(longitude)
 
-    return None, None
+
+    
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
