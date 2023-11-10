@@ -1,5 +1,5 @@
 from config import API_KEY_MBTA
-from mapboxdemo import get_coords
+from program import get_coords
 import json, urllib.request
 
 MBTA_BASE_URL = 'https://api-v3.mbta.com/stops'

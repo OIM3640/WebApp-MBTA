@@ -1,12 +1,8 @@
-from mapboxdemo import get_coords
-from mbtademo import get_stations, count_stations, top_x
+from program import your_closest_station
+import pprint as p
 
 if __name__ == '__main__':
-    get_coords()
-    get_stations()
-    count_stations()
-    top_x()
-    print()
+    p.pprint(your_closest_station('ENTER LOCATION HERE'))
 
 
 
