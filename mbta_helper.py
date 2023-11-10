@@ -59,11 +59,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     features = response_data.get("features", [])
     coordinates = features[0].get("center", [])
     len(coordinates) == 2
-    latitude, longitude = coordinates
-    return str(latitude), str(longitude)
-
-
-    
+    return tuple(coordinates)
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
