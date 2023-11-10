@@ -6,17 +6,16 @@ import urllib.request
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-query = 'Babson College'
-query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
-url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-print(url) # Try this URL in your browser first
-
+query = "Babson College"
+query = query.replace(
+    " ", "%20"
+)  # In URL encoding, spaces are typically replaced with "%20"
+url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
+print(url)  # Try this URL in your browser first
 
 
 # A little bit of scaffolding if you want to use it
 def get_json(url: str) -> dict:
-
-
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
@@ -33,10 +32,20 @@ def get_json(url: str) -> dict:
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={"pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"}&types=poi'
     print(url) # Try this URL in your browser first
 
+    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+    MAPBOX_TOKEN = "pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"
+    query = "Babson College"
+    query = query.replace(
+        " ", "%20"
+    )  # In URL encoding, spaces are typically replaced with "%20"
+    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={"pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"}&types=poi'
+    # print(url) # Try this URL in your browser first
+
     with urllib.request.urlopen(url) as f:
-        response_text = f.read().decode('utf-8')
+        response_text = f.read().decode("utf-8")
         response_data = json.loads(response_text)
-        pprint.pprint(response_data)
+        # pprint.pprint(response_data)
+    return response_data
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -48,20 +57,16 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     query = place_name.replace(' ', '%20')
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 
-    with urllib.request.urlopen(url) as f:
-        response_text = f.read().decode('utf-8')
-        response_data = json.loads(response_text)
-
-        # Extracting coordinates from the response
-        features = response_data.get('features', [])
-        if features:
-            coordinates = features[0].get('center', [])
-            if len(coordinates) == 2:
-                latitude, longitude = coordinates
-                return str(latitude), str(longitude)
+    # Extracting coordinates from the response
+    response_data = get_json(place_name)
+    features = response_data.get("features", [])
+    if features:
+        coordinates = features[0].get("center", [])
+        if len(coordinates) == 2:
+            latitude, longitude = coordinates
+            return str(latitude), str(longitude)
 
     return None, None
-print(get_lat_long("babson college"))
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -94,5 +99,5 @@ def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "_main_":
     main()
