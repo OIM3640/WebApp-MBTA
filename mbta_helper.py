@@ -51,17 +51,19 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
+    query = place_name.replace(' ', '%20')
+    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 
     # Extracting coordinates from the response
-    print('running')
     response_data = get_json(place_name)
     features = response_data.get("features", [])
-    if features:
-        coordinates = features[0].get("center", [])
-        if len(coordinates) == 2:
-            return tuple(coordinates)
+    coordinates = features[0].get("center", [])
+    len(coordinates) == 2
+    latitude, longitude = coordinates
+    return str(latitude), str(longitude)
 
-    return None, None
+
+    
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -88,10 +90,8 @@ def main():
     """
     You should test all the above functions here
     """
-    print(get_lat_long('babson college'))
+    
 
 
 if __name__ == "_main_":
     main()
-
-print(get_lat_long('babson college'))
