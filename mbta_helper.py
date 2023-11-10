@@ -96,7 +96,6 @@ def main():
     """
     You should test all the above functions here
     """
-    pass
 
 
 if __name__ == "_main_":
