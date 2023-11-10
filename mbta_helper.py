@@ -25,7 +25,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
     json_file = get_json()
-    long_lat = json_file['features'][0]['geometry']['coordinates']
+    long_lat = json_file['features'][1]['geometry']['coordinates']
     coordinates = (long_lat[1],long_lat[0])
     return coordinates
     pass
