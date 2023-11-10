@@ -58,3 +58,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+#curl -X GET "https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=42.355621&filter%5Blongitude%5D=-71.071235" -H "accept: application/vnd.api+json"
