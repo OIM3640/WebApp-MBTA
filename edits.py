@@ -12,9 +12,7 @@ MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # query = 'Babson College'
-query = str(input("Where are you located?"))
-query = query.replace(' ', '%20')
-url= f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+
 # A little bit of scaffolding if you want to use it
 def get_json(url: str) -> dict:
     """
@@ -27,7 +25,7 @@ def get_json(url: str) -> dict:
         response_data = json.loads(response_text)
     return response_data
 
-pprint.pprint(get_json(url))
+# pprint.pprint(get_json(url))
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
     """
@@ -35,12 +33,15 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    json_file = get_json()
+    query = str(place_name) 
+    query = query.replace(' ', '%20')
+    url= f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    json_file = get_json(url)
     long_lat = json_file['features'][0]['geometry']['coordinates']
     coordinates = (long_lat[1],long_lat[0])
     return coordinates
 
-
+print(get_lat_long('boston common'))
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
