@@ -69,7 +69,13 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    latitude, longitude = get_lat_long()
+
+    if latitude is not None and longitude is not None:
+        station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+        return station_name, wheelchair_accessible
+
+    return None, None
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
