@@ -5,9 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazing app to help you find the nearest MBTA station</title>
+
+    <style>
+      body{
+        text-align: center;
+        margin-top: 5%;
+        background-color: lightgray;
+      }
+      form {
+        display: inline-block;
+      }
+      input {
+        height: 30px;
+        border-radius: 10px;
+        margin-bottom: 50px;
+      }
+      p {
+        font-size: 40px; 
+        font-family: 'Times New Roman', Times, serif;
+        padding-top: 30px;
+      }
+      div.bgr {
+        margin-top: 5%;
+        margin-left: 20%;
+        margin-right: 20%;
+        border-radius: 40px;
+        background-color: white;
+        box-shadow: 20px 10px 10px darkgrey;
+      }
+      div.bgr:hover {
+        background-color: lightcyan;
+      }
+      img.map {
+        box-shadow: 20px 10px 10px darkgrey;
+        border-radius: 30px;
+      }
+      .heading {
+        background-color: darkgray;
+        box-shadow:20px 10px 10px darkslategray;
+        height: 40px;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .title {
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 28px;
+        padding-top: 5px;
+      }
+
+    </style>
+
   </head>
 
   <body>
-    <p>Hi</p>
+    <div class="heading">
+      <div class="innerhead">
+        <p class="title">Welcome to the MBTA Station Finder!</p>
+      </div>
+    </div>
+    <div class="bgr">
+    <p>
+      Are you near an MBTA stop?
+
+      <form class="searchy" action="post">
+        <input type="search" placeholder="Enter your location.">
+          
+        
+        <button>Search</button>
+        </input>
+      </form>
+    </p>
+    </div>
+    <img class='map' src='https://media.istockphoto.com/id/165766207/vector/metro-map.jpg?s=612x612&w=0&k=20&c=ODyF4Crok5h5wLR49nQoj0xlPV1MUoUV5mfohPOiVIg='
   </body>
 </html>
