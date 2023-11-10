@@ -14,6 +14,7 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
+
     pass
 
 
@@ -23,6 +24,10 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
+    json_file = get_json()
+    long_lat = json_file['features'][0]['geometry']['coordinates']
+    coordinates = (long_lat[1],long_lat[0])
+    return coordinates
     pass
 
 
@@ -53,3 +58,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+#curl -X GET "https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=42.355621&filter%5Blongitude%5D=-71.071235" -H "accept: application/vnd.api+json"
