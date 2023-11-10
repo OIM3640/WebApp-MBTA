@@ -5,15 +5,19 @@ import pprint
 import urllib.request
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
-MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-query = 'Babson College'
-query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
-url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-print(url) # Try this URL in your browser first
+
 
 
 
 # A little bit of scaffolding if you want to use it
+def build_url(query):
+    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+    
+    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    return url
+    #print(url) # Try this URL in your browser first
+
 def get_json(url: str) -> dict:
 
 
@@ -22,16 +26,6 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    import json
-    import pprint
-    import urlib.request
-
-    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-    MAPBOX_TOKEN = "pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"
-    query = 'Babson College'
-    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
-    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={"pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"}&types=poi'
-    print(url) # Try this URL in your browser first
 
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
@@ -45,7 +39,9 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    url = build_url(place_name)
+    json = get_json(url)
+    print(json)
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -70,8 +66,9 @@ def main():
     """
     You should test all the above functions here
     """
-    pass
+    
 
 
 if __name__ == '__main__':
     main()
+
