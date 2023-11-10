@@ -73,11 +73,8 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     latitude, longitude = get_lat_long()
 
-    if latitude is not None and longitude is not None:
-        station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
-        return station_name, wheelchair_accessible
-
-    return None, None
+    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+    return station_name, wheelchair_accessible
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
