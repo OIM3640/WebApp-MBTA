@@ -35,10 +35,11 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    json_file = get_json()
-    long_lat = json_file['features'][0]['geometry']['coordinates']
+    json_file = get_json(url)
+    long_lat = json_file['features'][0]['center']
     coordinates = (long_lat[1],long_lat[0])
     return coordinates
+    
 
 
 
@@ -64,6 +65,7 @@ def main():
     """
     You should test all the above functions here
     """
+    print(get_lat_long('Boston Common'))
     pass
 
 
