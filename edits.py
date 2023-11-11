@@ -36,13 +36,13 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
+    #query = place_name.replace(' ','20%')
+    #urlo = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     json_file = get_json(url)
     long_lat = json_file['features'][0]['center']
     coordinates = (long_lat[1],long_lat[0])
     return coordinates
     
-
-print(get_lat_long('boston common'))
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -50,8 +50,11 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    r = requests.get(f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}" -H "accept: application/vnd.api+json')
-    return r
+    r = requests.get(f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}', headers={"accept": "application/vnd.api+json"})
+    stops = r.json()
+    name = stops ['data'][0]['attributes']['name']
+    access = stops ['data'][0]['attributes']['wheelchair_boarding']
+    return (name,access)
 
     pass
 
@@ -62,6 +65,8 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
+    #might need to tweak the first function in order for this to work. 
+    #order ==> find_stop_near ==>get_lat_long ==>get_json==>get_nearest_station==>output of find_stop_near
     pass
 
 
