@@ -68,10 +68,9 @@
     <p>
       Are you near an MBTA stop?
 
-      <form class="searchy" type="input" action="" method="post">
-        <input type="text" placeholder="Enter your location." name="QUERY">
-          
-        
+      <form class="searchy" type="input" action="/result" method="post">
+        <label for="QUERY">Input Data:</label>
+        <input type="text" id="QUERY" placeholder="Enter your location." name="QUERY" required>
         <button type="submit">Search</button>
         </input>
       </form>

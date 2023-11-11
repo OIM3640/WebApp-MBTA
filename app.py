@@ -9,14 +9,11 @@ app = Flask(__name__)
 def index():
     return render_template('/index.html/')
 
-@app.route('/hello')
-def hello():
-    return 'Hello, World'
-
-@app.post('/')
-def stations_post():
-    query = request.form['QUERY']
-    return print(f'{your_closest_station(query)}')
+@app.route('/result', methods=['POST'])
+def result():
+    data_from_form = request.form['QUERY']
+    result = your_closest_station(data_from_form)
+    return render_template('/result.html', result=result)
 
 if __name__ == '__main__':
     app.run(debug=True)

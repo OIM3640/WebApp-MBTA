@@ -85,6 +85,11 @@ def your_closest_station(query:str):
     station_names = get_stations(station)
 
     if station_names:
-        print(f'The closest station is: {station_names}')
+        return station_names
     else:
-        print('No station data found.')
+        return f'No stations are nearby'
+
+    # if station_names:
+    #     print(f'The closest station is: {station_names}')
+    # else:
+    #     print('No station data found.')
