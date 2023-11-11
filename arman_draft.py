@@ -4,7 +4,6 @@
 import json
 import pprint
 import urllib.request
-import requests
 
 MBTA_API_KEY = '12d9224354af4b5e9e49fbbc5e272d17'
 MAPBOX_TOKEN = 'pk.eyJ1IjoiYXJtYW5iYWJvIiwiYSI6ImNsb3E5azFyMTBlZ2QybXBxZHdvMzJqOWQifQ.WFgwpxUmfIooCJwFeD_DIw'
@@ -36,13 +35,14 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
+
     json_file = get_json(url)
     long_lat = json_file['features'][0]['center']
     coordinates = (long_lat[1],long_lat[0])
     return coordinates
     
 
-print(get_lat_long('boston common'))
+
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -50,8 +50,8 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    r = requests.get(f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}" -H "accept: application/vnd.api+json')
-    return r
+    #curl -X GET "https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=42.355621&filter%5Blongitude%5D=-71.071235" -H "accept: application/vnd.api+json"
+    #curl -X GET "https://api-v3.mbta.com/stops?api_key={}sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}" -H "accept: application/vnd.api+json"
 
     pass
 
@@ -70,8 +70,6 @@ def main():
     You should test all the above functions here
     """
     print(get_lat_long('Boston Common'))
-    latitude_1,longitude_1 = get_lat_long('Boston Common')
-    print(get_nearest_station(latitude_1,longitude_1))
     pass
 
 
