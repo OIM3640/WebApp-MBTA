@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from main import your_closest_station
-import pprint
 
 app = Flask(__name__)
 
