@@ -1,13 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Closest MBTA Station</title>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: lightgray;
+        }
+
+        p {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            padding-top: 30px;
+        }
+
+        .credits {
+            font-size: 18px;
+            color: slategray;
+            margin-top: 40%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: auto;
+            height: 50px;
+            background-color: rgb(93, 180, 93);
+            font-weight: bold;
+            margin: 10px 5px 0px 5px;
+        }
+
+        img {
+            float: right;
+            width: 50px;
+            margin-top: 10px;
+            margin-bottom: -21px;
+        }
+
+        div#buttons {
+            width: 26%;
+            margin: auto;
+        }
+    </style>
+    <script>
+        function search_query() {
+
+            var q = document.getElementById('query').innerHTML;
+            var button = document.getElementById('search_q');
+            window.open('https://www.google.com/search?q=' + q)
+        }
+
+        function search_result() {
+
+            var res = document.getElementById('result').innerHTML;
+            var button = document.getElementById('search_r');
+            window.open('https://www.google.com/search?q=' + q)
+        }
+
+        function direct() {
+            var res = document.getElementById('result').innerHTML;
+            var button = document.getElementById('dir');
+            window.open('https://www.google.com/maps/dir//' + res)
+        }
+
+    </script>
 </head>
+
 <body>
-    <h1>Result</h1>
-    <p>{{ result }}</p>
+    <h1> Your Query Results: </h1>
+    <p hidden id="query">{{ query }}</p>
+    <p hidden id="result">{{ result }}</p>
+    <h2> The closest station to "{{ query }}" is {{ result }} </h2>
+    <div id="buttons">
+        <button id="search_q" onclick="search_query()">Search for {{ query }}</button>
+        <img src="https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1=w240-h480-rw"
+            alt="">
+        <br>
+        <button id="search_r" onclick="search_result()">Search for {{ result }}</button>
+        <img src="https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1=w240-h480-rw"
+            alt="">
+        <br>
+        <button id="dir" onclick="direct()"> Take me there </button>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Google_Maps_Logo_2020.svg/1137px-Google_Maps_Logo_2020.svg.png"
+            alt="">
+    </div>
+    <p>Thank you for using the our app. To try another query, return to the <a href="/redirect">home page</a></p>
+    <p class="credits">Site by Meowers LLC.</p>
+
 
 </body>
+
 </html>
