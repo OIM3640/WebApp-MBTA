@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Stop Finder - Result</title>
+</head>
+<body>
+    <h1>MBTA Stop Finder - Result</h1>
+    <p>Place Name or Address: {{ place_name }}</p>
+    <p>Nearest MBTA Stop: {{ stop_name }}</p>
+    <p>Wheelchair Accessible: {% if is_accessible %} Yes {% else %} No {% endif %}</p>
+    <a href="/">Back to Search</a>
+</body>
+</html>
