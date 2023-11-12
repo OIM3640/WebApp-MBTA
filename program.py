@@ -56,27 +56,30 @@ def make_mbta_url(your_coords:tuple):
     return url
 
 
+
 def get_stations(url:str):
     """
-    Returns a list of closest station given a URL
+    Returns a list of closest station, and a list of accessibility (0, 1, 2) given a URL
     """
     response_data = get_json(url)
 
     close_stations = []
+    accessibility = []
 
-    if 'data' in response_data:
-        for entity in response_data['data']:
-            description = entity['attributes'].get('description')
-            if description is not None and description != "":
-                close_stations.append(description)
+    for entity in response_data['data']:
+        description = entity['attributes'].get('description')
+        disability = entity['attributes'].get('wheelchair_boarding')
+        if description is not None and description != "":
+            close_stations.append(description)
+            if disability is not None and disability !="":
+                accessibility.append(disability)
                 break
 
-    return close_stations
-
+    return close_stations, accessibility
 
 def your_closest_station(query:str):
     """
-    Takes in a location as a str and returns the nearest mbta station
+    Takes in a location as a str and returns the nearest mbta station and accessiblity for that station
     """
     url = make_mapbox_url(query)
     dict = get_json(url)
@@ -88,8 +91,3 @@ def your_closest_station(query:str):
         return station_names
     else:
         return f'No stations are nearby'
-
-    # if station_names:
-    #     print(f'The closest station is: {station_names}')
-    # else:
-    #     print('No station data found.')
