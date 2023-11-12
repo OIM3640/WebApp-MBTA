@@ -16,10 +16,11 @@ def not_found():
 def result():
     data_from_form = request.form['QUERY']
     query = data_from_form
-    result = str(your_closest_station(data_from_form)[0])
-    if result == None:
+    result = your_closest_station(data_from_form)
+    if result == 999:
         return redirect('/not_found')
     else:
+        result = str(your_closest_station(data_from_form)[0])
         access_index = your_closest_station(data_from_form)[1]
         if access_index == [1]:
             accessibility = "has wheelchair accessibility accomodations (if trip is wheelchair accessible)"

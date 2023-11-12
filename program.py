@@ -87,7 +87,10 @@ def your_closest_station(query:str):
     station = make_mbta_url(coords)
     station_names = get_stations(station)
 
-    if station_names:
-        return station_names
+    for i in station_names:
+        if i:
+            return station_names
     else:
-        return f'No stations are nearby'
+        return 999
+    
+# print(your_closest_station('miami'))
