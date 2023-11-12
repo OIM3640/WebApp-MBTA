@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MBTA Helper - Results</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      text-align: center;
+      background-color: #FDE2FF; 
+      margin: 0;
+    }
+    h1 {
+      color: #5D2E8C; 
+    }
+    .result-container {
+      border: 2px solid #B28DFF; 
+      background-color: #FFF0F7; 
+      padding: 20px;
+      margin-top: 20px;
+      display: inline-block;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .map-link {
+      color: #84DFFF; 
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .map-link:hover {
+      color: #6CC7FF; 
+      text-decoration: underline;
+    }
+    .accessibility {
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .accessibility.accessible {
+      background-color: #84DFFF; 
+    }
+    .accessibility.not-accessible {
+      background-color: #dc3545; 
+    }
+    .btn-back {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #84DFFF;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>MBTA Station Finder Results</h1>
+  <div class="result-container">
+    <p>The closest MBTA station to <strong>{{ location }}</strong> is:</p>
+    <p><strong>{{ stop_name }}</strong></p>
+    <p>Accessibility Status:
+      <span class="accessibility {{ 'not-accessible' if not accessible else 'accessible' }}">
+        {{ accessibility_status }}
+      </span>
+    </p>
+    <a href="{{ google_maps_url }}" class="map-link" target="_blank">
+      Open in Google Maps
+    </a>
+    <div class="weather-info">
+        {% if temperature and weather_description %}
+            <p>Current Temperature: {{ temperature }}°F</p>
+            <p>Weather Conditions: {{ weather_description }}</p>
+        {% else %}
+            <p>Weather information is currently unavailable.</p>
+        {% endif %}
+    </div>
+  </div>
+  <button onclick="history.back()" class="btn-back">Go Back</button>
+</body>
+</html>
+
+
