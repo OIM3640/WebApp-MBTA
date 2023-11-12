@@ -52,8 +52,13 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     r = requests.get(f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}', headers={"accept": "application/vnd.api+json"})
     stops = r.json()
-    name = stops ['data'][0]['attributes']['name']
-    access = stops ['data'][0]['attributes']['wheelchair_boarding']
+    try:
+        name = stops ['data'][0]['attributes']['name']
+        access = stops ['data'][0]['attributes']['wheelchair_boarding']
+        return (name,access)
+    except IndexError as e:
+        return"Sorry, we Cannot Process Your Request - Index Error"
+        print(e)
 
     #optional text oupt option via an if desired.
 
@@ -61,7 +66,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     #    access = "Wheelchair accessible"
     #else: 
     #    access = "Wheelchair Inaccessible"
-    return (name,access)
+    
 
     pass
 
@@ -72,8 +77,17 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
+
     #might need to tweak the first function in order for this to work. 
     #order ==> find_stop_near ==>get_lat_long ==>get_json==>get_nearest_station==>output of find_stop_near
+
+    latitude_1, longitude_1 = get_lat_long(place_name)
+    name,access = get_nearest_station(latitude_1,longitude_1)
+    if access == 1:
+        access = "Wheelchair accessible"
+    else: 
+        access = "Wheelchair Inaccessible"
+    return (name, access)
     pass
 
 
@@ -81,11 +95,12 @@ def main():
     """
     You should test all the above functions here
     """
-    print(get_lat_long('Boston Common'))
-    latitude_1,longitude_1 = get_lat_long('Boston Common')
-    print(get_nearest_station(latitude_1,longitude_1))
+    #print(get_lat_long('Babson College'))
+    #latitude_1,longitude_1 = get_lat_long('Babson College')
+    #print(get_nearest_station(latitude_1,longitude_1))
+    print(find_stop_near('Boston College'))
     pass
-
+#Note for future programming --> should probably add if/else or try except statement for poor input, or non-address input like pure numbers or symbols. 
 
 if __name__ == '__main__':
     main()
