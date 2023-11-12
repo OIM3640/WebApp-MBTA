@@ -58,7 +58,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
         return (name,access)
     except IndexError as e:
         return"Sorry, we Cannot Process Your Request - Index Error"
-        print(e)
+        
 
     #optional text oupt option via an if desired.
 
@@ -69,7 +69,6 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     
 
     pass
-
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
@@ -82,13 +81,17 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     #order ==> find_stop_near ==>get_lat_long ==>get_json==>get_nearest_station==>output of find_stop_near
 
     latitude_1, longitude_1 = get_lat_long(place_name)
-    name,access = get_nearest_station(latitude_1,longitude_1)
-    if access == 1:
-        access = "Wheelchair accessible"
-    else: 
-        access = "Wheelchair Inaccessible"
-    return (name, access)
-    pass
+    try:
+        name,access = get_nearest_station(latitude_1,longitude_1)
+        if access == 1:
+            access = "Wheelchair accessible"
+        else: 
+            access = "Wheelchair Inaccessible"
+        return (name, access)
+    except ValueError as e:
+        return f"Sorry, {place_name} cannot be found in our servers. Please try another location."
+
+
 
 
 def main():

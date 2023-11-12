@@ -11,8 +11,8 @@ def mbta_finder(name=None):
 #Based off code found on stack overflow link:https://stackoverflow.com/questions/43677564/passing-input-from-html-to-python-and-back
 @app.post('/')
 def hello():
-    user_location_input = request.form['user_location_input']
-    answer = find_stop_near(user_location_input)
-    return f"{answer}"
+        user_location_input = request.form['user_location_input']
+        answer = find_stop_near(user_location_input)
+        return f"{answer}"
 if __name__ == '__main__':
     app.run(debug=True)
