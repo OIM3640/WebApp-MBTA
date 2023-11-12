@@ -1,8 +1,8 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
-
-# mapbox key - pk.eyJ1Ijoicm9uYWxkbGl1anIiLCJhIjoiY2xvcHlra3I1MGFxaTJrbG52djMzc3k0MyJ9.Uixk2uqshXS9RYtV5RD3fg
-# mbta key - 1b3af775c6e94d48814fb0ca3ed91a61
+import json
+import pprint
+import urllib.request
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
@@ -16,7 +16,11 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+        # pprint.pprint(response_data)
+        return response_data
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -25,8 +29,12 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
-
+    query = place_name
+    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    response_data = get_json(url) 
+    
+    print(response_data['features'][0]['geometry']['coordinates'][::-1])
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -50,7 +58,7 @@ def main():
     """
     You should test all the above functions here
     """
-    pass
+    get_lat_long("TD Garden")
 
 
 if __name__ == "__main__":
