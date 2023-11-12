@@ -1,9 +1,6 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 
-# mapbox key - pk.eyJ1Ijoicm9uYWxkbGl1anIiLCJhIjoiY2xvcHlra3I1MGFxaTJrbG52djMzc3k0MyJ9.Uixk2uqshXS9RYtV5RD3fg
-# mbta key - 1b3af775c6e94d48814fb0ca3ed91a61
-
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
