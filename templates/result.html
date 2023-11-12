@@ -44,6 +44,10 @@
             width: 26%;
             margin: auto;
         }
+
+        h3 {font-weight: normal;}
+
+
     </style>
     <script>
         function search_query() {
@@ -65,6 +69,7 @@
             var button = document.getElementById('dir');
             window.open('https://www.google.com/maps/dir//' + res)
         }
+        
 
     </script>
 </head>
@@ -73,7 +78,9 @@
     <h1> Your Query Results: </h1>
     <p hidden id="query">{{ query }}</p>
     <p hidden id="result">{{ result }}</p>
+    <p hidden id="access"> {{ accessibility }}</p>
     <h2> The closest station to "{{ query }}" is {{ result }} </h2>
+    <h3> According to our data, this station {{ accessibility }}.</h2>
     <div id="buttons">
         <button id="search_q" onclick="search_query()">Search for {{ query }}</button>
         <img src="https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1=w240-h480-rw"
@@ -87,7 +94,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Google_Maps_Logo_2020.svg/1137px-Google_Maps_Logo_2020.svg.png"
             alt="">
     </div>
-    <p>Thank you for using the our app. To try another query, return to the <a href="/redirect">home page</a></p>
+    <p>Thank you for using our app. To try another query, return to the <a href="/redirect">home page</a></p>
     <p class="credits">Site by Meowers LLC.</p>
 
 

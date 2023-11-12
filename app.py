@@ -12,9 +12,16 @@ def index():
 def result():
     data_from_form = request.form['QUERY']
     query = data_from_form
-    result = str(your_closest_station(data_from_form))
+    result = str(your_closest_station(data_from_form)[0])
+    access_index = your_closest_station(data_from_form)[1]
+    if access_index == [0]:
+        accessibility = "has no information about accessibility"
+    elif access_index == [1]:
+        accessibility = "has wheelchair accessibility accomodations (if trip is wheelchair accessible)"
+    elif access_index == [2]:
+        accessibility = "does not have accessibility accomodations" 
     formatted_result = result[2:len(result)-2]
-    return render_template('/result.html', result=formatted_result, query = query)
+    return render_template('/result.html', result=formatted_result, query = query, accessibility = accessibility)
 
 @app.route('/redirect', methods = ['GET'])
 def redirect_home():
