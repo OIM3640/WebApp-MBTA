@@ -56,7 +56,6 @@ def make_mbta_url(your_coords:tuple):
     return url
 
 
-
 def get_stations(url:str):
     """
     Returns a list of closest station, and a list of accessibility (0, 1, 2) given a URL
@@ -76,6 +75,7 @@ def get_stations(url:str):
                 break
 
     return close_stations, accessibility
+
 
 def your_closest_station(query:str):
     """
