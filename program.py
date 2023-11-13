@@ -14,7 +14,10 @@ def make_mapbox_url(query:str):
     """
     query = query.replace(' ', '%20')
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+
     return url
+
+# print(make_mapbox_url('mmmmmm'))
 
 
 def get_json(url:str):
@@ -28,6 +31,7 @@ def get_json(url:str):
     return response_data
 
 
+
 def get_coords(response_data:dict):
     """
     Return coordinates from response as a tuple
@@ -39,7 +43,6 @@ def get_coords(response_data:dict):
         your_coords = your_coords + (i,)
 
     return your_coords
-
 
 
 def make_mbta_url(your_coords:tuple):
@@ -81,16 +84,21 @@ def your_closest_station(query:str):
     """
     Takes in a location as a str and returns the nearest mbta station and accessiblity for that station
     """
-    url = make_mapbox_url(query)
-    dict = get_json(url)
-    coords = get_coords(dict)
-    station = make_mbta_url(coords)
-    station_names = get_stations(station)
-
-    for i in station_names:
-        if i:
-            return station_names
-    else:
-        return 999
+    try:
+        url = make_mapbox_url(query)
+        dict = get_json(url)
+        coords = get_coords(dict)
+        station = make_mbta_url(coords)
+        station_names = get_stations(station)
+        for i in station_names:
+            if i:
+                return station_names
+        else:
+            return 999
     
-# print(your_closest_station('miami'))
+    except:
+        return 999
+
+
+print(your_closest_station('miami'))
+print(your_closest_station('mwowesfes'))
