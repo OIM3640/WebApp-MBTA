@@ -11,7 +11,7 @@ query = query.replace(
     " ", "%20"
 )  # In URL encoding, spaces are typically replaced with "%20"
 url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
-print(url)  # Try this URL in your browser first
+#print(url)  # Try this URL in your browser first
 
 
 # A little bit of scaffolding if you want to use it
@@ -27,7 +27,7 @@ def get_json(url: str) -> dict:
     query = 'Babson College'
     query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={"pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"}&types=poi'
-    print(url) # Try this URL in your browser first
+    #print(url) # Try this URL in your browser first
 
     MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
     MAPBOX_TOKEN = "pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"
@@ -67,7 +67,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    station_name = "Sample Station"
+    station_name = ""
     wheelchair_accessible = True
     return station_name, wheelchair_accessible
 
@@ -83,7 +83,6 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
  
 
-
 def main():
     """
     You should test all the above functions here
@@ -91,18 +90,18 @@ def main():
      # Test get_lat_long function
     place_name = "Babson College"
     latitude, longitude = get_lat_long(place_name)
-    print(f"Coordinates for {place_name}: {latitude}, {longitude}")
+    print(f"Coordinates for {place_name} are lat:{latitude}, long:{longitude}")
 
     # Test get_nearest_station function
-    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
-    print(f"Nearest MBTA Station: {station_name}")
-    print(f"Wheelchair Accessible: {wheelchair_accessible}")
+    # station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+    # print(f"Nearest MBTA Station: {station_name}")
+    # print(f"Wheelchair Accessible: {wheelchair_accessible}")
 
     # Test find_stop_near function
-    stop_name, stop_accessible = find_stop_near(place_name)
-    print(f"Nearest MBTA Stop: {stop_name}")
-    print(f"Wheelchair Accessible: {stop_accessible}")
+    # stop_name, stop_accessible = find_stop_near(place_name)
+    # print(f"Nearest MBTA Stop: {stop_name}")
+    # print(f"Wheelchair Accessible: {stop_accessible}")
 
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
