@@ -86,6 +86,7 @@ def main():
     """
     You should test all the above functions here
     """
+    print(get_lat_long("babson college"))
 
 
 if __name__ == "_main_":
