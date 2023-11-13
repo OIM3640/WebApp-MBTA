@@ -1,13 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
-
-  <body>
-    <p>Hi</p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MBTA Station Locator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #FDE2FF; 
+      color: #333;
+    }
+    .main-header {
+      background-color: #FFACE4;
+      color: #5D2E8C;
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .main-header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .main-content {
+      padding: 2rem;
+      text-align: center;
+    }
+    .search-box {
+      margin: 2rem auto;
+      padding: 1rem;
+      max-width: 500px;
+      background: #FFF0F7; 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+    .search-box input[type='text'] {
+      width: 80%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 2px solid #B28DFF; 
+      border-radius: 4px;
+      color: #5D2E8C; 
+    }
+    .search-box button {
+      width: 85%;
+      padding: 0.5rem;
+      border: none;
+      background-color: #84DFFF; 
+      color: #333;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .search-box button:hover {
+      background-color: #6CC7FF; 
+    }
+    footer {
+      background-color: #FFACE4; 
+      color: #5D2E8C;
+      text-align: center;
+      padding: 0.5rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <h1>Find Your MBTA Station</h1>
+  </header>
+  <section class="main-content">
+    <div class="search-box">
+      <p>Enter your location to find the nearest MBTA station:</p>
+      <form action="/nearest_station" method="post">
+        <input type="text" id="location" name="location" required placeholder="Type your address..." />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </section>
+  <footer>
+    <p>MBTA Station Locator © 2023</p>
+  </footer>
+</body>
 </html>
