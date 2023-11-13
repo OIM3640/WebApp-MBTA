@@ -17,8 +17,6 @@ def make_mapbox_url(query:str):
 
     return url
 
-# print(make_mapbox_url('mmmmmm'))
-
 
 def get_json(url:str):
     """
@@ -29,7 +27,6 @@ def get_json(url:str):
         response_data = json.loads(response_text)
     
     return response_data
-
 
 
 def get_coords(response_data:dict):
@@ -98,7 +95,3 @@ def your_closest_station(query:str):
     
     except:
         return 999
-
-
-print(your_closest_station('miami'))
-print(your_closest_station('mwowesfes'))
