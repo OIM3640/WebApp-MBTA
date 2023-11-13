@@ -6,6 +6,7 @@ import urllib.request
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+MBTA_BASE_URL = "https://api-v3.mbta.com/docs/swagger/swagger.json"
 query = "Babson College"
 query = query.replace(
     " ", "%20"
@@ -94,9 +95,10 @@ def main():
     # stop_name, stop_accessible = find_stop_near(place_name)
     # print(f"Nearest MBTA Stop: {stop_name}")
     # print(f"Wheelchair Accessible: {stop_accessible}")
-    lat, long = get_lat_long(place_name)
-    runner = str(lat) + str(long)
-    print(get_json(runner))
+    #lat, long = get_lat_long(place_name)
+    #runner = str(lat) + str(long)
+    #print(get_json(runner))
+    print(get_json())
 
 
 if __name__ == "__main__":
