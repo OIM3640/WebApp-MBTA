@@ -84,21 +84,25 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
 
-    station_name, wheelchair_accessible = (
+    latitude, longtitude = get_lat_long(place_name)
+    response_data = get_json(geomapping=False, latitude=latitude, longitude=longtitude)
+
+    stop_name, wheelchair_accessible = (
         response_data["data"][0]["attributes"]["name"],
         response_data["data"][0]["attributes"]["wheelchair_boarding"],
     )
 
-    return station_name, wheelchair_accessible
+    return stop_name, wheelchair_accessible
 
 
 def main():
     """
     You should test all the above functions here
     """
-    place_name = "South Station"  # Change to other places you want
+    place_name = "China Town"  # Change to other places you want
     longtitude, latitude = get_lat_long(place_name)
     print(get_nearest_station(latitude, longtitude))
+    print(find_stop_near(place_name))
 
 
 if __name__ == "__main__":
