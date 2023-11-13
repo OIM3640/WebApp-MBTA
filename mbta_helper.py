@@ -1,10 +1,25 @@
-# Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN, MBTA_API_KEY
+import json
+import pprint
+import urllib.request
 
-
-# Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+MAPBOX_TOKEN = "pk.eyJ1IjoieGh1NiIsImEiOiJjbG94NTI5c2gwYXkzMnFwaXRvcW44NGtwIn0.0OUOBgmbdqbT3kxVMhdb5A"
+query = "Babson College"
+query = query.replace(
+    " ", "%20"
+)  # In URL encoding, spaces are typically replaced with "%20"
+url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
+# print(url) # Try this URL in your browser first
+
+with urllib.request.urlopen(url) as f:
+    response_text = f.read().decode("utf-8")
+    MAPBOX = json.loads(response_text)
+    # pprint.pprint(response_data)
+
+
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
+
+import requests
 
 
 # A little bit of scaffolding if you want to use it
@@ -14,7 +29,13 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    response = requests.get(url)
+    d = response.json()
+    return d
+
+
+# print (get_json(MBTA_BASE_URL))
+MBTA = get_json(MBTA_BASE_URL)
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -23,7 +44,19 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    d = MAPBOX
+    l = len(d["features"])
+    for i in range(l - 1):
+        if place_name in d["features"][i]["place_name"]:
+            latitude = str(d["features"][i]["geometry"]["coordinates"][1])
+            longitude = str(d["features"][i]["geometry"]["coordinates"][0])
+            return (latitude, longitude)
+
+
+# for k in MAPBOX['features'][0].keys():
+#     print (k)
+# print (MAPBOX['features'][0])
+# print (get_lat_long('Babson College'))
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -32,7 +65,24 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    d = MBTA
+    latitude = float(latitude)
+    longitude = float(longitude)
+    l = len(d["data"])
+    for i in range(l - 1):
+        if (
+            d["data"][i]["attributes"]["latitude"] == latitude
+            and d["data"][i]["attributes"]["longitude"] == longitude
+        ):
+            if d["data"][i]["attributes"]["wheelchair_boarding"] == 1:
+                return (d["data"][i]["attributes"]["name"], True)
+            else:
+                return (d["data"][i]["attributes"]["name"], False)
+
+
+# print (type(MBTA['data'][0]['attributes']['latitude']))
+# print (type(MBTA['data'][0]['attributes']['wheelchair_boarding']))
+# print (get_nearest_station('42.425322', '-71.189411'))
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -41,7 +91,8 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    t = get_lat_long(place_name)
+    return get_nearest_station(t[0], t[1])
 
 
 def main():
@@ -51,5 +102,5 @@ def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
