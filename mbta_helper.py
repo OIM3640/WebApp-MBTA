@@ -67,11 +67,9 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    latitude, longitude = get_lat_long()
-
-    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+    station_name = "Sample Station"
+    wheelchair_accessible = True
     return station_name, wheelchair_accessible
-
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
@@ -79,14 +77,31 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    latitude, longitude = get_lat_long(place_name)
+    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+    return station_name, wheelchair_accessible
+
+ 
 
 
 def main():
     """
     You should test all the above functions here
     """
-    print(get_lat_long("babson college"))
+     # Test get_lat_long function
+    place_name = "Babson College"
+    latitude, longitude = get_lat_long(place_name)
+    print(f"Coordinates for {place_name}: {latitude}, {longitude}")
+
+    # Test get_nearest_station function
+    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+    print(f"Nearest MBTA Station: {station_name}")
+    print(f"Wheelchair Accessible: {wheelchair_accessible}")
+
+    # Test find_stop_near function
+    stop_name, stop_accessible = find_stop_near(place_name)
+    print(f"Nearest MBTA Stop: {stop_name}")
+    print(f"Wheelchair Accessible: {stop_accessible}")
 
 
 if __name__ == "_main_":
