@@ -15,7 +15,7 @@ url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
 
 
 # A little bit of scaffolding if you want to use it
-def get_json(url: str) -> dict:
+def get_json(query: str) -> dict:
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
@@ -24,7 +24,6 @@ def get_json(url: str) -> dict:
 
     MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
     MAPBOX_TOKEN = "pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"
-    query = 'Babson College'
     query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={"pk.eyJ1IjoianNoYW5nb2xkMSIsImEiOiJjbG9xOWl2MHowZHB0MmlvMTBxajMwMHI2In0.w1rTFPExS8lXPFocl185-Q"}&types=poi'
     #print(url) # Try this URL in your browser first
@@ -67,8 +66,10 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
+    
     station_name = ""
-    wheelchair_accessible = True
+    wheelchair_accessible = False
+
     return station_name, wheelchair_accessible
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -87,10 +88,10 @@ def main():
     """
     You should test all the above functions here
     """
-     # Test get_lat_long function
+    # Test get_lat_long function
     place_name = "Babson College"
-    latitude, longitude = get_lat_long(place_name)
-    print(f"Coordinates for {place_name} are lat:{latitude}, long:{longitude}")
+    # latitude, longitude = get_lat_long(place_name)
+    # print(f"Coordinates for {place_name} are lat:{latitude}, long:{longitude}")
 
     # Test get_nearest_station function
     # station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
@@ -101,6 +102,9 @@ def main():
     # stop_name, stop_accessible = find_stop_near(place_name)
     # print(f"Nearest MBTA Stop: {stop_name}")
     # print(f"Wheelchair Accessible: {stop_accessible}")
+    lat, long = get_lat_long(place_name)
+    runner = str(lat) + str(long)
+    print(get_json(runner))
 
 
 if __name__ == "__main__":
