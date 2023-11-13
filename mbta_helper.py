@@ -32,9 +32,11 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     query = place_name
     query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-    response_data = get_json(url) 
+    response_data = get_json(url)
     
-    print(response_data['features'][0]['geometry']['coordinates'][::-1])
+    latitude = response_data['features'][0]['geometry']['coordinates'][1]
+    longitude = response_data['features'][0]['geometry']['coordinates'][0]
+    return latitude, longitude
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -42,7 +44,14 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    url2 = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    response_data = get_json(url2)
+    # print(response_data)
+    station_name = response_data['data'][0]['attributes']['name']
+    wheelchair_accessible = response_data['data'][0]['attributes']['wheelchair_boarding'] == 1
+    
+    return station_name, wheelchair_accessible
+    
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -51,14 +60,22 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    latitude, longitude = get_lat_long(place_name)
+    
+    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+
+    wheelchair_accessible = str(wheelchair_accessible).lower()
+    
+    print(f"The nearest Station to {place_name} is {station_name}. It is {wheelchair_accessible} that it is wheelchair accessible.")
 
 
 def main():
     """
     You should test all the above functions here
     """
-    get_lat_long("TD Garden")
+    find_stop_near("Boston College")
+    # latitude, longitude = get_lat_long("Boston College")
+    # get_nearest_station(latitude,longitude)
 
 
 if __name__ == "__main__":
