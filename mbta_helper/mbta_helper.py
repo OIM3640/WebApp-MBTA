@@ -11,7 +11,7 @@ def get_json(url: str, params: dict) -> dict:
     parameters and return the JSON response.
     """
     response = requests.get(url, params=params)
-    response.raise_for_status()  # This will raise an exception for HTTP errors.
+    response.raise_for_status() 
     return response.json()
 
 def get_lat_long(address: str) -> tuple:

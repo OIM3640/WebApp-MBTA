@@ -36,16 +36,16 @@ def nearest_station():
         google_maps_url = f"https://www.google.com/maps/search/?api=1&query={google_maps_query}"
         accessibility_status = "Wheelchair Accessible" if accessible_flag else "Not Wheelchair Accessible"
 
-        # Get weather data
         weather_data = get_weather_data(latitude, longitude)
         if weather_data:
             temperature = weather_data['main']['temp']
             weather_description = weather_data['weather'][0]['description']
 
     except Exception as e:
-        # Handle any exceptions that occur during API calls
         print(f"An error occurred: {e}")
-
+    # for this section I asked StackOverFlow 
+    # how I could have multiple things pop up
+    # in a line on my web application
     return render_template('results.html', 
                            location=location, 
                            stop_name=stop_name, 
