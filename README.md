@@ -1,5 +1,4 @@
 # WebApp-MBTA
- This is the base repository for Web App Developement project. Please read [instructions](instructions.md). 
 
 ## **Project Overview**
 ### For assignment three, I created a MBTA Helper code that allows users to find the nearest MBTA station based on the place/location that they input into the Flask web framework. The system takes latitude and longitude coordinates of the inputted place from my personal Mapbox Geocoding API to search for the nearby stations. In addition to the station name, I also incorporated real time arrival data and wheelchair accessibility information for that nearest station through my MBTA API. To further enhance the user experience in my web application, I pulled in the OpenWeatherMap's API data to also give the user the weather information for their location of interest. A Flask web framework was created to seamlessly integrate these functionalities in one user-friendly interface for the user to input a location and receive information about the closest MBTA station, whether or not it is wheelchair accessible, the train's arrival times, and the current weather outside. 
@@ -10,7 +9,7 @@
 ### I worked independently on this project, so there was no division of team work. 
 
 ### From a learning perspective, the project provided valuable insights into API integration and the usage of Flask web framework. The APIs helped me to understand a lot about how I can implement and use APIs to solve real-world problems and make it applicable to the real life. Going forward, I now have more knowledge on how Flask works and it will be of great benefit for my final project to implement Flask into my code as well. As for ChatGPT, after the last assignment, I did some reflecting on my usage of it and for this project, I found almost no need to use it except to help me fix minor errors that I was running into because of indentation issues and small logic messups in incorporating an else statement to prevent errors. One other use of it was asking it simple questions on altering my code in terms of how do I change just my time for arrival time to red without changing the "arrival time" to red as well. 
-  
+
 
 
 
