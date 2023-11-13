@@ -1,4 +1,7 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
+import json
+import pprint
+import urllib.request
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 
 
@@ -8,13 +11,27 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 
 # A little bit of scaffolding if you want to use it
-def get_json(url: str) -> dict:
+def get_json(url: str, place_name: str, geomapping: bool) -> dict:
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    query = place_name
+    query = query.replace(
+        " ", "%20"
+    )  # In URL encoding, spaces are typically replaced with "%20"
+
+    if geomapping:
+        url = f"{url}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
+    else:
+        url = f"{MBTA_BASE_URL}?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode("utf-8")
+        response_data = json.loads(response_text)
+
+    return response_data
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -23,7 +40,17 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    df = get_json(MAPBOX_BASE_URL, place_name, geomapping=True)
+
+    if not df["features"]:
+        return "Cannot find latitude and longtitude for this address"
+
+    longtitude, latitude = (
+        df["features"][1]["center"][0],
+        df["features"][1]["center"][1],
+    )
+
+    return longtitude, latitude
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -32,7 +59,21 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+
+    url = f"{MBTA_BASE_URL}?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode("utf-8")
+        response_data = json.loads(response_text)
+
+    if not response_data["data"]:
+        return "No station found", False
+    
+    # with open('mbta_response_data.json', 'w') as file:
+    #         json.dump(response_data, file, indent=4) # For testing purpose, print to a seperate file
+
+    station_name = response_data["data"][0]["relationships"]['parent_station']["data"]["id"]
+
+    return station_name
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -41,15 +82,22 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    
+    station_name, wheelchair_accessible = (
+        response_data["data"][0]["attributes"]["name"],
+        response_data["data"][0]["attributes"]["wheelchair_boarding"],
+    )
 
+    return station_name, wheelchair_accessible
 
 def main():
     """
     You should test all the above functions here
     """
-    pass
+    place_name = 'South Station' # Change to other places you want
+    longtitude, latitude = get_lat_long(place_name)
+    print(get_nearest_station(latitude, longtitude))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
