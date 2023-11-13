@@ -1,6 +1,6 @@
 # WebApp-MBTA
 
-## **Project Overview**
+## Project Overview
 ### For assignment three, I created a MBTA Helper code that allows users to find the nearest MBTA station based on the place/location that they input into the Flask web framework. The system takes latitude and longitude coordinates of the inputted place from my personal Mapbox Geocoding API to search for the nearby stations. In addition to the station name, I also incorporated real time arrival data and wheelchair accessibility information for that nearest station through my MBTA API. To further enhance the user experience in my web application, I pulled in the OpenWeatherMap's API data to also give the user the weather information for their location of interest. A Flask web framework was created to seamlessly integrate these functionalities in one user-friendly interface for the user to input a location and receive information about the closest MBTA station, whether or not it is wheelchair accessible, the train's arrival times, and the current weather outside. 
 
 ## **Reflection**
