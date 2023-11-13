@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Nearest MBTA Station</title>
+  </head>
+
+  <body>
+    <h1><strong>Nearest MBTA Station</strong></h1>
+    <p>Station Name: {{ station_info.station_name }}</p>
+    <p>Wheelchair Accessible: {% if station_info.wheelchair_accessible %}Yes{% else %}No{% endif %}</p>
+    {% for prediction in station_info.predictions %}
+      {% if prediction['arrival_time'] %}
+        <p>Arrival Time: <span style="color:red;">{{ prediction['arrival_time']|datetimeformat }}</span></p>
+      {% endif %}
+    {% endfor %}
+    {% if not station_info.predictions %}
+      <p>Arrival Time: Not available</p>
+    {% endif %}
+    
+    <h2><strong>Weather Information</strong></h2>
+    {% if station_info.get('weather_info') %}
+      <p>Temperature: {{ station_info['weather_info']['temperature'] }}°F</p>
+      <p>Description: {{ station_info['weather_info']['description'] }}</p>
+      <p>Humidity: {{ station_info['weather_info']['humidity'] }}%</p>
+      <p>Wind Speed: {{ station_info['weather_info']['wind_speed'] }} mph</p>
+    {% else %}
+      <p>Weather information not available</p>
+    {% endif %}
+  </body>
+</html>
