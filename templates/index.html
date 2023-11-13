@@ -8,6 +8,12 @@
   </head>
 
   <body>
-    <p>Hi</p>
+    <h1>MBTA Helper</h1>
+    <p>Welcome! Use this app to find the nearest MBTA station.</p>
+    <form method="post" action="{{ url_for('index') }}">
+      <label for="place_name">Enter a place name: </label>
+      <input type="text" id="place_name" name="place_name" required>
+      <button type="submit">Find Nearest Station</button>
+    </form>
   </body>
 </html>
