@@ -53,3 +53,36 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+def get_json(url):
+    response = requests.get(url)
+    return response.json()
+
+def get_lat_long(place_name):
+    url = MAPBOX_BASE_URL + f"?access_token={MAPBOX_TOKEN}&query={place_name}"
+    data = get_json(url)
+    lat = data['features'][0]['center'][1]
+    lon = data['features'][0]['center'][0]
+    return lat, lon
+
+def get_nearest_station(latitude, longitude):
+    url = MBTA_BASE_URL + f"?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}"
+    data = get_json(url)
+    station = data['data'][0]['attributes']['name']
+    wheelchair = data['data'][0]['attributes']['wheelchair_boarding']
+    return station, wheelchair
+    
+def find_stop_near(place_name):
+    lat, lon = get_lat_long(place_name)
+    station, wheelchair = get_nearest_station(lat, lon)
+    return station, wheelchair
+
+def main():
+    place = "Boston University"
+    station, wheelchair = find_stop_near(place)
+    print(f"The nearest station to {place} is {station}. Wheelchair boarding: {wheelchair}")
+
+if __name__ == '__main__':
+    main()
+
+
