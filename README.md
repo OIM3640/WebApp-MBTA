@@ -1,5 +1,5 @@
 # WebApp-MBTA
- This is the base repository for Web App Development project. Please read [instructions](instructions.md). 
+ Created by: Stephen Robinson-Wahl and Rohan Chakravarthy
 
 ## Project Writeup
  A summary of the project and our team's reflections.
@@ -24,7 +24,6 @@
  Stephen - python initial functioning and setting up web app landing
  Rohan - flask integration, error handling, web app results page
  We chose to not initially break up the work, and instead wanted to see which section we both enjoyed doing the most. Stephen found satisfaction with the python functionality and interacting with the APIs, whereas Rohan found more satisfaction with the front-end and flask integration aspects of the project. One thing that the team could do in the future to be more efficient is to define the scope of the project and try to itemize the different tasks/requirements for the project, and have each team member choose which tasks they would like to complete--kind of like a scrum. 
-
 
  ![image](https://github.com/OIM3640/WebApp-MBTA/assets/97844882/e99aabf8-5f94-41b3-97f5-476411bcaede)
 
