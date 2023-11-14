@@ -14,3 +14,24 @@ with urllib.request.urlopen(url) as f:
     response_data = json.loads(response_text)
     pprint.pprint(response_data['features'][0]['geometry']['coordinates'])
 
+# @app.route('/', methods=['GET', 'POST'])
+# def index():
+#     try:
+#         if request.method == 'POST':
+#             place_name = request.form.get('place_name', '').strip()
+#             if place_name:
+#                 station_info = find_stop_near(place_name)
+#                 return render_template('results.html', station_info=station_info)
+#             else:
+#                 return render_template('index.html', error_message='Please enter a place name.')
+
+#         return render_template('index.html')
+
+#     except Exception as e:
+#         error_message = str(e)
+#         return render_template('error.html', error_message=error_message)
+
+# # ... Other route and setup code ...
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
