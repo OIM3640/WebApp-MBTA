@@ -1,11 +1,9 @@
-# Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 import urllib.request
 import json
 import pprint
 from dateutil import parser
 
-# Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 

@@ -15,9 +15,14 @@ I wish I had dedicated more time to the front end. As we do not have much experi
 The most I learned from this assignment is how to combine the backend and front-end development. Though this was the most difficult part, there is much more clarity in terms of how the backend and front-end work together to create the user interface. With chatgpt's help I was able to format my upcoming arrival times. The arrival times were previously being displayed in ISO 8601 format. To make them more user-friendly, I converted them to the "HH:MM AM/PM" format. I used Python's dateutil parser to parse the ISO 8601 string and then format it as so. I was also learned how to use HTML's <style> tag to incorporate colored text into my web application. I added color by using the <style>  tag within the <head> section of the HTML document and by using inline styling with the style attribute directly on the text I wanted to modify.
 
 ## Front end Development
-![Alt text](/images.py/Mbta_station.png)
+![Alt text](/images.py/MBTA_station.png)
 ![Alt text](/images.py/index.png)
 ![Alt text](/images.py/error.png)
+
+## Chat GPT Help 
+![Alt text](/images.py/Basic_error_handling.png)
+![Alt text](/images.py/dateutil_parser.png)
+![Alt text](/images.py/HTML_styling.png)
 
 
 
