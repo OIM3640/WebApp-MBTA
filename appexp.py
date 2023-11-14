@@ -12,7 +12,16 @@ def mbta_finder(name=None):
 @app.post('/')
 def hello():
         user_location_input = request.form['user_location_input']
-        answer = find_stop_near(user_location_input)
-        return f"{answer}"
+        answer_1, answer_2 = find_stop_near(user_location_input)
+        #This is an experiment
+        #split answer into two variables and use them to say where the person is. 
+        return render_template('results.html',
+                        answer_1 = answer_1,
+                        answer_2 = answer_2,
+                        user_location_input = user_location_input
+                        )
+        #return f"{answer}"
+
 if __name__ == '__main__':
     app.run(debug=True)
+

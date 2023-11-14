@@ -1,0 +1,26 @@
+<!-- The purpose of this HTML page is to display a html doc that contains the results of our query. It "hopefully" will have a map that displays your desired MTA stop, and maybe makes a line between address the stop -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Finder </title>
+
+     <!-- New Immanuel Ntim-Addae Style Edits-->
+     <style> 
+        body {background-color: lightblue}
+        h1 {color: black; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+        h2 {color: black; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+        h3 {color: black; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+        label {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif}
+        </style>
+        <!-- End of Immanuel Ntim-Addae Style Edits-->
+
+</head>
+<body>
+    <h1 name = "user_location_input"> Query Results for {{user_location_input}}.</h1>
+    <h3 name="answer_1">The stop closest to you is: {{answer_1}}</h2>
+    <h3 name = "answer_2">The stop is {{answer_2}}</h2>
+</body>
+</html>
+<!-- Use redirect if you want to add another page to display the results! -->
