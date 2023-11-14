@@ -98,6 +98,8 @@ def main():
     #lat, long = get_lat_long(place_name)
     #runner = str(lat) + str(long)
     #print(get_json(runner))
+    #https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=42.364506&filter%5Blongitude%5D=-71.038887
+
     print(get_json())
 
 
