@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Station Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>MBTA Station Information</h1>
+    <p>Nearest MBTA Stop: {{ stop_name }}</p>
+    <p>Accessible: {{ accessible }}</p>
+    <p>Weather Information: {{ weather_info }}</p>
+
+    <h2>Ticketmaster Events</h2>
+    {% if ticketmaster_events %}
+    <ul>
+        {% for event in ticketmaster_events['_embedded']['events'] %}
+        <li>{{ event['name'] }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No Ticketmaster events found.</p>
+    {% endif %}
+
+    <h2>Nearby Hotels</h2>
+    {% if hotels %}
+    <ul>
+        {% for hotel in hotels %}
+        <li>{{ hotel['name'] }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No nearby hotels found.</p>
+    {% endif %}
+</body>
+
+</html>
