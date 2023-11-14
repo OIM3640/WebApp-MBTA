@@ -87,7 +87,19 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
     latitude, longitude = get_lat_long(place_name)
-    return get_nearest_station(latitude, longitude)
+    result= get_nearest_station(latitude, longitude)
+
+    formatted_times = []
+    for time in result.get("times", []):
+        arrival_time = time.get("arrival_time")
+        if arrival_time:
+            formatted_time = datetime.fromisoformat(arrival_time).strftime("%H:%M:%S %p")
+            formatted_times.append({"arrival_time": formatted_time})
+        else:
+            formatted_times.append({"arrival_time": "Not available"})
+
+    result["times"] = formatted_times
+    return result
 
 
 def main():
