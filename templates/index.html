@@ -5,9 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazing app to help you find the nearest MBTA station</title>
+    <style>
+      h2 {
+        padding: 30px;
+        text-align: center;
+        background-color: #165c96;
+        color: #fff;
+      }
+      button {
+        border-color: black;
+        padding: 2px 5px;
+        text-align: center;
+        font-size: 0.8rem;
+        cursor: pointer;
+        border-radius: 1px;
+        background-color: #165c96;
+        color: #fff;
+        margin-top: 10px;
+        align-self: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+    </style>
   </head>
-
   <body>
-    <p>Hi</p>
+    <h2>
+      Hello Guest! Please enter a location to find the nearest MBTA station.
+    </h2>
+    <form action="/station/" method="post">
+      <label for=""
+        >Location:
+        <input
+          type="text"
+          name="place_name"
+          placeholder="Please enter a location"
+      /></label>
+      <button type="submit">Find Closest MBTA Station</button>
+    </form>
   </body>
 </html>
