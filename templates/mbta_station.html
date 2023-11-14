@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .red-text { color: rgb(136, 66, 66); }
+        .green-text { color: rgb(95, 148, 95); }
+        .pink-text { color: rgb(214, 108, 126); }
+    </style>
+    <title>MBTA Station Details</title>
+</head>
+<body>
+    <h1 class="red-text">Welcome to the MBTA Station Finder</h1>
+    <h2 class="green-text">Nearest MBTA Station</h2>
+    {% if station_name and wheelchair_accessible is not none %}
+    <p>The nearest MBTA station to your location is: <strong>{{ station_name }}</strong></p>
+    <p>Wheelchair Accessible: <strong>{{ 'Yes' if wheelchair_accessible else 'No' }}</strong></p>
+    {% if arrival_times %}
+    <h3 class="pink-text">Upcoming Arrival Times:</h3>
+    <ul>
+        {% for arrival in arrival_times %}
+        <li>{{ arrival }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Real-time arrival data is currently unavailable.</p>
+    {% endif %}
+    {% else %}
+    <p>Sorry, we couldn't find the nearest MBTA station to your location.</p>
+    {% endif %}
+    <a href="/">Search again</a>
+</body>
+</html>
+
