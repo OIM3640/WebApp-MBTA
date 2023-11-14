@@ -27,7 +27,7 @@ def get_json(query: str) -> dict:
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode("utf-8")
         response_data = json.loads(response_text)
-        # pprint.pprint(response_data)
+        #pprint.pprint(response_data)
     return response_data
 
 
@@ -37,15 +37,23 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    query = place_name.replace(' ', '%20')
-    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-
     # Extracting coordinates from the response
+
     response_data = get_json(place_name)
     features = response_data.get("features", [])
     coordinates = features[0].get("center", [])
     len(coordinates) == 2
     return tuple(coordinates)
+
+def MBTA_json(latitude, longitude):
+    MBTA_url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+
+    with urllib.request.urlopen(MBTA_url) as f:
+        response_text = f.read().decode("utf-8")
+        response_data = json.loads(response_text)
+        #pprint.pprint(response_data)
+        print(MBTA_url)
+        return response_data
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -54,10 +62,17 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
     mbta = mb.MBTA_json(latitude, longitude)
-
-    station_name = ""
-    wheelchair_accessible = False
-
+    #pprint.pprint(mbta)
+    data=(mbta["data"])
+    stop = data[0]
+    attributes  = stop["attributes"]
+    station_name = attributes["name"]
+    wheelchair_boarding = attributes["wheelchair_boarding"]
+    wheelchair_accessible = "N/A"
+    if wheelchair_boarding == 1:
+        wheelchair_accessible = True
+    elif wheelchair_accessible == 2:
+        wheelchair_boarding = False
     return station_name, wheelchair_accessible
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -77,14 +92,16 @@ def main():
     You should test all the above functions here
     """
     # Test get_lat_long function
-    place_name = "Atlantic Warehouse"
-    latitude, longitude = get_lat_long(place_name)
-    print(f"Coordinates for {place_name} are lat:{latitude}, long:{longitude}")
+    place_name = "Boston Municipal Court Department"
+    longitude, latitude= get_lat_long(place_name)
+    print(f"Coordinates for {place_name} are lat: {latitude}, long: {longitude}")
 
     # Test get_nearest_station function
+    get_nearest_station(latitude, longitude)
+
     station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
-    # print(f"Nearest MBTA Station: {station_name}")
-    # print(f"Wheelchair Accessible: {wheelchair_accessible}")
+    print(f"The stop nearest to {place_name} is {station_name}. Is it wheelchair accesible: {wheelchair_accessible}")
+    
 
     # Test find_stop_near function
     # stop_name, stop_accessible = find_stop_near(place_name)
