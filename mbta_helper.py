@@ -7,12 +7,6 @@ import urllib.request
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/docs/swagger/swagger.json"
-query = "Babson College"
-query = query.replace(
-    " ", "%20"
-)  # In URL encoding, spaces are typically replaced with "%20"
-url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
-# #print(url)  # Try this URL in your browser first
 
 
 # A little bit of scaffolding if you want to use it
@@ -58,7 +52,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    
+    mbta_url = f"https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
     station_name = ""
     wheelchair_accessible = False
     nearest_station = ""
