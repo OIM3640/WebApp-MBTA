@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazing app to help you find the nearest MBTA station - Result</title>
+  </head>
+
+  <body>
+    <h1>nearest MBTA station Finder - Result</h1>
+    <p>Place Name or Address: {place_name}</p>
+    <p>Nearest MBTA Stop: {stop_name}</p>
+    <p>Wheelchair Accessiable: {% if is_accessible %} Yes {% else %} No {% endif %}</p>
+    <a href = '/'>Back to Search</a>
+  </body>
+</html>
