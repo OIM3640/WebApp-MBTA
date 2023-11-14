@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .red-text { color: rgb(136, 66, 66); }
+    </style>
     <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
-
-  <body>
-    <p>Hi</p>
-  </body>
+</head>
+<body>
+    <h1 class="red-text">Welcome to the MBTA Station Finder</h1>
+    <form action="/nearest_mbta" method="post">
+        <label for="place_name">Enter a place name:</label>
+        <input type="text" id="place_name" name="place_name" required>
+        
+        <label for="mode_of_travel">Choose a mode of travel:</label>
+        <select id="mode_of_travel" name="mode_of_travel">
+            <option value="metro">Metro</option>
+            <option value="bus">Bus</option>
+            <option value="commuter rail">Commuter Rail</option>
+            <option value="ferry">Ferry</option>
+        </select>
+        
+        <input type="submit" value="Find Station">
+    </form>
+</body>
 </html>
