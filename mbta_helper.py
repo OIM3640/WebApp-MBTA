@@ -18,6 +18,11 @@ def get_json(
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
+
+    geomapping: bool, true if you want to find latitude and longitude
+    place_name: str, the place name of the location you want to search for
+    latitude: float, latitude number
+    longitude: longitude number
     """
 
     if geomapping:
@@ -45,14 +50,14 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     df = get_json(geomapping=True, place_name=place_name)
 
     if not df["features"]:
-        return "Cannot find latitude and longtitude for this address"
+        return "Cannot find latitude and longitude for this address"
 
-    longtitude, latitude = (
+    longitude, latitude = (
         df["features"][1]["center"][0],
         df["features"][1]["center"][1],
     )
 
-    return longtitude, latitude
+    return longitude, latitude
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -65,7 +70,8 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     response_data = get_json(geomapping=False, latitude=latitude, longitude=longitude)
 
     if not response_data["data"]:
-        return "No station found", False
+        print("No station found")
+        return exit()
 
     # with open('mbta_response_data.json', 'w') as file:
     #         json.dump(response_data, file, indent=4) # For testing purpose, print to a seperate file
@@ -84,9 +90,10 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     This function might use all the functions above.
     """
 
-    latitude, longtitude = get_lat_long(place_name)
-    response_data = get_json(geomapping=False, latitude=latitude, longitude=longtitude)
+    longitude, latitude = get_lat_long(place_name)
 
+    response_data = get_json(geomapping=False, latitude=latitude, longitude=longitude)
+    
     stop_name, wheelchair_accessible = (
         response_data["data"][0]["attributes"]["name"],
         response_data["data"][0]["attributes"]["wheelchair_boarding"],
@@ -99,9 +106,9 @@ def main():
     """
     You should test all the above functions here
     """
-    place_name = "China Town"  # Change to other places you want
-    longtitude, latitude = get_lat_long(place_name)
-    print(get_nearest_station(latitude, longtitude))
+    place_name = "South Station"  # Change to other places you want
+    longitude, latitude = get_lat_long(place_name)
+    print(get_nearest_station(latitude, longitude))
     print(find_stop_near(place_name))
 
 
