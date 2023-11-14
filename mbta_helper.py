@@ -52,10 +52,12 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    mbta_url = f"https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    mbta_url = f"https://api-v3.mbta.com/stops?apikeysort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    print(mbta_url)
+
+
     station_name = ""
     wheelchair_accessible = False
-    nearest_station = ""
 
     return station_name, wheelchair_accessible
 
@@ -76,12 +78,12 @@ def main():
     You should test all the above functions here
     """
     # Test get_lat_long function
-    place_name = "Babson College"
-    # latitude, longitude = get_lat_long(place_name)
-    # print(f"Coordinates for {place_name} are lat:{latitude}, long:{longitude}")
+    place_name = "Atlantic Warehouse"
+    latitude, longitude = get_lat_long(place_name)
+    print(f"Coordinates for {place_name} are lat:{latitude}, long:{longitude}")
 
     # Test get_nearest_station function
-    # station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
     # print(f"Nearest MBTA Station: {station_name}")
     # print(f"Wheelchair Accessible: {wheelchair_accessible}")
 
@@ -92,9 +94,9 @@ def main():
     #lat, long = get_lat_long(place_name)
     #runner = str(lat) + str(long)
     #print(get_json(runner))
+
     #https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=42.364506&filter%5Blongitude%5D=-71.038887
 
-    print(get_json())
 
 
 if __name__ == "__main__":
