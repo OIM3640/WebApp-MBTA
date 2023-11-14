@@ -10,7 +10,7 @@ def MBTA_json(latitude, longitude):
         response_text = f.read().decode("utf-8")
         response_data = json.loads(response_text)
         return response_data
-        
 
-#MBTA_json("42.364506", "-71.038887")
+
+# MBTA_json("42.364506", "-71.038887")
 pprint.pprint(MBTA_json("42.364506", "-71.038887"))
