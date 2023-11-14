@@ -21,7 +21,7 @@ def find_mbta():
         latitude, longitude = get_lat_long(place_name)
         temperature = get_temp(latitude, longitude)
 
-        return f"{station}\n The current temperature of is {temperature[0]}°C, with the low being {temperature[1]}°C and the high being {temperature[2]}°C."
+        return f"{station}\n The current temperature of is {temperature[0]}°F, with the low for the day being {temperature[1]}°F and the high for the day being {temperature[2]}°F."
     else:
         return render_template("index.html")
 

@@ -76,7 +76,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 def get_temp(latitude, longitude):
     APIKEY = OPENWEATHERMAP_APIKEY
     country_code = "us"
-    weather_url = f"http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&APPID={APIKEY}&units=metric"
+    weather_url = f"http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&APPID={APIKEY}&units=imperial"
 
     response_data = get_json(weather_url)
     temp = response_data["main"]["temp"]
