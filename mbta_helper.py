@@ -40,7 +40,7 @@ def get_lat_long(place_name_inp: str) -> tuple[str, str]:
     if 'features' in response_data and response_data['features']:
         first_feature = response_data['features'][0]
         if 'center' in first_feature: # WHYYYYYYYY
-            return tuple(map(str, first_feature['center'])) ## feature is in the context of the geographical entities or locations returned in the API response 
+            return tuple(map(float, first_feature['center'])) ## feature is in the context of the geographical entities or locations returned in the API response 
     
     return None
 

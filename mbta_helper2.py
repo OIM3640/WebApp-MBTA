@@ -1,5 +1,5 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN, MBTA_API_KEY, place_name_input
+from config import MAPBOX_TOKEN, MBTA_API_KEY, place_name_inp
 
 import json
 from urllib import request, parse
@@ -75,7 +75,7 @@ def main():
     You should test all the above functions here
     """
     
-    place_name = "Babson College"
+    place_name = place_name_inp
     result = find_stop_near(place_name)
 
     if result:
