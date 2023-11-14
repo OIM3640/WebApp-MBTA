@@ -62,10 +62,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
     mbta = mb.MBTA_json(latitude, longitude)
-    #pprint.pprint(mbta)
-    data=(mbta["data"])
-    stop = data[0]
-    attributes  = stop["attributes"]
+    attributes = mbta["data"][0]["attributes"]
     station_name = attributes["name"]
     wheelchair_boarding = attributes["wheelchair_boarding"]
     wheelchair_accessible = "N/A"
@@ -81,7 +78,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    latitude, longitude = get_lat_long(place_name)
+    longitude, latitude = get_lat_long(place_name)
     station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
     return station_name, wheelchair_accessible
 
@@ -93,20 +90,21 @@ def main():
     """
     # Test get_lat_long function
     place_name = "Boston Municipal Court Department"
-    longitude, latitude= get_lat_long(place_name)
-    print(f"Coordinates for {place_name} are lat: {latitude}, long: {longitude}")
+    #longitude, latitude= get_lat_long(place_name)
+    # print(f"Coordinates for {place_name} are lat: {latitude}, long: {longitude}")
 
-    # Test get_nearest_station function
-    get_nearest_station(latitude, longitude)
+    # # Test get_nearest_station function
+    #print(get_nearest_station(latitude, longitude))
 
-    station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
-    print(f"The stop nearest to {place_name} is {station_name}. Is it wheelchair accesible: {wheelchair_accessible}")
+    # station_name, wheelchair_accessible = get_nearest_station(latitude, longitude)
+    # print(f"The stop nearest to {place_name} is {station_name}. Is it wheelchair accesible: {wheelchair_accessible}")
     
 
     # Test find_stop_near function
-    # stop_name, stop_accessible = find_stop_near(place_name)
-    # print(f"Nearest MBTA Stop: {stop_name}")
-    # print(f"Wheelchair Accessible: {stop_accessible}")
+    print(find_stop_near(place_name))
+    #stop_name, stop_accessible = find_stop_near(place_name)
+    #print(f"Nearest MBTA Stop: {stop_name}")
+    #print(f"Wheelchair Accessible: {stop_accessible}")
     #lat, long = get_lat_long(place_name)
     #runner = str(lat) + str(long)
     #print(get_json(runner))
