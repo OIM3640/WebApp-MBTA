@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-    <title>Let's find the closets MBTA station near you!</title>
+    <title>Amazing app to help you find the nearest MBTA station: Let's find the closets MBTA station near you!</title>
 <!-- Style is used from a previous class style made in Session19 -->
     <style>
       p{
@@ -35,8 +34,18 @@
   </head>
 
   <body>
-    <h1>Hello!</h1>
-    <h2>I am here to help you find the nearest MBTA station.</h2>
-    <h3>Use the field below to locate the closest station to you!</h3>
+    <header>
+      <h1>Hello!</h1>
+      <h2>I am here to help you find the nearest MBTA station.</h2>
+      <h3>Use the field below to locate the closest station to you!</h3>
+    </header>
+
+    <form action="/index" method="post">
+      <label for="place">Enter a place:</label>
+      <input type="text" id="place" name="place" required>
+
+      <button type="submit">Submit</button>
+    </form>
+
   </body>
 </html>
