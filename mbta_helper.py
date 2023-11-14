@@ -3,6 +3,7 @@ from config import MAPBOX_TOKEN, MBTA_API_KEY
 import json
 import pprint
 import urllib.request
+import mbta_builer as mb
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
@@ -52,9 +53,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    mbta_url = f"https://api-v3.mbta.com/stops?apikeysort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
-    print(mbta_url)
-
+    mbta = mb.MBTA_json(latitude, longitude)
 
     station_name = ""
     wheelchair_accessible = False
