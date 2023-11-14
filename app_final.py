@@ -12,11 +12,15 @@ def hello():
         user_location_input = request.form['user_location_input']
         answer_1, answer_2 = find_stop_near(user_location_input)
         #split answer into two variables and use them to say where the person is. 
-        return render_template('sucessful_query_results.html',
+        if answer_1 != 'failed':
+            return render_template('sucessful_query_results.html',
                     answer_1 = answer_1,
                     answer_2 = answer_2,
                     user_location_input = user_location_input
                     )
+        else:
+             return render_template('failed_query.html')
+
         
              
 

@@ -89,7 +89,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
             access = "Wheelchair Inaccessible"
         return (name, access)
     except ValueError as e:
-        return f"Sorry, {place_name} cannot be found in our servers. Please try another location."
+        return ('failed', 'failed')
 
 
 
@@ -101,7 +101,7 @@ def main():
     #print(get_lat_long('Babson College'))
     #latitude_1,longitude_1 = get_lat_long('Babson College')
     #print(get_nearest_station(latitude_1,longitude_1))
-    print(find_stop_near('Boston College'))
+    print(find_stop_near('Hell'))
     pass
 #Note for future programming --> should probably add if/else or try except statement for poor input, or non-address input like pure numbers or symbols. 
 
