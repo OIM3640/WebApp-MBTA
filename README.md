@@ -1,6 +1,8 @@
 # WebApp-MBTA
  Created by: Stephen Robinson-Wahl and Rohan Chakravarthy
 
+ ![image](https://github.com/OIM3640/WebApp-MBTA/assets/97844882/ea72d0ac-dbc5-4d1a-8acf-9087bb33e795)
+
 ## Project Writeup
  A summary of the project and our team's reflections.
 
