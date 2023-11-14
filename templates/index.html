@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
 
-  <body>
-    <p>Hi</p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazing app to help you find the nearest MBTA station</title>
+  <style>
+    h1 {
+      margin-top: 50px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: lightcoral;
+      size: 20pt;
+      font-family: 'Lucida Sans';
+    }
+
+    h2 {
+      padding: 10px;
+      text-align: center;
+      color: pink;
+      size: 10pt;
+      font-family: 'Lucida Sans';
+    }
+
+    form {
+      background-color: lavender;
+      text-align: center;
+      color: blueviolet;
+      font-family: 'Lucida';
+      font-weight: bold;
+      padding: 5%;
+      width: 80%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    body {
+      background-color: rgb(183, 220, 244)
+    }
+
+    button {
+      background: purple;
+      color: aliceblue;
+      font-style: italic;
+      padding: 1%;
+      margin-top: 10px
+    }
+
+    img {
+      width: 500px;
+      display: block;
+      margin: auto;
+      padding: 1%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Station Finder</h1>
+  <h2>Brought to you by Niusha Nikpour</h2>
+  <form action="" method="post">
+    <label for="place">
+      Enter where you currently are:
+      <input type="text" id="place" name="place" required />
+    </label>
+    </br>
+    <button type="submit">Find Nearest MBTA Station</button>
+  </form>
+  <img src="https://www.vanshnookenraggen.com/_index/wp-content/uploads/2015/05/System_future3.jpg" alt="MBTA Map">
+</body>
+
 </html>
