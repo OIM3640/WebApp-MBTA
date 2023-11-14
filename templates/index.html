@@ -1,13 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
 
-  <body>
-    <p>Hi</p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MBTA finder app</title>
+
+  <style>
+    body {
+      text-align: center;
+      background-color: lightgray;
+    }
+
+    .rearbgr {
+      background-image: linear-gradient(to bottom left, #faf9f6bd, #e4e0d5);
+      margin: 5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    form {
+      display: inline-block;
+    }
+
+    input {
+      height: 30px;
+      border-radius: 10px;
+      margin-bottom: 50px;
+    }
+
+    p {
+      font-size: 40px;
+      font-family: 'Times New Roman', Times, serif;
+      padding-top: 30px;
+    }
+
+    div.bgr {
+      width: 550px;
+      margin-top: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 40px;
+      background-color: white;
+      box-shadow: 20px 10px 10px darkgrey;
+    }
+
+    div.bgr:hover {
+      background-color: lightcyan;
+    }
+
+    img.map {
+      box-shadow: 20px 10px 10px darkgrey;
+      border-radius: 30px;
+      margin-bottom: 30px;
+    }
+
+    .credits {
+      font-size: 18px;
+      color: slategray;
+      margin-bottom: 10px;
+    }
+
+    .heading {
+      background-color: darkgray;
+      box-shadow: 20px 10px 10px darkslategray;
+      height: 40px;
+      width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .title {
+      color: black;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 28px;
+      padding-top: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="rearbgr">
+    <div class="heading">
+      <div class="innerhead">
+        <p class="title">Welcome to the MBTA Station Finder!</p>
+      </div>
+    </div>
+    <div class="bgr">
+      <p>Are you near an MBTA stop?
+        <form class="searchy" type="input" action="/result" method="post">
+          <input type="text" id="QUERY" placeholder="Enter your location." name="QUERY" required>
+            <button type="submit">Search</button>
+          </input>
+        </form>
+      </p>
+    </div>
+      <img class='map'
+        src='https://media.istockphoto.com/id/165766207/vector/metro-map.jpg?s=612x612&w=0&k=20&c=ODyF4Crok5h5wLR49nQoj0xlPV1MUoUV5mfohPOiVIg='>
+      <p class="credits">Site by Meowers LLC.</p>
+  </div>
+</body>
+
 </html>
