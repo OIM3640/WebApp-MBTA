@@ -2,8 +2,8 @@
 from config import MAPBOX_TOKEN, MBTA_API_KEY, place_name_inp
 
 import json
-import urllib.request
-import urllib.parse
+import json
+from urllib import request, parse
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -19,12 +19,10 @@ def get_json(url: str) -> dict:
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
 
-    with urllib.request.urlopen(url) as f:
+    with request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
         return json.loads(response_text)
         
-
-    
 
 
 def get_lat_long(place_name_inp: str) -> tuple[str, str]:
@@ -33,7 +31,7 @@ def get_lat_long(place_name_inp: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    query = urllib.parse.quote(place_name_inp)
+    query = parse.quote(place_name_inp)
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     response_data = get_json(url)
 
@@ -90,6 +88,8 @@ def main():
         station_name, wheelchair_accessible = result
         print(f"The nearest MBTA stop to {place_name_inp} is {station_name}.")
         print(f"Wheelchair Accessible: {wheelchair_accessible}.")
+    else: 
+        print("No result found.")
 
 
 if __name__ == '__main__':
