@@ -32,7 +32,7 @@ def get_lat_long(place_name_inp: str) -> tuple[str, str]:
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
     query = parse.quote(place_name_inp)
-    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&type=place'
     response_data = get_json(url)
 
     if 'features' in response_data and response_data['features']:
