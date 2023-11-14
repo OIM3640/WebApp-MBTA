@@ -10,15 +10,7 @@
     <h1> MBTA HELPER </h1>
     <H3>Welcome to the MBTA helper</H3>
     <p>Please insert an adress to find you the nearest MBTA station and see if it is accessible or not.</p>
-    {% if message = get_flashed_messages() %}
-      {% if message %}
-        {% for message in messages %}
-          <p style='color:red;'> {{message}}</p>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-    <form action="/mbta" method="post">
+       <form action="/mbta" method="post">
       <label for="place_name">
           Address:
           <input type="text" id ='place_name' name='place_name' requiered/>
