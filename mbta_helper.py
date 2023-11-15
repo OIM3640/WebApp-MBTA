@@ -62,7 +62,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool, float
     station_lat = data['data'][0]['attributes']['latitude']
     station_lon = data['data'][0]['attributes']['longitude']
 
-    distance = distance_to_station(float(longitude), float(latitude), station_lon, station_lat)
+    distance = round(distance_to_station(float(longitude), float(latitude), station_lon, station_lat),2)
 
     return station_name, wheelchair_accessible, distance
 

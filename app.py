@@ -14,8 +14,7 @@ def get_mbta_station():
 def find():
     place_name = request.form['place_name']
     station_name, is_accessible, distance = find_stop_near(place_name)
-    return render_template('place.html', station_name=station_name, is_accessible=is_accessible)
-
+    return render_template('place.html', station_name=station_name, is_accessible=is_accessible, distance=distance)
 
 @app.errorhandler(404)
 def page_not_found(e):  
