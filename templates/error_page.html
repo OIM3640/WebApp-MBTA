@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Page</title>
+  <style>
+   h1{
+    color: red;
+    font-size: xx-large;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+   }
+   h2{
+    color: red;
+    font-size: x-large;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+   }
+   button{
+    background-color: whitesmoke;
+    color: black;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: block;
+    margin:auto;
+  }
+   button:hover{
+    background-color: lightblue;
+   }
+   body{
+    background-color: lightgray;
+   }
+  </style>
+  </head>
+
+  <body>
+    <h1>An Error has Occured with your Request</h1>
+    <h2>Please Go Back and Try Again</h2>
+    <h2>The Location You Entered Does Not Have a Station Nearby</h2>
+    <button onclick="goBack()">Go Back</button>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+  </body>
+</html>

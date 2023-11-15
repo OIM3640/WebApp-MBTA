@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBTA Station Details</title>
+  <style>
+   p{
+      font-family: 'Times New Roman', Times, serif;
+      font-size: large;
+    }
+    h1{
+      font-size: xx-large;
+      font-weight: bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
+    }
+    h2{
+      font-size: x-large;
+      font-weight: bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
+    }
+    button{
+    background-color: whitesmoke;
+    color: black;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: block;
+    margin:auto;
+  }
+   button:hover{
+    background-color: lightblue;
+   }
+  </style>
+  </head>
+   
+  <body>
+    <h1> The closest MBTA station is:</h1>
+    <h2> {{name}}</h2>
+    <h2>{{wheelchair_access}}</h2>
+    <h1>The Temperature in Boston is</h1>
+    <h2>{{temp}}</h2>
+    <h1>The Temperature Feels Like it is</h1>
+    <h2>{{temp_feel}}</h2>
+    <button onclick="goBack()">Find Another Station</button>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+      </script>
+  </body>
+  </html>

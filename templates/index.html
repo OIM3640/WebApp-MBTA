@@ -4,10 +4,63 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
+    <title>Find the nearest MBTA station</title>
+  <style>
+    p{
+      font-family: 'Times New Roman', Times, serif;
+      font-size: large;
+    }
+    h1{
+      font-size: xx-large;
+      font-weight: bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
+      background-color: black;
+      color: whitesmoke;
+    }
+    button{
+      background-color: lightgray;
+    }
+    button:hover{
+      background-color: lightblue;
+    }
+    h2{
+      font-size: x-large;
+      font-weight: bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
+    }
+    form{
+      text-align: center;
+      font-size: large;    
+      font-weight: 900;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background-color: lightgrey;
+    }
+    body{
+      background-color: lightgray;
+    }
+
+  </style>
   </head>
 
   <body>
-    <p>Hi</p>
+    <h1>
+      <marquee behavior = "scroll" direction = "left" scrollamount="15"> Welcome, This Helpful App Can Help You Find The Nearest MBTA Station
+      </marquee>
+    </h1>
+    <h2>
+      Use The Search Bar Below To Find A Station
+    </h2>
+    <form method="post" action="/nearest_mbta" >
+      <label>Location: <input type="text" id = "location" name="location" placeholder="Enter a City or Location"/></label>
+      <button onclick="submit">Submit</button>
+
+    </form> 
+    <p align="center">
+      <img src="MBTA_Boston_subway_map.png" height="300" alt="Illustration of the Boston MBTA " />
+      </p>
+      <p align="center">
+      </p>
   </body>
 </html>
