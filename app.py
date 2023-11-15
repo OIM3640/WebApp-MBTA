@@ -1,24 +1,23 @@
 from flask import Flask, render_template, request
+import mbta_helper as mh
 
 
 app = Flask(__name__)
 
+# @app.route('/mbta', methods=['GET', 'POST'])
+@app.get('/')
+def mbta_get():
+    return render_template('index.html')
 
-@app.route('/')
-<<<<<<< Updated upstream
-def home():
-    return render_template("website.html")
-=======
-def index():
-    return render_template("index.html")
->>>>>>> Stashed changes
+@app.post('/')
+def mbta_post():
+    location_name = request.form.get('query')
+    station = mh.find_stop_near(location_name)
+    return render_template('index.html', query = location_name, stop_name = station)
 
-@app.route('/record_input', methods=['POST'])
-def record_input():
-    input_variable = request.form.get('input_variable')
-    print(f"Recorded input variable: {input_variable}")
-    # Add your own processing logic here
-    return f"Input variable recorded: {input_variable}"
+  
+
+
 
 
 
