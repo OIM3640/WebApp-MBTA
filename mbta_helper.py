@@ -42,9 +42,23 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     mapbox_dict = get_json(url)
+    
     lat, long = mapbox_dict['features'][0]['center']
 
     return lat, long
+
+def get_city(place_name: str) -> str:
+    """
+    Given a place name or address, return the name of the city that place is in
+    """
+    # get mapbox dictionary
+    query = place_name
+    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
+    url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    mapbox_dict = get_json(url)
+
+    city = mapbox_dict['features'][0]['context'][0]['text']
+    return city
 
 # print(get_lat_long('Babson College'))
 
@@ -85,6 +99,7 @@ def main():
     You should test all the above functions here
     """
     print(find_stop_near('Boston Common'))
+    print(get_city('Babson College'))
 
 
 if __name__ == '__main__':
