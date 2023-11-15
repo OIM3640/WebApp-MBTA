@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Station</title>
+</head>
+<body>
+    <h1>Nearest MBTA Station to {{ place_name }}</h1>
+    <p>Station Name: {{ closest_stop['name'] }}</p>
+    <p>Wheelchair Accessible: {% if closest_stop['accessible'] %}Yes{% else %}No{% endif %}</p>
+
+    <h2>Weather Information</h2>
+    <p>Temperature: {{ temperature }} °C</p>
+    <p>Weather Condition: {{ condition }}</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
