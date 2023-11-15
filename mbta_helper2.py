@@ -67,12 +67,18 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     return None, None
 
 
+def get_map_url() -> str:
+    """
+    Return the Mapbox WMTS URL for map integration.
+    """
+    return "https://api.mapbox.com/styles/v1/nguilla1/cloz94yyd00tf01qj3nj49452/wmts?access_token=pk.eyJ1Ijoibmd1aWxsYTEiLCJhIjoiY2xveGh4bXV4MTM2ZzJtcGZhOGpxY2kyZyJ9.z1jCcbODGXBMy0qbzVAHAA"
+
+
 def main():
     """
     You should test all the above functions here.
     """
-    
-    place_name = get_user_input()
+    place_name = input("Enter the name of a city: ")
     result = find_stop_near(place_name)
 
     if result:
