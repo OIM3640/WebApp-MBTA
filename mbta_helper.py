@@ -3,7 +3,6 @@ from config import MAPBOX_TOKEN, MBTA_API_KEY
 import requests
 import json
 from urllib import parse
-
 from math import radians, cos, sin, asin, sqrt
 
 
@@ -36,6 +35,11 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     return str(latitude), str(longitude)
 
 def distance_to_station(lon1, lat1, lon2, lat2):
+    """
+    Calculate the distance between the address given and the closest station. 
+    We used the Haversine formula to find the distance. The Haversine formula calculate the great circle distance in km between two points on Earth's surface. 
+    """
+    
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 
     # Haversine formula to find the distance. 
@@ -45,7 +49,6 @@ def distance_to_station(lon1, lat1, lon2, lat2):
     c = 2 * asin(sqrt(a)) 
     r = 6371 
     return c * r
-
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool, float]:
     """
