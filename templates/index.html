@@ -4,10 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
+    <title>Find the nearest MBTA station</title>
   </head>
-
   <body>
-    <p>Hi</p>
+    <h1> MBTA HELPER </h1>
+    <H3>Welcome to the MBTA helper</H3>
+    <p>Please insert an address to find you the nearest MBTA station, the distance between your location and the station, and see if it is wheelchair accessible or not.</p>
+       <form action="/mbta" method="post">
+      <label for="place_name">
+          Address:
+          <input type="text" id ='place_name' name='place_name' requiered/>
+          <button type="submi">Find</button>
+      </label>
   </body>
 </html>
+
