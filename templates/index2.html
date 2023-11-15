@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Stop Finder</title>
+<style> 
+body{background-image: url("https://www.worldtravelguide.net/wp-content/uploads/2018/04/shu-HERO-USA-Massachusetts-Boston-1059451214-Marcio-Jose-Bastos-Silva-1440x823.jpg");}
+form{
+    background-color: bisque;
+    padding: 5px;
+}
+
+
+</style>
+</head>
+<body>
+    <h1>MBTA Stop Finder</h1>
+    <form action="/search" method="post">
+        <label for="place_name">Enter a place name or address:</label>
+        <input type="text" id="place_name" name="place_name" required>
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>
