@@ -8,13 +8,10 @@ import pprint
 import urllib.request
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
-MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-query = 'Harvard'
-query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
-url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 
 
-MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
+
+# MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # real_url = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={70}&filter%5Blongitude%5D={80}'
 
@@ -31,7 +28,7 @@ def get_json(url: str) -> dict:
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
         response_data = json.loads(response_text)
-        pprint.pprint(response_data)
+        # pprint.pprint(response_data)
     return response_data
 
 
@@ -41,11 +38,15 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
+    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+    query = 'Harvard'
+    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     link1 = get_json(url)
     for i in range(len(link1['features'])):
         if link1['features'][i]['properties']['address'] == place_name:
             return link1['features'][i]['geometry']['coordinates'][1], link1['features'][i]['geometry']['coordinates'][0]
-
+    return ('none', 'none')
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -61,7 +62,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
                 return stop_data['data'][i]['relationships']['parent_station'], True
             else:
                 return stop_data['data'][i]['relationships']['parent_station'], False
-    return 'None'
+    return ('None', False)
 
 
 
@@ -89,7 +90,7 @@ def main():
     # get_nearest_station('42.37431', '-71.11811')   
     # place_name = input('Give me a Place Name: ')
     # print(find_stop_near('Harvard - Brattle Square'))
-    # print(find_stop_near('26 Oxford St'))
+    print(find_stop_near('26 Oxford St'))
 
 
 if __name__ == '__main__':
