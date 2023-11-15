@@ -1,2 +1,11 @@
-# WebApp-MBTA
- This is the base repository for Web App Developement project. Please read [instructions](instructions.md). 
+# **WebApp-MBTA Helper**
+## *Team: Alice Minkov-Temis*
+
+## **Project Overview**
+In this project, I created a MBTA helper where people can input a city name, and the output will show the nearest MBTA station for the front end of the project. Regarding the back end, I started by using MapBox and created into  into a JSON format using the 'Boston Logan Airport' as the location. Once I found the latitude and longitutde coordinates of this location, I created functions where a you can find a location based on the name, and vice versa, where you can input the coordinates and find the name of the location. Furthermore, I then used MBTA Helper API to see if there are any nearby MBTA stations and if they are weelchair accessible by using the coordinate information received from the earlier functions. Finally, I created a function to combine all the above functions to create a function where a user can input a location, and it will output the closest MBTA station. Combining this code, I created a web app where users can input a city and find the nearest MBTA station. 
+
+## **Reflection**
+1. Although the coding aspect of this project was minimal, I still struggled integrating the APIs with my code. My code doesn't fully work as something went wrong with the MBTA and MapBox integration and every result given when entering a city name is 'None.' I've spent countless hours on this problem and still don't fully understand what went wrong. Turning the url into JSON format went well, but I could not get the nearest station information from MBTA helper. Even when I inputed my API key into the URL, it didn't work. I could improve on problem solving skills and persevering until my code works. Often times, I spent countless hours on these assignments and in the end, I give up when my code doesn't work. I should reach out for help when this happens instead of quitting (which I think is a large reason why I dislike coding). 
+2. I worked alone, so I didn't have any problems with other team members. However, in the future, I would be more motivated to work with a team since they can offer more perspective on debugging and help collaborate on coding assignments.
+3. From a learning perspective, I understood Flask integration better and how to essentially create a dynammic website. I also gained a better understanding on the importance of APIs and API keys, and how to use the information given by an API into my code. ChatGPT helped me understand certain syntax used in Flask such as '@app.route' and '@app.get.'
+
