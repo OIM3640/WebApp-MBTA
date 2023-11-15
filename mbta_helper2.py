@@ -17,7 +17,6 @@ def get_json(url: str) -> dict:
     """
     with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
-        print(json.loads(response_text))
         return json.loads(response_text)
 
 
@@ -26,15 +25,13 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     Given a place name or address, return a (latitude, longitude) tuple
     with the coordinates of the given place.
     """
-    query = place_name
-    query = query.replace(' ', '%20') 
+    query = urllib.parse.quote(place_name)
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     response_data = get_json(url)
 
     if 'features' in response_data and response_data['features']:
         first_feature = response_data['features'][0]
         if 'center' in first_feature:
-            print(tuple(map(str, first_feature['center'])))
             return tuple(map(str, first_feature['center']))
 
     return None
@@ -51,7 +48,6 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     if 'data' in response_data_station and response_data_station['data']:
         closest_station = response_data_station['data'][0]['attributes']['name']
         wheelchair_accessible = response_data_station['data'][0]['attributes']['wheelchair_boarding'] == 1
-        print(closest_station, wheelchair_accessible)
         return closest_station, wheelchair_accessible
 
     return None
@@ -66,18 +62,23 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     if coordinates:
         latitude, longitude = coordinates
-        print(f"lat= {latitude}, long = {longitude}")
         return get_nearest_station(latitude, longitude)
 
     return None, None
+
+
+def get_map_url() -> str:
+    """
+    Return the Mapbox WMTS URL for map integration.
+    """
+    return "https://api.mapbox.com/styles/v1/nguilla1/cloz94yyd00tf01qj3nj49452/wmts?access_token=pk.eyJ1Ijoibmd1aWxsYTEiLCJhIjoiY2xveGh4bXV4MTM2ZzJtcGZhOGpxY2kyZyJ9.z1jCcbODGXBMy0qbzVAHAA"
 
 
 def main():
     """
     You should test all the above functions here.
     """
-    
-    place_name = "Boston Common"
+    place_name = input("Enter the name of a city: ")
     result = find_stop_near(place_name)
 
     if result:
