@@ -1,13 +1,76 @@
 <!DOCTYPE html>
+<!-- specifies that language is in english -->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
 
-  <body>
-    <p>Hi</p>
-  </body>
+<head>
+    <!-- UTF-8 is a widely-used character encoding capable of encoding all characters in the Unicode standard. -->
+    <meta charset="UTF-8" />
+    <title>Help you find the nearest MBTA station</title>
+
+    <style>
+        /* h1{
+
+        border: 3px solid black;
+        border-radius: 5px;
+        } */
+        body {
+
+            background-color: rgb(236, 236, 236);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+
+        }
+
+        form {
+            background: #fff;
+            /* padding is to create the small background  */
+            padding: 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            /* Pointer for when you hover over button */
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* color changes when you hover over the submit button */
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- learned how to do this here: https://www.w3schools.com/charsets/ref_emoji_transport.asp -->
+    <h1>MBTA HELPER <span style='font-size:50px;'>&#128644;</span> </h1>
+
+    <h3>I will find the nearest MBTA station to the address you provide</h3>
+    <h4> MBTA = Massachusetts Bay Transportation Authority</h4>
+    <form action="/mbta/" method="post">
+        <!-- These lines are for error handling -->
+        {% if error %}
+        <p class="red">This equation does not have real number solution.</p>
+        {% endif %}
+
+        <!-- Defines a text input field where the user can enter a place name and allows to submit by using a submit button -->
+        <label>Please enter a place in Boston (For accurate results, write the complete street address):
+            <input type="text" name="place_name" />
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p></p>
+</body>
+
 </html>
