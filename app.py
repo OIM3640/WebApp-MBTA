@@ -18,6 +18,5 @@ def find_station():
     else:
         return render_template('results.html', message='No results found. Please try again.')
     
-    
 if __name__ == '__main__':
     app.run(debug=True)

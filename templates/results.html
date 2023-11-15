@@ -27,11 +27,9 @@
     <h1>MBTA Station Results</h1>
     {% if station_name %}
         <p><strong>Station Name:</strong> {{ station_name }}</p>
-        <p><strong>Distance:</strong> {{ distance }} miles</p>
         <p><strong>Wheelchair Accessible:</strong> {% if wheelchair_accessible %}Yes{% else %}No{% endif %}</p>
     {% else %}
         <p>{{ message }}</p>
     {% endif %}
     <a href="{{ url_for('home') }}">Go back to the homepage</a>
 </body>
-</html>
