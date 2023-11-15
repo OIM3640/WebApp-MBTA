@@ -15,13 +15,15 @@
         background-color: white;
       }
     </style>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
   </head>
   <body>
     <h1>
-      Enter a location. Find the nearest train station.
+      Enter a location. Find the nearest train station.</h1>
 
 
-    <form action="https://www.google.com/search">
+    <form action="">
         <label> 
             Search: <input type="text" name="q">
             <button>Submit</button>
@@ -29,7 +31,7 @@
     </form>
 
 
-    
+    <py-script src="./mbta_helper.py"></py-script>
 
     <!-- some comments -->
     <footer>Jack Shangold and Alec Leyva&copy;</footer>
