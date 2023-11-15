@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBTA_Station</title>
+  </head>
+  <style>
+    body {
+        text-align: center
+    }
+
+    p {
+        color: whitesmoke;
+        background-color: palevioletred;
+        font-size: 20px
+    }
+</style>
+  <body>
+    <p>
+      The nearest MBTA station to {{place_name}} is {{station}}. 
+    </p>
+
+      {% if wheelchair == 1 %}
+      <p>The status of wheelchair accessibility of {{station}}n is wheelchair accessible.</p>
+      {% else %}
+      <p>The status of wheelchair accessibility of {{staion}} is not wheelchair accessible.</p>
+      {% endif %}      
+
+    <p>
+      The weather at {{place_name}} is {{weather}} degrees Celsius.
+    </p>
+  </body>
+</html>
+
