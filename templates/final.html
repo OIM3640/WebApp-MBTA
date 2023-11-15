@@ -2,15 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
+    <title>Nearest MBTA Station</title>
     <style>
       h2 {
         padding: 30px;
         text-align: center;
         background-color: #165c96;
         color: #fff;
+      }
+      p {
+        text-align: center;
+        font-size: large;
       }
       button {
         border-color: black;
@@ -33,21 +36,16 @@
     </style>
   </head>
   <body>
-    <h2>
-      Hello my friend! Please enter a location to find the nearest MBTA station.
-    </h2>
-    <form action="/station/" method="post">
-      <label for=""
-        >Location:
-        <input
-          type="text"
-          name="place_name"
-          placeholder="Please enter a location"
-      /></label>
-      <button type="submit">Find Closest MBTA Station</button>
-    </form>
-    <form action="/" method="get">
-      <button type="submit">Go Back</button>
+    <h2>MBTA Station Results</h2>
+    <p>Hello my friend! {{ station }}</p>
+    <p>
+      The current temperature is {{ temperature[0] }}°F, with the low for the
+      day being {{ temperature[1] }}°F and the high for the day being {{
+      temperature[2] }}°F.
+    </p>
+
+    <form action="/station/" method="get">
+      <button type="submit">Try Another Location</button>
     </form>
   </body>
 </html>

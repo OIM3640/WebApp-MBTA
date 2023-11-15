@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
+    <title>Homepage of MBTA Helper</title>
     <style>
-      h2 {
+    h2 {
         padding: 30px;
         text-align: center;
         background-color: #165c96;
@@ -16,7 +16,7 @@
         border-color: black;
         padding: 2px 5px;
         text-align: center;
-        font-size: 0.8rem;
+        font-size: 1.2rem;
         cursor: pointer;
         border-radius: 1px;
         background-color: #165c96;
@@ -30,24 +30,12 @@
         align-items: center;
         margin-top: 20px;
       }
-    </style>
+        </style>
   </head>
-  <body>
-    <h2>
-      Hello my friend! Please enter a location to find the nearest MBTA station.
-    </h2>
-    <form action="/station/" method="post">
-      <label for=""
-        >Location:
-        <input
-          type="text"
-          name="place_name"
-          placeholder="Please enter a location"
-      /></label>
-      <button type="submit">Find Closest MBTA Station</button>
+<body>
+    <h2>Click to use the MBTA Helper app!</h1>
+    <form action="/station" method="get">
+        <button type="submit">Go to MBTA Helper</button>
     </form>
-    <form action="/" method="get">
-      <button type="submit">Go Back</button>
-    </form>
-  </body>
+</body>
 </html>
