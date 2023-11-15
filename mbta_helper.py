@@ -73,8 +73,8 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
         print("No station found")
         return exit()
 
-    # with open('mbta_response_data.json', 'w') as file:
-    #         json.dump(response_data, file, indent=4) # For testing purpose, print to a seperate file
+    with open('mbta_response_data.json', 'w') as file:
+            json.dump(response_data, file, indent=4) # For testing purpose, print to a seperate file
 
     station_name = response_data["data"][0]["relationships"]["parent_station"]["data"][
         "id"
@@ -106,7 +106,7 @@ def main():
     """
     You should test all the above functions here
     """
-    place_name = "South Station"  # Change to other places you want
+    place_name = "Boston Common"  # Change to other places you want
     longitude, latitude = get_lat_long(place_name)
     print(get_nearest_station(latitude, longitude))
     print(find_stop_near(place_name))
