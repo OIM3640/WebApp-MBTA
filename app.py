@@ -3,20 +3,24 @@ import mbta_helper2
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    if request.method == 'POST':
+        address = request.form.get('address')
+        
+        # Validate the address
+        if not address:
+            return render_template('index.html', message='Please enter a valid address.')
 
-@app.route('/', methods=['POST'])
-def find_station():
-    address = request.form.get('address')
-    station_info = mbta_helper2.find_stop_near(address)
+        # Call mbta_helper2 to get the data
+        station_name, wheelchair_accessible, map_url = mbta_helper2.find_stop_near(address)
 
-    if station_info:
-        station_name, wheelchair_accessible = station_info
-        return render_template('results.html', station_name=station_name, wheelchair_accessible=wheelchair_accessible)
-    else:
-        return render_template('results.html', message='No results found. Please try again.')
-    
+        if station_name:
+            return render_template('result.html', station_name=station_name, wheelchair_accessible=wheelchair_accessible, map_url=map_url)
+        else:
+            return render_template('index.html', message='No MBTA stop found for the given address.')
+
+    return render_template('index.html', message='')
+
 if __name__ == '__main__':
     app.run(debug=True)
