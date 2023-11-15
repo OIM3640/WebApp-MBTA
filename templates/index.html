@@ -1,13 +1,39 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Helper</title>
+</head>
+<body>
+    <h1>MBTA Helper</h1>
+    
+    <form method="post" action="/">
+        <label for="place_name">Enter a place name:</label>
+        <input type="text" id="place_name" name="place_name" required>
+        
+        <!-- Add a dropdown for preferred mode of transportation -->
+        <label for="transportation_mode">Select your preferred mode of transportation:</label>
+        <select id="transportation_mode" name="transportation_mode">
+            <option value="all">All</option>
+            <option value="bus">Bus</option>
+            <option value="subway">Subway</option>
+            <option value="commuter_rail">Commuter Rail</option>
+        </select>
 
-  <body>
-    <p>Hi</p>
-  </body>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if place_name %}
+        <p>Place Name: {{ place_name }}</p>
+        <p>Coordinates: {{ assignment3_mbtahelper.get_lat_long(place_name) }}</p>
+    {% endif %}
+
+    {% if not place_name %}
+        <p style="color: red;">Please enter a place name.</p>
+    {% endif %}
+
+</body>
 </html>
+
