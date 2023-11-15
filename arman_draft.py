@@ -1,12 +1,20 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN, MBTA_API_KEY
+# from config import MAPBOX_TOKEN, MBTA_API_KEY
 
+import json
+import pprint
+import urllib.request
 
+MBTA_API_KEY = '12d9224354af4b5e9e49fbbc5e272d17'
+MAPBOX_TOKEN = 'pk.eyJ1IjoiYXJtYW5iYWJvIiwiYSI6ImNsb3E5azFyMTBlZ2QybXBxZHdvMzJqOWQifQ.WFgwpxUmfIooCJwFeD_DIw'
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
-
+# query = 'Babson College'
+query = str(input("Where are you located?")) 
+query = query.replace(' ', '%20')
+url= f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 # A little bit of scaffolding if you want to use it
 def get_json(url: str) -> dict:
     """
@@ -14,9 +22,12 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+    return response_data
 
-    pass
-
+#pprint.pprint(get_json(url))
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
     """
@@ -24,11 +35,13 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    json_file = get_json()
-    long_lat = json_file['features'][1]['geometry']['coordinates']
+
+    json_file = get_json(url)
+    long_lat = json_file['features'][0]['center']
     coordinates = (long_lat[1],long_lat[0])
     return coordinates
-    pass
+    
+
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -37,6 +50,9 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
+    #curl -X GET "https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=42.355621&filter%5Blongitude%5D=-71.071235" -H "accept: application/vnd.api+json"
+    #curl -X GET "https://api-v3.mbta.com/stops?api_key={}sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}" -H "accept: application/vnd.api+json"
+
     pass
 
 
@@ -53,9 +69,9 @@ def main():
     """
     You should test all the above functions here
     """
+    print(get_lat_long('Boston Common'))
     pass
 
 
 if __name__ == '__main__':
     main()
-#curl -X GET "https://api-v3.mbta.com/stops?sort=distance&filter%5Blatitude%5D=42.355621&filter%5Blongitude%5D=-71.071235" -H "accept: application/vnd.api+json"
