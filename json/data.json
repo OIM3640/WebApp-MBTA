@@ -1,0 +1,338 @@
+{
+    "type": "FeatureCollection",
+    "query": [
+        "boston",
+        "common"
+    ],
+    "features": [
+        {
+            "id": "poi.77309419149",
+            "type": "Feature",
+            "place_type": [
+                "poi"
+            ],
+            "relevance": 1,
+            "properties": {
+                "wikidata": "Q49132",
+                "landmark": true,
+                "address": "Tremont St",
+                "foursquare": "4283ee00f964a520dd221fe3",
+                "category": "historic site, historic"
+            },
+            "text": "Boston Common",
+            "place_name": "Boston Common, Tremont St, Boston, Massachusetts 02111, United States",
+            "center": [
+                -71.065219,
+                42.3552435
+            ],
+            "geometry": {
+                "coordinates": [
+                    -71.065219,
+                    42.3552435
+                ],
+                "type": "Point"
+            },
+            "context": [
+                {
+                    "id": "neighborhood.58649836",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBMzdzN0E",
+                    "text": "Boston Common"
+                },
+                {
+                    "id": "postcode.3477228",
+                    "mapbox_id": "dXJuOm1ieHBsYzpOUTdz",
+                    "text": "02111"
+                },
+                {
+                    "id": "place.33908972",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBZ1ZvN0E",
+                    "wikidata": "Q100",
+                    "text": "Boston"
+                },
+                {
+                    "id": "district.22259436",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBVk9tN0E",
+                    "wikidata": "Q54072",
+                    "text": "Suffolk County"
+                },
+                {
+                    "id": "region.353516",
+                    "mapbox_id": "dXJuOm1ieHBsYzpCV1Rz",
+                    "wikidata": "Q771",
+                    "short_code": "US-MA",
+                    "text": "Massachusetts"
+                },
+                {
+                    "id": "country.8940",
+                    "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "poi.987842531495",
+            "type": "Feature",
+            "place_type": [
+                "poi"
+            ],
+            "relevance": 1,
+            "properties": {
+                "foursquare": "4e725bf152b1aabf9618a0c2",
+                "landmark": true,
+                "category": "historic site, historic"
+            },
+            "text": "Boston Commons - The Gazebo",
+            "place_name": "Boston Commons - The Gazebo, Boston, Massachusetts 02111, United States",
+            "center": [
+                -71.064822,
+                42.354107
+            ],
+            "geometry": {
+                "coordinates": [
+                    -71.064822,
+                    42.354107
+                ],
+                "type": "Point"
+            },
+            "context": [
+                {
+                    "id": "neighborhood.58649836",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBMzdzN0E",
+                    "text": "Boston Common"
+                },
+                {
+                    "id": "postcode.3477228",
+                    "mapbox_id": "dXJuOm1ieHBsYzpOUTdz",
+                    "text": "02111"
+                },
+                {
+                    "id": "place.33908972",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBZ1ZvN0E",
+                    "wikidata": "Q100",
+                    "text": "Boston"
+                },
+                {
+                    "id": "district.22259436",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBVk9tN0E",
+                    "wikidata": "Q54072",
+                    "text": "Suffolk County"
+                },
+                {
+                    "id": "region.353516",
+                    "mapbox_id": "dXJuOm1ieHBsYzpCV1Rz",
+                    "wikidata": "Q771",
+                    "short_code": "US-MA",
+                    "text": "Massachusetts"
+                },
+                {
+                    "id": "country.8940",
+                    "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "poi.833223741064",
+            "type": "Feature",
+            "place_type": [
+                "poi"
+            ],
+            "relevance": 1,
+            "properties": {
+                "foursquare": "4b2a3b0af964a5204fa624e3",
+                "landmark": true,
+                "address": "10 High St",
+                "category": "cafe, coffee, tea, tea house",
+                "maki": "cafe"
+            },
+            "text": "Boston Common Coffee Company",
+            "place_name": "Boston Common Coffee Company, 10 High St, Boston, Massachusetts 02110, United States",
+            "center": [
+                -71.056325,
+                42.353095
+            ],
+            "geometry": {
+                "coordinates": [
+                    -71.056325,
+                    42.353095
+                ],
+                "type": "Point"
+            },
+            "context": [
+                {
+                    "id": "neighborhood.214338796",
+                    "mapbox_id": "dXJuOm1ieHBsYzpETWFNN0E",
+                    "wikidata": "Q1381137",
+                    "text": "Financial District"
+                },
+                {
+                    "id": "postcode.3469036",
+                    "mapbox_id": "dXJuOm1ieHBsYzpOTzdz",
+                    "text": "02110"
+                },
+                {
+                    "id": "place.33908972",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBZ1ZvN0E",
+                    "wikidata": "Q100",
+                    "text": "Boston"
+                },
+                {
+                    "id": "district.22259436",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBVk9tN0E",
+                    "wikidata": "Q54072",
+                    "text": "Suffolk County"
+                },
+                {
+                    "id": "region.353516",
+                    "mapbox_id": "dXJuOm1ieHBsYzpCV1Rz",
+                    "wikidata": "Q771",
+                    "short_code": "US-MA",
+                    "text": "Massachusetts"
+                },
+                {
+                    "id": "country.8940",
+                    "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "poi.317827635564",
+            "type": "Feature",
+            "place_type": [
+                "poi"
+            ],
+            "relevance": 1,
+            "properties": {
+                "foursquare": "4bd35b80046076b00fe47571",
+                "landmark": true,
+                "address": "Boston Common",
+                "category": "playground, leisure"
+            },
+            "text": "Boston Common Carousel",
+            "place_name": "Boston Common Carousel, Boston Common, Boston, Massachusetts 02111, United States",
+            "center": [
+                -71.066686,
+                42.355949
+            ],
+            "geometry": {
+                "coordinates": [
+                    -71.066686,
+                    42.355949
+                ],
+                "type": "Point"
+            },
+            "context": [
+                {
+                    "id": "neighborhood.58649836",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBMzdzN0E",
+                    "text": "Boston Common"
+                },
+                {
+                    "id": "postcode.3477228",
+                    "mapbox_id": "dXJuOm1ieHBsYzpOUTdz",
+                    "text": "02111"
+                },
+                {
+                    "id": "place.33908972",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBZ1ZvN0E",
+                    "wikidata": "Q100",
+                    "text": "Boston"
+                },
+                {
+                    "id": "district.22259436",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBVk9tN0E",
+                    "wikidata": "Q54072",
+                    "text": "Suffolk County"
+                },
+                {
+                    "id": "region.353516",
+                    "mapbox_id": "dXJuOm1ieHBsYzpCV1Rz",
+                    "wikidata": "Q771",
+                    "short_code": "US-MA",
+                    "text": "Massachusetts"
+                },
+                {
+                    "id": "country.8940",
+                    "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        },
+        {
+            "id": "poi.1168231138151",
+            "type": "Feature",
+            "place_type": [
+                "poi"
+            ],
+            "relevance": 1,
+            "properties": {
+                "foursquare": "4bd59d6b6f649521e3506fec",
+                "landmark": true,
+                "address": "139 Tremont St",
+                "category": "park",
+                "maki": "picnic-site"
+            },
+            "text": "Boston Common Visitor Center",
+            "place_name": "Boston Common Visitor Center, 139 Tremont St, Boston, Massachusetts 02111, United States",
+            "center": [
+                -71.06376,
+                42.355383
+            ],
+            "geometry": {
+                "coordinates": [
+                    -71.06376,
+                    42.355383
+                ],
+                "type": "Point"
+            },
+            "context": [
+                {
+                    "id": "neighborhood.58649836",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBMzdzN0E",
+                    "text": "Boston Common"
+                },
+                {
+                    "id": "postcode.3477228",
+                    "mapbox_id": "dXJuOm1ieHBsYzpOUTdz",
+                    "text": "02111"
+                },
+                {
+                    "id": "place.33908972",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBZ1ZvN0E",
+                    "wikidata": "Q100",
+                    "text": "Boston"
+                },
+                {
+                    "id": "district.22259436",
+                    "mapbox_id": "dXJuOm1ieHBsYzpBVk9tN0E",
+                    "wikidata": "Q54072",
+                    "text": "Suffolk County"
+                },
+                {
+                    "id": "region.353516",
+                    "mapbox_id": "dXJuOm1ieHBsYzpCV1Rz",
+                    "wikidata": "Q771",
+                    "short_code": "US-MA",
+                    "text": "Massachusetts"
+                },
+                {
+                    "id": "country.8940",
+                    "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+                    "wikidata": "Q30",
+                    "short_code": "us",
+                    "text": "United States"
+                }
+            ]
+        }
+    ],
+    "attribution": "NOTICE: © 2023 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+}
