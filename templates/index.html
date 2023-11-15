@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
-
-  <body>
-    <p>Hi</p>
-  </body>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Hello Page</title>
+    </head>
+    <body>
+        <h1>Welcome to the MBTA Stop Finder</h1>
+        <form method = "POST" action="{{ url_for('nearest_mbta')}}">
+            <p>Please enter your location:</p>
+            <p>
+                <label for="location">Location:</label>
+                <input type="text" size="10" name="Location" required>
+            </p>
+            <p>
+                <input type="submit" value="Find"/>
+            </p>
+        </form>
+    </body>
 </html>

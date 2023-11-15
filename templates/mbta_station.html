@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MBTA Stop Information</title>
+</head>
+    <body>
+        <h1>MBTA Stop Information</h1>
+        <p>{{ result }}</p>
+        {% if accessible == 0 %}
+            <p>This stop has no information about wheelchair access.</p>
+        {% elif accessible == 1 %}
+            <p>This stop is wheelchair accessible.</p>
+        {% elif accessible == 2 %}
+            <p>This stop is not wheelchair accessible.</p>
+        {% endif %}
+        <div id="weather">
+            <h2>{{ weather_info.large }}</h2>
+            <p>{{ weather_info.small }}</p>
+        </div>
+        <p><a href="{{ url_for('index')}}">Go back to home page</a></p>
+    </body>
+</html>
