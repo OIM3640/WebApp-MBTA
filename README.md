@@ -1,2 +1,8 @@
-# WebApp-MBTA
- This is the base repository for Web App Developement project. Please read [instructions](instructions.md). 
+# 1. Project Overview
+This project is an application enabling users to input a point of interest or address in Boston, obtaining information on the nearest MBTA station and its wheelchair accessibility. We implemented a Flask web app to showcase this functionality. The source code resides in mbta_helper.py, the HTML in index.html, the Flask app in app.py, API tokens in config.py, and project details in README.py.
+# 2. Reflection (~3 paragraphs + screenshots)
+The project unfolded effectively, with our collaborative efforts standing out. Our teamwork was a highlight; tasks were distributed efficiently, covering each other's blind spots. While the project scope was clear, additional guidance on constructing the URL would have been beneficial during moments of uncertainty. We encountered challenges where we sought a more self-reliant approach without frequent consultations with ChatGPT. Successful testing led to minor adjustments, such as handling a list index error when no station was within 0.5 miles, showcasing our emphasis on practical solutions as the "Wow" factor.
+
+This project significantly deepened our understanding of application development and Flask for web deployment. Insights gained include troubleshooting and leveraging resources like ChatGPT and peer collaboration. Future applications are envisioned, with Jeffrey aiming to code apps for his father's business, and Shawn aspiring to develop a basketball analytics application. The acquired knowledge aligns with Jeffrey's pursuit of a Tech Concentration in product development. A notable learning point was the necessity of switching latitude and longitude variables in the URL construction, a realization that emerged after nearly an hour of troubleshooting.
+
+Overall, this project proved highly rewarding for Jeffrey and Shawn. It challenged our comprehension of Flask and API calls, resulting in a project we both take pride in.
