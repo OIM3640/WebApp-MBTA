@@ -5,7 +5,6 @@ from config import MAPBOX_TOKEN
 app = Flask(__name__)
 app.secret_key = 'chocolate'
 
-# @app.route("/")
 @app.route('/')
 def get_mbta_station():
     return render_template("index.html")
