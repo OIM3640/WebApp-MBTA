@@ -4,19 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
+    <title>Find Nearest MBTA Station</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      form {
+        margin-top: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input {
+        padding: 8px;
+        width: 300px;
+      }
+      button {
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>Hello, there! Please enter an address, and we will let you know if there is an MBTA station near the entered location</h1>
+    <h1>Find the Nearest MBTA Station</h1>
     <form method="post" action="/">
         <label for="address">Enter Address:</label>
         <input type="text" id="address" name="address" required>
         <button type="submit">Search</button>
     </form>
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
   </body>
 </html>
 

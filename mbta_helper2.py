@@ -71,7 +71,8 @@ def main():
     """
     You should test all the above functions here.
     """
-    place_name = 'Wellesley'  
+    
+    place_name = get_user_input()
     result = find_stop_near(place_name)
 
     if result:
