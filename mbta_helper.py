@@ -1,5 +1,8 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN, MBTA_API_KEY
+import urllib.request
+import json
+from pprint import pprint
+from config import MAPBOX_TOKEN, MBTA_API_KEY, WEATHER_KEY
 
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
@@ -14,7 +17,10 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    pass
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+        return response_data
 
 
 def get_lat_long(place_name: str) -> tuple[str, str]:
@@ -23,7 +29,14 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    place_name = place_name.replace(" ", "%20") #fill empty space
+    url = f"{MAPBOX_BASE_URL}/{place_name}.json?access_token={MAPBOX_TOKEN}"
+    response_data = get_json(url)
+    longitude, latitude = response_data["features"][0]["center"]
+    #Round coordinates to appropriate length
+    latitude = round(latitude, 3)
+    longitude = round(longitude, 3)
+    return latitude, longitude
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -32,7 +45,19 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    url = f"{MBTA_BASE_URL}?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}"
+    response_data = get_json(url)
+    # response_data['data']:
+    try:
+        stop = response_data['data'][0]
+        # Gets station name
+        station = stop['attributes']['name']
+        # Gets BOOL for station's accesibility 
+        wheelchair = stop['attributes']['wheelchair_boarding'] == 1
+        return station, wheelchair
+    except:
+        return None, None
+
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -41,14 +66,34 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    latitude, longitude = get_lat_long(place_name)
+    return get_nearest_station(latitude, longitude) 
+
+def get_weather(place_name:str):
+    """
+    Given a place name or address, returns the current weather and temperature.
+    """
+    place_name = place_name.replace(" ", "%20")
+    latitude, longitude = get_lat_long(place_name)
+    url = f"http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&APPID={WEATHER_KEY}&units=metric"
+    weather_data = get_json(url)
+    # Gets current temperature (in farenheit) and weather conditions
+    temperature = weather_data["main"]["temp"]
+    temperature_f= float(temperature *(9/5))+32
+    weather = weather_data["weather"][0]["main"]
+    return weather, temperature_f
+
 
 
 def main():
     """
     You should test all the above functions here
     """
-    pass
+    location = "Babson College"
+    pprint(location)
+    pprint(get_lat_long(location))
+    pprint(find_stop_near(location))
+    pprint(get_weather(location))
 
 
 if __name__ == '__main__':
