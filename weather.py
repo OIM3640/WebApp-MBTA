@@ -18,5 +18,8 @@ def get_temp(place_name):
         weather = weather - 273.15
         return weather
 
+def main():
+    print(get_temp("Wellesley"))
 
-print(get_temp("Boston Common"))
+if __name__ == "__main__":
+    main()

@@ -16,7 +16,7 @@ def place_name_post():
         place_name = request.form.get("place_name")
         (station, wheelchair) = find_stop_near(place_name)
         weather = get_temp(place_name)
-        return render_template("results.html", place_name = place_name, station = station, wheelchair = wheelchair, weather = weather)
+        return render_template("mbta_station.html", place_name = place_name, station = station, wheelchair = wheelchair, weather = weather)
     except:
         return render_template("error.html")
 
