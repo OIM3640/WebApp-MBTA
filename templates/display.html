@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest MBTA Stop</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            color: #3FA9F5;
+        }
+
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            background: url('/static/image/nightcity.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .mask{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #0ff;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #7fffd4;
+        }
+
+        .accessibility {
+            font-size: 1em;
+            color: #ff1493;
+        }
+        .button {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            margin-top: -300px;
+            margin-left: 20px;
+            font-size: 1.5em;
+            font-family: 'Orbitron', sans-serif;
+            padding: 10px 20px;
+            border: 2px solid #fafafa;
+            background-color: #14f3ff00;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #fafafa; 
+            /* hover effect */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-image"></div>
+    <div class="mask"></div>
+    <div class="content">
+        <h1>{{ stop_name }}</h1>
+
+        <p class="accessibility">Wheelchair Access: {{ 'Accessible' if wheelchair_accessible == 1 else 'Not Accessible'
+            }}</p>
+            <button onclick="window.location.href='/'" class="button">Return Home</button>
+    </div>
+
+</body>
+
+</html>
