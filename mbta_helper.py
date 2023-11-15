@@ -39,14 +39,17 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
     MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-    query = 'Harvard'
+    query = place_name
     query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     link1 = get_json(url)
-    for i in range(len(link1['features'])):
-        if link1['features'][i]['properties']['address'] == place_name:
-            return link1['features'][i]['geometry']['coordinates'][1], link1['features'][i]['geometry']['coordinates'][0]
-    return ('none', 'none')
+    # for i in range(len(link1['features'])):
+        # if link1['features'][i]['properties']['address'] == place_name:
+    if len(link1) == 0:
+        return ('none', 'none')
+    else:
+        print(link1['features'][0]['center'][1], link1['features'][0]['center'][0])
+        return link1['features'][0]['center'][1], link1['features'][0]['center'][0]
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
@@ -56,15 +59,20 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     """
     MBTA_website = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
     stop_data = get_json(MBTA_website)
-    for i in range(len(stop_data['data'])):
-        if stop_data['data'][i]['attributes']['latitude'] == latitude and stop_data['data'][i]['attributes']['longitude'] == longitude:
-            if stop_data['data'][i]['attributes']['wheelchair_boarding'] == 1:
-                return stop_data['data'][i]['relationships']['parent_station'], True
+    if len(stop_data["data"]) == 0:
+        return ('none', False)
+    else:
+        # if stop_data['data'][0]['attributes']['latitude'] == latitude and stop_data['data'][0]['attributes']['longitude'] == longitude:
+        for i in range(len(stop_data['data'])):
+            if stop_data['data'][i]['attributes']['description'] == 'None':
+                continue
             else:
-                return stop_data['data'][i]['relationships']['parent_station'], False
+                if stop_data['data'][i]['attributes']['wheelchair_boarding'] == 1:
+                    return stop_data['data'][i]['attributes']['description'], True
+                else:
+                    return stop_data['data'][i]['attributes']['description'], False
     return ('None', False)
-
-
+                
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
@@ -74,6 +82,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
     a,b = get_lat_long(place_name)
     store1 = get_nearest_station(a, b)
+    print(store1)
     return store1
 
 
@@ -90,9 +99,11 @@ def main():
     # get_nearest_station('42.37431', '-71.11811')   
     # place_name = input('Give me a Place Name: ')
     # print(find_stop_near('Harvard - Brattle Square'))
-    print(find_stop_near('26 Oxford St'))
+    # print(find_stop_near('26 Oxford St'))
+    print(find_stop_near('Harvard Square'))
+
 
 
 if __name__ == '__main__':
     # main()
-    print(find_stop_near('26 Oxford St'))
+    print(find_stop_near('Harvard Square'))
