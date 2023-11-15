@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest Station</title>
+    <style>
     body{background-color:lightblue}
     #headerword {position:relative;text-align:center; color: white; font-style:bold; background-color:darkred; padding:4px;margin-left: 200px; margin-right: 200px;}
 
@@ -27,32 +31,32 @@
     
     } 
 
-    form {text-align: center; color:black;font-weight: bold;}
+    p{text-align: center;font-weight: bold;}
+
+    #button {text-align: center;}
 
 
+    </style>
 
-  </style>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MBTA Station Locator</title>
-  </head>
-
-  <body>
-    	<!-- Your HTML goes here -->
-      <div class = "header">
+</head>
+<body>
+    <div class = "header">
         <h1 id="headerword">MBTA Station Finder</h1>
       </div>
-      <h1 id="header2">Welcome!</h1>
+      <h1 id="header2">Results Below!</h1>
       <div>
       <h2> Find the Nearest MBTA Station </h2>
-      <form id="f1" method="post" action = "{{url_for('nearest_station')}}">
-          <label for = "place_name"> Enter a Location, Adress or City Name: </label>
-          <input type="text" name = "place_name" required>
-          <input onclick = "checkMe()" type ="submit" value="Submit">
-      </form>
-    </div>
-      <img id=boston_map src="https://cdn.mbta.com/sites/default/files/media/2023-01/2022-12-12-subway-map-v37f.jpg" alt="Map of Boston" title="Boston MBTA Map" width ="200" class="center"> 
 
-  </body>
+        <p>Location: {{ place_name }}</p>
+
+        <p>Nearest Station to You: {{ station_name }}</p>
+
+        <p>Wheelchair Accessibility: {% if wheelchair_accessible %}Yes{% else %}No{% endif %}</p>
+
+        <p>The weather is around: {{ response_data }} Celsius</p>
+    <div id="button">
+    <a href="{{url_for('index')}}">Back</a>
+    </div>
+    <img id=boston_map src="https://cdn.mbta.com/sites/default/files/media/2023-01/2022-12-12-subway-map-v37f.jpg" alt="Map of Boston" title="Boston MBTA Map" width ="200" class="center"> 
+</body>
 </html>
