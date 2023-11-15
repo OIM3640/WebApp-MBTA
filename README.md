@@ -15,7 +15,7 @@ Although we did divided the work, we mostly worked together either in person or 
 Besides overwriting each other on VS Code, the only ther issue that arose was having one of us attend the others class as we have different schedules, however Juanse compromised and went to Luna's class time which gave us time to work together in person.
 
 The image bellow is a method of communication between us. When we couldn't talk on the phone and share our screen, we Used Whatsapp as our third party. 
-<img src='images/whatsapp.png'>
+    <img src='images/whatsapp.jpg'>
 
 ### Learning perspective
 The project provided a valuable learning experiences,as it allowed us to experience the process of using external APIs, understanding geospatial calculations through the Haversine formula, and recognizing the importance of UI.
@@ -23,7 +23,7 @@ We also increased our problem-solving skills as we had to debugg and resolve the
 ChatGPT was helpfull for error-solving and generating ideas during the development process. It helped when we wanted to do something but didn't know how to. 
 
 An example of our use of ChatGPT was when we wanted to put color on the wheelchair accessibility results. We tried one way but wasn't working so we asked ChatGPT to fix it for us. 
-<img src='images/chatgpt'>
+    <img src='images/chatgpt.jpg'>
 
 The skills learned and gained from this project will help us both in the future for software development and our final project. We have a deeper understanding on Flaks and API integration. 
 
