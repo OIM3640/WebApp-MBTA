@@ -14,12 +14,35 @@ url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
 with urllib.request.urlopen(url) as f:
     response_text = f.read().decode("utf-8")
     MAPBOX = json.loads(response_text)
-    # pprint.pprint(response_data)
+    pprint.pprint(response_text)
+
+
+# Create URL link
+from urllib.parse import urlencode
+def create_url(address, token):
+    """
+    the function creates a URL fo a Mapbox API geocoding request
+    """
+    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+
+    encoded_address = urllib.parse.quote(address) #encode the address
+    url = f"{MAPBOX_BASE_URL}/{encoded_address}.json"
+    
+    parameters={
+        'access-token': token
+    }
+
+    encoded_parameter = urllib.parse.urlencode(parameters)
+    url_with_parameter = url + '?'+encoded_parameter
+
+    return url_with_parameter
+
 
 
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 import requests
+
 
 
 # A little bit of scaffolding if you want to use it
