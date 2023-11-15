@@ -1,3 +1,6 @@
+"""FAILED CODE DO NOT USE
+"""
+
 from flask import Flask, render_template, request
 import mbta_helper as mh
 
@@ -18,11 +21,6 @@ def mbta_post():
   
 
 
-
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 
 
