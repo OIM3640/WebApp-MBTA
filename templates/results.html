@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Station Results</title>
+</head>
+<style>
+    p{
+        color: red; 
+        background-color: yellow;
+        font-size: 1.3rem;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    h1{
+        background-color: aquamarine;
+        border-radius: 3px;
+        border: 3px solid black;
+    }
+    button{
+      background-color: green;
+    }
+    body{
+        background-color: beige;
+    }
+    form{
+        background-color: lightgray;
+    }
+    a:hover{
+        background-color: gray;
+    }
+</style>
+<body>
+    <h1>MBTA Station Results</h1>
+
+    <div>
+        <!-- <p>Station Name: {{ station_info.station_name }}</p> -->
+        <p>Station Name: <a href="{{ generate_google_maps_link(station_info.station_name) }}" target="_blank">{{ station_info.station_name }}</a></p>
+        <p>Wheelchair Accessible: {% if station_info.wheelchair_accessible %}Yes{% else %}No{% endif %}</p>
+
+        {% if station_info.times %}
+            <h2>Real-Time Arrival Data:</h2>
+            <ul>
+                {% for time in station_info.times %}
+                    <li>Arrival Time: {{ time.arrival_time }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No real-time arrival data available.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
