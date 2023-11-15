@@ -19,8 +19,17 @@
   <body>
     <p>
       The nearest MBTA station to {{place_name}} is {{station}}. 
-      The status of wheelchair accessibility of this station is {{wheelchair}}.
-      The weather is {{weather}} degrees Celsius.
+    </p>
+
+      {% if wheelchair == 1 %}
+      <p>The status of wheelchair accessibility of {{station}}n is wheelchair accessible.</p>
+      {% else %}
+      <p>The status of wheelchair accessibility of {{staion}} is not wheelchair accessible.</p>
+      {% endif %}      
+
+    <p>
+      The weather at {{place_name}} is {{weather}} degrees Celsius.
     </p>
   </body>
 </html>
+

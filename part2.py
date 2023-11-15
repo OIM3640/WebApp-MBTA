@@ -6,6 +6,7 @@ from weather import get_temp
 app = Flask(__name__)
 
 
+
 @app.get("/")
 def place_name_get():
     return render_template("form.html")
