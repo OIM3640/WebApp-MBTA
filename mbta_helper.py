@@ -4,6 +4,9 @@ import requests
 import json
 from urllib import parse
 
+from math import radians, cos, sin, asin, sqrt
+
+
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
@@ -32,8 +35,19 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     longitude, latitude = data['features'][0]['center']
     return str(latitude), str(longitude)
 
+def haversine(lon1, lat1, lon2, lat2):
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 
-def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
+    # Haversine formula 
+    dlon = lon2 - lon1 
+    dlat = lat2 - lat1 
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a)) 
+    r = 6371 # Radius of earth in kilometers. Use 3956 for miles
+    return c * r
+
+
+def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool, float]:
     """
     Given latitude and longitude strings, return a (station_name, wheelchair_accessible) tuple for the nearest MBTA station to the given coordinates.
 
@@ -45,9 +59,14 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     
     station_name = data['data'][0]['attributes']['name']
     wheelchair_accessible = data['data'][0]['attributes']['wheelchair_boarding'] == 1
-    return station_name, wheelchair_accessible
+    station_lat = data['data'][0]['attributes']['latitude']
+    station_lon = data['data'][0]['attributes']['longitude']
 
-def find_stop_near(place_name: str) -> tuple[str, bool]:
+    distance = haversine(float(longitude), float(latitude), station_lon, station_lat)
+
+    return station_name, wheelchair_accessible, distance
+
+def find_stop_near(place_name: str) -> tuple[str, bool, float]:
     """
     Given a place name or address, return the nearest MBTA stop and whether it is wheelchair accessible.
 
@@ -62,9 +81,9 @@ def main():
     You should test all the above functions here
     """
     test_place = "12 museum way cambridge ma"
-    station_name, is_accessible = find_stop_near(test_place)
+    station_name, is_accessible, distance = find_stop_near(test_place)
     
-    print(f"The nearest MBTA station to {test_place} is {station_name} and it is {'wheelchair accessible' if is_accessible else 'not wheelchair accessible'}.")
+    print(f"The nearest MBTA station to {test_place} is {station_name} and it is {'wheelchair accessible' if is_accessible else 'not wheelchair accessible'}, and it is {distance:.2f} km away.")
 
 
 if __name__ == '__main__':

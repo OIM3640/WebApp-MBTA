@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, url_for, redirect
 from mbta_helper import find_stop_near
+from config import MAPBOX_TOKEN
 
 app = Flask(__name__)
 app.secret_key = 'chocolate'
@@ -22,3 +23,5 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
