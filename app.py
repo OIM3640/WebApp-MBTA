@@ -7,12 +7,15 @@ from mbta_helper import find_stop_near
 
 app = Flask(__name__)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html")
 
 @app.route('/')
-@app.route('/place/')
-# def hello():
-#     return 'Hello World!'
+def hello():
+    return render_template("index.html")
 
+@app.route('/place/')
 def place_get():
     return render_template("place.html")
 
@@ -20,7 +23,7 @@ def place_get():
 def place():
     place_name = request.form.get("place")
     res1 = find_stop_near(place_name)
-    return f"The temprature in {place_name} is {res1}."
+    return f"{res1}"
 
 
 if __name__ == '__main__':

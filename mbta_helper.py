@@ -57,7 +57,10 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     stop_data = get_json(MBTA_website)
     for i in range(len(stop_data['data'])):
         if stop_data['data'][i]['attributes']['latitude'] == latitude and stop_data['data'][i]['attributes']['longitude'] == longitude:
-            return stop_data['data'][i]['relationships']['parent_station'], stop_data['data'][i]['attributes']['wheelchair_boarding']
+            if stop_data['data'][i]['attributes']['wheelchair_boarding'] == 1:
+                return stop_data['data'][i]['relationships']['parent_station'], True
+            else:
+                return stop_data['data'][i]['relationships']['parent_station'], False
     return 'None'
 
 
@@ -90,4 +93,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    print(find_stop_near('26 Oxford St'))
