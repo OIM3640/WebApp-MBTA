@@ -48,8 +48,11 @@
       <h2> Find the Nearest MBTA Station </h2>
 
         <p>Location: {{ place_name }}</p>
-        <p>Nearest Station: {{ station_name }}</p>
-        <p>Wheelchair Accessible: {% if wheelchair_accessible %}Yes{% else %}No{% endif %}</p>
+
+        <p>Nearest Station to You: {{ station_name }}</p>
+
+        <p>Wheelchair Accessibility: {% if wheelchair_accessible %}Yes{% else %}No{% endif %}</p>
+
         <p>The weather is around: {{ response_data }} Celsius</p>
     <div id="button">
     <a href="{{url_for('index')}}">Back</a>
