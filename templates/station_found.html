@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Found</title>
+    <style>
+        body {
+            background-color: yellow; /* Set background to yellow */
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .celebrate-emoji {
+            font-size: 48px;
+        }
+        .ask-another-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .car-image {
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Station Found! 🎉</h1>
+    <p>Nearest MBTA station to {{ place_name }} is {{ nearest_station }}.</p>
+    <p>Wheelchair accessible: {{ 'Yes' if accessible else 'No' }}</p>
+    
+    <!-- Celebration Emoji -->
+    <div class="celebrate-emoji">🎉</div>
+    
+    <!-- Image -->
+    <img class="car-image" src="https://i.ytimg.com/vi/HACaRm2KP6Q/maxresdefault.jpg" alt="train Image">
+
+    <!-- Ask Another Station Button -->
+    <a href="/"><button class="ask-another-button">Ask for Another Station</button></a>
+</body>
+</html>

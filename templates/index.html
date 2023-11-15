@@ -5,9 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazing app to help you find the nearest MBTA station</title>
+    <style>
+      body {
+          background-color: #e0e0e0; /* Grey background */
+          font-family: Arial, sans-serif;
+      }
+      .container {
+          background-color: #8fbc8f; /* Green background */
+          padding: 20px;
+          margin: auto;
+          width: 50%;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          text-align: center;
+      }
+      .submit-button {
+          background-color: #ff0000; /* Red background for the button */
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+      .submit-button:hover {
+          background-color: #cc7000;
+      }
+      .train-image {
+          max-width: 100%;
+          height: auto;
+          border-radius: 10px;
+      }
+  </style>
   </head>
 
   <body>
-    <p>Hi</p>
+    <div class="container">
+
+    <!-- Main heading for the page -->
+    <h1>Hello! Enter a Place Name</h1>
+
+    <img class="train-image" src="https://www.boston-discovery-guide.com/image-files/x800-subway-map-aug-2022.jpg.pagespeed.ic.0x5qo3P7Tx.jpg" alt="Train Image">
+
+    <!-- Form for user input -->
+    <form action="/mbta/" method="post">
+        <!-- Label for the input field -->
+        <label for="place_name">Place Name:</label>
+
+        <!-- Text input field where users can enter a place name -->
+        <input type="text" id="place_name" name="place_name">
+
+        <!-- Submit button for the form -->
+        <input type="submit" value="Submit" class="submit-button">
+      </form>
+    </div>
   </body>
 </html>
