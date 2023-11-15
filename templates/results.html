@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Results</title>
+  </head>
+
+  <body>
+    <h1>Search Results</h1>
+    {% if station_name is not none %}
+      <p>The nearest MBTA stop to the entered location is {{ station_name }}.</p>
+      <p>Wheelchair Accessible: {{ wheelchair_accessible }}.</p>
+    {% else %}
+      <p>No results found. Please try again.</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+  </body>
+</html>

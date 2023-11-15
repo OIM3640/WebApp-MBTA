@@ -2,7 +2,8 @@
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 
 import json
-from urllib import request, parse
+import urllib.request 
+import urllib.parse
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
@@ -15,7 +16,7 @@ def get_json(url: str) -> dict:
 
     Both get_lat_long() and get_nearest_station() might need to use this function.
     """
-    with request.urlopen(url) as f:
+    with urllib.request.urlopen(url) as f:
         response_text = f.read().decode('utf-8')
         return json.loads(response_text)
 
@@ -26,7 +27,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    query = parse.quote(place_name)
+    query = urllib.parse.quote(place_name)
     url = f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
     response_data = get_json(url)
 
@@ -54,6 +55,12 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     return None
 
+def get_user_input():
+    """
+    Prompts the user to input  a city name.
+    """
+    return input("Enter the name of a city: ")
+
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
     """
@@ -67,7 +74,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
         latitude, longitude = coordinates
         return get_nearest_station(latitude, longitude)
 
-    return None
+    return None, None
 
 
 def main():
@@ -75,7 +82,7 @@ def main():
     You should test all the above functions here
     """
     
-    place_name = ''
+    place_name = get_user_input()
     result = find_stop_near(place_name)
 
     if result:
