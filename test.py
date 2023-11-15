@@ -13,24 +13,24 @@ MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 query = 'Babson College'
 query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
 url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-print(url) # Try this URL in your browser first
-
+# print(url) # Try this URL in your browser first
 with urllib.request.urlopen(url) as f:
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
-    pprint.pprint(response_data)
+    # pprint.pprint(response_data)
 
 # print(response_data['features'][4]['properties']['address'])
-print(response_data['features'][2]['properties'])
+# print(response_data['features'][2]['properties'])
 # Output: 231 Forest St
 
 latitude = response_data['features'][1]['geometry']['coordinates'][0]
 longitude = response_data['features'][1]['geometry']['coordinates'][1]
 
-latitude = 42.1767
-longitude = 71.1449
+latitude = 42.37431 
+longitude = -71.11811
 
 real_url = f'https://api-v3.mbta.com/stops?api_key={YOUR_MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
+# print(real_url)
 # real_url = f'{MBTA_BASE_URL}?api_key={YOUR_MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
 
 with urllib.request.urlopen(real_url) as g:
@@ -38,5 +38,4 @@ with urllib.request.urlopen(real_url) as g:
     response_data1 = json.loads(response_text1)
     pprint.pprint(response_data1)
 
-question1 = input('Give me a place: ')
-latitude = 0
+# question1 = input('Give me a place: ')

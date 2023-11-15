@@ -9,14 +9,14 @@ import urllib.request
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-query = 'Babson College'
+query = 'Harvard Square'
 query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
 url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 
 
 MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
-real_url = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={70}&filter%5Blongitude%5D={80}'
+# real_url = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={70}&filter%5Blongitude%5D={80}'
 
 
 
@@ -53,7 +53,13 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    MBTA_website = f'https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&sort=distance&filter%5Blatitude%5D={latitude}&filter%5Blongitude%5D={longitude}'
+    stop_data = get_json(MBTA_website)
+    for i in range(len(stop_data['data'])):
+        if stop_data['data'][i]['attributes']['latitude'] == latitude and stop_data['data'][i]['attributes']['longitude'] == longitude:
+            return stop_data['data'][i]['relationships']['parent_station'], stop_data['data'][i]['attributes']['wheelchair_boarding']
+    return 'None'
+
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -62,7 +68,12 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    coord = get_lat_long(place_name)
+    list1 = []
+    for a in coord:
+        list1.append(a)
+    store1 = get_nearest_station(list1[0], list1[1])
+    return store1
 
 
 def main():
@@ -71,13 +82,14 @@ def main():
     """
     get_json(url)
 
-    # place_name = input('Give me a Place Name: ')
-    place_name = '231 Forest St'
-    coordinate_ = get_lat_long(place_name)
+    # place_name = '231 Forest St'
+    # coordinate_ = get_lat_long(place_name)
     # list2 = coordinate_(0)
     # print(list2)
-    get_json(real_url)
-    
+    # get_nearest_station('42.37431', '-71.11811')   
+    # place_name = input('Give me a Place Name: ')
+    # print(find_stop_near('Harvard - Brattle Square'))
+    # print(find_stop_near('Harvard Square'))
 
 
 if __name__ == '__main__':
