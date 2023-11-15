@@ -35,7 +35,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     longitude, latitude = data['features'][0]['center']
     return str(latitude), str(longitude)
 
-def haversine(lon1, lat1, lon2, lat2):
+def distance_to_station(lon1, lat1, lon2, lat2):
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 
     # Haversine formula 
@@ -62,7 +62,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool, float
     station_lat = data['data'][0]['attributes']['latitude']
     station_lon = data['data'][0]['attributes']['longitude']
 
-    distance = haversine(float(longitude), float(latitude), station_lon, station_lat)
+    distance = distance_to_station(float(longitude), float(latitude), station_lon, station_lat)
 
     return station_name, wheelchair_accessible, distance
 

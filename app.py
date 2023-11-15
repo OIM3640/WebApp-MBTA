@@ -13,7 +13,7 @@ def get_mbta_station():
 @app.route('/mbta', methods = ['POST'])
 def find():
     place_name = request.form['place_name']
-    station_name, is_accessible = find_stop_near(place_name)
+    station_name, is_accessible, distance = find_stop_near(place_name)
     return render_template('place.html', station_name=station_name, is_accessible=is_accessible)
 
 

@@ -8,8 +8,9 @@
 </head>
 <body>
     <H1>Nearest MBTA station</h1>
-    <p> Station name: {{station_name}}</p>
+    <p>Station name: {{station_name}}</p>
     <p>Weelchair accessible: {{'Yes' if is_accessible else 'No'}} </p>
+    <p>Distance from your address to the station: {{ distance|round(2) }} km.</p>
     </script>
     
 </body>
