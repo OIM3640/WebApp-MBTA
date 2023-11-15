@@ -9,7 +9,7 @@ import urllib.request
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-query = 'Harvard Square'
+query = 'Harvard'
 query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20"
 url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 
@@ -44,7 +44,7 @@ def get_lat_long(place_name: str) -> tuple[str, str]:
     link1 = get_json(url)
     for i in range(len(link1['features'])):
         if link1['features'][i]['properties']['address'] == place_name:
-            return link1['features'][i]['geometry']['coordinates'][0], link1['features'][i]['geometry']['coordinates'][1]
+            return link1['features'][i]['geometry']['coordinates'][1], link1['features'][i]['geometry']['coordinates'][0]
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -68,11 +68,8 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    coord = get_lat_long(place_name)
-    list1 = []
-    for a in coord:
-        list1.append(a)
-    store1 = get_nearest_station(list1[0], list1[1])
+    a,b = get_lat_long(place_name)
+    store1 = get_nearest_station(a, b)
     return store1
 
 
@@ -80,7 +77,7 @@ def main():
     """
     You should test all the above functions here
     """
-    get_json(url)
+    # get_json(url)
 
     # place_name = '231 Forest St'
     # coordinate_ = get_lat_long(place_name)
@@ -89,7 +86,7 @@ def main():
     # get_nearest_station('42.37431', '-71.11811')   
     # place_name = input('Give me a Place Name: ')
     # print(find_stop_near('Harvard - Brattle Square'))
-    # print(find_stop_near('Harvard Square'))
+    # print(find_stop_near('26 Oxford St'))
 
 
 if __name__ == '__main__':
