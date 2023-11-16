@@ -1,0 +1,64 @@
+<!-- looked up the shortcut to load html template
+https://stackoverflow.com/questions/69069625/how-to-automatically-write-html-structure#:~:text=If%20you%20are%20using%20VS,Doctype%20in%20HTML%20or%20PHP. -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Nearest MBTA Station</title>
+</head>
+<body>
+    <h1>Data from Mapbox API</h1>
+    <div>
+        {% if mapbox_data %}
+            <p>Latitude: {{mapbox_data.latitude}}</p>
+            <p>Longitude: {{mapbox_data.longitude}}</p>
+        {% else %}
+            <p>No Mapbox data available</p>
+        {% endif %}
+    </div>
+    <h1>Data from MBTA API</h1>
+    <div>
+        {% if mbta_data %}
+            <p>Station Name: {{mbta_data.station_name}}</p>
+            <p>Wheelchair Accessible: {{mbta_data.wheelchair_accessible}}</p>
+        {% else %}
+            <p>No MBTA data available</p>
+        {% endif %}
+    </div>
+</body>
+</html> -->
+
+<!-- asked chatGPT how to pull data from the app.py module -->
+<!-- also asked how to include a section for user input to get the data the user wants -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest MBTA Station</title>
+</head>
+<body>
+    <h1>Hello! Please enter a Boston location to find the nearest MBTA station!</h1>
+    <form method="post" action="/">
+        <label for="query">Enter Valid Boston Location:</label>
+        <input type="text" id="query" name="query">
+        <input type="submit" value="Submit">
+    </form>
+    
+    <h2>Data from Mapbox API</h2>
+    <div>
+        <p>{{data['mapbox_data']}}</p>
+    </div>
+    <h2>Data from MBTA API</h2>
+    <div>
+        <p>{{data['mbta_data']}}</p>
+    </div>
+    <h2>MBTA Wheelchair Data</h2>
+    <div>
+        <p>{{data['mbta_wheelchair_data']}}</p>
+    </div>
+    
+</body>
+</html>
