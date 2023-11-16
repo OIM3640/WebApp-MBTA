@@ -1,3 +1,6 @@
+# ChatGPT link:https://chat.openai.com/share/a23b745a-62fd-482d-8a71-ea6c11fa42ab
+
+
 import json
 import pprint
 import urllib.request
