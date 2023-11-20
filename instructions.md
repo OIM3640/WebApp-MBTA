@@ -258,4 +258,4 @@ After you finish the project, Please write a short document for reflection.
 3. Submit project's GitHub repository URL to Canvas. In the comment area on Canvas, specify names of all team members. **Note: Everyone in the team needs to submit on Canvas and add comment.**
 
 ---
-*updated: 11/04/2023*
+*updated: 11/04/2023*s
