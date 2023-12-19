@@ -1,11 +1,10 @@
 # Your API KEYS (you need to use your own keys - very long random characters)
 # from config import MAPBOX_TOKEN, MBTA_API_KEY
 
-MAPBOX_TOKEN = 'pk.eyJ1IjoiYXN1cGVyYmFibzAxMiIsImEiOiJjbG94anpqY2sxNjhkMnFwa3NoajhvNzhpIn0.xlbXXqbREbuFjW0ID8b4DQ'
-MBTA_API_KEY = '413e4a87c8c9471cb8b11e4aa4c65b4d'
 import json
 import pprint
 import urllib.request
+from config import MAPBOX_TOKEN, MBTA_API_KEY
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 
