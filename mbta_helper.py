@@ -45,7 +45,7 @@ def get_json(url: str) -> dict:
     return response_data
 
 
-pprint.pprint(get_json(url))
+# pprint.pprint(get_json(url))
 
 
 def get_lat_lng(place_name: str) -> tuple[str, str]:
@@ -64,11 +64,11 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
 
     response_data = get_json(url)
 
-    result = tuple(response_data["features"][0]["geometry"]["coordinates"])
+    result = tuple(response_data["features"][0]["geometry"]["coordinates"][::-1])
     return result
 
 
-print(get_lat_lng("Babson College"))
+# print(get_lat_lng("Babson College"))
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -80,30 +80,29 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     the nearest MBTA station to the given coordinates.
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
+
+    Value of Wheelchair Meaning:
+    0	No Information
+    1	Accessible (if trip is wheelchair accessible)
+    2	Inaccessible
     """
     url = f"https://api-v3.mbta.com/stops?api_key={API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}&sort=distance"
 
     response_data = get_json(url)
-
-    # print(response_data)
+    # pprint.pprint(response_data)
 
     if len(response_data["data"]) == 0:
-        # url1 = f"https://api-v3.mbta.com/stops?api_key={API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}&filter[radius]={100}&sort=distance"
-        # response_data = get_json(url1)
-
-        # name = response_data["data"][0]["attributes"]["name"]
-        # wheelchair = response_data["data"]["attributes"]["wheelchair_boarding"]
-        # return name, wheelchair
-        return f"There isn't any MTBA station nearby."
+        return f"There isn't any MBTA station nearby."
     else:
         name = response_data["data"][0]["attributes"]["name"]
-        wheelchair = response_data["data"]["attributes"]["wheelchair_boarding"]
-        return name, wheelchair
+        wheelchair = response_data["data"][0]["attributes"]["wheelchair_boarding"]
+        return (name, wheelchair)
 
 
-print(get_nearest_station(-71.263598, 42.2981925))
-print(get_lat_lng("Boston College"))
-print(get_nearest_station(-71.1694295, 42.3358655))
+# Test
+# print(get_lat_lng("Boston College"))
+# pprint.pprint(get_nearest_station(42.3358655, -71.1694295))
+# pprint.pprint(get_nearest_station(42.2981925, -71.263598))
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -114,14 +113,39 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    index1 = get_lat_lng(place_name)[0]
+    index2 = get_lat_lng(place_name)[1]
+    # print(index1,index2)
+    return get_nearest_station(index1, index2)
+
+
+# Test
+# print(find_stop_near("Boston College"))
 
 
 def main():
     """
     You should test all the above functions here
     """
-    pass
+    # json for Babson College
+    print(f"\njson for Babson College")
+    pprint.pprint(get_json(url))
+
+    # Coordinate for Boston College
+    print(f"\nCoordinates for Babson College")
+    print(get_lat_lng("Boston College"))
+
+    # Nearest Station for Babson College
+    print(f"\nNearest MBTA Station for Boston College")
+    print(get_nearest_station(42.3358655, -71.1694295))
+
+    # Nearest Station for Babson College
+    print(f"\nNearest MBTA Station for Babson College")
+    print(get_nearest_station(42.2981925, -71.263598))
+
+    # Find nearest Station for Harvard University
+    print(f"\nNearest MBTA Station for Harvard University")
+    print(find_stop_near("Harvard University"))
 
 
 if __name__ == "__main__":
