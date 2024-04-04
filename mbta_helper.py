@@ -18,9 +18,8 @@ MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
 MAPBOX_TOKEN = TOKEN
 
 query = "Babson College"
-query = query.replace(
-    " ", "%20"
-)  # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function.
+query = query.replace(" ", "%20")
+# In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function.
 url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
 # print(url) # Try this URL in your browser first
 
@@ -123,6 +122,47 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 # print(find_stop_near("Boston College"))
 
 
+### Optional Question ###
+def get_url(place_name: str):
+    """
+    takes an address or place name as input
+
+    returns a properly encoded URL to make a Mapbox geocoding request
+    """
+    query = place_name
+    query = query.replace(" ", "%20")
+    url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
+    return url
+
+
+def get_realtime(place_name: str) -> tuple[str, bool]:
+    """
+    Given a place name or address,
+
+    return the nearest MBTA stop, whether it is wheelchair accessible, realtime arrival data, and departure time to suggest the optimal station to walk to
+    """
+    index1 = get_lat_lng(place_name)[0]
+    index2 = get_lat_lng(place_name)[1]
+
+    url = f"https://api-v3.mbta.com/stops?api_key={API_KEY}&filter[latitude]={index1}&filter[longitude]={index2}&sort=distance"
+
+    response_data = get_json(url)
+
+    if len(response_data["data"]) == 0:
+        return f"There isn't any MBTA station nearby."
+    else:
+        name = response_data["data"][0]["attributes"]["name"]
+        wheelchair = response_data["data"][0]["attributes"]["wheelchair_boarding"]
+        stop_id = response_data["data"][0]["id"]
+        # Get real time for the route
+        url1 = f"https://api-v3.mbta.com/schedules?api_key={API_KEY}&filter[stop]={stop_id}"
+        schedule_data = get_json(url1)
+        # pprint.pprint(schedule_data)
+        arrival_time = schedule_data["data"][0]["attributes"]["arrival_time"]
+        departure_time = schedule_data["data"][0]["attributes"]["departure_time"]
+        return (name, wheelchair, arrival_time, departure_time)
+
+
 def main():
     """
     You should test all the above functions here
@@ -146,6 +186,18 @@ def main():
     # Find nearest Station for Harvard University
     print(f"\nNearest MBTA Station for Harvard University")
     print(find_stop_near("Harvard University"))
+
+    ### Optional Question ###
+
+    # Get URL for Babson College from Mapbox
+    print("\nURL for Babson College from Mapbox")
+    print(get_url("Babson College"))
+
+    # Get realtime arrival and departure time for nearest MBTA around Harvard University
+    print(
+        f"\nNearest MBTA Station for Harvard University with realtime arrival and departure time"
+    )
+    print(get_realtime("Harvard University"))
 
 
 if __name__ == "__main__":
