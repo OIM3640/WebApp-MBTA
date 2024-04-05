@@ -42,7 +42,7 @@ def find_closest_mbta_stop(lat, lon, mbta_api_key):
         return stop_name, wheelchair_accessible
 
 __name__ == "__main__"
-MAPBOX_TOKEN = 
+MAPBOX_TOKEN = "pk.eyJ1IjoieXpoYW5nMTIiLCJhIjoiY2x1bXNhODdhMHV3OTJpbzFmMDVrOXE3YiJ9.q69jiTi7aXGjGmQDbwukmA"
 MBTA_API_KEY = 
 address = "Boston Common, Boston, MA"
     
