@@ -17,7 +17,7 @@ Throughout this project, you'll focus on developing the following skills:
 ### Team Logistics:
 
 - You can work in a team or choose to work independently.
-- If you work in a team, one team member should fork this base repository for the project. The person who forks the repository should then add their team members as collaborators on GitHub for that repository. This will ensure that everyone has access to the code and can work together effectively.
+- If you work in a team, one team member should fork this base repository for the project. The person who forks the repository should then add their team members as collaborators on GitHub for that repository. This will ensure that everyone has access to the code and can work together effectively. 
 
 ---
 
