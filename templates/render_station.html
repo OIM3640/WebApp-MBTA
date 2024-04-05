@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result for Nearest MBTA Station Nearby</title>
+    <style>
+        body {
+            background-color: bisque;
+            color: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>The nearest station near {{ place }} is {{ station }}.</p>
+    {% if wheelchairs == 0 %}
+    <p>We are not sure if wheelchairs are accessible at the {{ station }} station.</p>
+    {% elif wheelchairs == 1 %}
+    <p>Wheelchairs are accessible at the {{ station }} station.</p>
+    {% elif wheelchairs == 2 %}
+    <p>Wheelchairs are not accessible at the {{ station }} station.</p>
+    {% endif %}
+
+    {% if not starttime %}
+    <p>The arrival time is not avaliable</p>
+    {% else %}
+    <p>The arrival time is {{starttime}}</p>
+    {% endif %}
+
+    {% if not endtime %}
+    <p>The departure time is not avaliable</p>
+    {% else %}
+    <p>The departure time is {{endtime}}</p>
+    {% endif %}
+
+</body>
+
+</html>
