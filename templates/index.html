@@ -8,8 +8,85 @@
   <title>Amazing cat Bob to help you find the nearest MBTA station</title>
   <style>
     body {
-      background-color: rgb(245, 237, 226);
+      background-color: #ffebeb;
+      font-family: 'Poppins', sans-serif;
       text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 50px;
+      color: #0056b3;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    /* Coded with help of ChatGPT */
+    /* This block makes the picture circular with some shadow under and when hover over the image,
+    it will pops out scaling out by extra 5% */
+    /* Additionally, the image will bounce per 1 second infinitively */
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 50%;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      animation: bounce 1s infinite alternate;
+    }
+
+    /* I asked ChatGPT for help so the image will bounce and move */
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-20px);
+      }
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    label {
+      font-size: 1.1rem;
+      color: #444;
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>

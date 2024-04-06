@@ -163,10 +163,95 @@ def get_realtime(place_name: str) -> tuple[str, bool]:
         return (name, wheelchair, arrival_time, departure_time)
 
 
+import urllib.request
+import json
+
+
+def get_city(place_name):
+    """
+    Input a place and returns the municiple of the place.
+    """
+    index1 = get_lat_lng(place_name)[0]
+    index2 = get_lat_lng(place_name)[1]
+
+    url = f"https://api-v3.mbta.com/stops?api_key={API_KEY}&filter[latitude]={index1}&filter[longitude]={index2}&sort=distance"
+
+    placedata = get_json(url)
+
+    return placedata["data"][0]["attributes"]["municipality"]
+
+
+def get_temp(place_name):
+    """
+    Input a place name and returns the temperature in Fahreneit of the municiple of the place.
+    """
+    index1 = get_lat_lng(place_name)[0]
+    index2 = get_lat_lng(place_name)[1]
+
+    url = f"https://api-v3.mbta.com/stops?api_key={API_KEY}&filter[latitude]={index1}&filter[longitude]={index2}&sort=distance"
+
+    placedata = get_json(url)
+
+    city = placedata["data"][0]["attributes"]["municipality"]
+
+    APIKEY = "8429cc7d55e53a9874db5460c45cdb5f"
+    country_code = "us"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city},{country_code}&APPID={APIKEY}&units=imperial"
+
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode("utf-8")
+        response_data = json.loads(response_text)
+        f = response_data["main"]["temp"]
+
+    return f
+
+
+import requests
+
+
+# This code is coded with help of ChatGPT because the data structure is too complicated and ChatGPT helped me understand it better
+def get_nearby_events(place_name):
+    """
+    Input a place and returns the top 5 events along with info about the events nearby.
+    """
+    index1 = get_lat_lng(place_name)[0]
+    index2 = get_lat_lng(place_name)[1]
+
+    api_key = "RfkzywdmNAyyjVzFFjPzZ1aFFi9x3lLX"
+    url = f"https://app.ticketmaster.com/discovery/v2/events.json?apikey={api_key}&latlong={index1},{index2}&radius={10}"
+
+    response = requests.get(url)
+    data = response.json()
+
+    events = []
+    # Check whether there is any avaliable events nearby
+    if "_embedded" in data and "events" in data["_embedded"]:
+        for event in data["_embedded"]["events"][:5]:
+            # get the top 5 events
+            events.append(
+                {
+                    "name": event["name"],
+                    "date": event["dates"]["start"]["localDate"],
+                    "time": (
+                        event["dates"]["start"]["localTime"]
+                        if "localTime" in event["dates"]["start"]
+                        else None
+                    ),
+                    "venue": event["_embedded"]["venues"][0]["name"],
+                    "url": event["url"],
+                }
+            )
+    else:
+        return "There isn't any events nearby."
+
+    return events
+
+
 def main():
     """
     You should test all the above functions here
     """
+    pprint.pprint(get_nearby_events("Boston College"))
     # json for Babson College
     print(f"\njson for Babson College")
     pprint.pprint(get_json(url))
@@ -198,6 +283,16 @@ def main():
         f"\nNearest MBTA Station for Harvard University with realtime arrival and departure time"
     )
     print(get_realtime("Harvard University"))
+
+    # Get the city Harvard University is located in
+    print("\nThe city Harvard University is located in is:")
+    print(get_city("Harvard University"))
+
+    # Get the top 5 events near Harvard University
+    print("\nThe top 5 events near Harvard University are:")
+    events = get_nearby_events("Harvard University")
+    for items in events:
+        print(items)
 
 
 if __name__ == "__main__":
