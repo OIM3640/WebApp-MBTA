@@ -7,13 +7,16 @@
     <title>Result for Nearest MBTA Station Nearby</title>
     <style>
         body {
-            background-color: bisque;
-            color: darkblue;
+            background-color: rgb(250, 240, 229);
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
+    <h1>Bob found a suitable MBTA station for you!</h1>
+    <img src="https://i.ytimg.com/vi/j1YEVm5M-YM/maxresdefault.jpg" width="500">
+
     <p>The nearest station near {{ place }} is {{ station }}.</p>
     {% if wheelchairs == 0 %}
     <p>We are not sure if wheelchairs are accessible at the {{ station }} station.</p>

@@ -22,7 +22,10 @@ def nearest_mbta():
     end = get_realtime(place_name)[3]
     return render_template("render_station.html", place = place_name, station = nearest_station, wheelchairs = wheelchair, starttime = start, endtime = end)
 
-
+# This handles any 404 error for the website
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('error.html', error_message="Mmmm... my colleage Steve just chewed your page. Try again later perhaps?"), 404
 
 if __name__ == "__main__":
     app.run(debug=True)

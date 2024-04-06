@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steve ate your page</title>
+    <style>
+        body {
+            background-color: rgb(248, 243, 217);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>There seems to be an error!</h1>
+    <h2>{{ error_message }}</h2>
+    <img src="https://cdn-akbcd.nitrocdn.com/uAzHNABcNZTqTDDLuOdKkQlOQcZsAuFo/assets/static/optimized/rev-d7561ce/wp-content/uploads/2019/06/crying-cat-biting-a-cord.jpg"
+        width="500">
+
+    <!-- I wanted to leave a blank space between the picture and the button, so I asked ChatGPT and used div function to fullfill that -->
+    <div>
+        <br> <!-- Line break -->
+        <a href="{{ url_for('hello') }}">Go back to home page</a>
+        <!-- url for hello takes user back to the hello function in app.py -->
+    </div>
+
+</body>
+
+</html>

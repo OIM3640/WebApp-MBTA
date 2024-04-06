@@ -217,7 +217,7 @@ After completing the required parts of this project, you can spice it up by addi
 2. Display weather information - although it may always be the same (at a particular point in time), no matter what location is entered because it is supposed in Great Boston area. Say "hello" to our old friend, [OpenWeatherMap API](https://openweathermap.org/api). 
 3. Any interesting events in the nearby area? Try [Ticketmaster API](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/) to find out concerts, sport events information.
 4. Yes, you guessed it! - More APIs. Some suggestions:
-    - [GitHub repository - Public APIs](https://github.com/public-apis/public-apis) 
+   - [GitHub repository - Public APIs](https://github.com/public-apis/public-apis) 
    - [RapidAPI - Discover More APIs](https://rapidapi.com/hub)
    - [ApiVault](https://apivault.dev/) 
    - [APIs.guru](https://apis.guru/)
