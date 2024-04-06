@@ -6,11 +6,11 @@ import urllib.request
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+MAPBOX_TOKEN = 'YOUR MAPBOX API ACCESS TOKEN'
 query = 'Babson College'
 query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function. 
 url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
 print(url) # Try this URL in your browser first
-
 with urllib.request.urlopen(url) as f:
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
@@ -28,7 +28,12 @@ def get_json(url: str) -> dict:
 
     Both get_lat_lng() and get_nearest_station() might need to use this function.
     """
-    pass
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
+        return response_data
+    
+    
 
 
 def get_lat_lng(place_name: str) -> tuple[str, str]:
@@ -37,7 +42,7 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    pass
+    
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -62,7 +67,14 @@ def main():
     """
     You should test all the above functions here
     """
-    pass
+    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
+    query = 'Babson College'
+    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function. 
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi' 
+    get_json(url)
+    
+    
+    
 
 
 if __name__ == '__main__':
