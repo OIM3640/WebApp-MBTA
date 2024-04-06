@@ -41,11 +41,11 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
-    query = place_name
+    query = urllib.parse.quote(place_name)
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-    get_json(url)
-    pass
-    
+    response_data = get_json(url)
+    coordinates = response_data["features"][0]["geometry"]["coordinates"]
+    return tuple(coordinates)
     
 
 
@@ -74,7 +74,8 @@ def main():
     query = 'Babson College'
     query = query.replace(' ', '%20')
     url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-    print(get_json(url))
+    pprint.pprint(get_json(url))
+    print(get_lat_lng("Babson College"))
     
     
     
