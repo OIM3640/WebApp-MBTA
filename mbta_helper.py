@@ -1,20 +1,19 @@
 import json
 import pprint
 import urllib.request
+import urllib.parse
 
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 
-MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
-MAPBOX_TOKEN = 'YOUR MAPBOX API ACCESS TOKEN'
-query = 'Babson College'
-query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function. 
-url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
-print(url) # Try this URL in your browser first
-with urllib.request.urlopen(url) as f:
-    response_text = f.read().decode('utf-8')
-    response_data = json.loads(response_text)
-    pprint.pprint(response_data)
+
+# query = 'Babson College'
+# query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function. 
+# print(url) # Try this URL in your browser first
+# with urllib.request.urlopen(url) as f:
+#     response_text = f.read().decode('utf-8')
+#     response_data = json.loads(response_text)
+#     pprint.pprint(response_data)
 
 # Useful URLs (you need to add the appropriate parameters for your requests)
 MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
@@ -42,6 +41,11 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
 
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
+    query = place_name
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    get_json(url)
+    pass
+    
     
 
 
@@ -67,11 +71,10 @@ def main():
     """
     You should test all the above functions here
     """
-    MAPBOX_BASE_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places"
     query = 'Babson College'
-    query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function. 
-    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi' 
-    get_json(url)
+    query = query.replace(' ', '%20')
+    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    print(get_json(url))
     
     
     
