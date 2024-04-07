@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing app to help you find the nearest MBTA station</title>
-  </head>
-
-  <body>
-    <p>Hi</p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Helper</title>
+    <style>
+        body { 
+            font-family: 'Times New Roman', serif; 
+            text-align: center; 
+            background-color: #f0f8ff; 
+            color: #0366d6; 
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            margin-top: 10px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            background-color: #0366d6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #024d8c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, please enter a place name:</h1>
+    <form action="/" method="post">
+        <input type="text" name="place_name" required>
+        <input type="submit" value="Submit">
+    </form>
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    <img src="{{ url_for('static', filename='home.jpg') }}" alt="Map of MBTA Boston">
+</body>
 </html>

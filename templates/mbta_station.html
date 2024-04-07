@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest MBTA Station and Events</title>
+    <style>
+        body { 
+            font-family: 'Times New Roman', serif; 
+            text-align: center; 
+            padding-top: 20px; 
+            background-color: #f0f8ff; 
+            color: #0366d6; 
+        }
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        .event {
+            margin: 20px auto;
+            padding: 10px;
+            border-bottom: 1px solid #0366d6;
+        }
+        .event:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nearest MBTA Station</h1>
+    <p>Station Name: {{ station_name }}</p>
+    <p>Wheelchair Accessible: {{ 'Yes' if is_accessible else 'No' }}</p>
+    <h2>Nearby Events</h2>
+    {% if events %}
+        {% for event in events %}
+            <div class="event">
+                <p><strong>Event Name:</strong> {{ event.name }}</p>
+                <p><strong>Date:</strong> {{ event.dates.start.localDate }} at {{ event.dates.start.localTime }}</p>
+                <p><a href="{{ event.url }}">More Info</a></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No events found.</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
