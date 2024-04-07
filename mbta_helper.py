@@ -5,7 +5,7 @@ import urllib.parse
 import requests
 
 # Your API KEYS (you need to use your own keys - very long random characters)
-from config import MAPBOX_TOKEN, MBTA_API_KEY
+from config1 import MAPBOX_TOKEN, MBTA_API_KEY
 
 
 # query = 'Babson College'
