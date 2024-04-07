@@ -57,7 +57,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
     mbta_api_url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}"
     response_data = requests.get(mbta_api_url).json()
     # check url: https://api-v3.mbta.com/stops?filter[latitude]={42.2981925}&filter[longitude]={-71.263598}
-    pprint.pprint(response_data)
+    # pprint.pprint(response_data)
     if "data" in response_data:
         stops = response_data["data"]
         for stop in stops:
@@ -68,8 +68,8 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
                 wheelchair_accessible = True 
             else:
                 wheelchair_accessible = False
-            print("Station name:", station_name)  # Print the station name
-            print("Wheelchair accessible:", wheelchair_accessible)
+            # print("Station name:", station_name)  # Print the station name
+            # print("Wheelchair accessible:", wheelchair_accessible)
             return station_name ,wheelchair_accessible
     else:
         return "No station has been found", False
