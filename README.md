@@ -5,7 +5,10 @@
 
 # Project Overview (~1 paragraph)
 
-Write a short abstract describing your project. Include all the extensions to the basic requirements.
+Our project aimed to assist users in locating the nearest MBTA station, and checking its wheelchair accessibility status. We use MAPBOX API to convert user-input addresses into coordinates, and MBTA API with these coordinates to find the nearest subway station and assess its wheelchair accessibility status. The core functionality of our application stays in the mbta_helper.py page, which interacts with those external APIs. The Flask framework is powered by app.py, it sets up the website and routing. When the user lands on the first page, will see a simple form where the user inputs their address. And once they hit 'submit', it begins a POST request to the '/find', the 'find' function in app.py takes over. 
+
+
+
 
 # Reflection (~3 paragraphs + screenshots)
 

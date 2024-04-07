@@ -47,14 +47,6 @@ def find_closest_mbta_stop(lat, lon, mbta_api_key):
 
 
 __name__ == "__main__"
-# MAPBOX_TOKEN = "pk.eyJ1IjoieXpoYW5nMTIiLCJhIjoiY2x1bXNhODdhMHV3OTJpbzFmMDVrOXE3YiJ9.q69jiTi7aXGjGmQDbwukmA"
-# MBTA_API_KEY =
+MAPBOX_TOKEN = "pk.eyJ1IjoieXpoYW5nMTIiLCJhIjoiY2x1bXNhODdhMHV3OTJpbzFmMDVrOXE3YiJ9.q69jiTi7aXGjGmQDbwukmA"
+MBTA_API_KEY = "d9fa3e8fb55e42cc95ede40ff80ab074"
 address = "Boston Common, Boston, MA"
-
-
-# try:
-#     lat, lon = get_coordinates(address, MAPBOX_TOKEN)
-#     stop_name, wheelchair_accessible = find_closest_mbta_stop(lat, lon, MBTA_API_KEY)
-#     print(f"Closest MBTA Stop: {stop_name}, Wheelchair Accessible: {wheelchair_accessible}")
-# except Exception as e:
-#     print(f"An error occurred: {e}")
