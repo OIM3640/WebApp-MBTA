@@ -18,7 +18,7 @@ query = "Babson College"
 query = query.replace(" ", "%20")
 # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function.
 url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
-# print(url) # Try this URL in your browser first
+# print(url)  # Try this URL in your browser first
 
 with urllib.request.urlopen(url) as f:
     response_text = f.read().decode("utf-8")
