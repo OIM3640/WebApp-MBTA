@@ -214,12 +214,12 @@ To complete this project, the official [Flask documentation](https://flask.palle
 After completing the required parts of this project, you can spice it up by adding additional features. Some suggestions:
 
 1. Refer to [7. Making it Cooler (Optional)](#7-making-it-cooler-optional) section in Part 1 and [6. Going Further (Optional)](#6-going-further-optional) section in Part 2 for more ideas.
-2. Display weather information - although it may always be the same (at a particular point in time), no matter what location is entered because it is supposed in Great Boston area. Say "hello" to our old friend, [OpenWeatherMap API](https://openweathermap.org/api). 
+2. Display weather information - although it may always be the same (at a particular point in time), no matter what location is entered because it is supposed in Great Boston area. Say "hello" to our old friend, [OpenWeatherMap API](https://openweathermap.org/api).
 3. Any interesting events in the nearby area? Try [Ticketmaster API](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/) to find out concerts, sport events information.
 4. Yes, you guessed it! - More APIs. Some suggestions:
-    - [GitHub repository - Public APIs](https://github.com/public-apis/public-apis) 
+   - [GitHub repository - Public APIs](https://github.com/public-apis/public-apis)
    - [RapidAPI - Discover More APIs](https://rapidapi.com/hub)
-   - [ApiVault](https://apivault.dev/) 
+   - [ApiVault](https://apivault.dev/)
    - [APIs.guru](https://apis.guru/)
 
 ---

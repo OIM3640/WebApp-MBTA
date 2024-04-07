@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result for Nearest MBTA Station Nearby</title>
+    <style>
+        body {
+            background-color: #faefd9;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 50px;
+            color: #007bff;
+        }
+
+        /* Make the image more round on the corner */
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 8px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-20px);
+        }
+        }
+        
+        img:hover {
+        transform: scale(1.05);
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration:underline;
+        }
+        /* When hoverig on the link => shows a underine under the line */
+    </style>
+</head>
+
+<body>
+    <h1>Bob found a suitable MBTA station for you!</h1>
+    <img src="https://i.ytimg.com/vi/j1YEVm5M-YM/maxresdefault.jpg" width="500">
+
+    <p>Current temperature in {{ city }}, the municiple of {{ place }}, is {{ temp }} Fahrenheit or {{tempc}} Celsius.
+    </p>
+
+    <h2>The nearest station near {{ place }} is {{ station }} station.</h2>
+    {% if wheelchairs == 0 %}
+    <p>We are not sure if wheelchairs are accessible at the {{ station }} station.</p>
+    {% elif wheelchairs == 1 %}
+    <p>Wheelchairs are accessible at the {{ station }} station.</p>
+    {% elif wheelchairs == 2 %}
+    <p>Wheelchairs are not accessible at the {{ station }} station.</p>
+    {% endif %}
+
+    {% if not starttime %}
+    <p>The arrival time is not avaliable</p>
+    {% else %}
+    <p>The arrival time is {{starttime}}</p>
+    {% endif %}
+
+    {% if not endtime %}
+    <p>The departure time is not avaliable</p>
+    {% else %}
+    <p>The departure time is {{endtime}}</p>
+    {% endif %}
+
+    <!-- The code below is coded with help of ChatGPT -->
+    <h3>The top 5 nearby events near {{place}} are:</h3>
+    <!-- ul is used to process a list of items -->
+    <ul>
+        {% for items in event %}
+        <!-- br => each event is a seperate line (break) -->
+        <!-- {% if items.time %} at {{ items.time }}{% endif %} this means if the specific time is avaliable, print the time -->
+            {{ items.name }} -- {{ items.date }}{% if items.time %} at {{ items.time }}{% endif %} -- {{ items.venue }} (<a href="{{ event.url }}">Click for More Info</a>)<br>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>
