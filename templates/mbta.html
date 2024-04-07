@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearest MBTA Station</title>
+    <style>
+        body { 
+            font-family: 'Times New Roman', serif; 
+            text-align: center; 
+            padding-top: 20px; 
+            background-color: #f0f8ff; 
+            color: #0366d6; 
+        }
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Nearest MBTA Station</h1>
+    <p>Station Name: {{ station_name }}</p>
+    <p>Wheelchair Accessible: {{ 'Yes' if is_accessible else 'No' }}</p>
+    <a href="/">Back to Home</a>
+</body>
+</html>
