@@ -9,6 +9,7 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # A little bit of scaffolding if you want to use it
 
+
 def get_json(url: str) -> dict:
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
@@ -52,5 +53,5 @@ def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
