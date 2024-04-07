@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        div {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+            /* Prevents the bouncing text from overflowing the div */
+        }
+
+        h1 {
+            color: #d9534f;
+            margin: 0;
+            animation: bounce 2s infinite;
+            /* Apply the bounce animation */
+        }
+
+        a {
+            display: inline-block;
+            background-color: #597C31;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #006644;
+        }
+
+        /* Define the bounce animation */
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>An Error Occurred</h1>
+        <p>{{ error_message }}</p>
+        <a href="/">Search Again</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTA Stop Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #006644;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: #597C31;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .back-link:hover {
+            background-color: #9EB28F;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Results for {{ place_name }}</h1>
+
+    <section>
+        <h2>Nearest MBTA Stop</h2>
+        <p>Stop Name: {{ nearest_stop }}</p>
+        <p>Wheelchair Accessible: {{ wheelchair_accessible }}</p>
+    </section>
+
+    <section>
+        <h2>Real-Time MBTA Stop Information</h2>
+        {% if real_time_info %}
+        <p>Nearest Stop: {{ real_time_info[0] }}</p>
+        <p>Wheelchair Accessible: {{ real_time_info[1] }}</p>
+        <p>Next Arrival Time: {{ real_time_info[2] }}</p>
+        <p>Next Departure Time: {{ real_time_info[3] }}</p>
+        {% else %}
+        <p>No real-time information available.</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>Weather Information</h2>
+        <p>Temperature: {{ weather_info.temperature }}°F</p>
+        <p>Condition: {{ weather_info.condition }}</p>
+        <p>Description: {{ weather_info.description }}</p>
+    </section>
+
+    <section>
+        <h2>Nearby Events</h2>
+        <ul>
+            {% for event in nearby_events %}
+            <li><a href="{{ event.url }}">{{ event.name }}</a> - {{ event.date }} at {{ event.venue }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Top Restaurants Near Station</h2>
+        <ul>
+            {% for restaurant in top_restaurants %}
+            <li>{{ restaurant.name }} - {{ restaurant.address }} (Rating: {{ restaurant.rating }})</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <a href="/" class="back-link">Search Again</a>
+</body>
+
+</html>
