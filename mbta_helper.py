@@ -2,13 +2,14 @@ import json
 import pprint
 import urllib.request
 import urllib.parse
+import requests
 
 # Your API KEYS (you need to use your own keys - very long random characters)
 from config import MAPBOX_TOKEN, MBTA_API_KEY
 
 
 # query = 'Babson College'
-# query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function. 
+# query = query.replace(' ', '%20') # In URL encoding, spaces are typically replaced with "%20". You can also use urllib.parse.quote function.
 # print(url) # Try this URL in your browser first
 # with urllib.request.urlopen(url) as f:
 #     response_text = f.read().decode('utf-8')
@@ -21,6 +22,7 @@ MBTA_BASE_URL = "https://api-v3.mbta.com/stops"
 
 # A little bit of scaffolding if you want to use itV
 
+
 def get_json(url: str) -> dict:
     """
     Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request.
@@ -28,11 +30,9 @@ def get_json(url: str) -> dict:
     Both get_lat_lng() and get_nearest_station() might need to use this function.
     """
     with urllib.request.urlopen(url) as f:
-        response_text = f.read().decode('utf-8')
+        response_text = f.read().decode("utf-8")
         response_data = json.loads(response_text)
         return response_data
-    
-    
 
 
 def get_lat_lng(place_name: str) -> tuple[str, str]:
@@ -42,11 +42,10 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
     See https://docs.mapbox.com/api/search/geocoding/ for Mapbox Geocoding API URL formatting requirements.
     """
     query = urllib.parse.quote(place_name)
-    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
     response_data = get_json(url)
     coordinates = response_data["features"][0]["geometry"]["coordinates"]
     return tuple(coordinates)
-    
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -55,7 +54,27 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    pass
+    mbta_api_url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}"
+    response_data = requests.get(mbta_api_url).json()
+    # check url: https://api-v3.mbta.com/stops?filter[latitude]={42.2981925}&filter[longitude]={-71.263598}
+    pprint.pprint(response_data)
+    if "data" in response_data:
+        stops = response_data["data"]
+        for stop in stops:
+            attributes = stop.get("attributes", {})
+            station_name = attributes.get("name", "Unknown Station")
+            wheelchair_accessible = attributes.get("wheelchair_boarding", "Unknown")
+            if wheelchair_accessible == 1:
+                wheelchair_accessible = True 
+            else:
+                wheelchair_accessible = False
+            print("Station name:", station_name)  # Print the station name
+            print("Wheelchair accessible:", wheelchair_accessible)
+            return station_name ,wheelchair_accessible
+    else:
+        return "No station has been found", False
+        
+    
 
 
 def find_stop_near(place_name: str) -> tuple[str, bool]:
@@ -64,22 +83,24 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    pass
+    
+    
 
 
 def main():
     """
     You should test all the above functions here
     """
-    query = 'Babson College'
-    query = query.replace(' ', '%20')
-    url=f'{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi'
+    query = "Babson College"
+    query = query.replace(" ", "%20")
+    url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
     pprint.pprint(get_json(url))
     print(get_lat_lng("Babson College"))
-    
-    
-    
+    latitude = "42.2981925"
+    longitude = "-71.263598"
+    print(get_nearest_station(latitude, longitude))
+    print(find_stop_near(query))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
