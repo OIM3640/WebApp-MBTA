@@ -63,9 +63,8 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
     if response.status_code == 200:
         data = response.json()
 
-        # Check if there are any features in the response
         if not data["features"]:
-            return "Error", "Error"  # Or another appropriate default value or message
+            return "Error", "Error"
 
         longitude, latitude = data["features"][0]["center"]
         return str(latitude), str(longitude)
