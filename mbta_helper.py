@@ -62,7 +62,7 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-
+        # Error handling
         if not data["features"]:
             return "Error", "Error"
 
@@ -95,6 +95,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
         wheelchair_accessible = response_data["data"][0]["attributes"][
             "wheelchair_boarding"
         ]
+        # Convert to boolean
         wheelchair_accessible = bool(wheelchair_accessible)
         return (name, wheelchair_accessible)
 
@@ -118,7 +119,7 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     return station_name, wheelchair_accessible
 
 
-# Additional APIs
+# Additional Fuction that use different APIs
 def get_real_time_nearest_station(place_name: str) -> tuple[str, bool]:
     """
     Given the place name, return the nearest MBTA stop and whether it is wheelchair accessible as well as the real-time data for that stop.
@@ -285,6 +286,7 @@ def top_restaurants_near_station(place_name):
                 "name": restaurant["name"],
                 "address": restaurant["vicinity"],
                 "rating": restaurant.get("rating"),
+                "price": restaurant.get("price_level"),
             }
             for restaurant in top_restaurants
         ]
