@@ -88,7 +88,23 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     wheelchair_accessible = wheelchair_accessible == 1
     return station_name, wheelchair_accessible
     
-    
+def get_weather(city_name):
+    """
+    gets the current temperature from the website OpenWeather
+    """
+    apinumber = "802764bbb0a6ea74fa943834ac92f6a8"
+    country_code = "us"
+    response = requests.get(
+        f"http://api.openweathermap.org/data/2.5/weather?q={city_name},{country_code}&APPID={apinumber}&units=metric"
+    )
+    data = response.json()
+
+    if "main" in data:
+        temperature = data["main"]["temp"]
+        return temperature
+    else:
+        error_message = data.get("message", "Encountered an Error")
+        return error_message
 
 
 def main():
@@ -98,6 +114,7 @@ def main():
     print(get_lat_lng("Boston College"))
     print(find_stop_near("Boston University"))
     print(get_nearest_station(42.3358655,-71.1694295))
+    print(get_weather("Boston"))
 
 
 if __name__ == "__main__":
