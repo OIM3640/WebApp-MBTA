@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template
-<<<<<<< Updated upstream
 from mbta_helper import (
     get_lat_lng,
     find_stop_near,
@@ -11,13 +10,6 @@ from mbta_helper import (
     MAPBOX_TOKEN,
     MBTA_API_KEY,
 )
-
-=======
-from app2 import get_coordinates
-from app2 import MAPBOX_TOKEN
-from app2 import find_closest_mbta_stop
-from app2 import MBTA_API_KEY
->>>>>>> Stashed changes
 
 app = Flask(__name__)
 
