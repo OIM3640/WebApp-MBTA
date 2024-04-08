@@ -54,23 +54,21 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    mbta_api_url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}"
+    mbta_api_url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}&filter[radius]=1000"
     response_data = requests.get(mbta_api_url).json()
-    # check url: https://api-v3.mbta.com/stops?filter[latitude]={42.2981925}&filter[longitude]={-71.263598}
-    # pprint.pprint(response_data)
-    if "data" in response_data:
-        stops = response_data["data"]
-        for stop in stops:
-            attributes = stop.get("attributes", {})
-            station_name = attributes.get("name", "Unknown Station")
-            wheelchair_accessible = attributes.get("wheelchair_boarding", "Unknown")
-            if wheelchair_accessible == 1:
-                wheelchair_accessible = True 
-            else:
-                wheelchair_accessible = False
+    # this url works in chrome: https://api-v3.mbta.com/stops?filter[latitude]={42.2981925}&filter[longitude]={-71.263598}
+    # pprint.pprint(response_data), empty dataset
+    if len(response_data["data"]) != 0:
+        stops = response_data["data"][0]
+        station_name = stops["attributes"]["name"]
+        wheelchair_accessible = stops["attributes"]["wheelchair_boarding"]
+        if wheelchair_accessible == 1:
+            wheelchair_accessible = True 
+        else: 
+            wheelchair_accessible = False
             # print("Station name:", station_name)  # Print the station name
             # print("Wheelchair accessible:", wheelchair_accessible)
-            return station_name ,wheelchair_accessible
+        return station_name ,wheelchair_accessible
     else:
         return "No station has been found", False
         
@@ -83,7 +81,9 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    
+    Lat_lng = get_lat_lng(place_name)
+    longitude, latitude = Lat_lng
+    return get_nearest_station(latitude, longitude)
     
     
 
@@ -97,9 +97,14 @@ def main():
     url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
     pprint.pprint(get_json(url))
     print(get_lat_lng("Babson College"))
-    latitude = "42.2981925"
-    longitude = "-71.263598"
+    latitude = "42.371554"
+    longitude = "-71.224591"
     print(get_nearest_station(latitude, longitude))
+    #This is the exact latitude and longitude of the station
+    latitude = "80"
+    longitude = "-100"
+    print(get_nearest_station(latitude, longitude))
+    #try filtering radius
     print(find_stop_near(query))
 
 
