@@ -4,6 +4,9 @@ from mbta_helper import get_nearest_station
 
 app = Flask(__name__)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html")
 
 @app.route("/")
 def hello():

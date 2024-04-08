@@ -44,8 +44,11 @@ def get_lat_lng(place_name: str) -> tuple[str, str]:
     query = urllib.parse.quote(place_name)
     url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
     response_data = get_json(url)
-    coordinates = response_data["features"][0]["geometry"]["coordinates"]
-    return tuple(coordinates[::1])
+
+    longtitude, latitude = response_data["features"][0]["center"]
+    return str(latitude), str(longtitude)
+    # coordinates = response_data["features"][0]["geometry"]["coordinates"]
+    # return tuple(coordinates)
 
 
 def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
@@ -54,7 +57,7 @@ def get_nearest_station(latitude: str, longitude: str) -> tuple[str, bool]:
 
     See https://api-v3.mbta.com/docs/swagger/index.html#/Stop/ApiWeb_StopController_index for URL formatting requirements for the 'GET /stops' API.
     """
-    mbta_api_url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}&filter[radius]=1000"
+    mbta_api_url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}&sort=distance"
     response_data = requests.get(mbta_api_url).json()
     # this url works in chrome: https://api-v3.mbta.com/stops?filter[latitude]={42.2981925}&filter[longitude]={-71.263598}
     # pprint.pprint(response_data), empty dataset
@@ -79,28 +82,22 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
 
     This function might use all the functions above.
     """
-    latitude, longitude = get_lat_lng(place_name)
-    return get_nearest_station(latitude, longitude)
+    lat, lng = get_lat_lng(place_name)
+
+    station_name, wheelchair_accessible = get_nearest_station(lat,lng)
+    wheelchair_accessible = wheelchair_accessible == 1
+    return station_name, wheelchair_accessible
+    
+    
 
 
 def main():
     """
     You should test all the above functions here
     """
-    query = "Boston University"
-    query = query.replace(" ", "%20")
-    url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
-    pprint.pprint(get_json(url))
-    print(get_lat_lng("Boston University"))
-    latitude = "42.3493"
-    longitude = "71.0782"
-    print(get_nearest_station(latitude, longitude))
-    # This is the exact latitude and longitude of the station
-    latitude = "42.3493"
-    longitude = "71.0782"
-    print(get_nearest_station(latitude, longitude))
-    # try filtering radius
-    print(find_stop_near(query))
+    print(get_lat_lng("Boston College"))
+    print(find_stop_near("Boston University"))
+    print(get_nearest_station(42.3358655,-71.1694295))
 
 
 if __name__ == "__main__":
