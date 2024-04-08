@@ -139,7 +139,7 @@ def get_real_time_nearest_station(place_name: str) -> tuple[str, bool]:
     wheelchair_accessible = bool(wheelchair_accessible)
     stop_id = response_data["data"][0]["id"]
     url_stop = f"https://api-v3.mbta.com/schedules?api_key={MBTA_API_KEY}&filter[stop]={stop_id}"
-
+    # print(url_stop)
     real_time_nearest_station_data = get_json(url_stop)
 
     if not real_time_nearest_station_data["data"]:
@@ -159,25 +159,23 @@ def get_real_time_nearest_station(place_name: str) -> tuple[str, bool]:
     return name, wheelchair_accessible, arrival_time, departure_time
 
 
-# print(real_time_nearest_station("Boston University"))
+# print(get_real_time_nearest_station("Boston University"))
 
 
 def get_city_name(place_name: str) -> str:
     """
     Given a place name or address, return the city name of the given place.
+    https://developers.google.com/maps/documentation/places/web-service/op-overview
     """
     place_name_encoded = place_name.replace(" ", "%20")
     # requests.utils.quote(place_name)
     url = f"https://maps.googleapis.com/maps/api/geocode/json?address={place_name_encoded}&key={GOOGLE_MAPS_API_KEY}"
 
-    # Make the API request
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
 
-        # Check if Google Maps found the location
         if data["status"] == "OK":
-            # Loop through the address components to find the city (locality)
             for component in data["results"][0]["address_components"]:
                 if (
                     "locality" in component["types"]
@@ -316,13 +314,13 @@ def main():
     print(get_real_time_nearest_station("Boston University"))
     print(get_real_time_nearest_station("Massachusetts Institute of Technology"))
 
-    print(get_city_name("Boston College"))
+    print(get_city_name("Boston University"))
 
-    print(get_city_weather("Boston College"))
+    print(get_city_weather("Boston University"))
 
-    events = get_nearby_events("Babson College")
-    for event in events:
-        pprint.pprint(event)
+    # events = get_nearby_events("Babson College")
+    # for event in events:
+    #     pprint.pprint(event)
 
     restaurants = top_restaurants_near_station("Boston University")
     for restaurant in restaurants:

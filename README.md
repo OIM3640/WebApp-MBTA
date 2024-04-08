@@ -3,7 +3,15 @@
 
 # Project Overview
 
-Our project aimed to assist users in locating the nearest MBTA station, and checking its wheelchair accessibility status as well as other information like nearby restaurants and events. We use MAPBOX API to convert user-input addresses into coordinates, and MBTA API with these coordinates to find the nearest subway station and assess its wheelchair accessibility status. The core functionality of our application stays in the mbta_helper.py page, which interacts with those external APIs. The Flask framework is powered by app.py, it sets up the website and routing. When the user lands on the first page, will see a simple form where the user inputs their address. And once they hit 'submit', it begins a POST request to the '/find', and the 'find' function in app.py takes over. 
+Our project aimed to assist users in locating the nearest MBTA station to their input address and checking its wheelchair accessibility status as well as other information like nearby restaurants and events. We use MAPBOX API to convert user-input addresses into coordinates, and then MBTA API with these coordinates to find the nearest subway station and assess its wheelchair accessibility status. Other APIs like OpenWeather for weather forecasts, Ticketmaster for local events, and Google Maps for restaurant recommendations. 
+
+The core functionality of our application stays in the mbta_helper.py page, which interacts with those external APIs. The Flask framework is powered by app.py, it sets up the website and routing. When the user lands on the first page, will see a simple form where the user inputs their address via index.html, and receives detailed information on results.html, with error handling implemented in error.html. 
+
+
+
+
+
+And once they hit 'submit', it begins a POST request to the '/find', and the 'find' function in app.py takes over. 
 
 
 
