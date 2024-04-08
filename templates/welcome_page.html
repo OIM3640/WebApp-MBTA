@@ -54,8 +54,8 @@
 
 <h1>Welcome!</h1>
 <p>Type a place to search for the nearest MBTA stations:</p >
-<form action="/search_nearest_mbta" method="post">
-    <input type="text" name="place" placeholder="Enter a place" required>
+    <form method="post" action="{{ url_for('mbta') }}">
+    <input type="text" name="place_name" placeholder="Enter a place" required>
     <input type="submit" value="Search">
 </form>
 </body>

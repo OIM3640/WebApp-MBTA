@@ -7,32 +7,36 @@ app = Flask(__name__)
 
 @app.route("/", methods = ["GET","POST"])
 def mbta():
-    """
-    uses the get_nearest_station in mbta_helper code and directs users to the corresponding html page
-    """
-    if request.method == "POST":
-        place_name = request.form.get("place_name")
-        if place_name:
-            try:
-                stop_name, wheelchair_accessible = find_stop_near(place_name)
-                weather_info = get_weather(place_name)
-                return render_template('station_info.html', place_name = place_name, nearest_stop = stop_name, wheelchair_accessible = wheelchair_accessible, weather_info = weather_info)
-            except Exception as e:
-                return redirect(url_for('error', error_message = str(e)))
-    return render_template('welcome_page.html')
+    try:
+        if request.method == "POST":
+            place_name = request.form.get("place_name")
+            nearest_stop, wheelchair_accessible = find_stop_near(place_name)
+            nearest_stop, wheelchair_accessible = find_stop_near(place_name)
+            weather_info = get_weather(place_name)
 
-@app.route("/station/<station_name>")
-def stop_info(stop_name):
-    return render_template("station_info.html", stop_name = stop_name)
+            return render_template(
+                "station_info.html",
+                place_name=place_name,
+                nearest_stop=nearest_stop,
+                wheelchair_accessible=wheelchair_accessible,
+                weather_info=weather_info,
+            )
 
-@app.route("/error/")
-def error():
-    error_message = request.args.get('error_message', 'An unkown error occurred.')
-    return render_template("error_page.html", error_message = error_message)
-        
+    except Exception as e:
+        return render_template("error_page.html", error_message=str(e))
+
+    return render_template("welcome_page.html")
+
+
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("error_page.html", error_message = "Page not found."), 404
-      
+    return render_template("error_page.html", error_message="Page not found."), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template("error_page.html", error_message="Internal server error."), 500
+
+
 if __name__ == "__main__":
     app.run(debug=True)
