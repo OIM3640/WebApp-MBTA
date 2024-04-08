@@ -16,7 +16,7 @@ def mbta():
             try:
                 stop_name, wheelchair_accessible = find_stop_near(place_name)
                 weather_info = get_weather(place_name)
-                return render_template('station_info.html', place_name = place_name, nearest_stop = stop_name, wheelchair_accessible = wheelchair_accessible, weather_info = weather_info)
+                return redirect(url_for('station_info.html', place_name = place_name, nearest_stop = stop_name, wheelchair_accessible = wheelchair_accessible, weather_info = weather_info))
             except Exception as e:
                 return redirect(url_for('error', error_message = str(e)))
     return render_template('welcome_page.html')
