@@ -87,11 +87,11 @@ def main():
     """
     You should test all the above functions here
     """
-    query = "Boston University"
+    query = "Wellesley College"
     query = query.replace(" ", "%20")
     url = f"{MAPBOX_BASE_URL}/{query}.json?access_token={MAPBOX_TOKEN}&types=poi"
     pprint.pprint(get_json(url))
-    print(get_lat_lng("Boston University"))
+    print(get_lat_lng(query))
     latitude = "42.3493"
     longitude = "71.0782"
     print(get_nearest_station(latitude, longitude))
