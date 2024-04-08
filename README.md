@@ -4,6 +4,9 @@
 # Team Members
 Yuefan Cao & Jade Liang
 
+# Project Overview
+This project's purpose is to build a website that will allow people to find a nearby MBTA station and provide the current weather of the location. The website will request the user to input a location. If the input is valid, the site will bring the user to a new page that displays the nearby station and the weather of the provided location. However, if the user provides any irrelevant inputs such as a string of numbers or a random string of letters, it will bring them to an error page. This error page will have a message redirecting them to go back to the home page and provide a new input. To build this website, we will combine three APIs together: MapBox API, MBTA API, and OpenWeather API. 
+
 # 2. Reflection
 ## 1. *process* POV
 
