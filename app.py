@@ -1,14 +1,10 @@
 from flask import Flask, request, render_template
 from mbta_helper import (
-    get_lat_lng,
     find_stop_near,
     get_real_time_nearest_station,
     get_city_weather,
-    get_city_name,
     get_nearby_events,
     top_restaurants_near_station,
-    MAPBOX_TOKEN,
-    MBTA_API_KEY,
 )
 
 app = Flask(__name__)

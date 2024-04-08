@@ -47,6 +47,6 @@ def find_closest_mbta_stop(lat, lon, mbta_api_key):
 
 
 __name__ == "__main__"
-MAPBOX_TOKEN = "pk.eyJ1IjoieXpoYW5nMTIiLCJhIjoiY2x1bXNhODdhMHV3OTJpbzFmMDVrOXE3YiJ9.q69jiTi7aXGjGmQDbwukmA"
-MBTA_API_KEY = "d9fa3e8fb55e42cc95ede40ff80ab074"
+MAPBOX_TOKEN = ""
+MBTA_API_KEY = ""
 address = "Boston Common, Boston, MA"
