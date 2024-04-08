@@ -73,10 +73,10 @@
     <section>
         <h2>Real-Time MBTA Stop Information</h2>
         {% if real_time_info %}
-        <p>Nearest Stop: {{ real_time_info[0] }}</p>
-        <p>Wheelchair Accessible: {{ real_time_info[1] }}</p>
-        <p>Next Arrival Time: {{ real_time_info[2] }}</p>
-        <p>Next Departure Time: {{ real_time_info[3] }}</p>
+        <p><strong>Nearest Stop:</strong> {{ real_time_info[0] }}</p>
+        <p><strong>Wheelchair Accessible:</strong> {{ real_time_info[1] }}</p>
+        <p><strong>Next Arrival Time:</strong> {{ real_time_info[2] }}</p>
+        <p><strong>Next Departure Time:</strong> {{ real_time_info[3] }}</p>
         {% else %}
         <p>No real-time information available.</p>
         {% endif %}
@@ -84,9 +84,9 @@
 
     <section>
         <h2>Weather Information</h2>
-        <p>Temperature: {{ weather_info.temperature }}°F</p>
-        <p>Condition: {{ weather_info.condition }}</p>
-        <p>Description: {{ weather_info.description }}</p>
+        <p><strong>Temperature:</strong> {{ weather_info.temperature }}°F</p>
+        <p><strong>Condition:</strong> {{ weather_info.condition }}</p>
+        <p><strong>Description:</strong> {{ weather_info.description }}</p>
     </section>
 
     <section>
@@ -102,7 +102,11 @@
         <h2>Top Restaurants Near Station</h2>
         <ul>
             {% for restaurant in top_restaurants %}
-            <li>{{ restaurant.name }} - {{ restaurant.address }} (Rating: {{ restaurant.rating }})</li>
+            <li>
+                <strong>{{ restaurant.name }}</strong><br>
+                Address: {{ restaurant.address }}<br>
+                Rating: {{ restaurant.rating }}, Price: {{ restaurant.price }}
+            </li>
             {% endfor %}
         </ul>
     </section>
