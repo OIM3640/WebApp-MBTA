@@ -21,7 +21,7 @@ For team collaboration, we initally planned frequent in-person meetings but due 
 
 *What went well:* we successfully integrated multiple external APIs (Mapbox, MBTA, OpenWeather, Ticketmaster, GoogleMaps). 
 
-*Areas for improvement:* 1. maybe better interface and user experiences   2. in the future, we hope to regather ceive user feedbacks through big-data analytics, surveys, and usability testing to see that improvement they desire. 
+*Areas for improvement:* 1. maybe better interface and user experiences   2. in the future, we hope to gather user feedbacks through big-data analytics, surveys, and usability testing to see that improvement they desire. 
 
 
 *Learning Perspective:*
