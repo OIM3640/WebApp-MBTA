@@ -88,10 +88,42 @@ def find_stop_near(place_name: str) -> tuple[str, bool]:
     wheelchair_accessible = wheelchair_accessible == 1
     return station_name, wheelchair_accessible
     
-def get_weather(city_name):
+
+def get_city_name(place_name):
+    """
+    Given a place name, returns the city (municipality) where the place is located.
+    """
+    lat, lng = get_lat_lng(place_name)
+
+    # URL for the MBTA API endpoint to search for a place
+    url = f"https://api-v3.mbta.com/stops?api_key={MBTA_API_KEY}&filter[latitude]={lat}&filter[longitude]={lng}&sort=distance"
+    # print(url)
+
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+
+            if data['data']:
+                municipality = data['data'][0]['attributes'].get('municipality')
+                if municipality:
+                    return municipality
+                else:
+                    return "Municipality information not available."
+
+            else:
+                return "City not found."
+        else:
+            return f"Error: Unable to retrieve data from the API. Status code: {response.status_code}"
+    except requests.RequestException as e:
+        return f"Request error: {str(e)}"
+    
+
+def get_weather(place_name):
     """
     gets the current temperature from the website OpenWeather
     """
+    city_name = get_city_name(place_name)
     apinumber = "802764bbb0a6ea74fa943834ac92f6a8"
     country_code = "us"
     response = requests.get(
@@ -111,10 +143,11 @@ def main():
     """
     You should test all the above functions here
     """
-    print(get_lat_lng("Boston College"))
-    print(find_stop_near("Boston University"))
-    print(get_nearest_station(42.3358655,-71.1694295))
-    print(get_weather("Boston"))
+    # print(get_lat_lng("Boston College"))
+    # print(find_stop_near("Boston University"))
+    # print(get_nearest_station(42.3358655,-71.1694295))
+    print(get_city_name("Boston University"))
+    # print(get_weather("Boston"))
 
 
 if __name__ == "__main__":

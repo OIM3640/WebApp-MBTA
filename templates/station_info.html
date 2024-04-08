@@ -25,16 +25,32 @@
           margin-bottom: 0.5em;
       }
       p{
-        color: aqua;
+        color: white;
       }
+      .goback-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff69b4;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+.goback-btn:hover {
+    background-color: #ff1493;
+}
+
   </style>
   </head>
   <body>
-    <h1>Your search: {{place_name}} </h1>
+    <h2>Your search: {{place_name}} </h2>
     <section>
-      <h2>Nearest MBTA Station</h2>
+      <h1>Nearest MBTA Station</h1>
       <p>Station Name: {{nearest_stop}} </p>
       <p>Wheelchair Accessible: {{wheelchair_accessible}} </p>
+      <p>Weather Information: {{weather_info}} °C</p>
+      <a href="/" class="goback-btn">Go Back</a>
     </section>
   </body>
 </html>
